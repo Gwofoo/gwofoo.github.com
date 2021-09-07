@@ -218,10 +218,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-09-04 10:33:04 / 修改时间：10:37:49" itemprop="dateCreated datePublished" datetime="2021-09-04T10:33:04+08:00">2021-09-04</time>
+              <time title="创建时间：2021-09-04 10:33:04" itemprop="dateCreated datePublished" datetime="2021-09-04T10:33:04+08:00">2021-09-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-07 12:29:41" itemprop="dateModified" datetime="2021-09-07T12:29:41+08:00">2021-09-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -238,7 +244,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>164</span>
+              <span>343</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -257,16 +263,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo n <span class="string">&quot;博客使用指南&quot;</span></span><br></pre></td></tr></table></figure>
+          <h1 id="从创建到部署"><a href="#从创建到部署" class="headerlink" title="从创建到部署"></a>从创建到部署</h1><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo n <span class="string">&quot;博客使用指南&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;博客使用指南&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="设置标签"><a href="#设置标签" class="headerlink" title="设置标签"></a>设置标签</h1><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> tages: </span><br><span class="line">- 标签<span class="number">1</span></span><br><span class="line">- 标签<span class="number">2</span></span><br><span class="line">...</span><br><span class="line">- 标签n</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h2 id="运行服务器"><a href="#运行服务器" class="headerlink" title="运行服务器"></a>运行服务器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tages: [标签<span class="number">1</span>,标签<span class="number">2</span>,...标签n]</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<h1 id="手动设置文章时间"><a href="#手动设置文章时间" class="headerlink" title="手动设置文章时间"></a>手动设置文章时间</h1><p>直接在文章开头设置发表/更新时间：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">date: <span class="number">2021</span>-<span class="number">09</span>-<span class="number">03</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">51</span></span><br><span class="line">updated: <span class="number">2018</span>-<span class="number">01</span>-<span class="number">01</span> <span class="number">12</span>:<span class="number">00</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h2 id="部署到远程站点"><a href="#部署到远程站点" class="headerlink" title="部署到远程站点"></a>部署到远程站点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -316,7 +332,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-04 10:41:15" itemprop="dateModified" datetime="2021-09-04T10:41:15+08:00">2021-09-04</time>
+                <time title="修改时间：2021-09-07 12:02:42" itemprop="dateModified" datetime="2021-09-07T12:02:42+08:00">2021-09-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -334,14 +350,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -366,97 +382,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/01/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="Gwofoo">
-      <meta itemprop="description" content="Welcome to Gwofoo's blog. Keep it up!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gwofoo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/01/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-01 21:00:17" itemprop="dateCreated datePublished" datetime="2021-09-01T21:00:17+08:00">2021-09-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-04 11:01:14" itemprop="dateModified" datetime="2021-09-04T11:01:14+08:00">2021-09-04</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>367</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
       
     </div>
 
@@ -578,9 +503,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-01 21:00:44 / 修改时间：21:24:43" itemprop="dateCreated datePublished" datetime="2019-12-01T21:00:44+08:00">2019-12-01</time>
+              <time title="创建时间：2019-12-01 21:00:44" itemprop="dateCreated datePublished" datetime="2019-12-01T21:00:44+08:00">2019-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-07 12:29:00" itemprop="dateModified" datetime="2021-09-07T12:29:00+08:00">2021-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a>
+                </span>
             </span>
 
           <br>
@@ -614,19 +554,14 @@
 <p>同一时刻<strong>先还再取</strong>，且按<strong>编号从小到大</strong>的顺序还。</p>
 <p>初始时，钥匙按编号<strong>从小到大</strong>挂着。</p>
 <p>有<em>K</em>位老师取。给出钥匙标号、取出时间和借出时长，请问最终钥匙盒里面钥匙的顺序是怎样的？</p>
-<h1 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h1><p>　　输入的第一行包含两个整数<em>N</em>, <em>K</em>。<br>　　接下来<em>K</em>行，每行三个整数<em>w</em>, <em>s</em>, <em>c</em>，分别表示一位老师要使用的钥匙编号、取出时间和借出的时长。可能有多位老师使用同一把钥匙，但是老师使用钥匙的时间不会重叠。</p>
-<h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><p>　　输出一行，包含<em>N</em>个整数，相邻整数间用一个空格分隔，依次表示每个挂钩上挂的钥匙编号。</p>
-<h1 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 2<br>4 3 3<br>2 2 7</p>
-<h1 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 4 3 2 5</p>
-<h1 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h1><p>　　第一位老师从时刻3开始使用4号教室的钥匙，使用3单位时间，所以在时刻6还钥匙。第二位老师从时刻2开始使用钥匙，使用7单位时间，所以在时刻9还钥匙。<br>　　每个关键时刻后的钥匙状态如下（X表示空）：<br>　　时刻2后为1X345；<br>　　时刻3后为1X3X5；<br>　　时刻6后为143X5；<br>　　时刻9后为14325。</p>
-<h1 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 7<br>1 1 14<br>3 3 12<br>1 15 12<br>2 7 20<br>3 18 12<br>4 21 19<br>5 30 9</p>
-<h1 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 2 3 5 4</p>
-<h1 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h1><p>　　对于30%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 10, 1 ≤ <em>w</em> ≤ <em>N</em>, 1 ≤ <em>s</em>, <em>c</em> ≤ 30；<br>　　对于60%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 50，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 300，1 ≤ <em>c</em> ≤ 50；<br>　　对于所有评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 1000，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 10000，1 ≤ <em>c</em> ≤ 100。</p>
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>用到两个结构体，保存每次取用的3个数据分别按取出时间和返还时间的排序，即按时间顺序排列。</p>
-<p>vector使用sort排序时写法是<code>sort(v.begin(),v.begin()+v.size());</code>。</p>
-<h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> no,s,en;  <span class="comment">//no号钥匙，s时刻借出，en时刻返还 </span></span><br><span class="line">&#125;node[<span class="number">1005</span>],node1[<span class="number">1005</span>];  <span class="comment">//分别对s和en排序 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//按开始时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.s==b.s)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.s&lt;b.s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按返还时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.en==b.en)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.en&lt;b.en;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> order[<span class="number">1005</span>];  <span class="comment">//oder[i]=x表示第i号钥匙挂在x号钩上 </span></span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">1005</span>];  <span class="comment">//ans[x]=i表示第x号钩子挂着i号钥匙 </span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v;  <span class="comment">//处理钥匙的移出和挂回 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> N,K;  <span class="comment">//N把钥匙，K次取还 </span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;N,&amp;K);</span><br><span class="line">	<span class="comment">//初始时，i号钥匙挂于i号钩	</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		order[i]=i;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="comment">//读入i次取还 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;K;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;node[i].no, &amp;node[i].s,&amp;node[i].en);</span><br><span class="line">		node[i].en += node[i].s;</span><br><span class="line">		node1[i] = node[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//分别对s和en排序</span></span><br><span class="line">	<span class="built_in">sort</span>(node,node+K,cmp1);</span><br><span class="line">	<span class="built_in">sort</span>(node1,node1+K,cmp2);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/* //打印排序结果 </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node[i].s&lt;&lt;&#x27; &#x27;&lt;&lt;node[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node1[i].en&lt;&lt;&#x27; &#x27;&lt;&lt;node1[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125; </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;*/</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> f1=<span class="number">0</span>, f2=<span class="number">0</span>;  <span class="comment">//表示借出和返还的次数 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> time=<span class="number">1</span>;!(f1==K &amp;&amp; f2==K);time++)&#123;  <span class="comment">//借还次数都满时，时间停止，退出循环 		</span></span><br><span class="line">		<span class="comment">//先还 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f1;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node1[i].en &gt; time) <span class="keyword">break</span>;  <span class="comment">//还没到下一把钥匙的返还时间 			</span></span><br><span class="line">			<span class="keyword">if</span>(node1[i].en == time)&#123;</span><br><span class="line">				order[node1[i].no] = v[<span class="number">0</span>];  <span class="comment">//取出v中的第一个元素(即最小的编号)</span></span><br><span class="line">				v.<span class="built_in">erase</span>(v.<span class="built_in">begin</span>());  <span class="comment">//并将第一个元素删除</span></span><br><span class="line">				<span class="comment">//cout&lt;&lt;node1[i].no&lt;&lt;&quot; 号钥匙放回 &quot;&lt;&lt;order[node1[i].no]&lt;&lt;endl;</span></span><br><span class="line">			&#125;</span><br><span class="line">			f1++;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//再借</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f2;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node[i].s &gt; time)<span class="keyword">break</span>;	 <span class="comment">//还没到下一把钥匙的借出时间 		</span></span><br><span class="line">			<span class="keyword">if</span>(node[i].s == time)&#123;</span><br><span class="line">				v.<span class="built_in">push_back</span>(order[node[i].no]);  <span class="comment">//保存被取出的钥匙的空位</span></span><br><span class="line">				<span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">begin</span>()+v.<span class="built_in">size</span>());  <span class="comment">//对所有空钩排序</span></span><br><span class="line">				order[node[i].no]=<span class="number">0</span>;</span><br><span class="line">				<span class="comment">//cout&lt;&lt;node[i].no&lt;&lt;&quot; 号钥匙已拿走... &quot;&lt;&lt;endl;		</span></span><br><span class="line">			&#125; </span><br><span class="line">			f2++;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		ans[order[i]]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		cout&lt;&lt;ans[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/01/%E7%BB%93%E6%9E%84%E4%BD%93%E6%8E%92%E5%BA%8F-ccf1709-2%E5%85%AC%E5%85%B1%E9%92%A5%E5%8C%99%E7%9B%92/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -668,9 +603,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-11-22 20:39:04 / 修改时间：23:06:29" itemprop="dateCreated datePublished" datetime="2019-11-22T20:39:04+08:00">2019-11-22</time>
+              <time title="创建时间：2019-11-22 20:39:04" itemprop="dateCreated datePublished" datetime="2019-11-22T20:39:04+08:00">2019-11-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-07 12:16:43" itemprop="dateModified" datetime="2021-09-07T12:16:43+08:00">2021-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
             </span>
 
           <br>
@@ -748,9 +698,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-09-07 10:56:19 / 修改时间：11:07:21" itemprop="dateCreated datePublished" datetime="2019-09-07T10:56:19+08:00">2019-09-07</time>
+              <time title="创建时间：2019-09-07 10:56:19" itemprop="dateCreated datePublished" datetime="2019-09-07T10:56:19+08:00">2019-09-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-07 12:16:01" itemprop="dateModified" datetime="2021-09-07T12:16:01+08:00">2021-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a>
+                </span>
             </span>
 
           <br>
@@ -831,9 +796,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-09-07 09:31:22 / 修改时间：09:49:21" itemprop="dateCreated datePublished" datetime="2019-09-07T09:31:22+08:00">2019-09-07</time>
+              <time title="创建时间：2019-09-07 09:31:22" itemprop="dateCreated datePublished" datetime="2019-09-07T09:31:22+08:00">2019-09-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-07 12:15:14" itemprop="dateModified" datetime="2021-09-07T12:15:14+08:00">2021-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a>
+                </span>
             </span>
 
           <br>
@@ -890,7 +870,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/04/c-STL/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/04/C++%20STL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -904,7 +884,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/08/04/c-STL/" class="post-title-link" itemprop="url">c++ STL</a>
+            <a href="/2019/08/04/C++%20STL/" class="post-title-link" itemprop="url">c++：STL</a>
         </h2>
 
         <div class="post-meta">
@@ -921,8 +901,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-22 16:29:23" itemprop="dateModified" datetime="2020-04-22T16:29:23+08:00">2020-04-22</time>
+                <time title="修改时间：2021-09-07 12:13:48" itemprop="dateModified" datetime="2021-09-07T12:13:48+08:00">2021-09-07</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -949,10 +938,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"></span><br><span class="line">map&lt;<span class="keyword">int</span>, string&gt; stu;  <span class="comment">// 定义一个map对象</span></span><br><span class="line">map&lt;<span class="keyword">int</span>, string&gt;::iterator it;  <span class="comment">//定义相应的迭代器（用于遍历）</span></span><br><span class="line"><span class="comment">//插入元素：用&quot;array&quot;方式插入</span></span><br><span class="line">stu[<span class="number">123</span>] = <span class="string">&quot;student_first&quot;</span>;</span><br><span class="line">stu[<span class="number">456</span>] = <span class="string">&quot;student_second&quot;</span>;</span><br><span class="line"><span class="comment">//迭代</span></span><br><span class="line"><span class="keyword">for</span>(it=stu.<span class="built_in">begin</span>();it!=stu.<span class="built_in">end</span>();it++)&#123;</span><br><span class="line">    cout&lt;&lt;it-&gt;first;    <span class="comment">//first表示key</span></span><br><span class="line">    cout&lt;&lt;it-&gt;second;    <span class="comment">//second表示value</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	map.count(Key)返回值为1或者0，1返回存在，0返回不存在。因为在map中数据的Key值都是不同的，所以被count的数要么存在1次，要么不存在。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	begin()指向第一个元素</span></span><br><span class="line"><span class="comment">	end()指向最后一个元素的后一个元素</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"></span><br><span class="line">map&lt;<span class="keyword">int</span>, string&gt; stu;  <span class="comment">// 定义一个map对象</span></span><br><span class="line">map&lt;<span class="keyword">int</span>, string&gt;::iterator it;  <span class="comment">//定义相应的迭代器（用于遍历）</span></span><br><span class="line"><span class="comment">//插入元素：用&quot;array&quot;方式插入</span></span><br><span class="line">stu[<span class="number">123</span>] = <span class="string">&quot;student_first&quot;</span>;</span><br><span class="line">stu[<span class="number">456</span>] = <span class="string">&quot;student_second&quot;</span>;</span><br><span class="line"><span class="comment">//迭代</span></span><br><span class="line"><span class="keyword">for</span>(it=stu.<span class="built_in">begin</span>();it!=stu.<span class="built_in">end</span>();it++)&#123;</span><br><span class="line">    cout&lt;&lt;it-&gt;first;    <span class="comment">//first表示key</span></span><br><span class="line">    cout&lt;&lt;it-&gt;second;    <span class="comment">//second表示value</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	map.count(Key)返回值为1或者0，1返回存在，0返回不存在。因为在map中数据的Key值都是不同的，所以被count的数要么存在1次，要么不存在。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	begin()指向第一个元素</span></span><br><span class="line"><span class="comment">	end()指向最后一个元素的后一个元素</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/08/04/c-STL/#more" rel="contents">
+              <a class="btn" href="/2019/08/04/C++%20STL/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -990,7 +979,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/07/09/c-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99+%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">c++文件读写 字符串</a>
+            <a href="/2019/07/09/c-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99+%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">c++：文件读写、字符串</a>
         </h2>
 
         <div class="post-meta">
@@ -1007,8 +996,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-14 16:29:36" itemprop="dateModified" datetime="2019-09-14T16:29:36+08:00">2019-09-14</time>
+                <time title="修改时间：2021-09-07 12:12:11" itemprop="dateModified" datetime="2021-09-07T12:12:11+08:00">2021-09-07</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -1042,6 +1040,110 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/07/09/c-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99+%E5%AD%97%E7%AC%A6%E4%B8%B2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/07/07/js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="Gwofoo">
+      <meta itemprop="description" content="Welcome to Gwofoo's blog. Keep it up!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gwofoo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/07/js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Js学习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-07 13:57:12" itemprop="dateCreated datePublished" datetime="2019-07-07T13:57:12+08:00">2019-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-07 12:05:02" itemprop="dateModified" datetime="2021-09-07T12:05:02+08:00">2021-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Js/" itemprop="url" rel="index"><span itemprop="name">Js</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="分号"><a href="#分号" class="headerlink" title="分号"></a>分号</h3><p>在 JavaScript 中，用分号来结束语句是可选的。</p>
+<h3 id="对代码行进行拆行"><a href="#对代码行进行拆行" class="headerlink" title="对代码行进行拆行"></a>对代码行进行拆行</h3><p>可以在<strong>文本字符串</strong>中使用<u>反斜杠</u>对代码行进行换行。下面的例子会正确地显示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.write(<span class="string">&quot;你好 \</span></span><br><span class="line"><span class="string">世界!&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>不过，不能像这样拆行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.write \ </span><br><span class="line">(<span class="string">&quot;你好世界!&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>采用 // 和 /* */ 两种。</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><h4 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h4><p>JavaScript 变量均为对象。当您声明一个变量时，就创建了一个新的对象。</p>
+<p>当您声明新变量时，可以使用 “new” 来声明其类型（首字母大写）：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/07/js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1132,20 +1234,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1186,12 +1288,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">20k</span>
+    <span title="站点总字数">19k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">17 分钟</span>
 </div>
 
 
