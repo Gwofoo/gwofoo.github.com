@@ -221,11 +221,15 @@
     <url>/2020/07/14/zcy520/</url>
     <content><![CDATA[<h1 id="三行情书一则"><a href="#三行情书一则" class="headerlink" title="三行情书一则"></a>三行情书一则</h1><span id="more"></span>
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span> (you.Love(me) || !you.Love(me))&#123; </span><br><span class="line">	me.love.value++; </span><br><span class="line">	me.love.value--;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//你爱，或者不爱我</span></span><br><span class="line"><span class="comment">//爱就在那里</span></span><br><span class="line"><span class="comment">//不增不减</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (you.Love(me) || !you.Love(me))&#123; </span><br><span class="line">	me.love.value++; </span><br><span class="line">	me.love.value--;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//你爱，或者不爱我</span></span><br><span class="line"><span class="comment">//爱就在那里</span></span><br><span class="line"><span class="comment">//不增不减</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> you.Love(me) <span class="keyword">or</span> <span class="keyword">not</span> you.Love(me):</span><br><span class="line">	love += <span class="number">1</span></span><br><span class="line">	love -= <span class="number">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">你爱，或者不爱我</span></span><br><span class="line"><span class="string">爱就在那里</span></span><br><span class="line"><span class="string">不增不减</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
 
 <h1 id="ฅ՞•ﻌ•՞ฅ̊"><a href="#ฅ՞•ﻌ•՞ฅ̊" class="headerlink" title="ฅ՞•ﻌ•՞ฅ̊"></a>ฅ՞•ﻌ•՞ฅ̊</h1>]]></content>
       <tags>
-        <tag>努力学习</tag>
+        <tag>彩蛋</tag>
       </tags>
   </entry>
   <entry>
