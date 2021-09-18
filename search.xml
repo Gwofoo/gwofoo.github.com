@@ -110,22 +110,6 @@
       </tags>
   </entry>
   <entry>
-    <title>c++常用库函数</title>
-    <url>/2019/11/22/c-%E5%B8%B8%E7%94%A8%E5%BA%93%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">isalpha</span>(字母);	<span class="comment">//判断是否是字母</span></span><br><span class="line"><span class="built_in">toupper</span>(字母);	<span class="comment">//转大写</span></span><br><span class="line"><span class="built_in">tolower</span>(字母);	<span class="comment">//转小写	</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>库函数</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OJ-大数整除</title>
     <url>/2019/07/04/OJ-%E5%A4%A7%E6%95%B0%E6%95%B4%E9%99%A4/</url>
     <content><![CDATA[<h2 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a>原题链接</h2><p><a href="http://www.dotcpp.com/oj/problem1074.html">http://www.dotcpp.com/oj/problem1074.html</a></p>
@@ -146,6 +130,22 @@
       </categories>
       <tags>
         <tag>OJ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++常用库函数</title>
+    <url>/2019/11/22/c-%E5%B8%B8%E7%94%A8%E5%BA%93%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">isalpha</span>(字母);	<span class="comment">//判断是否是字母</span></span><br><span class="line"><span class="built_in">toupper</span>(字母);	<span class="comment">//转大写</span></span><br><span class="line"><span class="built_in">tolower</span>(字母);	<span class="comment">//转小写	</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>库函数</tag>
       </tags>
   </entry>
   <entry>
@@ -181,6 +181,56 @@
       </categories>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vector应用-ccf1712-2围圈报数</title>
+    <url>/2019/09/07/vector%E5%BA%94%E7%94%A8-ccf1712-2%E5%9B%B4%E5%9C%88%E6%8A%A5%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>​        1到<em>n</em>号小朋友顺时针坐一圈，围圈报数。<br>​        若一个小朋友报的数为<strong><em>k</em>的倍数</strong>或其<strong>末位数（即数的个位）为<em>k</em></strong>，则该小朋友被淘汰。</p>
+<p>​        当只剩一个小朋友时，该小朋友获胜。</p>
+<p>　　例如，当n=5, k=2时：<br>　　1号小朋友报数1；<br>　　2号小朋友报数2淘汰；<br>　　3号小朋友报数3；<br>　　4号小朋友报数4淘汰；<br>　　5号小朋友报数5；<br>　　1号小朋友报数6淘汰；<br>　　3号小朋友报数7；<br>　　5号小朋友报数8淘汰；<br>　　3号小朋友获胜。</p>
+<p>　　给定<em>n</em>和<em>k</em>，请问最后获胜的小朋友编号为多少？</p>
+<span id="more"></span>
+
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入一行，包括两个整数<em>n</em>和<em>k</em>，意义如题目所述。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一行，包含一个整数，表示获胜的小朋友编号。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>5 2</p>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>3</p>
+<h2 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h2><p>7 3</p>
+<h2 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h2><p>4</p>
+<h2 id="数据规模和约定"><a href="#数据规模和约定" class="headerlink" title="数据规模和约定"></a>数据规模和约定</h2><p>　　对于所有评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>k</em> ≤ 9。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>应用vector和迭代器。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br></pre></td></tr></table></figure>
+
+<p>开始时，迭代器指向<code>v.begin()</code>，当迭代到<code>v.end()</code>时，重新指向<code>v.begin()</code>，从而做到循环。</p>
+<p>当<code>v.size()==1</code>时退出循环。</p>
+<p>循环时，若报数报到淘汰值，直接将该元素移出vector：<code>v.erase(it);</code> 。</p>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1005</span>]=&#123;<span class="number">0</span>&#125;;  <span class="comment">//0游戏中，1出局 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n,k;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">	 </span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="comment">//各号小朋友就位 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		v.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//游戏开始 </span></span><br><span class="line">	<span class="keyword">int</span> count=<span class="number">0</span>;<span class="comment">//报的数</span></span><br><span class="line">	<span class="keyword">for</span>(it=v.<span class="built_in">begin</span>();v.<span class="built_in">size</span>()!=<span class="number">1</span>;)&#123;  <span class="comment">//vector中晋仅剩一个元素时游戏结束 </span></span><br><span class="line">		<span class="comment">//迭代器报到末尾，则从头开始报 </span></span><br><span class="line">		<span class="keyword">if</span>(it==v.<span class="built_in">end</span>()) </span><br><span class="line">			it=v.<span class="built_in">begin</span>();</span><br><span class="line">		count++;</span><br><span class="line">		<span class="keyword">if</span>(count%<span class="number">10</span>==k || count%k==<span class="number">0</span>)&#123;  <span class="comment">//尾号为k 或 k的倍数 </span></span><br><span class="line">			<span class="comment">//cout&lt;&lt;*it&lt;&lt;&quot;被淘汰&quot;&lt;&lt;endl;</span></span><br><span class="line">			v.<span class="built_in">erase</span>(it);  </span><br><span class="line">			<span class="keyword">continue</span>;  <span class="comment">//删除元素后,后面元素自动往前移，所以迭代器不要增加了！ </span></span><br><span class="line">		&#125;</span><br><span class="line">		it++;		</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;v[<span class="number">0</span>]&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>STL</tag>
+        <tag>C++</tag>
+        <tag>Vector</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>⭐和🌙</title>
+    <url>/2020/07/14/zcy520/</url>
+    <content><![CDATA[<h1 id="三行情书一则"><a href="#三行情书一则" class="headerlink" title="三行情书一则"></a>三行情书一则</h1><span id="more"></span>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (you.Love(me) || !you.Love(me))&#123; </span><br><span class="line">	me.love.value++; </span><br><span class="line">	me.love.value--;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//你爱，或者不爱我</span></span><br><span class="line"><span class="comment">//爱就在那里</span></span><br><span class="line"><span class="comment">//不增不减</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> you.Love(me) <span class="keyword">or</span> <span class="keyword">not</span> you.Love(me):</span><br><span class="line">	love += <span class="number">1</span></span><br><span class="line">	love -= <span class="number">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">你爱，或者不爱我</span></span><br><span class="line"><span class="string">爱就在那里</span></span><br><span class="line"><span class="string">不增不减</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="ฅ՞•ﻌ•՞ฅ̊"><a href="#ฅ՞•ﻌ•՞ฅ̊" class="headerlink" title="ฅ՞•ﻌ•՞ฅ̊"></a>ฅ՞•ﻌ•՞ฅ̊</h1>]]></content>
+      <tags>
+        <tag>彩蛋</tag>
       </tags>
   </entry>
   <entry>
@@ -449,53 +499,147 @@
       </tags>
   </entry>
   <entry>
-    <title>vector应用-ccf1712-2围圈报数</title>
-    <url>/2019/09/07/vector%E5%BA%94%E7%94%A8-ccf1712-2%E5%9B%B4%E5%9C%88%E6%8A%A5%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>​        1到<em>n</em>号小朋友顺时针坐一圈，围圈报数。<br>​        若一个小朋友报的数为<strong><em>k</em>的倍数</strong>或其<strong>末位数（即数的个位）为<em>k</em></strong>，则该小朋友被淘汰。</p>
-<p>​        当只剩一个小朋友时，该小朋友获胜。</p>
-<p>　　例如，当n=5, k=2时：<br>　　1号小朋友报数1；<br>　　2号小朋友报数2淘汰；<br>　　3号小朋友报数3；<br>　　4号小朋友报数4淘汰；<br>　　5号小朋友报数5；<br>　　1号小朋友报数6淘汰；<br>　　3号小朋友报数7；<br>　　5号小朋友报数8淘汰；<br>　　3号小朋友获胜。</p>
-<p>　　给定<em>n</em>和<em>k</em>，请问最后获胜的小朋友编号为多少？</p>
+    <title>【论文笔记】A Survey on Temporal Action Localization</title>
+    <url>/2021/09/17/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91A-Survey-on-Temporal-Action-Localization/</url>
+    <content><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文介绍了时序动作定位（Temporal Action Localization）的相关技术、基准数据集和评价指标。此外，从完全监督学习和弱监督学习两个方面，总结了时序动作定位。列举了部分代表性工作并比较了他们的性能。最后，还提出了可能的研究方向。</p>
 <span id="more"></span>
 
-<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入一行，包括两个整数<em>n</em>和<em>k</em>，意义如题目所述。</p>
-<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一行，包含一个整数，表示获胜的小朋友编号。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>5 2</p>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>3</p>
-<h2 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h2><p>7 3</p>
-<h2 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h2><p>4</p>
-<h2 id="数据规模和约定"><a href="#数据规模和约定" class="headerlink" title="数据规模和约定"></a>数据规模和约定</h2><p>　　对于所有评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>k</em> ≤ 9。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>应用vector和迭代器。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br></pre></td></tr></table></figure>
-
-<p>开始时，迭代器指向<code>v.begin()</code>，当迭代到<code>v.end()</code>时，重新指向<code>v.begin()</code>，从而做到循环。</p>
-<p>当<code>v.size()==1</code>时退出循环。</p>
-<p>循环时，若报数报到淘汰值，直接将该元素移出vector：<code>v.erase(it);</code> 。</p>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1005</span>]=&#123;<span class="number">0</span>&#125;;  <span class="comment">//0游戏中，1出局 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n,k;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">	 </span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="comment">//各号小朋友就位 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		v.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//游戏开始 </span></span><br><span class="line">	<span class="keyword">int</span> count=<span class="number">0</span>;<span class="comment">//报的数</span></span><br><span class="line">	<span class="keyword">for</span>(it=v.<span class="built_in">begin</span>();v.<span class="built_in">size</span>()!=<span class="number">1</span>;)&#123;  <span class="comment">//vector中晋仅剩一个元素时游戏结束 </span></span><br><span class="line">		<span class="comment">//迭代器报到末尾，则从头开始报 </span></span><br><span class="line">		<span class="keyword">if</span>(it==v.<span class="built_in">end</span>()) </span><br><span class="line">			it=v.<span class="built_in">begin</span>();</span><br><span class="line">		count++;</span><br><span class="line">		<span class="keyword">if</span>(count%<span class="number">10</span>==k || count%k==<span class="number">0</span>)&#123;  <span class="comment">//尾号为k 或 k的倍数 </span></span><br><span class="line">			<span class="comment">//cout&lt;&lt;*it&lt;&lt;&quot;被淘汰&quot;&lt;&lt;endl;</span></span><br><span class="line">			v.<span class="built_in">erase</span>(it);  </span><br><span class="line">			<span class="keyword">continue</span>;  <span class="comment">//删除元素后,后面元素自动往前移，所以迭代器不要增加了！ </span></span><br><span class="line">		&#125;</span><br><span class="line">		it++;		</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;v[<span class="number">0</span>]&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="I-引言"><a href="#I-引言" class="headerlink" title="I 引言"></a>I 引言</h1><h4 id="视频理解（video-understanding）五大任务："><a href="#视频理解（video-understanding）五大任务：" class="headerlink" title="视频理解（video understanding）五大任务："></a>视频理解（video understanding）五大任务：</h4><p>a) Untrimmed Video Classification</p>
+<p>​    未分割视频的分类</p>
+<p>b) Trimmed Action Recognition</p>
+<p>​    已分割视频的动作识别（一个视频只包含一种动作）</p>
+<p>c) Temporal Action Proposals</p>
+<p>​    长视频动作分割（使各segment仅含一个动作）</p>
+<p><strong>d) Temporal Action Localization</strong></p>
+<p>​    时序动作定位</p>
+<p>e) Dense-Captioning Events in Videos</p>
+<p>​    视频中多种动作的描述</p>
+<h4 id="时序动作定位（Temporal-Action-Localization）的任务包括："><a href="#时序动作定位（Temporal-Action-Localization）的任务包括：" class="headerlink" title="时序动作定位（Temporal Action Localization）的任务包括："></a>时序动作定位（Temporal Action Localization）的任务包括：</h4><ol>
+<li>识别（recognition）</li>
+<li>定位（localization）</li>
+</ol>
+<h4 id="视频定位比起图片定位的难点："><a href="#视频定位比起图片定位的难点：" class="headerlink" title="视频定位比起图片定位的难点："></a>视频定位比起图片定位的难点：</h4><ol>
+<li>视频包含时序信息</li>
+<li>视频动作的边界不清晰</li>
+<li>时序跨度大</li>
+<li>存在多尺度、多目标、镜头抖动</li>
+</ol>
+<h4 id="该技术的应用："><a href="#该技术的应用：" class="headerlink" title="该技术的应用："></a>该技术的应用：</h4><p>视频内容概括、监控、技巧评估、公共安全。</p>
+<h1 id="II-相关技术"><a href="#II-相关技术" class="headerlink" title="II 相关技术"></a>II 相关技术</h1><p>2014以前：传统方法；2014以后：深度学习</p>
+<h2 id="A-传统方法"><a href="#A-传统方法" class="headerlink" title="A 传统方法"></a>A 传统方法</h2><p>特征提取：局部的、全局的。</p>
+<h4 id="基于特征点跟踪的特征提取方法"><a href="#基于特征点跟踪的特征提取方法" class="headerlink" title="基于特征点跟踪的特征提取方法"></a>基于特征点跟踪的特征提取方法</h4><ol>
+<li>检测特征点（feature points）</li>
+<li>逐帧跟踪特征点</li>
+<li>形成轨迹</li>
+<li>描述轨迹及其时序</li>
+</ol>
+<p>典型方法：</p>
+<p>DT（Dense Trajectories， 强轨迹）-&gt; iDT（improved DT）</p>
+<p>如今多将DL方法与iDT结合。</p>
+<h2 id="B-深度学习（DL）方法"><a href="#B-深度学习（DL）方法" class="headerlink" title="B 深度学习（DL）方法"></a>B 深度学习（DL）方法</h2><p>分为两阶段（two-stage）方法和一阶段（one-stage）方法。</p>
+<p>前人方法回顾：</p>
+<p>2D-CNN</p>
+<p>two-stream CNNs</p>
+<p>3D CNN</p>
+<p>I3D(Inception 3D)</p>
+<p>RNN</p>
+<p>TSN</p>
+<h3 id="1）-两阶段（two-stage）方法（主流）"><a href="#1）-两阶段（two-stage）方法（主流）" class="headerlink" title="1） 两阶段（two-stage）方法（主流）"></a>1） 两阶段（two-stage）方法（主流）</h3><ol>
+<li>提取temporal proposals（难点）</li>
+<li>将其分类以及回归操作</li>
+</ol>
+<p>第一步是难点，所以各种方法也都是针对第一步来提出。评估其性能的方法：AR（Average Recall）。</p>
+<h4 id="a-滑窗法-SLIDING-WINDOW-S-CNN-14-2016"><a href="#a-滑窗法-SLIDING-WINDOW-S-CNN-14-2016" class="headerlink" title="a 滑窗法 SLIDING WINDOW (S-CNN [14], 2016)"></a>a 滑窗法 SLIDING WINDOW (S-CNN [14], 2016)</h4><p>S-CNN：固定一定大小的滑动窗口来生成不同大小的视频片段，然后通过多级网络(SegmentCNN)对其进行处理。</p>
+<p>SCNN包括三个使用C3D网络的子网络：</p>
+<ol>
+<li>proposal网络。确定当前划分的视频片段（segment）是一个动作（action）的可能性。</li>
+<li>分类网络。对视频片段进行分类。</li>
+<li>定位网络。其输出是分类的概率。</li>
+</ol>
+<p>理论上，窗口滑动的重叠度越高，效果越好，但是计算量也大。所以用非极大值抑制（non-maximized suppression, NMS）去除重叠段。</p>
+<h4 id="b-时序动作组合-TEMPORAL-ACTIONNESS-GROUPING-TAG-15-2017"><a href="#b-时序动作组合-TEMPORAL-ACTIONNESS-GROUPING-TAG-15-2017" class="headerlink" title="b 时序动作组合 TEMPORAL ACTIONNESS GROUPING (TAG [15], 2017)"></a>b 时序动作组合 TEMPORAL ACTIONNESS GROUPING (TAG [15], 2017)</h4><p>滑窗法不能处理不同长度的视频动作。</p>
+<p>2017年，Y. Xiong等人提出了一个框架，可以精确划分可变视频的动作边界。该框架分为2步：</p>
+<ol>
+<li>生成一系列时序proposals。</li>
+<li>判断这些候选是否是一个动作，并预测动作的类别。</li>
+</ol>
+<p>为了生成一个proposal，提出了TAG网络。TAG网络分为3步：</p>
+<ol>
+<li><p>提取片段（snippets）：每个snippet包含一个视频帧和光流（ optical flow）信息；snippet是均匀获取的。</p>
+</li>
+<li><p>动作判断（Actionness）：确定每个snippet是否含有任何动作。用到二分类网络TSN（Temporal Segment Network）。</p>
+</li>
+<li><p>组合（Grouping）：依据输出的snippets序列的概率，对高概率的连续snippets进行组合，同时设置多组阈值来删除低概率的snippets。</p>
+</li>
+</ol>
+<p>优点：对边界的处理更灵活。</p>
+<p>缺点：分类错误的话，会错过一些proposal。</p>
+<h4 id="c-时间单元回归网络-TEMPORAL-UNIT-REGRESS-NETWORK-TURN-TAP-16-2017"><a href="#c-时间单元回归网络-TEMPORAL-UNIT-REGRESS-NETWORK-TURN-TAP-16-2017" class="headerlink" title="c 时间单元回归网络 TEMPORAL UNIT REGRESS NETWORK (TURN TAP [16], 2017)"></a>c 时间单元回归网络 TEMPORAL UNIT REGRESS NETWORK (TURN TAP [16], 2017)</h4><p>由Gao J.Y.等人在2017年提出。</p>
+<p>该方法将视频分成固定大小的单元（unit），例如16帧为一单元。然后将每个单元放入C3D中提取水平特征。相邻单元构成一个片段（clip），并让每个单元作为锚定单元（anchor unit）构成片段金字塔，然后在单元上执行时序坐标回归。</p>
+<p>网络包含两个输出：</p>
+<ol>
+<li>确定片段（clip）是否包含动作的置信度</li>
+<li>调整时序坐标边界的偏移量</li>
+</ol>
+<p>该方法的贡献：</p>
+<ol>
+<li>一种利用坐标回归生成时序proposal片段的新方法。</li>
+<li>快（800fps）。</li>
+<li>提出了一种新的评价指标AR-F。</li>
+</ol>
+<h4 id="d-边界敏感网络-BOUNDARY-SENSITIVE-NETWORK-BSN-21-2018"><a href="#d-边界敏感网络-BOUNDARY-SENSITIVE-NETWORK-BSN-21-2018" class="headerlink" title="d 边界敏感网络 BOUNDARY SENSITIVE NETWORK (BSN [21], 2018)"></a>d 边界敏感网络 BOUNDARY SENSITIVE NETWORK (BSN [21], 2018)</h4><p>高质量的时序动作候选（proposals）应该具有以下几个特点：</p>
+<p>a)灵活的时间长度；</p>
+<p>b)精确的时间边界；</p>
+<p>c)可靠的置信度。</p>
+<p>事实上，想同时在这3个方面做的好是很难的。为此，T. Lin等人在2018年提出了BSN。</p>
+<p>BSN步骤：</p>
+<ol>
+<li>首先确定时序动作片段的边界，并将其此片段直接作为proposal。</li>
+<li>对每个候选proposal，基于动作序列的置信度，提取32维的proposal级别的特征。</li>
+<li>最后，根据所提取的这些特征，评估这些proposal的置信度。</li>
+</ol>
+<h4 id="e-边界匹配网络-BOUNDARY-MATCHING-NETWORK-BMN-72-2019"><a href="#e-边界匹配网络-BOUNDARY-MATCHING-NETWORK-BMN-72-2019" class="headerlink" title="e 边界匹配网络 BOUNDARY-MATCHING NETWORK (BMN [72], 2019)"></a>e 边界匹配网络 BOUNDARY-MATCHING NETWORK (BMN [72], 2019)</h4><p>为了解决BSN的不足所提出。</p>
+<p>BMN可以同时生成一维边界的概率和二维BM的置信度。然后对所有可能的时序proposal进行置信度评估。</p>
+<h3 id="2）-一阶段（one-stage）方法"><a href="#2）-一阶段（one-stage）方法" class="headerlink" title="2） 一阶段（one-stage）方法"></a>2） 一阶段（one-stage）方法</h3><p>这种方法同时处理proposal和分类。</p>
+<h4 id="SSAD（single-shot-temporal-action-detection，单镜头时序动作检测）"><a href="#SSAD（single-shot-temporal-action-detection，单镜头时序动作检测）" class="headerlink" title="SSAD（single shot temporal action detection，单镜头时序动作检测）"></a>SSAD（single shot temporal action detection，单镜头时序动作检测）</h4><p>结合了在目标检测中的YOLO和SSD模型的特性。</p>
+<p>其流程如下：利用预训练模型，得到特征序列作为SSAD模型的输入。经过处理后，模型输出检测结果。</p>
+<p>用C3D提取特征。</p>
+<h4 id="SS-TAD（end-to-end-single-stream-temporal-action-detection，端到端，单流时序动作检测）"><a href="#SS-TAD（end-to-end-single-stream-temporal-action-detection，端到端，单流时序动作检测）" class="headerlink" title="SS-TAD（end-to-end, single-stream temporal action detection，端到端，单流时序动作检测）"></a>SS-TAD（end-to-end, single-stream temporal action detection，端到端，单流时序动作检测）</h4><p>利用时序动作定位的语义子任务作为调整后的语义约束（semantic constraints）来提高训练和测试性能。</p>
+<p>效率上比SSAD更好。</p>
+<p>用C3D提取特征。</p>
+<h4 id="GTAN（Gaussian-Temporal-Awareness-Networks，高斯时序感知网络）"><a href="#GTAN（Gaussian-Temporal-Awareness-Networks，高斯时序感知网络）" class="headerlink" title="GTAN（Gaussian Temporal Awareness Networks，高斯时序感知网络）"></a>GTAN（Gaussian Temporal Awareness Networks，高斯时序感知网络）</h4><p>引入高斯核函数（Gaussian kernels），动态优化每个动作proposal的时序范围。</p>
+<h1 id="III-基准数据集"><a href="#III-基准数据集" class="headerlink" title="III 基准数据集"></a>III 基准数据集</h1><p>最火的是THUMOS14和ActivityNet。</p>
+<p>A. THUMOS’14</p>
+<p>B. ActivityNet</p>
+<p>C. MEXaction2 </p>
+<p>D. MUTITHUMOS </p>
+<p>E. CHARADES</p>
+<p>F. AVA</p>
+<h1 id="IV-评价指标"><a href="#IV-评价指标" class="headerlink" title="IV 评价指标"></a>IV 评价指标</h1><p><strong>平均找回Average Recall (AR)</strong></p>
+<p><img src="D:\blog\source_posts\images\image-20210918201646651.png" alt="image-20210918201646651"></p>
+<p><strong>平均精度Meam Average Precision (mAP)</strong></p>
+<p>通常比较的是t-IoU=0.5时的mAP。</p>
+<h1 id="V-发展近况"><a href="#V-发展近况" class="headerlink" title="V 发展近况"></a>V 发展近况</h1><h2 id="完全监督的时序动作定位（F-TAL，FULL-Y-SUPETVISED-TEMPORAL-ACTION-LOCALIZATION）"><a href="#完全监督的时序动作定位（F-TAL，FULL-Y-SUPETVISED-TEMPORAL-ACTION-LOCALIZATION）" class="headerlink" title="完全监督的时序动作定位（F-TAL，FULL Y-SUPETVISED TEMPORAL ACTION LOCALIZATION）"></a>完全监督的时序动作定位（F-TAL，FULL Y-SUPETVISED TEMPORAL ACTION LOCALIZATION）</h2><p>完全监督：每个训练集都有相应的标签。</p>
+<h2 id="弱监督的时序动作定位（W-TAL，WEAKLY-SUPETVISED-TEMPORAL-ACTION-LOCALIZATION）"><a href="#弱监督的时序动作定位（W-TAL，WEAKLY-SUPETVISED-TEMPORAL-ACTION-LOCALIZATION）" class="headerlink" title="弱监督的时序动作定位（W-TAL，WEAKLY-SUPETVISED TEMPORAL ACTION LOCALIZATION）"></a>弱监督的时序动作定位（W-TAL，WEAKLY-SUPETVISED TEMPORAL ACTION LOCALIZATION）</h2><p>弱监督：</p>
+<ol>
+<li>不完全监督（Incomplete supervised）：仅一部分训练集含有标签。</li>
+<li>不精确监督（Inexact supervised）：训练集只有粗粒度的标签。</li>
+<li>不正确监督（Inaccurate supervised）：标签可能有错误。</li>
+</ol>
+<p>对于弱监督的时序动作定位，只有视频级的标签（没有帧级别的），所以属于第二类。</p>
+<h1 id="VI-未来方向"><a href="#VI-未来方向" class="headerlink" title="VI 未来方向"></a>VI 未来方向</h1><ol>
+<li>同时提高精度和效率。这是一对矛盾。</li>
+<li>从一维的时序动作检测转向二维的时空动作检测。</li>
+<li>在线视频的动作检测。</li>
+<li>弱监督的W-TAL会更加流行，因为这在现实中更普遍。</li>
+<li>由于视频包含图像和音频，也许能借助音频来辅助时序动作定位。</li>
+</ol>
 ]]></content>
       <categories>
-        <category>OJ</category>
+        <category>论文笔记</category>
       </categories>
       <tags>
-        <tag>STL</tag>
-        <tag>C++</tag>
-        <tag>Vector</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>⭐和🌙</title>
-    <url>/2020/07/14/zcy520/</url>
-    <content><![CDATA[<h1 id="三行情书一则"><a href="#三行情书一则" class="headerlink" title="三行情书一则"></a>三行情书一则</h1><span id="more"></span>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (you.Love(me) || !you.Love(me))&#123; </span><br><span class="line">	me.love.value++; </span><br><span class="line">	me.love.value--;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//你爱，或者不爱我</span></span><br><span class="line"><span class="comment">//爱就在那里</span></span><br><span class="line"><span class="comment">//不增不减</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> you.Love(me) <span class="keyword">or</span> <span class="keyword">not</span> you.Love(me):</span><br><span class="line">	love += <span class="number">1</span></span><br><span class="line">	love -= <span class="number">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">你爱，或者不爱我</span></span><br><span class="line"><span class="string">爱就在那里</span></span><br><span class="line"><span class="string">不增不减</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="ฅ՞•ﻌ•՞ฅ̊"><a href="#ฅ՞•ﻌ•՞ฅ̊" class="headerlink" title="ฅ՞•ﻌ•՞ฅ̊"></a>ฅ՞•ﻌ•՞ฅ̊</h1>]]></content>
-      <tags>
-        <tag>彩蛋</tag>
+        <tag>-论文笔记</tag>
       </tags>
   </entry>
   <entry>
