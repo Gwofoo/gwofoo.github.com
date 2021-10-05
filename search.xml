@@ -26,6 +26,27 @@
       </tags>
   </entry>
   <entry>
+    <title>OJ-大数整除</title>
+    <url>/2019/07/04/OJ-%E5%A4%A7%E6%95%B0%E6%95%B4%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a>原题链接</h2><p><a href="http://www.dotcpp.com/oj/problem1074.html">http://www.dotcpp.com/oj/problem1074.html</a></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定理：把一个至少两位的正整数的个位数字去掉，再从余下的数中减去个位数的5倍。当且仅当差是17的倍数时，原数也是17的倍数 。</p>
+<p>例如，34是17的倍数，因为3-20=-17是17的倍数；201不是17的倍数，因为20-5=15不是17的倍数。输入一个正整数n，你的任务是判断它是否是17的倍数。</p>
+<span id="more"></span>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入文件最多包含10组测试数据，每个数据占一行，仅包含一个正整数n（1&lt;=n&lt;=10^100），表示待判断的正整数。n=0表示输入结束，你的程序不应当处理这一行。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每组测试数据，输出一行，表示相应的n是否是17的倍数。1表示是，0表示否。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>34<br>201<br>2098765413<br>1717171717171717171717171717171717171717171717171718<br>0</p>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>1<br>0<br>1<br>0</p>
+<h2 id="题目分析："><a href="#题目分析：" class="headerlink" title="题目分析："></a>题目分析：</h2><p>不要用这个定理，否则要处理大数会很麻烦。 直接用小学列式除法的原理，从高位到低位依次读入数字，得到每一次的余数r （r中刷新地保存每次的余数），直到大数所有位数被读一遍。最后判断r是否为0，为0则说明刚好被17整除。</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	string str;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; str) &#123; <span class="comment">//读入这个大数（2345</span></span><br><span class="line">		<span class="keyword">if</span> (str[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span>) <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//为0则退出</span></span><br><span class="line">		<span class="keyword">int</span> m, r=<span class="number">0</span>;  <span class="comment">//m表示每一次的被除数，r表示每一次的余数</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; str.<span class="built_in">length</span>(); i++) &#123;  <span class="comment">//遍历这个大数</span></span><br><span class="line">			m = r*<span class="number">10</span> + str[i] - <span class="string">&#x27;0&#x27;</span>;  <span class="comment">//（2,23,64,135</span></span><br><span class="line">			r = m % <span class="number">17</span>;  <span class="comment">//（2,6,13,16</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (r) cout &lt;&lt; <span class="string">&#x27;0&#x27;</span> &lt;&lt; endl;  <span class="comment">//r不为0，不能被17整除</span></span><br><span class="line">		<span class="keyword">else</span> cout &lt;&lt; <span class="string">&#x27;1&#x27;</span> &lt;&lt; endl;    <span class="comment">//r为0，能被17整除</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//system(&quot;pause&quot;);</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>OJ</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo博客NexT主题配置</title>
     <url>/2021/09/03/Hexo%E5%8D%9A%E5%AE%A2NexT%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="安装NexT"><a href="#安装NexT" class="headerlink" title="安装NexT"></a>安装NexT</h1><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>在Hexo文件夹下，右键<code>Git Bash Here</code>，</p>
@@ -83,6 +104,23 @@
 <p>在Typora中找到<code>文件-&gt;偏好设置-&gt;图像</code>，将“插入图片时…”选项改为“复制到指定路径：./${filename}”，并可勾选前三个选项。</p>
 <p>但是这样的话图片路径实际上是<code>文件名/图片名.jpg</code>，而不是<code>/图片名.jpg</code>。所以等写完博客后，再用Ctrl+H做一个全局替换。</p>
 <p><img src="image-20210927151925284.png" alt="image-20210927151925284"></p>
+<h2 id="支持LaTeX"><a href="#支持LaTeX" class="headerlink" title="支持LaTeX"></a>支持LaTeX</h2><p>Hexo默认的渲染引擎是marked，不支持mathjax，所以需要更换Hexo的渲染引擎为hexo-renderer-kramed：</p>
+<h3 id="安装Kramed"><a href="#安装Kramed" class="headerlink" title="安装Kramed"></a>安装Kramed</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure>
+<h3 id="更改文件配置"><a href="#更改文件配置" class="headerlink" title="更改文件配置"></a>更改文件配置</h3><p>打开<code>/node_modules/hexo-renderer-kramed/lib/renderer.js</code><br>将：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Change inline math rule</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatText</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Fit kramed&#x27;s rule: $$ + \1 + $$</span></span><br><span class="line">    <span class="keyword">return</span> text.replace(<span class="regexp">/`\$(.*?)\$`/g</span>, <span class="string">&#x27;$$$$$1$$$$&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Change inline math rule</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatText</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> text;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="停用hexo-math并安装mathjax"><a href="#停用hexo-math并安装mathjax" class="headerlink" title="停用hexo-math并安装mathjax"></a>停用hexo-math并安装mathjax</h3><p>卸载hexo-math</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-math --save</span><br></pre></td></tr></table></figure>
+<p>安装hexo-renderer-mathjax</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-mathjax --save</span><br></pre></td></tr></table></figure>
+<h3 id="更新Mathjax配置文件"><a href="#更新Mathjax配置文件" class="headerlink" title="更新Mathjax配置文件"></a>更新Mathjax配置文件</h3><p>打开<code>/node_modules/hexo-renderer-mathjax/mathjax.html</code><br>将最后一行的<code>&lt;script&gt;</code>改为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&quot;</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="更改默认转义规则"><a href="#更改默认转义规则" class="headerlink" title="更改默认转义规则"></a>更改默认转义规则</h3><p>因为LaTeX与markdown语法有语义冲突，所以 hexo 默认的转义规则会将一些字符进行转义，所以我们需要对默认的规则进行修改.<br>打开<code>/node_modules\kramed\lib\rules\inline.js</code><br>更改后为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">escape</span>: <span class="regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span>,</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">em: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br></pre></td></tr></table></figure>
+<h3 id="开启mathjax"><a href="#开启mathjax" class="headerlink" title="开启mathjax"></a>开启mathjax</h3><p>打开主题目录下的config.yml文件（注意这里是所使用主题的yml文件，不是hexo的yml文件）<br>搜索mathjax，将enable设为true。</p>
+<p>并且写博客的时候需要开启Latex就需要加上头开启<code>Mathjax: true</code></p>
 ]]></content>
       <categories>
         <category>Hexo建站</category>
@@ -104,27 +142,6 @@
       <tags>
         <tag>C++</tag>
         <tag>库函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OJ-大数整除</title>
-    <url>/2019/07/04/OJ-%E5%A4%A7%E6%95%B0%E6%95%B4%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a>原题链接</h2><p><a href="http://www.dotcpp.com/oj/problem1074.html">http://www.dotcpp.com/oj/problem1074.html</a></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定理：把一个至少两位的正整数的个位数字去掉，再从余下的数中减去个位数的5倍。当且仅当差是17的倍数时，原数也是17的倍数 。</p>
-<p>例如，34是17的倍数，因为3-20=-17是17的倍数；201不是17的倍数，因为20-5=15不是17的倍数。输入一个正整数n，你的任务是判断它是否是17的倍数。</p>
-<span id="more"></span>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入文件最多包含10组测试数据，每个数据占一行，仅包含一个正整数n（1&lt;=n&lt;=10^100），表示待判断的正整数。n=0表示输入结束，你的程序不应当处理这一行。</p>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每组测试数据，输出一行，表示相应的n是否是17的倍数。1表示是，0表示否。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>34<br>201<br>2098765413<br>1717171717171717171717171717171717171717171717171718<br>0</p>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>1<br>0<br>1<br>0</p>
-<h2 id="题目分析："><a href="#题目分析：" class="headerlink" title="题目分析："></a>题目分析：</h2><p>不要用这个定理，否则要处理大数会很麻烦。 直接用小学列式除法的原理，从高位到低位依次读入数字，得到每一次的余数r （r中刷新地保存每次的余数），直到大数所有位数被读一遍。最后判断r是否为0，为0则说明刚好被17整除。</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	string str;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; str) &#123; <span class="comment">//读入这个大数（2345</span></span><br><span class="line">		<span class="keyword">if</span> (str[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span>) <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//为0则退出</span></span><br><span class="line">		<span class="keyword">int</span> m, r=<span class="number">0</span>;  <span class="comment">//m表示每一次的被除数，r表示每一次的余数</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; str.<span class="built_in">length</span>(); i++) &#123;  <span class="comment">//遍历这个大数</span></span><br><span class="line">			m = r*<span class="number">10</span> + str[i] - <span class="string">&#x27;0&#x27;</span>;  <span class="comment">//（2,23,64,135</span></span><br><span class="line">			r = m % <span class="number">17</span>;  <span class="comment">//（2,6,13,16</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (r) cout &lt;&lt; <span class="string">&#x27;0&#x27;</span> &lt;&lt; endl;  <span class="comment">//r不为0，不能被17整除</span></span><br><span class="line">		<span class="keyword">else</span> cout &lt;&lt; <span class="string">&#x27;1&#x27;</span> &lt;&lt; endl;    <span class="comment">//r为0，能被17整除</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//system(&quot;pause&quot;);</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>OJ</category>
-      </categories>
-      <tags>
-        <tag>OJ</tag>
       </tags>
   </entry>
   <entry>
@@ -412,167 +429,6 @@
       </tags>
   </entry>
   <entry>
-    <title>⭐和🌙</title>
-    <url>/2020/07/14/zcy520/</url>
-    <content><![CDATA[<h1 id="三行情书一则"><a href="#三行情书一则" class="headerlink" title="三行情书一则"></a>三行情书一则</h1><span id="more"></span>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (you.Love(me) || !you.Love(me))&#123; </span><br><span class="line">	me.love.value++; </span><br><span class="line">	me.love.value--;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//你爱，或者不爱我</span></span><br><span class="line"><span class="comment">//爱就在那里</span></span><br><span class="line"><span class="comment">//不增不减</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> you.Love(me) <span class="keyword">or</span> <span class="keyword">not</span> you.Love(me):</span><br><span class="line">	love += <span class="number">1</span></span><br><span class="line">	love -= <span class="number">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">你爱，或者不爱我</span></span><br><span class="line"><span class="string">爱就在那里</span></span><br><span class="line"><span class="string">不增不减</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<h1 id="ฅ՞•ﻌ•՞ฅ̊"><a href="#ฅ՞•ﻌ•՞ฅ̊" class="headerlink" title="ฅ՞•ﻌ•՞ฅ̊"></a>ฅ՞•ﻌ•՞ฅ̊</h1>]]></content>
-      <tags>
-        <tag>彩蛋</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客使用指南</title>
-    <url>/2021/09/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[<h1 id="从创建到部署"><a href="#从创建到部署" class="headerlink" title="从创建到部署"></a>从创建到部署</h1><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo n <span class="string">&quot;博客使用指南&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;博客使用指南&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h2 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
-<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
-<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
-<h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h2 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>默认情况下，访问网址为： <code>http://localhost:4000/</code></p>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h2 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo d</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<span id="more"></span>
-<h1 id="设置标签"><a href="#设置标签" class="headerlink" title="设置标签"></a>设置标签</h1><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"> tages: </span><br><span class="line">- 标签<span class="number">1</span></span><br><span class="line">- 标签<span class="number">2</span></span><br><span class="line">...</span><br><span class="line">- 标签n</span><br></pre></td></tr></table></figure>
-<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">tages: [标签<span class="number">1</span>,标签<span class="number">2</span>,...标签n]</span><br></pre></td></tr></table></figure>
-<h1 id="手动设置文章时间"><a href="#手动设置文章时间" class="headerlink" title="手动设置文章时间"></a>手动设置文章时间</h1><p>直接在文章开头设置发表/更新时间：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">date: <span class="number">2021</span>-<span class="number">09</span>-<span class="number">03</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">51</span></span><br><span class="line">updated: <span class="number">2018</span>-<span class="number">01</span>-<span class="number">01</span> <span class="number">12</span>:<span class="number">00</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Hexo建站</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>博客使用</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>结构体排序-ccf1709-2公共钥匙盒</title>
-    <url>/2019/12/01/%E7%BB%93%E6%9E%84%E4%BD%93%E6%8E%92%E5%BA%8F-ccf1709-2%E5%85%AC%E5%85%B1%E9%92%A5%E5%8C%99%E7%9B%92/</url>
-    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>N个挂钩上有N个钥匙。钥匙没有固定的悬挂位置，但钥匙上有标号。</p>
-<p>每次取钥匙的时候，而不会移动其他钥匙。</p>
-<p>每次还钥匙的时候，挂在<strong>最左边的空挂钩</strong>上。</p>
-<p>同一时刻<strong>先还再取</strong>，且按<strong>编号从小到大</strong>的顺序还。</p>
-<p>初始时，钥匙按编号<strong>从小到大</strong>挂着。</p>
-<p>有<em>K</em>位老师取。给出钥匙标号、取出时间和借出时长，请问最终钥匙盒里面钥匙的顺序是怎样的？</p>
-<span id="more"></span>
-<h1 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h1><p>　　输入的第一行包含两个整数<em>N</em>, <em>K</em>。<br>　　接下来<em>K</em>行，每行三个整数<em>w</em>, <em>s</em>, <em>c</em>，分别表示一位老师要使用的钥匙编号、取出时间和借出的时长。可能有多位老师使用同一把钥匙，但是老师使用钥匙的时间不会重叠。</p>
-<h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><p>　　输出一行，包含<em>N</em>个整数，相邻整数间用一个空格分隔，依次表示每个挂钩上挂的钥匙编号。</p>
-<h1 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 2<br>4 3 3<br>2 2 7</p>
-<h1 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 4 3 2 5</p>
-<h1 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h1><p>　　第一位老师从时刻3开始使用4号教室的钥匙，使用3单位时间，所以在时刻6还钥匙。第二位老师从时刻2开始使用钥匙，使用7单位时间，所以在时刻9还钥匙。<br>　　每个关键时刻后的钥匙状态如下（X表示空）：<br>　　时刻2后为1X345；<br>　　时刻3后为1X3X5；<br>　　时刻6后为143X5；<br>　　时刻9后为14325。</p>
-<h1 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 7<br>1 1 14<br>3 3 12<br>1 15 12<br>2 7 20<br>3 18 12<br>4 21 19<br>5 30 9</p>
-<h1 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 2 3 5 4</p>
-<h1 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h1><p>　　对于30%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 10, 1 ≤ <em>w</em> ≤ <em>N</em>, 1 ≤ <em>s</em>, <em>c</em> ≤ 30；<br>　　对于60%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 50，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 300，1 ≤ <em>c</em> ≤ 50；<br>　　对于所有评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 1000，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 10000，1 ≤ <em>c</em> ≤ 100。</p>
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>用到两个结构体，保存每次取用的3个数据分别按取出时间和返还时间的排序，即按时间顺序排列。</p>
-<p>vector使用sort排序时写法是<code>sort(v.begin(),v.begin()+v.size());</code>。</p>
-<h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> no,s,en;  <span class="comment">//no号钥匙，s时刻借出，en时刻返还 </span></span><br><span class="line">&#125;node[<span class="number">1005</span>],node1[<span class="number">1005</span>];  <span class="comment">//分别对s和en排序 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//按开始时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.s==b.s)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.s&lt;b.s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按返还时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.en==b.en)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.en&lt;b.en;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> order[<span class="number">1005</span>];  <span class="comment">//oder[i]=x表示第i号钥匙挂在x号钩上 </span></span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">1005</span>];  <span class="comment">//ans[x]=i表示第x号钩子挂着i号钥匙 </span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v;  <span class="comment">//处理钥匙的移出和挂回 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> N,K;  <span class="comment">//N把钥匙，K次取还 </span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;N,&amp;K);</span><br><span class="line">	<span class="comment">//初始时，i号钥匙挂于i号钩	</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		order[i]=i;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="comment">//读入i次取还 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;K;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;node[i].no, &amp;node[i].s,&amp;node[i].en);</span><br><span class="line">		node[i].en += node[i].s;</span><br><span class="line">		node1[i] = node[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//分别对s和en排序</span></span><br><span class="line">	<span class="built_in">sort</span>(node,node+K,cmp1);</span><br><span class="line">	<span class="built_in">sort</span>(node1,node1+K,cmp2);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/* //打印排序结果 </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node[i].s&lt;&lt;&#x27; &#x27;&lt;&lt;node[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node1[i].en&lt;&lt;&#x27; &#x27;&lt;&lt;node1[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125; </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;*/</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> f1=<span class="number">0</span>, f2=<span class="number">0</span>;  <span class="comment">//表示借出和返还的次数 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> time=<span class="number">1</span>;!(f1==K &amp;&amp; f2==K);time++)&#123;  <span class="comment">//借还次数都满时，时间停止，退出循环 		</span></span><br><span class="line">		<span class="comment">//先还 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f1;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node1[i].en &gt; time) <span class="keyword">break</span>;  <span class="comment">//还没到下一把钥匙的返还时间 			</span></span><br><span class="line">			<span class="keyword">if</span>(node1[i].en == time)&#123;</span><br><span class="line">				order[node1[i].no] = v[<span class="number">0</span>];  <span class="comment">//取出v中的第一个元素(即最小的编号)</span></span><br><span class="line">				v.<span class="built_in">erase</span>(v.<span class="built_in">begin</span>());  <span class="comment">//并将第一个元素删除</span></span><br><span class="line">				<span class="comment">//cout&lt;&lt;node1[i].no&lt;&lt;&quot; 号钥匙放回 &quot;&lt;&lt;order[node1[i].no]&lt;&lt;endl;</span></span><br><span class="line">			&#125;</span><br><span class="line">			f1++;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//再借</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f2;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node[i].s &gt; time)<span class="keyword">break</span>;	 <span class="comment">//还没到下一把钥匙的借出时间 		</span></span><br><span class="line">			<span class="keyword">if</span>(node[i].s == time)&#123;</span><br><span class="line">				v.<span class="built_in">push_back</span>(order[node[i].no]);  <span class="comment">//保存被取出的钥匙的空位</span></span><br><span class="line">				<span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">begin</span>()+v.<span class="built_in">size</span>());  <span class="comment">//对所有空钩排序</span></span><br><span class="line">				order[node[i].no]=<span class="number">0</span>;</span><br><span class="line">				<span class="comment">//cout&lt;&lt;node[i].no&lt;&lt;&quot; 号钥匙已拿走... &quot;&lt;&lt;endl;		</span></span><br><span class="line">			&#125; </span><br><span class="line">			f2++;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		ans[order[i]]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		cout&lt;&lt;ans[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>OJ</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>结构体排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【论文笔记】BSN：Boundary Sensitive Network for Temporal Action Proposal Generation</title>
-    <url>/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/</url>
-    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。</p>
-<p>BSN网络采用了”local to global”方法，local是指先定位可能性大的时序边界，再整合这些边界作为候选；global是指通过评估一个候选中是否包含动作的置信度来检索候选。用到的数据集是ActivityNet-1.3和THUMOS14。</p>
-<span id="more"></span>
-<p><strong>高质量的候选应满足：</strong></p>
-<p>（1） 召回率（recall）要高（即“找得全”），同时与真实动作区域的重叠度（overlap）要大。</p>
-<p>（2） 使用较少的候选就能实现高召回率和高重叠度。</p>
-<p><strong>BSN产生候选要三步：</strong></p>
-<p>（1）评估视频中的每个时间位置的概率，判断它是在真实动作实例的边界内部还是外部，在或不在真实动作实例的边界处，以生成<strong>起始</strong>、<strong>结束</strong>和<strong>动作</strong>概率序列作为local信息；</p>
-<p>（2）直接合并分别具有高起始和结束概率的时间位置来生成候选。使用这种从底向上的方法，BSN可以产生<u>持续时间灵活</u>且<u>边界精确</u>的候选；</p>
-<p>（3）使用由候选内部及其时序前后的动作得分组成的特征，BSN通过评估候选是否包含动作的置信度来检索候选。这些候选片段级的特征为更好的评估提供了全局信息。</p>
-<p><strong>论文贡献：</strong></p>
-<p>（1） 提出了“local to global”的BSN来生成高质量的时序动作候选。locally，定位高概率边界位置以获得精确的候选边界；globally，评估proposal-level的特征以获得可靠的候选置信度评分用于检索。</p>
-<p>（2） 获得了比其他方法更好的候选质量。</p>
-<p>（3） 与已有的动作分类器结合，显著提高了时序动作检测任务的性能。</p>
-<h1 id="模型方法"><a href="#模型方法" class="headerlink" title="模型方法"></a>模型方法</h1><h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p>在产生时序动作候选时，是不考虑动作实例的具体类别的。视频的标签是每个动作实例的开始和结束时间。视频的标签在训练时使用；预测时，应使得产生的候选以高召回率和高重叠率覆盖视频标签。</p>
-<h2 id="（a）视频特征编码"><a href="#（a）视频特征编码" class="headerlink" title="（a）视频特征编码"></a>（a）视频特征编码</h2><p>为了产生视频的候选，首先应该提取视频的视觉内容特征。本文采用双流网络作为视觉编码器。</p>
-<p>双流网络：在动作识别、时序动作检测和候选生成等任务中，都有很好的效果。双流网络包括两个分支：<u>空间网络</u>通过单RGB帧来捕捉外观特征，<u>时间网络</u>通过堆叠光流域(stacked optical flow field)来捕捉运动信息。</p>
-<p>根据视频得到多个小段（snippet），每个小段都由<u>单帧</u>（single frame）和以单帧为中心得到的<u>堆叠光流域</u>(stacked optical flow field)两部分组成。单帧送入<u>空间网络</u>，堆叠光流域送入<u>时序网络</u>，然后整合两个网络的顶端输出，作为双流特征向量，送入BSN网络作为输入。示意图如下图(a)。</p>
-<p><img src="image-20211005111147012.png" alt="image-20211005111147012"></p>
-<center>Fig.1 论文整体框架</center>
-
-<h2 id="（b）边界敏感网络"><a href="#（b）边界敏感网络" class="headerlink" title="（b）边界敏感网络"></a>（b）边界敏感网络</h2><p>包括3个模块：时序评估，候选产生，候选评估。</p>
-<h3 id="时序评估模块-TEM"><a href="#时序评估模块-TEM" class="headerlink" title="时序评估模块 TEM"></a>时序评估模块 TEM</h3><p>输入是基于双流网络提取的图像特征序列。采用<u>3层时序卷积层</u>来对视频序列中每个位置上动作开始的概率、动作结束的概率和动作进行的概率同时进行建模，从而生成 动作开始概率序列，动作结束概率序列和动作概率序列。</p>
-<p>3层卷积层分别表示为Conv(512, 3, Relu)，Conv(512, 3, Relu)，Conv(3, 1, Sigmoid)。其中，第一项为过滤器数量，第二项为卷积核大小，第三项为激励函数，三层的步长都为1。最后一层卷积层作为分类器，产生起始，结束和动作概率。</p>
-<h3 id="候选产生模块-PGM"><a href="#候选产生模块-PGM" class="headerlink" title="候选产生模块 PGM"></a>候选产生模块 PGM</h3><p>此模块的目的是产生候选片段并建立相应的片段级特征。分两步来实现这个目的，（1）找到高边界概率的位置，并合并这些位置组成候选片段；（2）对于每个候选片段，建立BSP特征。</p>
-<p><strong>生成候选片段</strong></p>
-<p>满足：</p>
-<p>（1）概率高于一个阈值；或</p>
-<p>（2）该时间节点的概率高于前一时刻以及后一时刻的概率（即一个概率峰值）。</p>
-<p>这样的节点将被作为候选时序边界节点。然后将候选开始时间节点和候选结束时间节点两两结合，保留时长符合要求的开始节点-结束节点组合作为候选时序动作提名。所谓的时长符合要求，就是时长应处在数据集中动作实例标签的最小时长和最大时长之间。</p>
-<p>如下图。</p>
-<p><img src="image-20211005113151719.png" alt="image-20211005113151719"></p>
-<p><strong>建立BSP特征</strong></p>
-<p>对于每个提名，取其本身的时序区间作为<u>中心区域</u>，表示为$r_C=[t_s,t_e]$，另外其时长记为$d=t_e-t_s$ ，再取开始节点和结束节点附近的一段区间作为<u>起始区域</u> $r_S=[t_s-d/5，t_s+d/5]$以及 <u>结束区域</u>$r_E=[t_e-d/5，t_e+d/5]$。将$r_C$内的动作序列以16点的线性插值法进行采样，对于$r_S$和$r_E$以8点的线性插值法进行采样，将这三个采样得到的向量进行连接，就得到了这个候选的BSP特征$f_{BSP}$。BSP特征包含了对应候选片段的丰富的语义信息。每个候选片段都表示为$(t_S,t_E,f_{BSP})$。</p>
-<p>如下图。5555</p>
-<script type="math/tex; mode=display">
-\begin{eqnarray}
-\nabla\cdot\vec{E} &=& \frac{\rho}{\epsilon_0} \\
-\nabla\cdot\vec{B} &=& 0 \\
-\nabla\times\vec{E} &=& -\frac{\partial B}{\partial t} \\
-\nabla\times\vec{B} &=& \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)
-\end{eqnarray}</script><p><img src="image-20211005113237307.png" alt="image-20211005113237307"></p>
-<h3 id="候选评估模块-PEM"><a href="#候选评估模块-PEM" class="headerlink" title="候选评估模块 PEM"></a>候选评估模块 PEM</h3><p>是具有一个隐藏层的多层感知器（MLP）模型，它基于BSP特征评估每个候选的置信度得分。将每个候选片段的置信度得分和边界概率融合，作为检索的最终置信度得分。置信度分数越高，则说明该时序提名与真值的重叠IoU应当越高。</p>
-]]></content>
-      <categories>
-        <category>论文笔记</category>
-      </categories>
-      <tags>
-        <tag>-论文笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>深度学习笔记</title>
-    <url>/2021/10/01/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h3 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h3><span id="more"></span>
-<p>对于一个函数来说，通常有两种计算梯度的方式：</p>
-<ul>
-<li>数值梯度（numerical gradient）;</li>
-<li>解析梯度（analytic gradient）;</li>
-</ul>
-<p><strong>数值梯度</strong>的优点是容易编程实现，不要求函数可微。然而，<strong>数值梯度</strong>缺点很明显，通常是近似解，同时求解速度很慢，因此在设计机器学习目标函数时，通常设计成可微的函数，可以快速地求解其<strong>解析梯度</strong>，同时这个梯度是确切解。</p>
-<p>神经网络算法使用反向传播计算目标函数关于每个参数的梯度，可以看做<strong>解析梯度</strong>。由于计算过程中涉及到的参数很多，反向传播计算的梯度很容易出现误差，导致最后迭代得到效果很差的参数值。</p>
-<p>为了确认代码中反向传播计算的梯度是否正确，可以采用<strong>梯度检验（gradient check）</strong>的方法。通过计算数值梯度，得到梯度的近似值，然后和反向传播得到的梯度进行比较，若两者相差很小的话则证明反向传播的代码是正确无误的。</p>
-<p>误差在10^-7说明正确；误差在10^-3说明很可能有问题。</p>
-<p>梯度检验通常在调试代码时用，训练时不用（因为太慢）。</p>
-<p>不要和Dropout一起用，因为后者没有确定的代价函数。</p>
-<h3 id="torch保存和读取模型"><a href="#torch保存和读取模型" class="headerlink" title="torch保存和读取模型"></a>torch保存和读取模型</h3><p>假设网络为<code>model = Net()</code>， <code>optimizer = optim.Adam(model.parameters(), lr=args.lr)</code>。假设在某个epoch，我们要保存模型参数，优化器参数以及epoch。</p>
-<p>一、</p>
-<ol>
-<li>先建立一个字典，保存三个参数：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">state = &#123;<span class="string">&#x27;net&#x27;</span>: model.state_dict(), <span class="string">&#x27;optimizer&#x27;</span>: optimizer.state_dict(), <span class="string">&#x27;epoch&#x27;</span>: epoch&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>调用torch.save():</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torch.save(state, <span class="built_in">dir</span>)</span><br></pre></td></tr></table></figure>
-<p>其中<code>dir</code>表示保存文件的路径+保存文件名，如’/home/modelpara.pth’</p>
-<p>二、</p>
-<p>当你想恢复某一阶段的训练（或者进行测试）时，那么就可以读取之前保存的网络模型参数等。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">checkpoint = torch.load(<span class="built_in">dir</span>)</span><br><span class="line">model.load_state_dict(checkpoint[<span class="string">&#x27;net&#x27;</span>])</span><br><span class="line">optimizer.load_state_dict(checkpoint[<span class="string">&#x27;optimizer&#x27;</span>])</span><br><span class="line">start_epoch = checkpoint[<span class="string">&#x27;epoch&#x27;</span>] + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【论文笔记】A Survey on Temporal Action Localization</title>
     <url>/2021/09/17/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91A-Survey-on-Temporal-Action-Localization/</url>
     <content><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文介绍了时序动作定位（Temporal Action Localization）的相关技术、基准数据集和评价指标。此外，从完全监督学习和弱监督学习两个方面，总结了时序动作定位。列举了部分代表性工作并比较了他们的性能。最后，还提出了可能的研究方向。</p>
@@ -724,6 +580,193 @@
 <li>弱监督的W-TAL会更加流行，因为这在现实中更普遍。</li>
 <li>由于视频包含图像和音频，也许能借助音频来辅助时序动作定位。</li>
 </ol>
+]]></content>
+      <categories>
+        <category>论文笔记</category>
+      </categories>
+      <tags>
+        <tag>-论文笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>⭐和🌙</title>
+    <url>/2020/07/14/zcy520/</url>
+    <content><![CDATA[<h1 id="三行情书一则"><a href="#三行情书一则" class="headerlink" title="三行情书一则"></a>三行情书一则</h1><span id="more"></span>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (you.Love(me) || !you.Love(me))&#123; </span><br><span class="line">	me.love.value++; </span><br><span class="line">	me.love.value--;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//你爱，或者不爱我</span></span><br><span class="line"><span class="comment">//爱就在那里</span></span><br><span class="line"><span class="comment">//不增不减</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> you.Love(me) <span class="keyword">or</span> <span class="keyword">not</span> you.Love(me):</span><br><span class="line">	love += <span class="number">1</span></span><br><span class="line">	love -= <span class="number">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">你爱，或者不爱我</span></span><br><span class="line"><span class="string">爱就在那里</span></span><br><span class="line"><span class="string">不增不减</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h1 id="ฅ՞•ﻌ•՞ฅ̊"><a href="#ฅ՞•ﻌ•՞ฅ̊" class="headerlink" title="ฅ՞•ﻌ•՞ฅ̊"></a>ฅ՞•ﻌ•՞ฅ̊</h1>]]></content>
+      <tags>
+        <tag>彩蛋</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客使用指南</title>
+    <url>/2021/09/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<h1 id="从创建到部署"><a href="#从创建到部署" class="headerlink" title="从创建到部署"></a>从创建到部署</h1><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo n <span class="string">&quot;博客使用指南&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;博客使用指南&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h2 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
+<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
+<h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h2 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>默认情况下，访问网址为： <code>http://localhost:4000/</code></p>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h2 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo d</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<span id="more"></span>
+<h1 id="设置标签"><a href="#设置标签" class="headerlink" title="设置标签"></a>设置标签</h1><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"> tages: </span><br><span class="line">- 标签<span class="number">1</span></span><br><span class="line">- 标签<span class="number">2</span></span><br><span class="line">...</span><br><span class="line">- 标签n</span><br></pre></td></tr></table></figure>
+<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">tages: [标签<span class="number">1</span>,标签<span class="number">2</span>,...标签n]</span><br></pre></td></tr></table></figure>
+<h1 id="手动设置文章时间"><a href="#手动设置文章时间" class="headerlink" title="手动设置文章时间"></a>手动设置文章时间</h1><p>直接在文章开头设置发表/更新时间：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">date: <span class="number">2021</span>-<span class="number">09</span>-<span class="number">03</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">51</span></span><br><span class="line">updated: <span class="number">2018</span>-<span class="number">01</span>-<span class="number">01</span> <span class="number">12</span>:<span class="number">00</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Hexo建站</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>博客使用</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深度学习笔记</title>
+    <url>/2021/10/01/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h3 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h3><span id="more"></span>
+<p>对于一个函数来说，通常有两种计算梯度的方式：</p>
+<ul>
+<li>数值梯度（numerical gradient）;</li>
+<li>解析梯度（analytic gradient）;</li>
+</ul>
+<p><strong>数值梯度</strong>的优点是容易编程实现，不要求函数可微。然而，<strong>数值梯度</strong>缺点很明显，通常是近似解，同时求解速度很慢，因此在设计机器学习目标函数时，通常设计成可微的函数，可以快速地求解其<strong>解析梯度</strong>，同时这个梯度是确切解。</p>
+<p>神经网络算法使用反向传播计算目标函数关于每个参数的梯度，可以看做<strong>解析梯度</strong>。由于计算过程中涉及到的参数很多，反向传播计算的梯度很容易出现误差，导致最后迭代得到效果很差的参数值。</p>
+<p>为了确认代码中反向传播计算的梯度是否正确，可以采用<strong>梯度检验（gradient check）</strong>的方法。通过计算数值梯度，得到梯度的近似值，然后和反向传播得到的梯度进行比较，若两者相差很小的话则证明反向传播的代码是正确无误的。</p>
+<p>误差在10^-7说明正确；误差在10^-3说明很可能有问题。</p>
+<p>梯度检验通常在调试代码时用，训练时不用（因为太慢）。</p>
+<p>不要和Dropout一起用，因为后者没有确定的代价函数。</p>
+<h3 id="torch保存和读取模型"><a href="#torch保存和读取模型" class="headerlink" title="torch保存和读取模型"></a>torch保存和读取模型</h3><p>假设网络为<code>model = Net()</code>， <code>optimizer = optim.Adam(model.parameters(), lr=args.lr)</code>。假设在某个epoch，我们要保存模型参数，优化器参数以及epoch。</p>
+<p>一、</p>
+<ol>
+<li>先建立一个字典，保存三个参数：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">state = &#123;<span class="string">&#x27;net&#x27;</span>: model.state_dict(), <span class="string">&#x27;optimizer&#x27;</span>: optimizer.state_dict(), <span class="string">&#x27;epoch&#x27;</span>: epoch&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>调用torch.save():</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torch.save(state, <span class="built_in">dir</span>)</span><br></pre></td></tr></table></figure>
+<p>其中<code>dir</code>表示保存文件的路径+保存文件名，如’/home/modelpara.pth’</p>
+<p>二、</p>
+<p>当你想恢复某一阶段的训练（或者进行测试）时，那么就可以读取之前保存的网络模型参数等。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">checkpoint = torch.load(<span class="built_in">dir</span>)</span><br><span class="line">model.load_state_dict(checkpoint[<span class="string">&#x27;net&#x27;</span>])</span><br><span class="line">optimizer.load_state_dict(checkpoint[<span class="string">&#x27;optimizer&#x27;</span>])</span><br><span class="line">start_epoch = checkpoint[<span class="string">&#x27;epoch&#x27;</span>] + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>结构体排序-ccf1709-2公共钥匙盒</title>
+    <url>/2019/12/01/%E7%BB%93%E6%9E%84%E4%BD%93%E6%8E%92%E5%BA%8F-ccf1709-2%E5%85%AC%E5%85%B1%E9%92%A5%E5%8C%99%E7%9B%92/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>N个挂钩上有N个钥匙。钥匙没有固定的悬挂位置，但钥匙上有标号。</p>
+<p>每次取钥匙的时候，而不会移动其他钥匙。</p>
+<p>每次还钥匙的时候，挂在<strong>最左边的空挂钩</strong>上。</p>
+<p>同一时刻<strong>先还再取</strong>，且按<strong>编号从小到大</strong>的顺序还。</p>
+<p>初始时，钥匙按编号<strong>从小到大</strong>挂着。</p>
+<p>有<em>K</em>位老师取。给出钥匙标号、取出时间和借出时长，请问最终钥匙盒里面钥匙的顺序是怎样的？</p>
+<span id="more"></span>
+<h1 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h1><p>　　输入的第一行包含两个整数<em>N</em>, <em>K</em>。<br>　　接下来<em>K</em>行，每行三个整数<em>w</em>, <em>s</em>, <em>c</em>，分别表示一位老师要使用的钥匙编号、取出时间和借出的时长。可能有多位老师使用同一把钥匙，但是老师使用钥匙的时间不会重叠。</p>
+<h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><p>　　输出一行，包含<em>N</em>个整数，相邻整数间用一个空格分隔，依次表示每个挂钩上挂的钥匙编号。</p>
+<h1 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 2<br>4 3 3<br>2 2 7</p>
+<h1 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 4 3 2 5</p>
+<h1 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h1><p>　　第一位老师从时刻3开始使用4号教室的钥匙，使用3单位时间，所以在时刻6还钥匙。第二位老师从时刻2开始使用钥匙，使用7单位时间，所以在时刻9还钥匙。<br>　　每个关键时刻后的钥匙状态如下（X表示空）：<br>　　时刻2后为1X345；<br>　　时刻3后为1X3X5；<br>　　时刻6后为143X5；<br>　　时刻9后为14325。</p>
+<h1 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 7<br>1 1 14<br>3 3 12<br>1 15 12<br>2 7 20<br>3 18 12<br>4 21 19<br>5 30 9</p>
+<h1 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 2 3 5 4</p>
+<h1 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h1><p>　　对于30%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 10, 1 ≤ <em>w</em> ≤ <em>N</em>, 1 ≤ <em>s</em>, <em>c</em> ≤ 30；<br>　　对于60%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 50，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 300，1 ≤ <em>c</em> ≤ 50；<br>　　对于所有评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 1000，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 10000，1 ≤ <em>c</em> ≤ 100。</p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>用到两个结构体，保存每次取用的3个数据分别按取出时间和返还时间的排序，即按时间顺序排列。</p>
+<p>vector使用sort排序时写法是<code>sort(v.begin(),v.begin()+v.size());</code>。</p>
+<h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> no,s,en;  <span class="comment">//no号钥匙，s时刻借出，en时刻返还 </span></span><br><span class="line">&#125;node[<span class="number">1005</span>],node1[<span class="number">1005</span>];  <span class="comment">//分别对s和en排序 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//按开始时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.s==b.s)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.s&lt;b.s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按返还时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.en==b.en)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.en&lt;b.en;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> order[<span class="number">1005</span>];  <span class="comment">//oder[i]=x表示第i号钥匙挂在x号钩上 </span></span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">1005</span>];  <span class="comment">//ans[x]=i表示第x号钩子挂着i号钥匙 </span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v;  <span class="comment">//处理钥匙的移出和挂回 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> N,K;  <span class="comment">//N把钥匙，K次取还 </span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;N,&amp;K);</span><br><span class="line">	<span class="comment">//初始时，i号钥匙挂于i号钩	</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		order[i]=i;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="comment">//读入i次取还 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;K;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;node[i].no, &amp;node[i].s,&amp;node[i].en);</span><br><span class="line">		node[i].en += node[i].s;</span><br><span class="line">		node1[i] = node[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//分别对s和en排序</span></span><br><span class="line">	<span class="built_in">sort</span>(node,node+K,cmp1);</span><br><span class="line">	<span class="built_in">sort</span>(node1,node1+K,cmp2);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/* //打印排序结果 </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node[i].s&lt;&lt;&#x27; &#x27;&lt;&lt;node[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node1[i].en&lt;&lt;&#x27; &#x27;&lt;&lt;node1[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125; </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;*/</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> f1=<span class="number">0</span>, f2=<span class="number">0</span>;  <span class="comment">//表示借出和返还的次数 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> time=<span class="number">1</span>;!(f1==K &amp;&amp; f2==K);time++)&#123;  <span class="comment">//借还次数都满时，时间停止，退出循环 		</span></span><br><span class="line">		<span class="comment">//先还 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f1;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node1[i].en &gt; time) <span class="keyword">break</span>;  <span class="comment">//还没到下一把钥匙的返还时间 			</span></span><br><span class="line">			<span class="keyword">if</span>(node1[i].en == time)&#123;</span><br><span class="line">				order[node1[i].no] = v[<span class="number">0</span>];  <span class="comment">//取出v中的第一个元素(即最小的编号)</span></span><br><span class="line">				v.<span class="built_in">erase</span>(v.<span class="built_in">begin</span>());  <span class="comment">//并将第一个元素删除</span></span><br><span class="line">				<span class="comment">//cout&lt;&lt;node1[i].no&lt;&lt;&quot; 号钥匙放回 &quot;&lt;&lt;order[node1[i].no]&lt;&lt;endl;</span></span><br><span class="line">			&#125;</span><br><span class="line">			f1++;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//再借</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f2;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node[i].s &gt; time)<span class="keyword">break</span>;	 <span class="comment">//还没到下一把钥匙的借出时间 		</span></span><br><span class="line">			<span class="keyword">if</span>(node[i].s == time)&#123;</span><br><span class="line">				v.<span class="built_in">push_back</span>(order[node[i].no]);  <span class="comment">//保存被取出的钥匙的空位</span></span><br><span class="line">				<span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">begin</span>()+v.<span class="built_in">size</span>());  <span class="comment">//对所有空钩排序</span></span><br><span class="line">				order[node[i].no]=<span class="number">0</span>;</span><br><span class="line">				<span class="comment">//cout&lt;&lt;node[i].no&lt;&lt;&quot; 号钥匙已拿走... &quot;&lt;&lt;endl;		</span></span><br><span class="line">			&#125; </span><br><span class="line">			f2++;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		ans[order[i]]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		cout&lt;&lt;ans[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>结构体排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【论文笔记】BSN：Boundary Sensitive Network for Temporal Action Proposal Generation</title>
+    <url>/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/</url>
+    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。</p>
+<p>BSN网络采用了”local to global”方法，local是指先定位可能性大的时序边界，再整合这些边界作为候选；global是指通过评估一个候选中是否包含动作的置信度来检索候选。用到的数据集是ActivityNet-1.3和THUMOS14。</p>
+<span id="more"></span>
+<p><strong>高质量的候选应满足：</strong></p>
+<p>（1） 召回率（recall）要高（即“找得全”），同时与真实动作区域的重叠度（overlap）要大。</p>
+<p>（2） 使用较少的候选就能实现高召回率和高重叠度。</p>
+<p><strong>BSN产生候选要三步：</strong></p>
+<p>（1）评估视频中的每个时间位置的概率，判断它是在真实动作实例的边界内部还是外部，在或不在真实动作实例的边界处，以生成<strong>起始</strong>、<strong>结束</strong>和<strong>动作</strong>概率序列作为local信息；</p>
+<p>（2）直接合并分别具有高起始和结束概率的时间位置来生成候选。使用这种从底向上的方法，BSN可以产生<u>持续时间灵活</u>且<u>边界精确</u>的候选；</p>
+<p>（3）使用由候选内部及其时序前后的动作得分组成的特征，BSN通过评估候选是否包含动作的置信度来检索候选。这些候选片段级的特征为更好的评估提供了全局信息。</p>
+<p><strong>论文贡献：</strong></p>
+<p>（1） 提出了“local to global”的BSN来生成高质量的时序动作候选。locally，定位高概率边界位置以获得精确的候选边界；globally，评估proposal-level的特征以获得可靠的候选置信度评分用于检索。</p>
+<p>（2） 获得了比其他方法更好的候选质量。</p>
+<p>（3） 与已有的动作分类器结合，显著提高了时序动作检测任务的性能。</p>
+<h1 id="模型方法"><a href="#模型方法" class="headerlink" title="模型方法"></a>模型方法</h1><h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p>在产生时序动作候选时，是不考虑动作实例的具体类别的。视频的标签是每个动作实例的开始和结束时间。视频的标签在训练时使用；预测时，应使得产生的候选以高召回率和高重叠率覆盖视频标签。</p>
+<h2 id="（a）视频特征编码"><a href="#（a）视频特征编码" class="headerlink" title="（a）视频特征编码"></a>（a）视频特征编码</h2><p>为了产生视频的候选，首先应该提取视频的视觉内容特征。本文采用双流网络作为视觉编码器。</p>
+<p>双流网络：在动作识别、时序动作检测和候选生成等任务中，都有很好的效果。双流网络包括两个分支：<u>空间网络</u>通过单RGB帧来捕捉外观特征，<u>时间网络</u>通过堆叠光流域(stacked optical flow field)来捕捉运动信息。</p>
+<p>根据视频得到多个小段（snippet），每个小段都由<u>单帧</u>（single frame）和以单帧为中心得到的<u>堆叠光流域</u>(stacked optical flow field)两部分组成。单帧送入<u>空间网络</u>，堆叠光流域送入<u>时序网络</u>，然后整合两个网络的顶端输出，作为双流特征向量，送入BSN网络作为输入。示意图如下图(a)。</p>
+<p><img src="image-20211005111147012.png" alt="image-20211005111147012"></p>
+<center>Fig.1 论文整体框架</center>
+
+<h2 id="（b）边界敏感网络"><a href="#（b）边界敏感网络" class="headerlink" title="（b）边界敏感网络"></a>（b）边界敏感网络</h2><p>包括3个模块：时序评估，候选产生，候选评估。</p>
+<h3 id="时序评估模块-TEM"><a href="#时序评估模块-TEM" class="headerlink" title="时序评估模块 TEM"></a>时序评估模块 TEM</h3><p>输入是基于双流网络提取的图像特征序列。采用<u>3层时序卷积层</u>来对视频序列中每个位置上动作开始的概率、动作结束的概率和动作进行的概率同时进行建模，从而生成 动作开始概率序列，动作结束概率序列和动作概率序列。</p>
+<p>3层卷积层分别表示为Conv(512, 3, Relu)，Conv(512, 3, Relu)，Conv(3, 1, Sigmoid)。其中，第一项为过滤器数量，第二项为卷积核大小，第三项为激励函数，三层的步长都为1。最后一层卷积层作为分类器，产生起始，结束和动作概率。</p>
+<p>此模块的输入是特征序列，输出是起始，结束和动作概率。</p>
+<h3 id="候选生成模块-PGM"><a href="#候选生成模块-PGM" class="headerlink" title="候选生成模块 PGM"></a>候选生成模块 PGM</h3><p>此模块的目的是产生候选片段并建立相应的片段级特征。分两步来实现这个目的，（1）找到高边界概率的位置，并合并这些位置组成候选片段；（2）对于每个候选片段，建立BSP特征。</p>
+<p><strong>生成候选片段</strong></p>
+<p>满足：</p>
+<p>（1）概率高于一个阈值；或</p>
+<p>（2）该时间节点的概率高于前一时刻以及后一时刻的概率（即一个概率峰值）。</p>
+<p>这样的节点将被作为候选时序边界节点。然后将候选开始时间节点和候选结束时间节点两两结合，保留时长符合要求的开始节点-结束节点组合作为候选时序动作提名。所谓的时长符合要求，就是时长应处在数据集中动作实例标签的最小时长和最大时长之间。</p>
+<p>如下图。</p>
+<p><img src="image-20211005113151719.png" alt="image-20211005113151719"></p>
+<p><strong>建立BSP特征</strong></p>
+<p>对于每个提名，取其本身的时序区间作为<u>中心区域</u>，表示为$r_C=[t_s,t_e]$，另外其时长记为$d=t_e-t_s$ ，再取开始节点和结束节点附近的一段区间作为<u>起始区域</u> $r_S=[t_s-d/5，t_s+d/5]$以及 <u>结束区域</u>$r_E=[t_e-d/5，t_e+d/5]$。将$r_C$内的动作序列以16点的线性插值法进行采样，对于$r_S$和$r_E$以8点的线性插值法进行采样，将这三个采样得到的向量进行连接，就得到了这个候选的BSP特征$f_{BSP}$。BSP特征包含了对应候选片段的丰富的语义信息。每个候选片段都表示为$(t_s,t_e,f_{BSP})$。</p>
+<p>如下图。</p>
+<p><img src="image-20211005113237307.png" alt="image-20211005113237307"></p>
+<h3 id="候选评估模块-PEM"><a href="#候选评估模块-PEM" class="headerlink" title="候选评估模块 PEM"></a>候选评估模块 PEM</h3><p>此模块的目的是用BSP特征来评估每个候选片段中包含动作实例的置信度得分。作者采用了有1个隐藏层的多层感知器模型，这个隐藏层有512个单元，以Relu激励来处理BSP特征输入。而输出层以sigmoid激励来输出置信度得分$p_{conf}$，这个得分评估的是候选片段与真实动作实例之间的重叠范围。因此生成的候选片段可以表示为$(t_s,t_e,p_{conf},p_{t_s},p_{t_e})$，其中后两项分别表示$t_s$的起始概率和$t_e$的结束概率。融合这些得分，得到预测的最终得分。</p>
+<p><img src="image-20211005111147012.png" alt="image-20211005111147012"></p>
+<h2 id="训练BSN"><a href="#训练BSN" class="headerlink" title="训练BSN"></a>训练BSN</h2><p><strong>时序评估模块</strong></p>
+<p>（1）先将视频以固定的帧间隔处理为多个小段，再提取每个小段的特征得到这个视频的小段特征序列（序列中有ls个小段）；（2）采用长度为100的滑动窗口，在特征序列上滑动，没有重叠，得到的每个窗口都有两部分信息，一个是这段窗口中的特征序列，一个是这个窗口中的标签（标签就是这个窗口中的动作实例的开始ts和结束te，我们将这个范围作为动作范围，这里的开始和结束原本是某一帧，但也将其处理为一个范围，即ts变成 [ts − d/10, ts + d/10]，te变成 [te − d/10, te + d/10]），即起始帧变为起始范围，结束帧变为结束范围）；（3）将一个窗口的特征序列作为输入，时序评估模块产生了起始概率序列，结束概率序列和动作概率序列，长度都等于滑动窗口的长度；（4）对于一个窗口中的每个位置tn，将它的范围定义为 [tn − ds/2, tn + ds/2]，ds=tn-t(n-1)，即两个小段间的时序间隔，并从这个窗口的三个概率序列中分别得到这个位置的对应概率得分；（5）此时，对于窗口中某个位置tn的范围，我们可以分别计算它跟标签的动作范围，起始范围和结束范围的IoP；（6）因此我们可以用6个信息来表示tn的信息——tn的动作概率，tn的起始概率，tn的结束概率，tn的范围与动作范围的最大匹配重叠率IoP，tn的范围与起始范围的最大匹配重叠率IoP，tn的范围与结束范围的最大匹配重叠率IoP。</p>
+<p>这个模块的loss由动作loss，起始loss和结束loss三部分组成。即</p>
+<p><img src="image-20211005152830434.png" alt="image-20211005152830434"></p>
+<p>动作loss，起始loss和结束loss的计算公式是相同的，即</p>
+<p><img src="image-20211005152843659.png" alt="image-20211005152843659"></p>
+<p><strong>候选评估模块</strong></p>
+<p>用时序评估模块产生的概率序列，候选生成模块可以产生候选片段（ts，te，fBSP）。（1）候选评估模块将候选的BSP特征作为输入，可以得到这个候选的置信度得分；（2）再计算这个片段跟所有标签的IoU，并记录最大的重叠得分giou；（3）将候选片段集分为两个部分，一个是giou大于0.7的正样本集，一个是giou小于0.3的负样本集；（4）为了数据平衡，作者采用了正样本集中的所有样本，再从负样本集中随机挑选样本，使得两个片段集的比例大概为1:2。</p>
+<p>这个模块的目标函数是简单的回归loss，即</p>
+<p><img src="image-20211005152908321.png" alt="image-20211005152908321"></p>
+<p><strong>预测和后处理</strong><br>候选评估模块用$(t_s,t_e,p_{conf},p_{t_s},p_{t_e})$五种信息来表示候选片段，还需要融合这些得分来得到预测的最终得分。</p>
+<p>Score fusion for retrieving：Pf = Pconf <em> Pts </em> Pte，这个Pf被用于候选检索</p>
+<p>Redundant proposals suppression：在一个动作实例周围可能会得到多个不同时序重叠率的候选片段，因此需要压制冗余的候选片段，以减少候选片段，获得更高的召回率。</p>
+<p>Soft-NMS是一种使用得分衰减函数来压制冗余结果的非极大值抑制算法。（1）先将所有候选片段按得分排序；（2）计算得分最高的候选片段与其他候选片段的IoU，使得重叠高的候选片段减少；（3）对剩余的候选片段递归地执行第二步，来产生重新计算的候选片段集。Soft-NMS的高斯衰减函数可以表示为：</p>
+<p><img src="image-20211005153011130.png" alt="image-20211005153011130"></p>
+<h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1><h2 id="数据集和设置"><a href="#数据集和设置" class="headerlink" title="数据集和设置"></a>数据集和设置</h2><p><strong>数据集：</strong>ActivityNet-1.3包含19994个视频，200个动作类别，以2:1:1的比例划分训练、验证、测试集。THUMOS14验证集和测试集中有时序标注的视频分别有200和213个，有20个动作类别。</p>
+<p><strong>评价指标：</strong>时序候选生成任务中，常用以多个IoU阈值计算得到的平均召回率（AR）作为评价指标。本文中，在ActivityNet-1.3上使用的IoU阈值集为[0.5 : 0.05 : 0.95]，THUMOS14上是[0.5 : 0.05 : 1.0]。为了评估召回率和候选数量的关系，作者在两个数据集上都评估了平均候选数量（AN）下的AR，即AR@AN。在ActivityNet-1.3上，AR和AN曲线下的面积之比（AUC）也被作为评价指标之一，AN的变化范围是0到100。常用评价指标还有mAP。在ActivityNet-1.3上，还使用了IoU阈值{0.5, 0.75, 0.95}下的mAP和IoU阈值集[0.5 : 0.05 : 0.95]下的平均mAP；在THUMOS14上，使用了IoU阈值为{0.3, 0.4, 0.5, 0.6, 0.7}时的mAP。</p>
+<p><strong>总结：</strong></p>
+<p>（1）平均召回率（AR）</p>
+<p>（2）AR@AN：评估召回率和候选片段数量的关系，即评估模型以高召回率来产生和检索候选的能力</p>
+<p>（3）AUC：AR@AN曲线下的面积，评估模型以高召回率来产生和检索候选的能力</p>
+<p>（4）mAP</p>
+<p>（5）recall of multiple IoU thresholds：评估模型以高时序重叠来产生和检索候选的能力</p>
+<p><strong>实现细节：</strong>对于视觉特征编码，作者使用的是双流网络，其中BN-Inception网络作为时序网络，ResNet网络作为空间网络。这个双流网络是用Caffe实现的，是在ActivityNet-1.3的训练集上预训练的。在特征提取阶段，ActivityNet-1.3上小段之间的间隔σ为16，THUMOS14上为5。</p>
+<p>在ActivityNet-1.3上，因为视频长度的限制，作者将每个视频的特征序列长度用线性插值的方法变为了100，也将对应的标签的duration变为了范围0到1。BSN中，时序评估模块和候选评估模块都是用TensorFlow实现的。在两个数据集上，训练时序评估模块时，前10个epoch中batch size为16，学习率为0.001,接下来10个epoch上，学习率为0.0001；训练候选评估模块时，batch size为256，学习率与前面一样。对于Soft-NMS，在ActivityNet-1.3上阈值θ被设为0.8，THUMOS14上为0.65，而高斯函数ε在两个数据集上都设为0.75。</p>
+<h2 id="时序候选生成"><a href="#时序候选生成" class="headerlink" title="时序候选生成"></a>时序候选生成</h2><p>实验一：实验主要分两方面：（1）评估模型以高召回率产生和检索候选的能力（AR@AN，AUC），结论是BSN始终优于其他方法，但当AN小的时候，优势更明显；（2）评估模型以高时序重叠来产生和检索候选的能力（recall of multiple IoU threshold），作者测试了AN为100和1000两种情况，结论是，当候选数量小的时候，无论tIoU高还是低，BSN始终最优，当候选数量大的时候，BSN在tIoU大于0.8时最优。</p>
+<p>实验二：将双流网络提取视频特征的部分替换为了C3D，将Soft-NMS换成Greedy-NMS试了，证明是BSN本身的结构带来的性能提升。</p>
+<p>实验三：验证BSN在没见过的动作类别上的性能：在ActivityNet-1.3中选择了两个不同语义的动作子集，“Sports, Exercise, and Recreation”作为看过的数据集，包括了87个动作类别，4455个训练视频和2198个验证视频，“Socializing, Relaxing, and Leisure”作为没看过的数据集，包括了38个动作类别，1903个训练视频和896个验证视频。为了确保实验的有效性，没有使用在ActivityNet-1.3预训练的双流网络提取视频特征，而是使用了在Sports-1M上预训练的C3D网络，实验证明在没见过的类别上，性能只有微小的下降，因此证明了BSN的一般性。</p>
+<p>实验四：验证BSN中TEM模块和PEM模块的有效性。没有PEM的话，BSN效果依然比其他方法好，但有PEM可以带来进一步的提高。</p>
+<p>实验五：比较了BSP特征只要Boundary region、只要Center region和两者都要的情况，结论是，虽然center region的贡献比boundary region大，但还是两者都要的情况下效果最好。</p>
 ]]></content>
       <categories>
         <category>论文笔记</category>

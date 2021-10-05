@@ -30,8 +30,13 @@
 <meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005111147012.png">
 <meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005113151719.png">
 <meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005113237307.png">
+<meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005111147012.png">
+<meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005152830434.png">
+<meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005152843659.png">
+<meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005152908321.png">
+<meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005153011130.png">
 <meta property="article:published_time" content="2021-10-04T08:45:31.000Z">
-<meta property="article:modified_time" content="2021-10-05T06:18:24.744Z">
+<meta property="article:modified_time" content="2021-10-05T12:53:01.237Z">
 <meta property="article:author" content="Gwofoo">
 <meta property="article:tag" content="-论文笔记">
 <meta name="twitter:card" content="summary">
@@ -235,7 +240,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-05 14:18:24" itemprop="dateModified" datetime="2021-10-05T14:18:24+08:00">2021-10-05</time>
+                <time title="修改时间：2021-10-05 20:53:01" itemprop="dateModified" datetime="2021-10-05T20:53:01+08:00">2021-10-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,14 +265,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
+              <span>5.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -303,7 +308,8 @@
 <h2 id="（b）边界敏感网络"><a href="#（b）边界敏感网络" class="headerlink" title="（b）边界敏感网络"></a>（b）边界敏感网络</h2><p>包括3个模块：时序评估，候选产生，候选评估。</p>
 <h3 id="时序评估模块-TEM"><a href="#时序评估模块-TEM" class="headerlink" title="时序评估模块 TEM"></a>时序评估模块 TEM</h3><p>输入是基于双流网络提取的图像特征序列。采用<u>3层时序卷积层</u>来对视频序列中每个位置上动作开始的概率、动作结束的概率和动作进行的概率同时进行建模，从而生成 动作开始概率序列，动作结束概率序列和动作概率序列。</p>
 <p>3层卷积层分别表示为Conv(512, 3, Relu)，Conv(512, 3, Relu)，Conv(3, 1, Sigmoid)。其中，第一项为过滤器数量，第二项为卷积核大小，第三项为激励函数，三层的步长都为1。最后一层卷积层作为分类器，产生起始，结束和动作概率。</p>
-<h3 id="候选产生模块-PGM"><a href="#候选产生模块-PGM" class="headerlink" title="候选产生模块 PGM"></a>候选产生模块 PGM</h3><p>此模块的目的是产生候选片段并建立相应的片段级特征。分两步来实现这个目的，（1）找到高边界概率的位置，并合并这些位置组成候选片段；（2）对于每个候选片段，建立BSP特征。</p>
+<p>此模块的输入是特征序列，输出是起始，结束和动作概率。</p>
+<h3 id="候选生成模块-PGM"><a href="#候选生成模块-PGM" class="headerlink" title="候选生成模块 PGM"></a>候选生成模块 PGM</h3><p>此模块的目的是产生候选片段并建立相应的片段级特征。分两步来实现这个目的，（1）找到高边界概率的位置，并合并这些位置组成候选片段；（2）对于每个候选片段，建立BSP特征。</p>
 <p><strong>生成候选片段</strong></p>
 <p>满足：</p>
 <p>（1）概率高于一个阈值；或</p>
@@ -312,16 +318,41 @@
 <p>如下图。</p>
 <p><img src="image-20211005113151719.png" alt="image-20211005113151719"></p>
 <p><strong>建立BSP特征</strong></p>
-<p>对于每个提名，取其本身的时序区间作为<u>中心区域</u>，表示为$r_C=[t_s,t_e]$，另外其时长记为$d=t_e-t_s$ ，再取开始节点和结束节点附近的一段区间作为<u>起始区域</u> $r_S=[t_s-d/5，t_s+d/5]$以及 <u>结束区域</u>$r_E=[t_e-d/5，t_e+d/5]$。将$r_C$内的动作序列以16点的线性插值法进行采样，对于$r_S$和$r_E$以8点的线性插值法进行采样，将这三个采样得到的向量进行连接，就得到了这个候选的BSP特征$f_{BSP}$。BSP特征包含了对应候选片段的丰富的语义信息。每个候选片段都表示为$(t_S,t_E,f_{BSP})$。</p>
-<p>如下图。5555</p>
-<script type="math/tex; mode=display">
-\begin{eqnarray}
-\nabla\cdot\vec{E} &=& \frac{\rho}{\epsilon_0} \\
-\nabla\cdot\vec{B} &=& 0 \\
-\nabla\times\vec{E} &=& -\frac{\partial B}{\partial t} \\
-\nabla\times\vec{B} &=& \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)
-\end{eqnarray}</script><p><img src="image-20211005113237307.png" alt="image-20211005113237307"></p>
-<h3 id="候选评估模块-PEM"><a href="#候选评估模块-PEM" class="headerlink" title="候选评估模块 PEM"></a>候选评估模块 PEM</h3><p>是具有一个隐藏层的多层感知器（MLP）模型，它基于BSP特征评估每个候选的置信度得分。将每个候选片段的置信度得分和边界概率融合，作为检索的最终置信度得分。置信度分数越高，则说明该时序提名与真值的重叠IoU应当越高。</p>
+<p>对于每个提名，取其本身的时序区间作为<u>中心区域</u>，表示为$r_C=[t_s,t_e]$，另外其时长记为$d=t_e-t_s$ ，再取开始节点和结束节点附近的一段区间作为<u>起始区域</u> $r_S=[t_s-d/5，t_s+d/5]$以及 <u>结束区域</u>$r_E=[t_e-d/5，t_e+d/5]$。将$r_C$内的动作序列以16点的线性插值法进行采样，对于$r_S$和$r_E$以8点的线性插值法进行采样，将这三个采样得到的向量进行连接，就得到了这个候选的BSP特征$f_{BSP}$。BSP特征包含了对应候选片段的丰富的语义信息。每个候选片段都表示为$(t_s,t_e,f_{BSP})$。</p>
+<p>如下图。</p>
+<p><img src="image-20211005113237307.png" alt="image-20211005113237307"></p>
+<h3 id="候选评估模块-PEM"><a href="#候选评估模块-PEM" class="headerlink" title="候选评估模块 PEM"></a>候选评估模块 PEM</h3><p>此模块的目的是用BSP特征来评估每个候选片段中包含动作实例的置信度得分。作者采用了有1个隐藏层的多层感知器模型，这个隐藏层有512个单元，以Relu激励来处理BSP特征输入。而输出层以sigmoid激励来输出置信度得分$p_{conf}$，这个得分评估的是候选片段与真实动作实例之间的重叠范围。因此生成的候选片段可以表示为$(t_s,t_e,p_{conf},p_{t_s},p_{t_e})$，其中后两项分别表示$t_s$的起始概率和$t_e$的结束概率。融合这些得分，得到预测的最终得分。</p>
+<p><img src="image-20211005111147012.png" alt="image-20211005111147012"></p>
+<h2 id="训练BSN"><a href="#训练BSN" class="headerlink" title="训练BSN"></a>训练BSN</h2><p><strong>时序评估模块</strong></p>
+<p>（1）先将视频以固定的帧间隔处理为多个小段，再提取每个小段的特征得到这个视频的小段特征序列（序列中有ls个小段）；（2）采用长度为100的滑动窗口，在特征序列上滑动，没有重叠，得到的每个窗口都有两部分信息，一个是这段窗口中的特征序列，一个是这个窗口中的标签（标签就是这个窗口中的动作实例的开始ts和结束te，我们将这个范围作为动作范围，这里的开始和结束原本是某一帧，但也将其处理为一个范围，即ts变成 [ts − d/10, ts + d/10]，te变成 [te − d/10, te + d/10]），即起始帧变为起始范围，结束帧变为结束范围）；（3）将一个窗口的特征序列作为输入，时序评估模块产生了起始概率序列，结束概率序列和动作概率序列，长度都等于滑动窗口的长度；（4）对于一个窗口中的每个位置tn，将它的范围定义为 [tn − ds/2, tn + ds/2]，ds=tn-t(n-1)，即两个小段间的时序间隔，并从这个窗口的三个概率序列中分别得到这个位置的对应概率得分；（5）此时，对于窗口中某个位置tn的范围，我们可以分别计算它跟标签的动作范围，起始范围和结束范围的IoP；（6）因此我们可以用6个信息来表示tn的信息——tn的动作概率，tn的起始概率，tn的结束概率，tn的范围与动作范围的最大匹配重叠率IoP，tn的范围与起始范围的最大匹配重叠率IoP，tn的范围与结束范围的最大匹配重叠率IoP。</p>
+<p>这个模块的loss由动作loss，起始loss和结束loss三部分组成。即</p>
+<p><img src="image-20211005152830434.png" alt="image-20211005152830434"></p>
+<p>动作loss，起始loss和结束loss的计算公式是相同的，即</p>
+<p><img src="image-20211005152843659.png" alt="image-20211005152843659"></p>
+<p><strong>候选评估模块</strong></p>
+<p>用时序评估模块产生的概率序列，候选生成模块可以产生候选片段（ts，te，fBSP）。（1）候选评估模块将候选的BSP特征作为输入，可以得到这个候选的置信度得分；（2）再计算这个片段跟所有标签的IoU，并记录最大的重叠得分giou；（3）将候选片段集分为两个部分，一个是giou大于0.7的正样本集，一个是giou小于0.3的负样本集；（4）为了数据平衡，作者采用了正样本集中的所有样本，再从负样本集中随机挑选样本，使得两个片段集的比例大概为1:2。</p>
+<p>这个模块的目标函数是简单的回归loss，即</p>
+<p><img src="image-20211005152908321.png" alt="image-20211005152908321"></p>
+<p><strong>预测和后处理</strong><br>候选评估模块用$(t_s,t_e,p_{conf},p_{t_s},p_{t_e})$五种信息来表示候选片段，还需要融合这些得分来得到预测的最终得分。</p>
+<p>Score fusion for retrieving：Pf = Pconf <em> Pts </em> Pte，这个Pf被用于候选检索</p>
+<p>Redundant proposals suppression：在一个动作实例周围可能会得到多个不同时序重叠率的候选片段，因此需要压制冗余的候选片段，以减少候选片段，获得更高的召回率。</p>
+<p>Soft-NMS是一种使用得分衰减函数来压制冗余结果的非极大值抑制算法。（1）先将所有候选片段按得分排序；（2）计算得分最高的候选片段与其他候选片段的IoU，使得重叠高的候选片段减少；（3）对剩余的候选片段递归地执行第二步，来产生重新计算的候选片段集。Soft-NMS的高斯衰减函数可以表示为：</p>
+<p><img src="image-20211005153011130.png" alt="image-20211005153011130"></p>
+<h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1><h2 id="数据集和设置"><a href="#数据集和设置" class="headerlink" title="数据集和设置"></a>数据集和设置</h2><p><strong>数据集：</strong>ActivityNet-1.3包含19994个视频，200个动作类别，以2:1:1的比例划分训练、验证、测试集。THUMOS14验证集和测试集中有时序标注的视频分别有200和213个，有20个动作类别。</p>
+<p><strong>评价指标：</strong>时序候选生成任务中，常用以多个IoU阈值计算得到的平均召回率（AR）作为评价指标。本文中，在ActivityNet-1.3上使用的IoU阈值集为[0.5 : 0.05 : 0.95]，THUMOS14上是[0.5 : 0.05 : 1.0]。为了评估召回率和候选数量的关系，作者在两个数据集上都评估了平均候选数量（AN）下的AR，即AR@AN。在ActivityNet-1.3上，AR和AN曲线下的面积之比（AUC）也被作为评价指标之一，AN的变化范围是0到100。常用评价指标还有mAP。在ActivityNet-1.3上，还使用了IoU阈值{0.5, 0.75, 0.95}下的mAP和IoU阈值集[0.5 : 0.05 : 0.95]下的平均mAP；在THUMOS14上，使用了IoU阈值为{0.3, 0.4, 0.5, 0.6, 0.7}时的mAP。</p>
+<p><strong>总结：</strong></p>
+<p>（1）平均召回率（AR）</p>
+<p>（2）AR@AN：评估召回率和候选片段数量的关系，即评估模型以高召回率来产生和检索候选的能力</p>
+<p>（3）AUC：AR@AN曲线下的面积，评估模型以高召回率来产生和检索候选的能力</p>
+<p>（4）mAP</p>
+<p>（5）recall of multiple IoU thresholds：评估模型以高时序重叠来产生和检索候选的能力</p>
+<p><strong>实现细节：</strong>对于视觉特征编码，作者使用的是双流网络，其中BN-Inception网络作为时序网络，ResNet网络作为空间网络。这个双流网络是用Caffe实现的，是在ActivityNet-1.3的训练集上预训练的。在特征提取阶段，ActivityNet-1.3上小段之间的间隔σ为16，THUMOS14上为5。</p>
+<p>在ActivityNet-1.3上，因为视频长度的限制，作者将每个视频的特征序列长度用线性插值的方法变为了100，也将对应的标签的duration变为了范围0到1。BSN中，时序评估模块和候选评估模块都是用TensorFlow实现的。在两个数据集上，训练时序评估模块时，前10个epoch中batch size为16，学习率为0.001,接下来10个epoch上，学习率为0.0001；训练候选评估模块时，batch size为256，学习率与前面一样。对于Soft-NMS，在ActivityNet-1.3上阈值θ被设为0.8，THUMOS14上为0.65，而高斯函数ε在两个数据集上都设为0.75。</p>
+<h2 id="时序候选生成"><a href="#时序候选生成" class="headerlink" title="时序候选生成"></a>时序候选生成</h2><p>实验一：实验主要分两方面：（1）评估模型以高召回率产生和检索候选的能力（AR@AN，AUC），结论是BSN始终优于其他方法，但当AN小的时候，优势更明显；（2）评估模型以高时序重叠来产生和检索候选的能力（recall of multiple IoU threshold），作者测试了AN为100和1000两种情况，结论是，当候选数量小的时候，无论tIoU高还是低，BSN始终最优，当候选数量大的时候，BSN在tIoU大于0.8时最优。</p>
+<p>实验二：将双流网络提取视频特征的部分替换为了C3D，将Soft-NMS换成Greedy-NMS试了，证明是BSN本身的结构带来的性能提升。</p>
+<p>实验三：验证BSN在没见过的动作类别上的性能：在ActivityNet-1.3中选择了两个不同语义的动作子集，“Sports, Exercise, and Recreation”作为看过的数据集，包括了87个动作类别，4455个训练视频和2198个验证视频，“Socializing, Relaxing, and Leisure”作为没看过的数据集，包括了38个动作类别，1903个训练视频和896个验证视频。为了确保实验的有效性，没有使用在ActivityNet-1.3预训练的双流网络提取视频特征，而是使用了在Sports-1M上预训练的C3D网络，实验证明在没见过的类别上，性能只有微小的下降，因此证明了BSN的一般性。</p>
+<p>实验四：验证BSN中TEM模块和PEM模块的有效性。没有PEM的话，BSN效果依然比其他方法好，但有PEM可以带来进一步的提高。</p>
+<p>实验五：比较了BSP特征只要Boundary region、只要Center region和两者都要的情况，结论是，虽然center region的贡献比boundary region大，但还是两者都要的情况下效果最好。</p>
 
     </div>
 
@@ -417,7 +448,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">模型方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88a%EF%BC%89%E8%A7%86%E9%A2%91%E7%89%B9%E5%BE%81%E7%BC%96%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">（a）视频特征编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88b%EF%BC%89%E8%BE%B9%E7%95%8C%E6%95%8F%E6%84%9F%E7%BD%91%E7%BB%9C"><span class="nav-number">2.3.</span> <span class="nav-text">（b）边界敏感网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9D%97-TEM"><span class="nav-number">2.3.1.</span> <span class="nav-text">时序评估模块 TEM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%99%E9%80%89%E4%BA%A7%E7%94%9F%E6%A8%A1%E5%9D%97-PGM"><span class="nav-number">2.3.2.</span> <span class="nav-text">候选产生模块 PGM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%99%E9%80%89%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9D%97-PEM"><span class="nav-number">2.3.3.</span> <span class="nav-text">候选评估模块 PEM</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">模型方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88a%EF%BC%89%E8%A7%86%E9%A2%91%E7%89%B9%E5%BE%81%E7%BC%96%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">（a）视频特征编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88b%EF%BC%89%E8%BE%B9%E7%95%8C%E6%95%8F%E6%84%9F%E7%BD%91%E7%BB%9C"><span class="nav-number">2.3.</span> <span class="nav-text">（b）边界敏感网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9D%97-TEM"><span class="nav-number">2.3.1.</span> <span class="nav-text">时序评估模块 TEM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%99%E9%80%89%E7%94%9F%E6%88%90%E6%A8%A1%E5%9D%97-PGM"><span class="nav-number">2.3.2.</span> <span class="nav-text">候选生成模块 PGM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%99%E9%80%89%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9D%97-PEM"><span class="nav-number">2.3.3.</span> <span class="nav-text">候选评估模块 PEM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83BSN"><span class="nav-number">2.4.</span> <span class="nav-text">训练BSN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">数据集和设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E5%80%99%E9%80%89%E7%94%9F%E6%88%90"><span class="nav-number">3.2.</span> <span class="nav-text">时序候选生成</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -487,12 +518,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">34k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">31 分钟</span>
   
 	<br />
 	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
@@ -620,6 +651,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
