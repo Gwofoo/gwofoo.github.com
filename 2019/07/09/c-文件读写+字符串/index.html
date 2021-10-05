@@ -277,24 +277,17 @@
       
         <h2 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h2><h3 id="使用重定向"><a href="#使用重定向" class="headerlink" title="使用重定向"></a>使用重定向</h3><p>用freopen可以直接变成由文件输入输出：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);  <span class="comment">//如果不存在，将创建</span></span><br><span class="line">    </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;ooo\n&quot;</span>);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;123&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//以上两种方式都可以将数据直接写入out.txt文件</span></span><br><span class="line">    <span class="comment">//每次运行，out.txt会被重写</span></span><br><span class="line">    </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>重定向方式写起来简单自然，但是不能同时读写文件和标准输入输出。</p>
 <span id="more"></span>
-
 <h3 id="使用fopen"><a href="#使用fopen" class="headerlink" title="使用fopen"></a>使用fopen</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	FILE *fin,*fout;  <span class="comment">//定义两个文件指针	</span></span><br><span class="line">    fin = fopen(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;rb&quot;</span>);  <span class="comment">//&quot;rb&quot;表示二进制文件只读</span></span><br><span class="line">    fout = fopen(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;wb&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n;	</span><br><span class="line">    <span class="built_in">fscanf</span>(fin,<span class="string">&quot;%d&quot;</span>,&amp;n); <span class="comment">//指定由fin读入整数n</span></span><br><span class="line">    <span class="built_in">fprintf</span>(fout,<span class="string">&quot;%d&quot;</span>,n); <span class="comment">//指定将n输出到fout中</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="常见的字符串函数的用法"><a href="#常见的字符串函数的用法" class="headerlink" title="常见的字符串函数的用法"></a>常见的字符串函数的用法</h2><p>1.<code>tolower(ch)</code><br>把字符转换成小写字母，非字母字符不做处理</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">5</span>]=&#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> lower_ch[<span class="number">5</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">		lower_ch[i]=<span class="built_in">tolower</span>(ch[i]);</span><br><span class="line">		cout&lt;&lt;lower_ch[i];</span><br><span class="line">	&#125; <span class="comment">//输出：abcd</span></span><br></pre></td></tr></table></figure>
-
 <p>2.<code>strtok(str,&quot;,&quot;)</code><br>以逗号为分隔符，将str切分成一个个子串</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">16</span>] = <span class="string">&quot;abc,d&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span> *p; </span><br><span class="line">    p = strtok(ch, <span class="string">&quot;,&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, p); </span><br><span class="line">    <span class="comment">//输出：abc  (换行）d</span></span><br></pre></td></tr></table></figure>
-
 <p>3.<code>substr(开始下标，长度)</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;My name is Ariel.&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = s1.substr(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s2=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> s3=s1.substr(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s3=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//输出：s2=Y n</span></span><br><span class="line"><span class="comment">//      s3=ame is Ariel.</span></span><br></pre></td></tr></table></figure>
-
 <p>4.<code>insert(开始下标，str)</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = <span class="string">&quot;Ariel!&quot;</span>;</span><br><span class="line">s1.insert(<span class="number">2</span>,s2);<span class="comment">//输出：heAriel!llo</span></span><br></pre></td></tr></table></figure>
-
 <p>5.<code>erase(开始下标，长度count)</code><br>从开始下标起，删除count个字符。<br>如果现有长度少于count或count为-1，则删到串尾。<br>默认情况下,开始下标为0；默认删除到串尾。</p>
 <p>6.<code>int find_first_of(char c, int start = 0):</code><br>查找字符串中第1个出现的c,由位置start开始。<br>如果有匹配，则返回匹配位置；否则，返回-1.<br>默认情况下，start为0。 </p>
 <p>7.<code>int find_last_of(char c):</code><br>找字符串中最后一个出现的c。<br>有匹配，则返回匹配位置；否则返回-1.</p>
@@ -413,20 +406,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -467,12 +460,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">26k</span>
+    <span title="站点总字数">30k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">24 分钟</span>
+    <span title="站点阅读时长">27 分钟</span>
   
 	<br />
 	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>

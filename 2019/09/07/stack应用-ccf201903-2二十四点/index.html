@@ -281,16 +281,11 @@
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定义每一个游戏由 4 个从 1-9 的数字和 3个四则运算符组成，保证四则运算符将数字两两隔开，不存在括号和其他字符，运算顺序按照四则运算顺序进行。</p>
 <p>其中加法用符号 + 表示，减法用符号 -表示，乘法用小写字母 x 表示，除法用符号 / 表示。在游戏里除法为<u>整除</u>，例如 2 / 3 = 0，3 / 2 = 1, 4 / 2 = 2。<br>老师给了你 n 个游戏的解，请你编写程序<u>验证</u>每个游戏的结果是否为 24 。</p>
 <span id="more"></span>
-
 <h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>从标准输入读入数据。</p>
 <p>第一行输入一个整数 n，从第 2 行开始到第 n + 1 行中，每一行包含一个长度为 7的字符串，为上述的 24 点游戏，保证数据格式合法。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出到标准输出。 包含 n 行，对于每一个游戏，如果其结果为 24 则输出字符串 Yes，否则输出字符串 No。</p>
 <h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">10</span></span><br><span class="line"><span class="attribute">9</span>+<span class="number">3</span>+<span class="number">4</span>x<span class="number">3</span></span><br><span class="line"><span class="attribute">5</span>+<span class="number">4</span>x<span class="number">5</span>x<span class="number">5</span></span><br><span class="line"><span class="attribute">7</span>-<span class="number">9</span>-<span class="number">9</span>+<span class="number">8</span></span><br><span class="line"><span class="attribute">5x6</span>/<span class="number">5</span>x<span class="number">4</span></span><br><span class="line"><span class="attribute">3</span>+<span class="number">5</span>+<span class="number">7</span>+<span class="number">9</span></span><br><span class="line"><span class="attribute">1x1</span>+<span class="number">9</span>-<span class="number">9</span></span><br><span class="line"><span class="attribute">1x9</span>-<span class="number">5</span>/<span class="number">9</span></span><br><span class="line"><span class="attribute">8</span>/<span class="number">5</span>+<span class="number">6</span>x<span class="number">9</span></span><br><span class="line"><span class="attribute">6x7</span>-<span class="number">3</span>x<span class="number">6</span></span><br><span class="line"><span class="attribute">6x4</span>+<span class="number">4</span>/<span class="number">5</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">Yes</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>使用stack。</p>
 <p>先读入第一个数字，入栈。</p>
 <p>然后是3次循环，每次循环读一个符号和一个数字。</p>
@@ -413,20 +408,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -467,12 +462,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">26k</span>
+    <span title="站点总字数">30k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">24 分钟</span>
+    <span title="站点阅读时长">27 分钟</span>
   
 	<br />
 	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>

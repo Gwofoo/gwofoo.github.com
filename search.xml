@@ -4,31 +4,18 @@
     <title>c++：STL</title>
     <url>/2019/08/04/C++%20STL/</url>
     <content><![CDATA[<h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"></span><br><span class="line">map&lt;<span class="keyword">int</span>, string&gt; stu;  <span class="comment">// 定义一个map对象</span></span><br><span class="line">map&lt;<span class="keyword">int</span>, string&gt;::iterator it;  <span class="comment">//定义相应的迭代器（用于遍历）</span></span><br><span class="line"><span class="comment">//插入元素：用&quot;array&quot;方式插入</span></span><br><span class="line">stu[<span class="number">123</span>] = <span class="string">&quot;student_first&quot;</span>;</span><br><span class="line">stu[<span class="number">456</span>] = <span class="string">&quot;student_second&quot;</span>;</span><br><span class="line"><span class="comment">//迭代</span></span><br><span class="line"><span class="keyword">for</span>(it=stu.<span class="built_in">begin</span>();it!=stu.<span class="built_in">end</span>();it++)&#123;</span><br><span class="line">    cout&lt;&lt;it-&gt;first;    <span class="comment">//first表示key</span></span><br><span class="line">    cout&lt;&lt;it-&gt;second;    <span class="comment">//second表示value</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	map.count(Key)返回值为1或者0，1返回存在，0返回不存在。因为在map中数据的Key值都是不同的，所以被count的数要么存在1次，要么不存在。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	begin()指向第一个元素</span></span><br><span class="line"><span class="comment">	end()指向最后一个元素的后一个元素</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <span id="more"></span>
-
 <h1 id="set"><a href="#set" class="headerlink" title="set"></a>set</h1><p>set即数学上的集合——每个元素最多只出现一次。</p>
 <h2 id="1-头文件"><a href="#1-头文件" class="headerlink" title="1.头文件"></a>1.头文件</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span> </span></span><br></pre></td></tr></table></figure>
-
 <h2 id="2-常用操作"><a href="#2-常用操作" class="headerlink" title="2.常用操作"></a>2.常用操作</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">set&lt;<span class="keyword">int</span>&gt; s	</span><br><span class="line">    </span><br><span class="line">s.<span class="built_in">size</span>()	<span class="comment">//集合中元素的数目</span></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">clear</span>()	<span class="comment">//清除所有元素</span></span><br><span class="line">s.<span class="built_in">count</span>()	<span class="comment">//返回某个值元素的个数</span></span><br><span class="line">s.<span class="built_in">empty</span>()	<span class="comment">//如果集合为空，返回true</span></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">begin</span>()	<span class="comment">//返回指向第一个元素的迭代器</span></span><br><span class="line">s.<span class="built_in">end</span>()		<span class="comment">//返回指向最后一个元素之后的迭代器，不是最后一个元素</span></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">erase</span>()	<span class="comment">//删除集合中的元素</span></span><br><span class="line">s.<span class="built_in">find</span>()	<span class="comment">//返回一个指向被查找到元素的迭代器，如果没找到则返回end()</span></span><br><span class="line">s.<span class="built_in">insert</span>()	<span class="comment">//在集合中插入元素</span></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">swap</span>()	<span class="comment">//交换两个集合变量</span></span><br><span class="line"></span><br><span class="line">s.<span class="built_in">lower_bound</span>(要查找的数值)    <span class="comment">//返回的是数值  第一个  出现的位置</span></span><br><span class="line">s.<span class="built_in">upper_bound</span>(要查找的数值)    <span class="comment">//返回的是数值 最后一个 出现的位置</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="3-例子："><a href="#3-例子：" class="headerlink" title="3.例子："></a>3.例子：</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">set&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">set&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//插入10个元素</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;</span><br><span class="line">        s.<span class="built_in">insert</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//打印10个元素</span></span><br><span class="line">    <span class="keyword">for</span>(it=s.<span class="built_in">begin</span>(); it!=s.<span class="built_in">end</span>(); it++)&#123;</span><br><span class="line">        cout&lt;&lt;*it&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    s.<span class="built_in">erase</span>(<span class="number">5</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(s.<span class="built_in">insert</span>(<span class="number">3</span>).second)<span class="comment">//把3插入到s中,插入成功则s.insert(3).second返回1，否则返回0.</span></span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;插入成功&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;插入失败&quot;</span>&lt;&lt;endl;  <span class="comment">// √</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(it=s.<span class="built_in">begin</span>(); it!=s.<span class="built_in">end</span>(); it++)</span><br><span class="line">        cout&lt;&lt;*it&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    s.<span class="built_in">clear</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; c;</span><br><span class="line"></span><br><span class="line">c.<span class="built_in">pop_back</span>();       <span class="comment">// 删除最后一个数据。</span></span><br><span class="line">c.<span class="built_in">push_back</span>(elem);  <span class="comment">// 在尾部加入一个数据。</span></span><br><span class="line"></span><br><span class="line">c.<span class="built_in">front</span>()     <span class="comment">// 传回第一个数据</span></span><br><span class="line">c.<span class="built_in">back</span>()      <span class="comment">// 传回最后一个数据</span></span><br><span class="line"></span><br><span class="line">c.<span class="built_in">erase</span>(pos)  <span class="comment">// 删除pos位置的数据，传回下一个数据的位置。</span></span><br><span class="line">c.<span class="built_in">insert</span>(pos,elem)    <span class="comment">// 在pos位置插入一个elem拷贝，传回新数据位置。</span></span><br><span class="line"></span><br><span class="line">c.<span class="built_in">size</span>()		<span class="comment">// 返回容器中实际数据的个数。</span></span><br><span class="line">c.<span class="built_in">resize</span>(num)	<span class="comment">// 改变vector大小</span></span><br><span class="line">c.<span class="built_in">clear</span>()		<span class="comment">// 移除容器中所有数据。</span></span><br><span class="line">c.<span class="built_in">empty</span>()		<span class="comment">// 判断容器是否为空。</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line">queue&lt;<span class="keyword">int</span>&gt; q1;</span><br><span class="line">queue&lt;<span class="keyword">double</span>&gt; q2;</span><br><span class="line"></span><br><span class="line">q.<span class="built_in">push</span>(x);  <span class="comment">//将x 接到队列的末端。</span></span><br><span class="line">q.<span class="built_in">pop</span>();  <span class="comment">//弹出队列的第一个元素，注意，没有返回值！</span></span><br><span class="line"></span><br><span class="line">q.<span class="built_in">front</span>(); <span class="comment">//即最早被压入队列的元素。</span></span><br><span class="line">q.<span class="built_in">back</span>(); <span class="comment">//即最后被压入队列的元素。</span></span><br><span class="line"></span><br><span class="line">q.<span class="built_in">size</span>();  </span><br><span class="line">q.<span class="built_in">empty</span>();  <span class="comment">//当队列空时，返回true。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//若要取完队头元素后删之，需front()和pop()连用</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>优先队列有点像队列，但优先队列的出队元素，不是最先进队的元素，而是优先级最高的元素。（这样就可以允许类似“急诊病人插队”这样的事情发生。）</p>
 <p>由于不是先进先出，所以出队的方法由<code>front()</code>变为<code>top()</code>。</p>
 <p>自定义类型也可以组成优先队列，但必须为每个元素定义一个优先级（这个“优先级”只需要能比较大小即可）。</p>
 <h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br></pre></td></tr></table></figure>
-
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">priority_queue&lt;<span class="keyword">int</span>&gt; pq;		<span class="comment">//越大的整数优先级越高</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
 ]]></content>
       <categories>
         <category>C++</category>
@@ -43,11 +30,9 @@
     <url>/2021/09/03/Hexo%E5%8D%9A%E5%AE%A2NexT%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="安装NexT"><a href="#安装NexT" class="headerlink" title="安装NexT"></a>安装NexT</h1><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>在Hexo文件夹下，右键<code>Git Bash Here</code>，</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-
 <h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>下载zip安装包：<a href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a></p>
 <p>管理员解压，文件夹改名为next（全部小写），至themes目录下。</p>
 <span id="more"></span>
-
 <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>官方配置文档</p>
 <p><a href="https://hexo.io/zh-cn/docs/configuration.html">配置 | Hexo</a></p>
 <p>网上博客</p>
@@ -55,64 +40,49 @@
 <p><a href="https://www.jianshu.com/p/b20fc983005f">Hexo设置主题以及Next主题个性设置</a></p>
 <h2 id="添加动态背景"><a href="#添加动态背景" class="headerlink" title="添加动态背景"></a>添加动态背景</h2><p>打开<strong>生成的Hexo目录\themes\next/layout/_layout.swig文件</strong>，在 &lt; /body&gt;上面添加代码：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">&#123;% if theme.canvas_nest %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
-
 <p>打开主题配置文件，在里面添加如下代码（可以放在最后面）：</p>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># --------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># background settings</span></span><br><span class="line"><span class="comment"># --------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># add canvas-nest effect</span></span><br><span class="line"><span class="comment"># see detail from https://github.com/hustcc/canvas-nest.js</span></span><br><span class="line"><span class="attr">canvas_nest:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="添加字数统计和阅读时长"><a href="#添加字数统计和阅读时长" class="headerlink" title="添加字数统计和阅读时长"></a>添加字数统计和阅读时长</h2><p>参考文章：</p>
 <p><a href="https://blog.csdn.net/mqdxiaoxiao/article/details/93670772">Hexo博客NexT主题下添加字数统计和阅读时长</a></p>
 <p>安装<code>hexo-symbols-count-time</code>：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-symbols-count-time --save</span><br></pre></td></tr></table></figure>
-
 <p>在站点配置文件添加如下配置：</p>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">symbols_count_time:</span></span><br><span class="line">  <span class="attr">symbols:</span> <span class="literal">true</span>                <span class="comment"># 文章字数统计</span></span><br><span class="line">  <span class="attr">time:</span> <span class="literal">true</span>                   <span class="comment"># 文章阅读时长</span></span><br><span class="line">  <span class="attr">total_symbols:</span> <span class="literal">true</span>          <span class="comment"># 站点总字数统计</span></span><br><span class="line">  <span class="attr">total_time:</span> <span class="literal">true</span>             <span class="comment"># 站点总阅读时长</span></span><br><span class="line">  <span class="attr">exclude_codeblock:</span> <span class="literal">false</span>     <span class="comment"># 排除代码字数统计</span></span><br></pre></td></tr></table></figure>
-
 <p>在NexT主题配置文件添加如下配置：</p>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post wordcount display settings</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/theme-next/hexo-symbols-count-time</span></span><br><span class="line"><span class="attr">symbols_count_time:</span></span><br><span class="line">  <span class="attr">separated_meta:</span> <span class="literal">true</span>     <span class="comment"># 是否另起一行（true的话不和发表时间等同一行）</span></span><br><span class="line">  <span class="attr">item_text_post:</span> <span class="literal">true</span>     <span class="comment"># 首页文章统计数量前是否显示文字描述（本文字数、阅读时长）</span></span><br><span class="line">  <span class="attr">item_text_total:</span> <span class="literal">false</span>   <span class="comment"># 页面底部统计数量前是否显示文字描述（站点总字数、站点阅读时长）</span></span><br><span class="line">  <span class="attr">awl:</span> <span class="number">4</span>                   <span class="comment"># Average Word Length</span></span><br><span class="line">  <span class="attr">wpm:</span> <span class="number">275</span>                 <span class="comment"># Words Per Minute（每分钟阅读词数）</span></span><br><span class="line">  <span class="attr">suffix:</span> <span class="string">mins.</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="添加文章更新时间"><a href="#添加文章更新时间" class="headerlink" title="添加文章更新时间"></a>添加文章更新时间</h2><p>主题配置文件下，<code>updated_at</code> 的属性改为 <code>true</code> 即可。</p>
 <h2 id="设置代码高亮主题"><a href="#设置代码高亮主题" class="headerlink" title="设置代码高亮主题"></a>设置代码高亮主题</h2><p>NexT 使用 <a href="https://github.com/chriskempson/tomorrow-theme">Tomorrow Theme</a> 作为代码高亮，共有5款主题供选择。 </p>
 <p>默认使用的是 白色的 <code>normal</code> 主题，可选的值有 :</p>
 <p><code>normal</code>，<code>night</code>， <code>night blue</code>， <code>night bright</code>， <code>night eighties</code>, 如下图所示：</p>
 <p>修改：在NexT下的_config.yml中设置</p>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight_theme:</span> <span class="string">normal</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="添加阅读全文按钮"><a href="#添加阅读全文按钮" class="headerlink" title="添加阅读全文按钮"></a>添加阅读全文按钮</h2><p>只需在文章中你想截止的地方添加</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="添加搜索功能"><a href="#添加搜索功能" class="headerlink" title="添加搜索功能"></a>添加搜索功能</h2><p>1、安装 <a href="https://link.jianshu.com/?t=https://github.com/flashlab/hexo-generator-search">hexo-generator-searchdb</a> 插件</p>
+<h2 id="添加搜索功能"><a href="#添加搜索功能" class="headerlink" title="添加搜索功能"></a>添加搜索功能</h2><p>1、安装 <a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2Fflashlab%2Fhexo-generator-search">hexo-generator-searchdb</a> 插件</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-
 <p>2、打开 <strong>站点配置文件</strong> 找到<code>Extensions</code>在下面添加</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 搜索</span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
-
 <p>3、打开 <strong>主题配置文件</strong> 找到<code>Local search</code>，将<code>enable</code>设置为<code>true</code></p>
 <h2 id="头像设置"><a href="#头像设置" class="headerlink" title="头像设置"></a>头像设置</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">avatar:</span> </span><br><span class="line">	<span class="attr">url:</span> <span class="comment">#/images/avatar.gif</span></span><br></pre></td></tr></table></figure>
-
 <p>然后将准备好的gif图片放入next/source/images/中即可。</p>
 <h2 id="鼠标点击特效"><a href="#鼠标点击特效" class="headerlink" title="鼠标点击特效"></a>鼠标点击特效</h2><p>参考博客链接：</p>
 <p><a href="https://www.jianshu.com/p/924b3eea4fa6">hexo-next 添加鼠标点击特效</a></p>
 <p>在<em>…\themes\hexo-theme-next\source\js\my_js</em>下新建clicklove.js文件，source后面的路径和文件名都可以自定义，内容如下：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*网页鼠标点击特效（爱心）*/</span></span><br><span class="line">!<span class="function"><span class="keyword">function</span> (<span class="params">e, t, a</span>) </span>&#123;<span class="function"><span class="keyword">function</span> <span class="title">r</span>(<span class="params"></span>) </span>&#123;<span class="keyword">for</span> (<span class="keyword">var</span> e = <span class="number">0</span>; e &lt; s.length; e++) s[e].alpha &lt;= <span class="number">0</span> ? (t.body.removeChild(s[e].el), s.splice(e, <span class="number">1</span>)) : (s[e].y--, s[e].scale += <span class="number">.004</span>, s[e].alpha -= <span class="number">.013</span>, s[e].el.style.cssText = <span class="string">&quot;left:&quot;</span> + s[e].x + <span class="string">&quot;px;top:&quot;</span> + s[e].y + <span class="string">&quot;px;opacity:&quot;</span> + s[e].alpha + <span class="string">&quot;;transform:scale(&quot;</span> + s[e].scale + <span class="string">&quot;,&quot;</span> + s[e].scale + <span class="string">&quot;) rotate(45deg);background:&quot;</span> + s[e].color + <span class="string">&quot;;z-index:99999&quot;</span>);requestAnimationFrame(r)&#125;<span class="function"><span class="keyword">function</span> <span class="title">n</span>(<span class="params"></span>) </span>&#123;<span class="keyword">var</span> t = <span class="string">&quot;function&quot;</span> == <span class="keyword">typeof</span> e.onclick &amp;&amp; e.onclick;e.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;t &amp;&amp; t(), o(e)&#125;&#125;<span class="function"><span class="keyword">function</span> <span class="title">o</span>(<span class="params">e</span>) </span>&#123;<span class="keyword">var</span> a = t.createElement(<span class="string">&quot;div&quot;</span>);a.className = <span class="string">&quot;heart&quot;</span>, s.push(&#123;<span class="attr">el</span>: a,<span class="attr">x</span>: e.clientX - <span class="number">5</span>,<span class="attr">y</span>: e.clientY - <span class="number">5</span>,<span class="attr">scale</span>: <span class="number">1</span>,<span class="attr">alpha</span>: <span class="number">1</span>,<span class="attr">color</span>: c()&#125;), t.body.appendChild(a)&#125;<span class="function"><span class="keyword">function</span> <span class="title">i</span>(<span class="params">e</span>) </span>&#123;<span class="keyword">var</span> a = t.createElement(<span class="string">&quot;style&quot;</span>);a.type = <span class="string">&quot;text/css&quot;</span>;<span class="keyword">try</span> &#123;a.appendChild(t.createTextNode(e))&#125; <span class="keyword">catch</span> (t) &#123;a.styleSheet.cssText = e&#125;t.getElementsByTagName(<span class="string">&quot;head&quot;</span>)[<span class="number">0</span>].appendChild(a)&#125;<span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> <span class="string">&quot;rgb(&quot;</span> + ~~(<span class="number">255</span> * <span class="built_in">Math</span>.random()) + <span class="string">&quot;,&quot;</span> + ~~(<span class="number">255</span> * <span class="built_in">Math</span>.random()) + <span class="string">&quot;,&quot;</span> + ~~(<span class="number">255</span> * <span class="built_in">Math</span>.random()) + <span class="string">&quot;)&quot;</span>&#125;<span class="keyword">var</span> s = [];e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;<span class="built_in">setTimeout</span>(e, <span class="number">1e3</span> / <span class="number">60</span>)&#125;, i(<span class="string">&quot;.heart&#123;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);&#125;.heart:after,.heart:before&#123;content: &#x27;&#x27;;width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;&#125;.heart:after&#123;top: -5px;&#125;.heart:before&#123;left: -5px;&#125;&quot;</span>), n(), r()&#125;(<span class="built_in">window</span>, <span class="built_in">document</span>);</span><br></pre></td></tr></table></figure>
-
-<p>在<em>…\themes\hexo-theme-next\layout*路径下找到</em>“_layout.swig”*文件，在<head></head>标签中引入新建的js文件，代码如下：</p>
+<p>在<em>…\themes\hexo-theme-next\layout\</em>路径下找到<em>“_layout.swig”</em>文件，在<head></head>标签中引入新建的js文件，代码如下：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/js/my_js/clicklove.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="本站运行时间"><a href="#本站运行时间" class="headerlink" title="本站运行时间"></a>本站运行时间</h2><p>在<code>/next/layout/_partials/footer.swig</code>在自己喜欢的位置（比如在<code>&lt;div class=&quot;copyright&quot;&gt;.....&lt;/div&gt;</code>这个标签下）加上如下代码：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;timeDate&quot;</span>&gt;</span>载入天数...<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;times&quot;</span>&gt;</span>载入时分秒...<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>(); </span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">createtime</span>(<span class="params"></span>) </span>&#123; </span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> birth= <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">&quot;7/2/2019 23:12:45&quot;</span>);<span class="comment">//此处修改你的建站时间或者网站上线时间 </span></span></span><br><span class="line"><span class="javascript">        this_year = now.getFullYear();</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> anniversary = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">&quot;7/2/2019 23:12:45&quot;</span>).setFullYear(this_year);</span></span><br><span class="line"><span class="javascript">        now.setTime(now.getTime()+<span class="number">250</span>); </span></span><br><span class="line"><span class="javascript">        years = this_year - <span class="number">2019</span>;</span></span><br><span class="line"><span class="javascript">        days = (now - anniversary ) / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> / <span class="number">24</span>; dnum = <span class="built_in">Math</span>.floor(days); 			</span></span><br><span class="line"><span class="javascript">        hours = (now - anniversary ) / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> - (<span class="number">24</span> * dnum); hnum = <span class="built_in">Math</span>.floor(hours); </span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(<span class="built_in">String</span>(hnum).length ==<span class="number">1</span> )&#123;hnum = <span class="string">&quot;0&quot;</span> + hnum;&#125; minutes = (now - anniversary ) / <span class="number">1000</span> /<span class="number">60</span> - (<span class="number">24</span> * <span class="number">60</span> * dnum) - (<span class="number">60</span> * hnum); </span></span><br><span class="line"><span class="javascript">        mnum = <span class="built_in">Math</span>.floor(minutes); <span class="keyword">if</span>(<span class="built_in">String</span>(mnum).length ==<span class="number">1</span> )&#123;mnum = <span class="string">&quot;0&quot;</span> + mnum;&#125; </span></span><br><span class="line"><span class="javascript">        seconds = (now - anniversary ) / <span class="number">1000</span> - (<span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * dnum) - (<span class="number">60</span> * <span class="number">60</span> * hnum) - (<span class="number">60</span> * mnum); </span></span><br><span class="line"><span class="javascript">        snum = <span class="built_in">Math</span>.round(seconds); <span class="keyword">if</span>(<span class="built_in">String</span>(snum).length ==<span class="number">1</span> )&#123;snum = <span class="string">&quot;0&quot;</span> + snum;&#125; </span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.getElementById(<span class="string">&quot;timeDate&quot;</span>).innerHTML = <span class="string">&quot;本站已安全运行 &quot;</span> + years + <span class="string">&quot; 年 &quot;</span> + dnum + <span class="string">&quot; 天 &quot;</span>; </span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.getElementById(<span class="string">&quot;times&quot;</span>).innerHTML = hnum + <span class="string">&quot; 小时 &quot;</span> + mnum + <span class="string">&quot; 分 &quot;</span> + snum + <span class="string">&quot; 秒&quot;</span>; </span></span><br><span class="line"><span class="javascript">    &#125; </span></span><br><span class="line"><span class="javascript">    <span class="built_in">setInterval</span>(<span class="string">&quot;createtime()&quot;</span>,<span class="number">250</span>);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="博客插入图片"><a href="#博客插入图片" class="headerlink" title="博客插入图片"></a>博客插入图片</h2><p>安装插件：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-marked</span><br></pre></td></tr></table></figure>
-
 <p>在Hexo的<code>config.yaml</code>中更改配置如下：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span>  <span class="comment">#当该配置被应用后，使用hexo new命令创建新文章时，会生成相同名字的文件夹</span></span><br><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
 <p>之后就可以在使用<code>![](xxx.jpg)</code>的方式愉快的插入图片了。不过，需要事先将图片<code>xxx.jpg</code>存入博客同名的文件夹。</p>
 <h3 id="与Typora结合"><a href="#与Typora结合" class="headerlink" title="与Typora结合"></a>与Typora结合</h3><p>粘贴图片到Typora时，可以自动保存到目标文件夹。不必事先保存图片。</p>
 <p>设置方式：</p>
 <p>在Typora中找到<code>文件-&gt;偏好设置-&gt;图像</code>，将“插入图片时…”选项改为“复制到指定路径：./${filename}”，并可勾选前三个选项。</p>
 <p>但是这样的话图片路径实际上是<code>文件名/图片名.jpg</code>，而不是<code>/图片名.jpg</code>。所以等写完博客后，再用Ctrl+H做一个全局替换。</p>
-<p><img src="/2021/09/03/Hexo%E5%8D%9A%E5%AE%A2NexT%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/image-20210927151925284.png" alt="image-20210927151925284"></p>
+<p><img src="image-20210927151925284.png" alt="image-20210927151925284"></p>
 ]]></content>
       <categories>
         <category>Hexo建站</category>
@@ -129,14 +99,12 @@
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定理：把一个至少两位的正整数的个位数字去掉，再从余下的数中减去个位数的5倍。当且仅当差是17的倍数时，原数也是17的倍数 。</p>
 <p>例如，34是17的倍数，因为3-20=-17是17的倍数；201不是17的倍数，因为20-5=15不是17的倍数。输入一个正整数n，你的任务是判断它是否是17的倍数。</p>
 <span id="more"></span>
-
 <h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入文件最多包含10组测试数据，每个数据占一行，仅包含一个正整数n（1&lt;=n&lt;=10^100），表示待判断的正整数。n=0表示输入结束，你的程序不应当处理这一行。</p>
 <h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每组测试数据，输出一行，表示相应的n是否是17的倍数。1表示是，0表示否。</p>
 <h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>34<br>201<br>2098765413<br>1717171717171717171717171717171717171717171717171718<br>0</p>
 <h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>1<br>0<br>1<br>0</p>
 <h2 id="题目分析："><a href="#题目分析：" class="headerlink" title="题目分析："></a>题目分析：</h2><p>不要用这个定理，否则要处理大数会很麻烦。 直接用小学列式除法的原理，从高位到低位依次读入数字，得到每一次的余数r （r中刷新地保存每次的余数），直到大数所有位数被读一遍。最后判断r是否为0，为0则说明刚好被17整除。</p>
 <h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	string str;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; str) &#123; <span class="comment">//读入这个大数（2345</span></span><br><span class="line">		<span class="keyword">if</span> (str[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span>) <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//为0则退出</span></span><br><span class="line">		<span class="keyword">int</span> m, r=<span class="number">0</span>;  <span class="comment">//m表示每一次的被除数，r表示每一次的余数</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; str.<span class="built_in">length</span>(); i++) &#123;  <span class="comment">//遍历这个大数</span></span><br><span class="line">			m = r*<span class="number">10</span> + str[i] - <span class="string">&#x27;0&#x27;</span>;  <span class="comment">//（2,23,64,135</span></span><br><span class="line">			r = m % <span class="number">17</span>;  <span class="comment">//（2,6,13,16</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (r) cout &lt;&lt; <span class="string">&#x27;0&#x27;</span> &lt;&lt; endl;  <span class="comment">//r不为0，不能被17整除</span></span><br><span class="line">		<span class="keyword">else</span> cout &lt;&lt; <span class="string">&#x27;1&#x27;</span> &lt;&lt; endl;    <span class="comment">//r为0，能被17整除</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//system(&quot;pause&quot;);</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
         <category>OJ</category>
@@ -149,9 +117,7 @@
     <title>c++常用库函数</title>
     <url>/2019/11/22/c-%E5%B8%B8%E7%94%A8%E5%BA%93%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">isalpha</span>(字母);	<span class="comment">//判断是否是字母</span></span><br><span class="line"><span class="built_in">toupper</span>(字母);	<span class="comment">//转大写</span></span><br><span class="line"><span class="built_in">tolower</span>(字母);	<span class="comment">//转小写	</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <span id="more"></span>
-
 ]]></content>
       <categories>
         <category>C++</category>
@@ -162,38 +128,31 @@
       </tags>
   </entry>
   <entry>
-    <title>c++：文件读写、字符串</title>
-    <url>/2019/07/09/c-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99+%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<h2 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h2><h3 id="使用重定向"><a href="#使用重定向" class="headerlink" title="使用重定向"></a>使用重定向</h3><p>用freopen可以直接变成由文件输入输出：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);  <span class="comment">//如果不存在，将创建</span></span><br><span class="line">    </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;ooo\n&quot;</span>);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;123&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//以上两种方式都可以将数据直接写入out.txt文件</span></span><br><span class="line">    <span class="comment">//每次运行，out.txt会被重写</span></span><br><span class="line">    </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>重定向方式写起来简单自然，但是不能同时读写文件和标准输入输出。</p>
+    <title>stack应用-ccf201903-2二十四点</title>
+    <url>/2019/09/07/stack%E5%BA%94%E7%94%A8-ccf201903-2%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%82%B9/</url>
+    <content><![CDATA[<h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>二十四点：使用 3 个加减乘除运算使得 4张纸牌上数字的运算结果为 24。</p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定义每一个游戏由 4 个从 1-9 的数字和 3个四则运算符组成，保证四则运算符将数字两两隔开，不存在括号和其他字符，运算顺序按照四则运算顺序进行。</p>
+<p>其中加法用符号 + 表示，减法用符号 -表示，乘法用小写字母 x 表示，除法用符号 / 表示。在游戏里除法为<u>整除</u>，例如 2 / 3 = 0，3 / 2 = 1, 4 / 2 = 2。<br>老师给了你 n 个游戏的解，请你编写程序<u>验证</u>每个游戏的结果是否为 24 。</p>
 <span id="more"></span>
-
-<h3 id="使用fopen"><a href="#使用fopen" class="headerlink" title="使用fopen"></a>使用fopen</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	FILE *fin,*fout;  <span class="comment">//定义两个文件指针	</span></span><br><span class="line">    fin = fopen(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;rb&quot;</span>);  <span class="comment">//&quot;rb&quot;表示二进制文件只读</span></span><br><span class="line">    fout = fopen(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;wb&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n;	</span><br><span class="line">    <span class="built_in">fscanf</span>(fin,<span class="string">&quot;%d&quot;</span>,&amp;n); <span class="comment">//指定由fin读入整数n</span></span><br><span class="line">    <span class="built_in">fprintf</span>(fout,<span class="string">&quot;%d&quot;</span>,n); <span class="comment">//指定将n输出到fout中</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="常见的字符串函数的用法"><a href="#常见的字符串函数的用法" class="headerlink" title="常见的字符串函数的用法"></a>常见的字符串函数的用法</h2><p>1.<code>tolower(ch)</code><br>把字符转换成小写字母，非字母字符不做处理</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">5</span>]=&#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> lower_ch[<span class="number">5</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">		lower_ch[i]=<span class="built_in">tolower</span>(ch[i]);</span><br><span class="line">		cout&lt;&lt;lower_ch[i];</span><br><span class="line">	&#125; <span class="comment">//输出：abcd</span></span><br></pre></td></tr></table></figure>
-
-<p>2.<code>strtok(str,&quot;,&quot;)</code><br>以逗号为分隔符，将str切分成一个个子串</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">16</span>] = <span class="string">&quot;abc,d&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span> *p; </span><br><span class="line">    p = strtok(ch, <span class="string">&quot;,&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, p); </span><br><span class="line">    <span class="comment">//输出：abc  (换行）d</span></span><br></pre></td></tr></table></figure>
-
-<p>3.<code>substr(开始下标，长度)</code></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;My name is Ariel.&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = s1.substr(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s2=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> s3=s1.substr(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s3=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//输出：s2=Y n</span></span><br><span class="line"><span class="comment">//      s3=ame is Ariel.</span></span><br></pre></td></tr></table></figure>
-
-<p>4.<code>insert(开始下标，str)</code></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = <span class="string">&quot;Ariel!&quot;</span>;</span><br><span class="line">s1.insert(<span class="number">2</span>,s2);<span class="comment">//输出：heAriel!llo</span></span><br></pre></td></tr></table></figure>
-
-<p>5.<code>erase(开始下标，长度count)</code><br>从开始下标起，删除count个字符。<br>如果现有长度少于count或count为-1，则删到串尾。<br>默认情况下,开始下标为0；默认删除到串尾。</p>
-<p>6.<code>int find_first_of(char c, int start = 0):</code><br>查找字符串中第1个出现的c,由位置start开始。<br>如果有匹配，则返回匹配位置；否则，返回-1.<br>默认情况下，start为0。 </p>
-<p>7.<code>int find_last_of(char c):</code><br>找字符串中最后一个出现的c。<br>有匹配，则返回匹配位置；否则返回-1.</p>
-<p>​    </p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>从标准输入读入数据。</p>
+<p>第一行输入一个整数 n，从第 2 行开始到第 n + 1 行中，每一行包含一个长度为 7的字符串，为上述的 24 点游戏，保证数据格式合法。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出到标准输出。 包含 n 行，对于每一个游戏，如果其结果为 24 则输出字符串 Yes，否则输出字符串 No。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">10</span></span><br><span class="line"><span class="attribute">9</span>+<span class="number">3</span>+<span class="number">4</span>x<span class="number">3</span></span><br><span class="line"><span class="attribute">5</span>+<span class="number">4</span>x<span class="number">5</span>x<span class="number">5</span></span><br><span class="line"><span class="attribute">7</span>-<span class="number">9</span>-<span class="number">9</span>+<span class="number">8</span></span><br><span class="line"><span class="attribute">5x6</span>/<span class="number">5</span>x<span class="number">4</span></span><br><span class="line"><span class="attribute">3</span>+<span class="number">5</span>+<span class="number">7</span>+<span class="number">9</span></span><br><span class="line"><span class="attribute">1x1</span>+<span class="number">9</span>-<span class="number">9</span></span><br><span class="line"><span class="attribute">1x9</span>-<span class="number">5</span>/<span class="number">9</span></span><br><span class="line"><span class="attribute">8</span>/<span class="number">5</span>+<span class="number">6</span>x<span class="number">9</span></span><br><span class="line"><span class="attribute">6x7</span>-<span class="number">3</span>x<span class="number">6</span></span><br><span class="line"><span class="attribute">6x4</span>+<span class="number">4</span>/<span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight gams"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">Yes</span></span><br></pre></td></tr></table></figure>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>使用stack。</p>
+<p>先读入第一个数字，入栈。</p>
+<p>然后是3次循环，每次循环读一个符号和一个数字。</p>
+<p>在一次循环中，读的符号若为 x 或 / ，则弹出栈顶数字，将其与下一位数字作相应运算后再入栈；读的符号若为 + 或 - ，则下一位数字直接入栈，注意：若符号为 - ，入栈时入的是相反数（便于最后一次性相加）。</p>
+<p>循环结束后，将栈内剩余的数字依次弹出相加。若为24，则Yes。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">		stack&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">		<span class="keyword">int</span>  a,b;</span><br><span class="line">		<span class="comment">//读第一个数字，直接push </span></span><br><span class="line">		cin&gt;&gt;a;</span><br><span class="line">		s.<span class="built_in">push</span>(a);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">			<span class="comment">//读一个符号 </span></span><br><span class="line">			<span class="keyword">char</span> c;</span><br><span class="line">			cin&gt;&gt;c;</span><br><span class="line">			<span class="comment">//读一个数字 </span></span><br><span class="line">			cin&gt;&gt;a;</span><br><span class="line">			<span class="keyword">int</span> sum;  <span class="comment">//sum存储乘除运算的中间结果</span></span><br><span class="line">			<span class="keyword">if</span>(c==<span class="string">&#x27;x&#x27;</span>)&#123;			</span><br><span class="line">				sum=a*s.<span class="built_in">top</span>();</span><br><span class="line">				s.<span class="built_in">pop</span>();</span><br><span class="line">				s.<span class="built_in">push</span>(sum);			</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">&#x27;/&#x27;</span>) &#123;			</span><br><span class="line">				sum=s.<span class="built_in">top</span>()/a;</span><br><span class="line">				s.<span class="built_in">pop</span>();</span><br><span class="line">				s.<span class="built_in">push</span>(sum);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">&#x27;+&#x27;</span>)&#123;			</span><br><span class="line">				s.<span class="built_in">push</span>(a);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				s.<span class="built_in">push</span>(a*(<span class="number">-1</span>));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> count=<span class="number">0</span>; </span><br><span class="line">		<span class="keyword">while</span> (!s.<span class="built_in">empty</span>())&#123;   </span><br><span class="line">			count+=s.<span class="built_in">top</span>();  <span class="comment">//依次弹出相加</span></span><br><span class="line">			s.<span class="built_in">pop</span>();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//cout&lt;&lt;count&lt;&lt;endl;</span></span><br><span class="line">		<span class="keyword">if</span>(count==<span class="number">24</span>)&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;Yes&quot;</span>&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;No&quot;</span>&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>C++</category>
+        <category>OJ</category>
       </categories>
       <tags>
+        <tag>STL</tag>
         <tag>C++</tag>
+        <tag>Vector</tag>
       </tags>
   </entry>
   <entry>
@@ -202,52 +161,38 @@
     <content><![CDATA[<h3 id="分号"><a href="#分号" class="headerlink" title="分号"></a>分号</h3><p>在 JavaScript 中，用分号来结束语句是可选的。</p>
 <h3 id="对代码行进行拆行"><a href="#对代码行进行拆行" class="headerlink" title="对代码行进行拆行"></a>对代码行进行拆行</h3><p>可以在<strong>文本字符串</strong>中使用<u>反斜杠</u>对代码行进行换行。下面的例子会正确地显示：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.write(<span class="string">&quot;你好 \</span></span><br><span class="line"><span class="string">世界!&quot;</span>);</span><br></pre></td></tr></table></figure>
-
 <p>不过，不能像这样拆行：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.write \ </span><br><span class="line">(<span class="string">&quot;你好世界!&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>采用 // 和 /* */ 两种。</p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>采用 // 和 /<em> </em>/ 两种。</p>
 <h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><h4 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h4><p>JavaScript 变量均为对象。当您声明一个变量时，就创建了一个新的对象。</p>
 <p>当您声明新变量时，可以使用 “new” 来声明其类型（首字母大写）：</p>
 <span id="more"></span>
-
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> carname = <span class="keyword">new</span> <span class="built_in">String</span>;  <span class="comment">//字符串</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="keyword">new</span> <span class="built_in">Number</span>;        <span class="comment">//数字  </span></span><br><span class="line"><span class="keyword">var</span> y = <span class="keyword">new</span> <span class="built_in">Boolean</span>;       <span class="comment">//布尔</span></span><br><span class="line"><span class="keyword">var</span> cars = <span class="keyword">new</span> <span class="built_in">Array</span>;      <span class="comment">//数组</span></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>;   <span class="comment">//对象</span></span><br></pre></td></tr></table></figure>
-
 <h4 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x,y,z=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
 <p>x, y 为 <strong>undefined</strong>， z 为 1。</p>
 <h4 id="重新声明"><a href="#重新声明" class="headerlink" title="重新声明"></a>重新声明</h4><p>如果重新声明 JavaScript 变量，该变量的值不会丢失：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> carname=<span class="string">&quot;Volvo&quot;</span>; </span><br><span class="line"><span class="keyword">var</span> carname;</span><br></pre></td></tr></table></figure>
-
 <p>两条语句执行后，变量 carname 的值依然是 “Volvo”。</p>
 <h4 id="生存期"><a href="#生存期" class="headerlink" title="生存期"></a>生存期</h4><p>局部变量（函数内的变量，只能在函数内部访问它）会在函数运行以后被删除。</p>
 <p>全局变量（函数外的变量，网页上的所有脚本和函数都能访问它）会在页面关闭后被删除。</p>
 <h4 id="向未声明的-JavaScript-变量分配值"><a href="#向未声明的-JavaScript-变量分配值" class="headerlink" title="向未声明的 JavaScript 变量分配值"></a>向未声明的 JavaScript 变量分配值</h4><p>如果您把值赋给尚未声明的变量，该变量将被自动作为 window 的一个属性。</p>
 <p>这条语句：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">carname=<span class="string">&quot;Volvo&quot;</span>;</span><br></pre></td></tr></table></figure>
-
 <p>将声明 window 的一个属性 carname。</p>
 <p>非严格模式下给未声明变量赋值创建的全局变量，是全局对象的可配置属性，可以删除。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> var1 = <span class="number">1</span>; <span class="comment">// 不可配置全局属性</span></span><br><span class="line">var2 = <span class="number">2</span>; <span class="comment">// 没有使用 var 声明，可配置全局属性</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>.var1); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.var1); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> var1; <span class="comment">// false 无法删除</span></span><br><span class="line"><span class="built_in">console</span>.log(var1); <span class="comment">//1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> var2; </span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">delete</span> var2); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(var2); <span class="comment">// 已经删除 报错变量未定义</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>创建名为 cars 的数组：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> cars=<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">cars[<span class="number">0</span>]=<span class="string">&quot;Saab&quot;</span>;</span><br><span class="line">cars[<span class="number">1</span>]=<span class="string">&quot;Volvo&quot;</span>;</span><br><span class="line">cars[<span class="number">2</span>]=<span class="string">&quot;BMW&quot;</span>;</span><br></pre></td></tr></table></figure>
-
 <p>或者 (condensed array，压缩数组):</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> cars=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">&quot;Saab&quot;</span>,<span class="string">&quot;Volvo&quot;</span>,<span class="string">&quot;BMW&quot;</span>);</span><br></pre></td></tr></table></figure>
-
 <p>或者 (literal array，文本数组):</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> cars=[<span class="string">&quot;Saab&quot;</span>,<span class="string">&quot;Volvo&quot;</span>,<span class="string">&quot;BMW&quot;</span>];</span><br></pre></td></tr></table></figure>
-
 <h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>对象由花括号分隔。对象的属性以 name : value 的形式来定义。属性由逗号分隔：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person=&#123;</span><br><span class="line">	<span class="attr">firstname</span> : <span class="string">&quot;John&quot;</span>,      <span class="comment">//在对象中写属性</span></span><br><span class="line">	<span class="attr">lastname</span> : <span class="string">&quot;Doe&quot;</span>,</span><br><span class="line">	<span class="attr">id</span> : <span class="number">5566</span>,</span><br><span class="line">	<span class="attr">fullName</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)    //在对象中写方法</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">this</span>.firstName + <span class="string">&quot; &quot;</span> + <span class="built_in">this</span>.lastName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <p>对象属性有两种寻址方式：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">name = person.lastname;</span><br><span class="line">name = person[<span class="string">&quot;lastname&quot;</span>];</span><br></pre></td></tr></table></figure>
-
 <p>调用对象的方法：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">name = person.fullName();   </span><br><span class="line"><span class="comment">//执行函数，返回：John Doe</span></span><br><span class="line"></span><br><span class="line">name = person.fullName;     </span><br><span class="line"><span class="comment">//返回：function() &#123; return this.firstName + &quot; &quot; + this.lastName; &#125;</span></span><br><span class="line"><span class="comment">//调用方法时，不加括号，返回的是函数代码（相当于把方法看成属性了）</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="undefined-、null、typeof"><a href="#undefined-、null、typeof" class="headerlink" title="undefined 、null、typeof"></a>undefined 、null、typeof</h3><p>undefined ：</p>
 <p>​    表示变量不含有值。</p>
 <p>​    是所有没有赋值变量的默认值，自动赋值。</p>
@@ -256,27 +201,20 @@
 <p>​    主动释放一个变量引用的对象，表示一个变量不再指向任何对象地址。</p>
 <p>可以使用 typeof 操作符来检测变量的数据类型。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//null 和 undefined 的值相等，但类型不等：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span>             <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span>                  <span class="comment">// object</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span>           <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span>            <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="函数变量"><a href="#函数变量" class="headerlink" title="函数变量"></a>函数变量</h4><p>变量在函数内没有声明（没有使用 var 关键字），该变量为全局变量。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 此处可调用 carName 变量   </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>) </span>&#123;     </span><br><span class="line">    carName = <span class="string">&quot;Volvo&quot;</span>;     </span><br><span class="line">    <span class="comment">// 此处可调用 carName 变量 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>该例中， carName 在函数内，但是为全局变量。</p>
 <h4 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h4><p>函数存储在变量中，不需要函数名称，通常通过变量名来调用。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;<span class="keyword">return</span> a * b&#125;;</span><br><span class="line"><span class="keyword">var</span> z = x(<span class="number">4</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
-
 <h4 id="自调用函数（还不太理解）"><a href="#自调用函数（还不太理解）" class="headerlink" title="自调用函数（还不太理解）"></a>自调用函数（还不太理解）</h4><p>函数表达式可以 “自调用”。</p>
 <p>自调用表达式会自动调用。</p>
 <p>如果表达式后面紧跟 () ，则会自动调用。</p>
 <p>不能自调用声明的函数。</p>
 <p>通过添加括号，来说明它是一个函数表达式：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="string">&quot;Hello!!&quot;</span>;      <span class="comment">// 我将调用自己</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
 <p>以上函数实际上是一个 <strong>匿名自我调用的函数</strong> (没有函数名)。</p>
 <h4 id="JavaScript-闭包"><a href="#JavaScript-闭包" class="headerlink" title="JavaScript 闭包"></a>JavaScript 闭包</h4><p><strong>实例</strong></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> add = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;     </span><br><span class="line">    <span class="keyword">var</span> counter = <span class="number">0</span>;     </span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="keyword">return</span> counter += <span class="number">1</span>;&#125; </span><br><span class="line">&#125;)();   </span><br><span class="line">add(); </span><br><span class="line">add(); </span><br><span class="line">add();   <span class="comment">// 计数器为 3</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>实例解析</strong></p>
 <p>变量 add 指定了函数自我调用的返回字值。</p>
 <p>自我调用函数只执行一次。设置计数器为 0。并返回函数表达式。</p>
@@ -287,16 +225,12 @@
 <p>闭包是一种保护私有变量的机制，在函数执行时形成私有的作用域，保护里面的私有变量不受外界干扰。直观的说就是形成一个不销毁的栈环境。</p>
 <h4 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h4><p>ES6 新增了箭头函数。箭头函数的语法比普通函数更简洁。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(参数<span class="number">1</span>, 参数<span class="number">2</span>, …, 参数N) =&gt; &#123; 函数声明 &#125;</span><br><span class="line"></span><br><span class="line">(参数<span class="number">1</span>, 参数<span class="number">2</span>, …, 参数N) =&gt; 表达式(单一)</span><br><span class="line"><span class="comment">// 相当于：(参数1, 参数2, …, 参数N) =&gt;&#123; return 表达式; &#125;</span></span><br></pre></td></tr></table></figure>
-
 <p>当只有一个参数时，圆括号是可选的：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(单一参数) =&gt; &#123;函数声明&#125;</span><br><span class="line">单一参数 =&gt; &#123;函数声明&#125;</span><br></pre></td></tr></table></figure>
-
 <p>没有参数的函数应该写成一对圆括号:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">() =&gt; &#123;函数声明&#125;</span><br></pre></td></tr></table></figure>
-
 <p><strong>实例：</strong></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ES5 </span></span><br><span class="line"><span class="keyword">var</span> x = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;      </span><br><span class="line">    <span class="keyword">return</span> x * y; </span><br><span class="line">&#125;   </span><br><span class="line"><span class="comment">// ES6 </span></span><br><span class="line"><span class="keyword">const</span> x = <span class="function">(<span class="params">x, y</span>) =&gt;</span> x * y;</span><br></pre></td></tr></table></figure>
-
 <h4 id="参数规则"><a href="#参数规则" class="headerlink" title="参数规则"></a>参数规则</h4><p>显式参数（形参）、隐式参数（实参）</p>
 <p>JavaScript 函数定义显式参数时没有指定数据类型。</p>
 <p>JavaScript 函数对隐式参数没有进行类型检测。</p>
@@ -304,59 +238,56 @@
 <h3 id="let关键字"><a href="#let关键字" class="headerlink" title="let关键字"></a>let关键字</h3><p>let 声明的变量只在其声明的块或子块中可用，这一点，与 var 相似。二者之间最主要的区别在于 var 声明的变量的作用域是整个封闭函数。</p>
 <p>let 和 var 的区别代码实例：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">varTest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">2</span>;  <span class="comment">// 同样的变量!</span></span><br><span class="line">    <span class="built_in">console</span>.log(x);  <span class="comment">// 2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(x);  <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">letTest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">2</span>;  <span class="comment">// 不同的变量</span></span><br><span class="line">    <span class="built_in">console</span>.log(x);  <span class="comment">// 2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(x);  <span class="comment">// 1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>在相同的作用域或块级作用域中，不能使用 <strong>let</strong> 关键字来重置 <strong>var</strong> 关键字声明的变量:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">2</span>;       <span class="comment">// 合法</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="number">3</span>;       <span class="comment">// 不合法</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">4</span>;   <span class="comment">// 合法</span></span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">5</span>   <span class="comment">// 不合法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="const关键字"><a href="#const关键字" class="headerlink" title="const关键字"></a>const关键字</h3><p>使用 const 声明的是常量，其值一旦被设定便不可被更改。</p>
 <h3 id="常见的HTML事件"><a href="#常见的HTML事件" class="headerlink" title="常见的HTML事件"></a>常见的HTML事件</h3><p>下面是一些常见的HTML事件的列表:</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">事件</th>
-<th align="left">描述</th>
+<th style="text-align:left">事件</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">onchange</td>
-<td align="left">HTML 元素改变</td>
+<tbody>
+<tr>
+<td style="text-align:left">onchange</td>
+<td style="text-align:left">HTML 元素改变</td>
 </tr>
 <tr>
-<td align="left">onclick</td>
-<td align="left">用户点击 HTML 元素</td>
+<td style="text-align:left">onclick</td>
+<td style="text-align:left">用户点击 HTML 元素</td>
 </tr>
 <tr>
-<td align="left">onmouseover</td>
-<td align="left">用户在一个HTML元素上移动鼠标</td>
+<td style="text-align:left">onmouseover</td>
+<td style="text-align:left">用户在一个HTML元素上移动鼠标</td>
 </tr>
 <tr>
-<td align="left">onmouseout</td>
-<td align="left">用户从一个HTML元素上移开鼠标</td>
+<td style="text-align:left">onmouseout</td>
+<td style="text-align:left">用户从一个HTML元素上移开鼠标</td>
 </tr>
 <tr>
-<td align="left">onkeydown</td>
-<td align="left">用户按下键盘按键</td>
+<td style="text-align:left">onkeydown</td>
+<td style="text-align:left">用户按下键盘按键</td>
 </tr>
 <tr>
-<td align="left">onload</td>
-<td align="left">浏览器已完成页面的加载</td>
+<td style="text-align:left">onload</td>
+<td style="text-align:left">浏览器已完成页面的加载</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><h4 id="字符串可以是对象"><a href="#字符串可以是对象" class="headerlink" title="字符串可以是对象"></a>字符串可以是对象</h4><p>通常， JavaScript 字符串是原始值，可以使用字符创建： </p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="string">&quot;John&quot;</span></span><br></pre></td></tr></table></figure>
-
 <p>但我们也可以使用 new 关键字将字符串定义为一个对象： </p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> y = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&quot;John&quot;</span>)</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typeof</span> x <span class="comment">// 返回 String</span></span><br><span class="line"><span class="keyword">typeof</span> y <span class="comment">// 返回 Object</span></span><br></pre></td></tr></table></figure>
-
 <p>建议：不要创建 String 对象。它会拖慢执行速度，并可能产生其他副作用： </p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="string">&quot;John&quot;</span>;              </span><br><span class="line"><span class="keyword">var</span> y = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&quot;John&quot;</span>);</span><br><span class="line"></span><br><span class="line">(x === y) </span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">	结果为 false，因为 x 是字符串，y 是对象</span></span><br><span class="line"><span class="comment">	=== 为绝对相等，即数据类型与值都必须相等。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
 <p>关于更多字符串对象，请访问<a href="https://www.runoob.com/jsref/jsref-obj-string.html">菜鸟String对象</a></p>
 <h3 id="For-In-循环"><a href="#For-In-循环" class="headerlink" title="For/In 循环"></a>For/In 循环</h3><p>for/in 语句循环遍历对象的属性：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person=&#123;<span class="attr">fname</span>:<span class="string">&quot;John&quot;</span>,<span class="attr">lname</span>:<span class="string">&quot;Doe&quot;</span>,<span class="attr">age</span>:<span class="number">25</span>&#125;;    </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (x <span class="keyword">in</span> person) &#123;      <span class="comment">// x 为属性名   </span></span><br><span class="line">    txt=txt + person[x]; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//txt最终为：JohnDoe25</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="js数据类型"><a href="#js数据类型" class="headerlink" title="js数据类型"></a>js数据类型</h3><p>在 JavaScript 中有 5 种不同的数据类型：</p>
 <ul>
 <li>string</li>
@@ -385,32 +316,26 @@
 <li>未定义变量的数据类型为 undefined</li>
 </ul>
 <h4 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">String</span>(x)         <span class="comment">// 将变量 x 转换为字符串并返回</span></span><br><span class="line">x.toString()</span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">&quot;3.14&quot;</span>)    <span class="comment">// 返回 3.14</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">&quot; &quot;</span>)       <span class="comment">// 返回 0 </span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">&quot;&quot;</span>)        <span class="comment">// 返回 0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">&quot;99 88&quot;</span>)   <span class="comment">// 返回 NaN</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span> + <span class="literal">null</span>    <span class="comment">// 返回 5         null 转换为 0</span></span><br><span class="line"><span class="string">&quot;5&quot;</span> + <span class="literal">null</span>  <span class="comment">// 返回&quot;5null&quot;   null 转换为 &quot;null&quot;</span></span><br><span class="line"><span class="string">&quot;5&quot;</span> + <span class="number">1</span>     <span class="comment">// 返回 &quot;51&quot;      1 转换为 &quot;1&quot;  </span></span><br><span class="line"><span class="string">&quot;5&quot;</span> - <span class="number">1</span>     <span class="comment">// 返回 4         &quot;5&quot; 转换为 5</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="提升（hoisting）"><a href="#提升（hoisting）" class="headerlink" title="提升（hoisting）"></a>提升（hoisting）</h3><p>提升（Hoisting）是 JavaScript 默认<u>将当前作用域提升到前面去</u>的行为。提升（Hoisting）应用在变量的声明与函数的声明。</p>
 <h4 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h4><p>JavaScript 中，函数及变量的声明总是会被解释器悄悄地被”提升”到函数的最顶部。也就是说，哪怕变量在使用后才声明，也没事（有声明就好~）。</p>
 <p>但</p>
 <p>声明的时候顺便初始化了（如<code>var y = 7;</code>），此时不会被“提升”。</p>
 <h4 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h4><p>函数可以在声明之前调用：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">myFunction(<span class="number">5</span>);  <span class="comment">//先调用</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params">y</span>) </span>&#123;  <span class="comment">//再声明</span></span><br><span class="line">    <span class="keyword">return</span> y * y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>使用表达式定义函数时无法提升。</p>
 <h3 id="“use-strict”"><a href="#“use-strict”" class="headerlink" title="“use strict”"></a>“use strict”</h3><p>JavaScript 严格模式（strict mode）即在严格的条件下运行。</p>
 <p><strong>实例1</strong></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line">myFunction();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    y = <span class="number">3.14</span>;   <span class="comment">// 报错 (y 未定义)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><strong>实例2</strong></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">x = <span class="number">3.14</span>;       <span class="comment">// 不报错 </span></span><br><span class="line">myFunction();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">   &quot;use strict&quot;</span>;</span><br><span class="line">    y = <span class="number">3.14</span>;   <span class="comment">// 报错 (y 未定义)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>为什么使用严格模式:</p>
 <ul>
 <li><p>消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</p>
 </li>
 <li><p>消除代码运行的一些不安全之处，保证代码运行的安全；</p>
 </li>
-<li><p>提高编译器效率，增加运行速度；</p>
-</li>
-<li><p>为未来新版本的Javascript做好铺垫。</p>
-</li>
+<li>提高编译器效率，增加运行速度；</li>
+<li>为未来新版本的Javascript做好铺垫。</li>
 </ul>
 <p>“严格模式”体现了Javascript更合理、更安全、更严谨的发展方向，包括IE 10在内的主流浏览器，都已经支持它，许多大项目已经开始全面拥抱它。</p>
 <p>另一方面，同样的代码，在”严格模式”中，可能会有不一样的运行结果；一些在”正常模式”下可以运行的语句，在”严格模式”下将不能运行。掌握这些内容，有助于更细致深入地理解Javascript，让你变成一个更好的程序员。</p>
@@ -418,7 +343,6 @@
 <h3 id="浮点型数据"><a href="#浮点型数据" class="headerlink" title="浮点型数据"></a>浮点型数据</h3><p>JavaScript 中的所有数据都是以 64 位<strong>浮点型数据(float)</strong> 来存储。</p>
 <p>所有的编程语言，包括 JavaScript，对浮点型数据的精确度都很难确定：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">0.1</span>;</span><br><span class="line"><span class="keyword">var</span> y = <span class="number">0.2</span>;</span><br><span class="line"><span class="keyword">var</span> z = x + y            <span class="comment">// z 的结果为 0.3</span></span><br><span class="line"><span class="keyword">if</span> (z == <span class="number">0.3</span>)            <span class="comment">// 返回 false</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="JavaScript-表单"><a href="#JavaScript-表单" class="headerlink" title="JavaScript 表单"></a>JavaScript 表单</h3><p><a href="https://www.runoob.com/js/js-validation.html">JavaScript 表单</a></p>
 ]]></content>
       <categories>
@@ -429,86 +353,31 @@
       </tags>
   </entry>
   <entry>
-    <title>stack应用-ccf201903-2二十四点</title>
-    <url>/2019/09/07/stack%E5%BA%94%E7%94%A8-ccf201903-2%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%82%B9/</url>
-    <content><![CDATA[<h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>二十四点：使用 3 个加减乘除运算使得 4张纸牌上数字的运算结果为 24。</p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定义每一个游戏由 4 个从 1-9 的数字和 3个四则运算符组成，保证四则运算符将数字两两隔开，不存在括号和其他字符，运算顺序按照四则运算顺序进行。</p>
-<p>其中加法用符号 + 表示，减法用符号 -表示，乘法用小写字母 x 表示，除法用符号 / 表示。在游戏里除法为<u>整除</u>，例如 2 / 3 = 0，3 / 2 = 1, 4 / 2 = 2。<br>老师给了你 n 个游戏的解，请你编写程序<u>验证</u>每个游戏的结果是否为 24 。</p>
+    <title>c++：文件读写、字符串</title>
+    <url>/2019/07/09/c-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99+%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<h2 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h2><h3 id="使用重定向"><a href="#使用重定向" class="headerlink" title="使用重定向"></a>使用重定向</h3><p>用freopen可以直接变成由文件输入输出：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);  <span class="comment">//如果不存在，将创建</span></span><br><span class="line">    </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;ooo\n&quot;</span>);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;123&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//以上两种方式都可以将数据直接写入out.txt文件</span></span><br><span class="line">    <span class="comment">//每次运行，out.txt会被重写</span></span><br><span class="line">    </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重定向方式写起来简单自然，但是不能同时读写文件和标准输入输出。</p>
 <span id="more"></span>
-
-<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>从标准输入读入数据。</p>
-<p>第一行输入一个整数 n，从第 2 行开始到第 n + 1 行中，每一行包含一个长度为 7的字符串，为上述的 24 点游戏，保证数据格式合法。</p>
-<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出到标准输出。 包含 n 行，对于每一个游戏，如果其结果为 24 则输出字符串 Yes，否则输出字符串 No。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">10</span></span><br><span class="line"><span class="attribute">9</span>+<span class="number">3</span>+<span class="number">4</span>x<span class="number">3</span></span><br><span class="line"><span class="attribute">5</span>+<span class="number">4</span>x<span class="number">5</span>x<span class="number">5</span></span><br><span class="line"><span class="attribute">7</span>-<span class="number">9</span>-<span class="number">9</span>+<span class="number">8</span></span><br><span class="line"><span class="attribute">5x6</span>/<span class="number">5</span>x<span class="number">4</span></span><br><span class="line"><span class="attribute">3</span>+<span class="number">5</span>+<span class="number">7</span>+<span class="number">9</span></span><br><span class="line"><span class="attribute">1x1</span>+<span class="number">9</span>-<span class="number">9</span></span><br><span class="line"><span class="attribute">1x9</span>-<span class="number">5</span>/<span class="number">9</span></span><br><span class="line"><span class="attribute">8</span>/<span class="number">5</span>+<span class="number">6</span>x<span class="number">9</span></span><br><span class="line"><span class="attribute">6x7</span>-<span class="number">3</span>x<span class="number">6</span></span><br><span class="line"><span class="attribute">6x4</span>+<span class="number">4</span>/<span class="number">5</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight gams"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">Yes</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>使用stack。</p>
-<p>先读入第一个数字，入栈。</p>
-<p>然后是3次循环，每次循环读一个符号和一个数字。</p>
-<p>在一次循环中，读的符号若为 x 或 / ，则弹出栈顶数字，将其与下一位数字作相应运算后再入栈；读的符号若为 + 或 - ，则下一位数字直接入栈，注意：若符号为 - ，入栈时入的是相反数（便于最后一次性相加）。</p>
-<p>循环结束后，将栈内剩余的数字依次弹出相加。若为24，则Yes。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">		stack&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">		<span class="keyword">int</span>  a,b;</span><br><span class="line">		<span class="comment">//读第一个数字，直接push </span></span><br><span class="line">		cin&gt;&gt;a;</span><br><span class="line">		s.<span class="built_in">push</span>(a);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">			<span class="comment">//读一个符号 </span></span><br><span class="line">			<span class="keyword">char</span> c;</span><br><span class="line">			cin&gt;&gt;c;</span><br><span class="line">			<span class="comment">//读一个数字 </span></span><br><span class="line">			cin&gt;&gt;a;</span><br><span class="line">			<span class="keyword">int</span> sum;  <span class="comment">//sum存储乘除运算的中间结果</span></span><br><span class="line">			<span class="keyword">if</span>(c==<span class="string">&#x27;x&#x27;</span>)&#123;			</span><br><span class="line">				sum=a*s.<span class="built_in">top</span>();</span><br><span class="line">				s.<span class="built_in">pop</span>();</span><br><span class="line">				s.<span class="built_in">push</span>(sum);			</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">&#x27;/&#x27;</span>) &#123;			</span><br><span class="line">				sum=s.<span class="built_in">top</span>()/a;</span><br><span class="line">				s.<span class="built_in">pop</span>();</span><br><span class="line">				s.<span class="built_in">push</span>(sum);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">&#x27;+&#x27;</span>)&#123;			</span><br><span class="line">				s.<span class="built_in">push</span>(a);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				s.<span class="built_in">push</span>(a*(<span class="number">-1</span>));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> count=<span class="number">0</span>; </span><br><span class="line">		<span class="keyword">while</span> (!s.<span class="built_in">empty</span>())&#123;   </span><br><span class="line">			count+=s.<span class="built_in">top</span>();  <span class="comment">//依次弹出相加</span></span><br><span class="line">			s.<span class="built_in">pop</span>();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//cout&lt;&lt;count&lt;&lt;endl;</span></span><br><span class="line">		<span class="keyword">if</span>(count==<span class="number">24</span>)&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;Yes&quot;</span>&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;No&quot;</span>&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="使用fopen"><a href="#使用fopen" class="headerlink" title="使用fopen"></a>使用fopen</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	FILE *fin,*fout;  <span class="comment">//定义两个文件指针	</span></span><br><span class="line">    fin = fopen(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;rb&quot;</span>);  <span class="comment">//&quot;rb&quot;表示二进制文件只读</span></span><br><span class="line">    fout = fopen(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;wb&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n;	</span><br><span class="line">    <span class="built_in">fscanf</span>(fin,<span class="string">&quot;%d&quot;</span>,&amp;n); <span class="comment">//指定由fin读入整数n</span></span><br><span class="line">    <span class="built_in">fprintf</span>(fout,<span class="string">&quot;%d&quot;</span>,n); <span class="comment">//指定将n输出到fout中</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="常见的字符串函数的用法"><a href="#常见的字符串函数的用法" class="headerlink" title="常见的字符串函数的用法"></a>常见的字符串函数的用法</h2><p>1.<code>tolower(ch)</code><br>把字符转换成小写字母，非字母字符不做处理</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">5</span>]=&#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> lower_ch[<span class="number">5</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">		lower_ch[i]=<span class="built_in">tolower</span>(ch[i]);</span><br><span class="line">		cout&lt;&lt;lower_ch[i];</span><br><span class="line">	&#125; <span class="comment">//输出：abcd</span></span><br></pre></td></tr></table></figure>
+<p>2.<code>strtok(str,&quot;,&quot;)</code><br>以逗号为分隔符，将str切分成一个个子串</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">16</span>] = <span class="string">&quot;abc,d&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span> *p; </span><br><span class="line">    p = strtok(ch, <span class="string">&quot;,&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, p); </span><br><span class="line">    <span class="comment">//输出：abc  (换行）d</span></span><br></pre></td></tr></table></figure>
+<p>3.<code>substr(开始下标，长度)</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;My name is Ariel.&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = s1.substr(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s2=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> s3=s1.substr(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s3=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//输出：s2=Y n</span></span><br><span class="line"><span class="comment">//      s3=ame is Ariel.</span></span><br></pre></td></tr></table></figure>
+<p>4.<code>insert(开始下标，str)</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = <span class="string">&quot;Ariel!&quot;</span>;</span><br><span class="line">s1.insert(<span class="number">2</span>,s2);<span class="comment">//输出：heAriel!llo</span></span><br></pre></td></tr></table></figure>
+<p>5.<code>erase(开始下标，长度count)</code><br>从开始下标起，删除count个字符。<br>如果现有长度少于count或count为-1，则删到串尾。<br>默认情况下,开始下标为0；默认删除到串尾。</p>
+<p>6.<code>int find_first_of(char c, int start = 0):</code><br>查找字符串中第1个出现的c,由位置start开始。<br>如果有匹配，则返回匹配位置；否则，返回-1.<br>默认情况下，start为0。 </p>
+<p>7.<code>int find_last_of(char c):</code><br>找字符串中最后一个出现的c。<br>有匹配，则返回匹配位置；否则返回-1.</p>
+<p>​    </p>
 ]]></content>
       <categories>
-        <category>OJ</category>
+        <category>C++</category>
       </categories>
       <tags>
-        <tag>STL</tag>
         <tag>C++</tag>
-        <tag>Vector</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>⭐和🌙</title>
-    <url>/2020/07/14/zcy520/</url>
-    <content><![CDATA[<h1 id="三行情书一则"><a href="#三行情书一则" class="headerlink" title="三行情书一则"></a>三行情书一则</h1><span id="more"></span>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (you.Love(me) || !you.Love(me))&#123; </span><br><span class="line">	me.love.value++; </span><br><span class="line">	me.love.value--;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//你爱，或者不爱我</span></span><br><span class="line"><span class="comment">//爱就在那里</span></span><br><span class="line"><span class="comment">//不增不减</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> you.Love(me) <span class="keyword">or</span> <span class="keyword">not</span> you.Love(me):</span><br><span class="line">	love += <span class="number">1</span></span><br><span class="line">	love -= <span class="number">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">你爱，或者不爱我</span></span><br><span class="line"><span class="string">爱就在那里</span></span><br><span class="line"><span class="string">不增不减</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="ฅ՞•ﻌ•՞ฅ̊"><a href="#ฅ՞•ﻌ•՞ฅ̊" class="headerlink" title="ฅ՞•ﻌ•՞ฅ̊"></a>ฅ՞•ﻌ•՞ฅ̊</h1>]]></content>
-      <tags>
-        <tag>彩蛋</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vector应用-ccf1712-2围圈报数</title>
-    <url>/2019/09/07/vector%E5%BA%94%E7%94%A8-ccf1712-2%E5%9B%B4%E5%9C%88%E6%8A%A5%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>​        1到<em>n</em>号小朋友顺时针坐一圈，围圈报数。<br>​        若一个小朋友报的数为<strong><em>k</em>的倍数</strong>或其<strong>末位数（即数的个位）为<em>k</em></strong>，则该小朋友被淘汰。</p>
-<p>​        当只剩一个小朋友时，该小朋友获胜。</p>
-<p>　　例如，当n=5, k=2时：<br>　　1号小朋友报数1；<br>　　2号小朋友报数2淘汰；<br>　　3号小朋友报数3；<br>　　4号小朋友报数4淘汰；<br>　　5号小朋友报数5；<br>　　1号小朋友报数6淘汰；<br>　　3号小朋友报数7；<br>　　5号小朋友报数8淘汰；<br>　　3号小朋友获胜。</p>
-<p>　　给定<em>n</em>和<em>k</em>，请问最后获胜的小朋友编号为多少？</p>
-<span id="more"></span>
-
-<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入一行，包括两个整数<em>n</em>和<em>k</em>，意义如题目所述。</p>
-<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一行，包含一个整数，表示获胜的小朋友编号。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>5 2</p>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>3</p>
-<h2 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h2><p>7 3</p>
-<h2 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h2><p>4</p>
-<h2 id="数据规模和约定"><a href="#数据规模和约定" class="headerlink" title="数据规模和约定"></a>数据规模和约定</h2><p>　　对于所有评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>k</em> ≤ 9。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>应用vector和迭代器。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br></pre></td></tr></table></figure>
-
-<p>开始时，迭代器指向<code>v.begin()</code>，当迭代到<code>v.end()</code>时，重新指向<code>v.begin()</code>，从而做到循环。</p>
-<p>当<code>v.size()==1</code>时退出循环。</p>
-<p>循环时，若报数报到淘汰值，直接将该元素移出vector：<code>v.erase(it);</code> 。</p>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1005</span>]=&#123;<span class="number">0</span>&#125;;  <span class="comment">//0游戏中，1出局 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n,k;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">	 </span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="comment">//各号小朋友就位 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		v.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//游戏开始 </span></span><br><span class="line">	<span class="keyword">int</span> count=<span class="number">0</span>;<span class="comment">//报的数</span></span><br><span class="line">	<span class="keyword">for</span>(it=v.<span class="built_in">begin</span>();v.<span class="built_in">size</span>()!=<span class="number">1</span>;)&#123;  <span class="comment">//vector中晋仅剩一个元素时游戏结束 </span></span><br><span class="line">		<span class="comment">//迭代器报到末尾，则从头开始报 </span></span><br><span class="line">		<span class="keyword">if</span>(it==v.<span class="built_in">end</span>()) </span><br><span class="line">			it=v.<span class="built_in">begin</span>();</span><br><span class="line">		count++;</span><br><span class="line">		<span class="keyword">if</span>(count%<span class="number">10</span>==k || count%k==<span class="number">0</span>)&#123;  <span class="comment">//尾号为k 或 k的倍数 </span></span><br><span class="line">			<span class="comment">//cout&lt;&lt;*it&lt;&lt;&quot;被淘汰&quot;&lt;&lt;endl;</span></span><br><span class="line">			v.<span class="built_in">erase</span>(it);  </span><br><span class="line">			<span class="keyword">continue</span>;  <span class="comment">//删除元素后,后面元素自动往前移，所以迭代器不要增加了！ </span></span><br><span class="line">		&#125;</span><br><span class="line">		it++;		</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;v[<span class="number">0</span>]&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>OJ</category>
-      </categories>
-      <tags>
-        <tag>STL</tag>
-        <tag>C++</tag>
-        <tag>Vector</tag>
       </tags>
   </entry>
   <entry>
@@ -516,7 +385,6 @@
     <url>/2021/09/17/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91A-Survey-on-Temporal-Action-Localization/</url>
     <content><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文介绍了时序动作定位（Temporal Action Localization）的相关技术、基准数据集和评价指标。此外，从完全监督学习和弱监督学习两个方面，总结了时序动作定位。列举了部分代表性工作并比较了他们的性能。最后，还提出了可能的研究方向。</p>
 <span id="more"></span>
-
 <h1 id="I-引言"><a href="#I-引言" class="headerlink" title="I 引言"></a>I 引言</h1><h4 id="视频理解（video-understanding）五大任务："><a href="#视频理解（video-understanding）五大任务：" class="headerlink" title="视频理解（video understanding）五大任务："></a>视频理解（video understanding）五大任务：</h4><p>a) Untrimmed Video Classification</p>
 <p>​    未分割视频的分类</p>
 <p>b) Trimmed Action Recognition</p>
@@ -562,7 +430,8 @@
 <li>将其分类以及回归操作</li>
 </ol>
 <p>第一步是难点，所以各种方法也都是针对第一步来提出。评估其性能的方法：AR（Average Recall）。</p>
-<h4 id="a-滑窗法-SLIDING-WINDOW-S-CNN-14-2016"><a href="#a-滑窗法-SLIDING-WINDOW-S-CNN-14-2016" class="headerlink" title="a 滑窗法 SLIDING WINDOW (S-CNN [14], 2016)"></a>a 滑窗法 SLIDING WINDOW (S-CNN [14], 2016)</h4><p>S-CNN：固定一定大小的滑动窗口来生成不同大小的视频片段，然后通过多级网络(SegmentCNN)对其进行处理。</p>
+<h4 id="a-滑窗法-SLIDING-WINDOW-S-CNN-14-2016"><a href="#a-滑窗法-SLIDING-WINDOW-S-CNN-14-2016" class="headerlink" title="a 滑窗法 SLIDING WINDOW (S-CNN [14], 2016)"></a>a 滑窗法 SLIDING WINDOW (S-CNN [14], 2016)</h4><p><img src="image-20210927182540574.png" alt="image-20210927182540574"></p>
+<p>S-CNN：固定一定大小的滑动窗口来生成不同大小的视频片段，然后通过多级网络(SegmentCNN)对其进行处理。</p>
 <p>SCNN包括三个使用C3D网络的子网络：</p>
 <ol>
 <li>proposal网络。确定当前划分的视频片段（segment）是一个动作（action）的可能性。</li>
@@ -571,7 +440,8 @@
 </ol>
 <p>理论上，窗口滑动的重叠度越高，效果越好，但是计算量也大。所以用非极大值抑制（non-maximized suppression, NMS）去除重叠段。</p>
 <p>缺点：滑窗法不能处理不同长度的视频动作；密集的滑窗计算量太大。</p>
-<h4 id="b-时序动作组合-TEMPORAL-ACTIONNESS-GROUPING-TAG-15-2017"><a href="#b-时序动作组合-TEMPORAL-ACTIONNESS-GROUPING-TAG-15-2017" class="headerlink" title="b 时序动作组合 TEMPORAL ACTIONNESS GROUPING (TAG [15], 2017)"></a>b 时序动作组合 TEMPORAL ACTIONNESS GROUPING (TAG [15], 2017)</h4><p>滑窗法不能处理不同长度的视频动作。</p>
+<h4 id="b-时序动作组合-TEMPORAL-ACTIONNESS-GROUPING-TAG-15-2017"><a href="#b-时序动作组合-TEMPORAL-ACTIONNESS-GROUPING-TAG-15-2017" class="headerlink" title="b 时序动作组合 TEMPORAL ACTIONNESS GROUPING (TAG [15], 2017)"></a>b 时序动作组合 TEMPORAL ACTIONNESS GROUPING (TAG [15], 2017)</h4><p><img src="image-20210927182821079.png" alt="image-20210927182821079"></p>
+<p>滑窗法不能处理不同长度的视频动作。</p>
 <p>2017年，Y. Xiong等人提出了一个框架，可以精确划分可变视频的动作边界。该框架分为2步：</p>
 <ol>
 <li>生成一系列时序proposals。</li>
@@ -579,8 +449,7 @@
 </ol>
 <p>为了生成一个proposal，提出了TAG网络。TAG网络分为3步：</p>
 <ol>
-<li><p>提取片段（snippets）：每个snippet包含一个视频帧和光流（ optical flow）信息；snippet是均匀获取的；用TSN的稀疏采样方法采样。</p>
-</li>
+<li>提取片段（snippets）：每个snippet包含一个视频帧和光流（ optical flow）信息；snippet是均匀获取的；用TSN的稀疏采样方法采样。</li>
 <li><p>动作判断（Actionness）：给snippet打分，确定每个snippet是否含有任何动作。用到二分类网络TSN（Temporal Segment Network）。</p>
 </li>
 <li><p>组合（Grouping）：依据输出的snippets序列的概率，对高概率的连续snippets进行组合，同时设置多组阈值来删除低概率的snippets。</p>
@@ -590,7 +459,7 @@
 <p>缺点：分类错误的话，会错过一些proposal。</p>
 <p>本文在THUMOS2014上IOU=0.5时候MAP=28.25。</p>
 <h4 id="c-时序单元回归网络-TEMPORAL-UNIT-REGRESS-NETWORK-TURN-TAP-16-2017"><a href="#c-时序单元回归网络-TEMPORAL-UNIT-REGRESS-NETWORK-TURN-TAP-16-2017" class="headerlink" title="c 时序单元回归网络 TEMPORAL UNIT REGRESS NETWORK (TURN TAP [16], 2017)"></a>c 时序单元回归网络 TEMPORAL UNIT REGRESS NETWORK (TURN TAP [16], 2017)</h4><p>由Gao J.Y.等人在2017年提出。</p>
-<p><img src="/2021/09/17/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91A-Survey-on-Temporal-Action-Localization/TURN-TAP.jpg"></p>
+<p><img src="TURN-TAP.jpg" alt=""></p>
 <p>该方法将视频分成固定大小的单元（unit），例如16帧为一单元。然后将每个单元放入C3D中提取水平特征。相邻单元构成一个片段（clip），并让每个单元作为锚定单元（anchor unit）构成片段金字塔，然后在单元上执行时序坐标回归。</p>
 <p>网络包含两个输出：</p>
 <ol>
@@ -603,19 +472,33 @@
 <li>快（800fps）。</li>
 <li>提出了一种新的评价指标AR-F。</li>
 </ol>
-<h4 id="d-边界敏感网络-BOUNDARY-SENSITIVE-NETWORK-BSN-21-2018"><a href="#d-边界敏感网络-BOUNDARY-SENSITIVE-NETWORK-BSN-21-2018" class="headerlink" title="d 边界敏感网络 BOUNDARY SENSITIVE NETWORK (BSN [21], 2018)"></a>d 边界敏感网络 BOUNDARY SENSITIVE NETWORK (BSN [21], 2018)</h4><p>高质量的时序动作候选（proposals）应该具有以下几个特点：</p>
-<p>a)灵活的时间长度；</p>
-<p>b)精确的时间边界；</p>
-<p>c)可靠的置信度。</p>
-<p>事实上，想同时在这3个方面做的好是很难的。为此，T. Lin等人在2018年提出了BSN。</p>
+<h4 id="d-边界敏感网络-BOUNDARY-SENSITIVE-NETWORK-BSN-21-2018"><a href="#d-边界敏感网络-BOUNDARY-SENSITIVE-NETWORK-BSN-21-2018" class="headerlink" title="d 边界敏感网络 BOUNDARY SENSITIVE NETWORK (BSN [21], 2018)"></a>d 边界敏感网络 BOUNDARY SENSITIVE NETWORK (BSN [21], 2018)</h4><p>原作者解读：<a href="https://zhuanlan.zhihu.com/p/39327364">[ECCV 2018] 用于时序动作提名生成的边界敏感网络 - 知乎 (zhihu.com)</a></p>
+<p><img src="image-20210927185640495.png" alt="image-20210927185640495"></p>
+<p>高质量的时序动作候选（proposals）应该具有以下几个特点：</p>
+<p>a)灵活的时序长度；</p>
+<p>b)精确的时序边界；</p>
+<p>c)可靠的置信度分数。</p>
+<p>事实上，想同时在这3个方面做的好是很难的。为此，T. Lin（林天威）等人在2018年提出了BSN。</p>
 <p>BSN步骤：</p>
 <ol>
 <li>首先确定时序动作片段的边界，并将其此片段直接作为proposal。</li>
 <li>对每个候选proposal，基于动作序列的置信度，提取32维的proposal级别的特征。</li>
 <li>最后，根据所提取的这些特征，评估这些proposal的置信度。</li>
 </ol>
-<h4 id="e-边界匹配网络-BOUNDARY-MATCHING-NETWORK-BMN-72-2019"><a href="#e-边界匹配网络-BOUNDARY-MATCHING-NETWORK-BMN-72-2019" class="headerlink" title="e 边界匹配网络 BOUNDARY-MATCHING NETWORK (BMN [72], 2019)"></a>e 边界匹配网络 BOUNDARY-MATCHING NETWORK (BMN [72], 2019)</h4><p>为了解决BSN的不足所提出。</p>
-<p>BMN可以同时生成一维边界的概率和二维BM的置信度。然后对所有可能的时序proposal进行置信度评估。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li><strong>框架</strong>：提出了一种全新的且非常有效的时序提名生成框架，能够产生满足(1)时长灵活(2)边界准确(3)评分可靠的时序动作提名；</li>
+<li><strong>灵活性</strong>：BSN方法的模块非常简单且灵活，能够灵活地应用于不同的垂类场景。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li><strong>效率不够高</strong>：提名特征提取以及置信度评估的过程是对每个时序提名逐个进行的，虽然可以在一定程度上做并行加速，但总体上还是效率比较差；</li>
+<li><strong>语义信息丰富性不足</strong>：为了保证提名特征提取过程的效率，BSN中所设计的32维提名特征是比较简单的，但也限制了置信度评估模块从特征中获得更加丰富的语义信息；</li>
+<li><strong>多阶段</strong>：BSN方法是一个多阶段的方法，没有将几部分网络联合优化。</li>
+</ul>
+<h4 id="e-边界匹配网络-BOUNDARY-MATCHING-NETWORK-BMN-72-2019"><a href="#e-边界匹配网络-BOUNDARY-MATCHING-NETWORK-BMN-72-2019" class="headerlink" title="e 边界匹配网络 BOUNDARY-MATCHING NETWORK (BMN [72], 2019)"></a>e 边界匹配网络 BOUNDARY-MATCHING NETWORK (BMN [72], 2019)</h4><p>原作者解读：<a href="https://zhuanlan.zhihu.com/p/75444151">[ICCV 2019][时序动作提名] 边界匹配网络详解 - 知乎 (zhihu.com)</a></p>
+<p>为了解决BSN的不足所提出。</p>
+<p>BMN网络能够同时生成与BSN中类似的一维边界概率序列，以及二维的BM置信度图来密集的评估所有可能存在的时序提名的置信度分数。</p>
 <h3 id="2）-一阶段（one-stage）方法"><a href="#2）-一阶段（one-stage）方法" class="headerlink" title="2） 一阶段（one-stage）方法"></a>2） 一阶段（one-stage）方法</h3><p>这种方法同时处理proposal和分类。</p>
 <h4 id="SSAD（single-shot-temporal-action-detection，单镜头时序动作检测）"><a href="#SSAD（single-shot-temporal-action-detection，单镜头时序动作检测）" class="headerlink" title="SSAD（single shot temporal action detection，单镜头时序动作检测）"></a>SSAD（single shot temporal action detection，单镜头时序动作检测）</h4><p>结合了在目标检测中的YOLO和SSD模型的特性。</p>
 <p>其流程如下：利用预训练模型，得到特征序列作为SSAD模型的输入。经过处理后，模型输出检测结果。</p>
@@ -658,34 +541,56 @@
       </tags>
   </entry>
   <entry>
+    <title>vector应用-ccf1712-2围圈报数</title>
+    <url>/2019/09/07/vector%E5%BA%94%E7%94%A8-ccf1712-2%E5%9B%B4%E5%9C%88%E6%8A%A5%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>​        1到<em>n</em>号小朋友顺时针坐一圈，围圈报数。<br>​        若一个小朋友报的数为<strong><em>k</em>的倍数</strong>或其<strong>末位数（即数的个位）为<em>k</em></strong>，则该小朋友被淘汰。</p>
+<p>​        当只剩一个小朋友时，该小朋友获胜。</p>
+<p>　　例如，当n=5, k=2时：<br>　　1号小朋友报数1；<br>　　2号小朋友报数2淘汰；<br>　　3号小朋友报数3；<br>　　4号小朋友报数4淘汰；<br>　　5号小朋友报数5；<br>　　1号小朋友报数6淘汰；<br>　　3号小朋友报数7；<br>　　5号小朋友报数8淘汰；<br>　　3号小朋友获胜。</p>
+<p>　　给定<em>n</em>和<em>k</em>，请问最后获胜的小朋友编号为多少？</p>
+<span id="more"></span>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入一行，包括两个整数<em>n</em>和<em>k</em>，意义如题目所述。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一行，包含一个整数，表示获胜的小朋友编号。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>5 2</p>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>3</p>
+<h2 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h2><p>7 3</p>
+<h2 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h2><p>4</p>
+<h2 id="数据规模和约定"><a href="#数据规模和约定" class="headerlink" title="数据规模和约定"></a>数据规模和约定</h2><p>　　对于所有评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>k</em> ≤ 9。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>应用vector和迭代器。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br></pre></td></tr></table></figure>
+<p>开始时，迭代器指向<code>v.begin()</code>，当迭代到<code>v.end()</code>时，重新指向<code>v.begin()</code>，从而做到循环。</p>
+<p>当<code>v.size()==1</code>时退出循环。</p>
+<p>循环时，若报数报到淘汰值，直接将该元素移出vector：<code>v.erase(it);</code> 。</p>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1005</span>]=&#123;<span class="number">0</span>&#125;;  <span class="comment">//0游戏中，1出局 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n,k;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">	 </span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="comment">//各号小朋友就位 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		v.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//游戏开始 </span></span><br><span class="line">	<span class="keyword">int</span> count=<span class="number">0</span>;<span class="comment">//报的数</span></span><br><span class="line">	<span class="keyword">for</span>(it=v.<span class="built_in">begin</span>();v.<span class="built_in">size</span>()!=<span class="number">1</span>;)&#123;  <span class="comment">//vector中晋仅剩一个元素时游戏结束 </span></span><br><span class="line">		<span class="comment">//迭代器报到末尾，则从头开始报 </span></span><br><span class="line">		<span class="keyword">if</span>(it==v.<span class="built_in">end</span>()) </span><br><span class="line">			it=v.<span class="built_in">begin</span>();</span><br><span class="line">		count++;</span><br><span class="line">		<span class="keyword">if</span>(count%<span class="number">10</span>==k || count%k==<span class="number">0</span>)&#123;  <span class="comment">//尾号为k 或 k的倍数 </span></span><br><span class="line">			<span class="comment">//cout&lt;&lt;*it&lt;&lt;&quot;被淘汰&quot;&lt;&lt;endl;</span></span><br><span class="line">			v.<span class="built_in">erase</span>(it);  </span><br><span class="line">			<span class="keyword">continue</span>;  <span class="comment">//删除元素后,后面元素自动往前移，所以迭代器不要增加了！ </span></span><br><span class="line">		&#125;</span><br><span class="line">		it++;		</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;v[<span class="number">0</span>]&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>STL</tag>
+        <tag>C++</tag>
+        <tag>Vector</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>博客使用指南</title>
     <url>/2021/09/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<h1 id="从创建到部署"><a href="#从创建到部署" class="headerlink" title="从创建到部署"></a>从创建到部署</h1><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo n <span class="string">&quot;博客使用指南&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;博客使用指南&quot;</span></span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h2 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
-
 <p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
 <p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
 <h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
 <h2 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
 <p>默认情况下，访问网址为： <code>http://localhost:4000/</code></p>
 <p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
 <h2 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo d</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 <span id="more"></span>
-
 <h1 id="设置标签"><a href="#设置标签" class="headerlink" title="设置标签"></a>设置标签</h1><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"> tages: </span><br><span class="line">- 标签<span class="number">1</span></span><br><span class="line">- 标签<span class="number">2</span></span><br><span class="line">...</span><br><span class="line">- 标签n</span><br></pre></td></tr></table></figure>
-
 <h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">tages: [标签<span class="number">1</span>,标签<span class="number">2</span>,...标签n]</span><br></pre></td></tr></table></figure>
-
 <h1 id="手动设置文章时间"><a href="#手动设置文章时间" class="headerlink" title="手动设置文章时间"></a>手动设置文章时间</h1><p>直接在文章开头设置发表/更新时间：</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line">date: <span class="number">2021</span>-<span class="number">09</span>-<span class="number">03</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">51</span></span><br><span class="line">updated: <span class="number">2018</span>-<span class="number">01</span>-<span class="number">01</span> <span class="number">12</span>:<span class="number">00</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
         <category>Hexo建站</category>
@@ -693,6 +598,54 @@
       <tags>
         <tag>Hexo</tag>
         <tag>博客使用</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【论文笔记】BSN：Boundary Sensitive Network for Temporal Action Proposal Generation</title>
+    <url>/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/</url>
+    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。</p>
+<p>BSN网络采用了”local to global”方法，local是指先定位可能性大的时序边界，再整合这些边界作为候选；global是指通过评估一个候选中是否包含动作的置信度来检索候选。用到的数据集是ActivityNet-1.3和THUMOS14。</p>
+<span id="more"></span>
+<p><strong>高质量的候选应满足：</strong></p>
+<p>（1） 召回率（recall）要高（即“找得全”），同时与真实动作区域的重叠度（overlap）要大。</p>
+<p>（2） 使用较少的候选就能实现高召回率和高重叠度。</p>
+<p><strong>BSN产生候选要三步：</strong></p>
+<p>（1）评估视频中的每个时间位置的概率，判断它是在真实动作实例的边界内部还是外部，在或不在真实动作实例的边界处，以生成<strong>起始</strong>、<strong>结束</strong>和<strong>动作</strong>概率序列作为local信息；</p>
+<p>（2）直接合并分别具有高起始和结束概率的时间位置来生成候选。使用这种从底向上的方法，BSN可以产生<u>持续时间灵活</u>且<u>边界精确</u>的候选；</p>
+<p>（3）使用由候选内部及其时序前后的动作得分组成的特征，BSN通过评估候选是否包含动作的置信度来检索候选。这些候选片段级的特征为更好的评估提供了全局信息。</p>
+<p><strong>论文贡献：</strong></p>
+<p>（1） 提出了“local to global”的BSN来生成高质量的时序动作候选。locally，定位高概率边界位置以获得精确的候选边界；globally，评估proposal-level的特征以获得可靠的候选置信度评分用于检索。</p>
+<p>（2） 获得了比其他方法更好的候选质量。</p>
+<p>（3） 与已有的动作分类器结合，显著提高了时序动作检测任务的性能。</p>
+<h1 id="模型方法"><a href="#模型方法" class="headerlink" title="模型方法"></a>模型方法</h1><h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p>在产生时序动作候选时，是不考虑动作实例的具体类别的。视频的标签是每个动作实例的开始和结束时间。视频的标签在训练时使用；预测时，应使得产生的候选以高召回率和高重叠率覆盖视频标签。</p>
+<h2 id="（a）视频特征编码"><a href="#（a）视频特征编码" class="headerlink" title="（a）视频特征编码"></a>（a）视频特征编码</h2><p>为了产生视频的候选，首先应该提取视频的视觉内容特征。本文采用双流网络作为视觉编码器。</p>
+<p>双流网络：在动作识别、时序动作检测和候选生成等任务中，都有很好的效果。双流网络包括两个分支：<u>空间网络</u>通过单RGB帧来捕捉外观特征，<u>时间网络</u>通过堆叠光流域(stacked optical flow field)来捕捉运动信息。</p>
+<p>根据视频得到多个小段（snippet），每个小段都由<u>单帧</u>（single frame）和以单帧为中心得到的<u>堆叠光流域</u>(stacked optical flow field)两部分组成。单帧送入<u>空间网络</u>，堆叠光流域送入<u>时序网络</u>，然后整合两个网络的顶端输出，作为双流特征向量，送入BSN网络作为输入。示意图如下图(a)。</p>
+<p><img src="image-20211005111147012.png" alt="image-20211005111147012"></p>
+<center>Fig.1 论文整体框架</center>
+
+<h2 id="（b）边界敏感网络"><a href="#（b）边界敏感网络" class="headerlink" title="（b）边界敏感网络"></a>（b）边界敏感网络</h2><p>包括3个模块：时序评估，候选产生，候选评估。</p>
+<h3 id="时序评估模块-TEM"><a href="#时序评估模块-TEM" class="headerlink" title="时序评估模块 TEM"></a>时序评估模块 TEM</h3><p>输入是基于双流网络提取的图像特征序列。采用<u>3层时序卷积层</u>来对视频序列中每个位置上动作开始的概率、动作结束的概率和动作进行的概率同时进行建模，从而生成 动作开始概率序列，动作结束概率序列和动作概率序列。</p>
+<p>3层卷积层分别表示为Conv(512, 3, Relu)，Conv(512, 3, Relu)，Conv(3, 1, Sigmoid)。其中，第一项为过滤器数量，第二项为卷积核大小，第三项为激励函数，三层的步长都为1。最后一层卷积层作为分类器，产生起始，结束和动作概率。</p>
+<h3 id="候选产生模块-PGM"><a href="#候选产生模块-PGM" class="headerlink" title="候选产生模块 PGM"></a>候选产生模块 PGM</h3><p>此模块的目的是产生候选片段并建立相应的片段级特征。分两步来实现这个目的，（1）找到高边界概率的位置，并合并这些位置组成候选片段；（2）对于每个候选片段，建立BSP特征。</p>
+<p><strong>生成候选片段</strong></p>
+<p>满足：</p>
+<p>（1）概率高于一个阈值；或</p>
+<p>（2）该时间节点的概率高于前一时刻以及后一时刻的概率（即一个概率峰值）。</p>
+<p>这样的节点将被作为候选时序边界节点。然后将候选开始时间节点和候选结束时间节点两两结合，保留时长符合要求的开始节点-结束节点组合作为候选时序动作提名。所谓的时长符合要求，就是时长应处在数据集中动作实例标签的最小时长和最大时长之间。</p>
+<p>如下图。</p>
+<p><img src="image-20211005113151719.png" alt="image-20211005113151719"></p>
+<p><strong>建立BSP特征</strong></p>
+<p>对于每个提名，取其本身的时序区间作为<u>中心区域</u>，表示为$r_C=[t_s,t_e]$，另外其时长记为$d=t_e-t_s$ ，再取开始节点和结束节点附近的一段区间作为<u>起始区域</u> $r_S=[t_s-d/5，t_s+d/5]$以及 <u>结束区域</u>$r_E=[t_e-d/5，t_e+d/5]$。将$r_C$内的动作序列以16点的线性插值法进行采样，对于$r_S$和$r_E$以8点的线性插值法进行采样，将这三个采样得到的向量进行连接，就得到了这个候选的BSP特征$f_{BSP}$。BSP特征包含了对应候选片段的丰富的语义信息。每个候选片段都表示为$(t_S,t_E,f_{BSP})$。</p>
+<p>如下图。</p>
+<p><img src="image-20211005113237307.png" alt="image-20211005113237307"></p>
+<h3 id="候选评估模块-PEM"><a href="#候选评估模块-PEM" class="headerlink" title="候选评估模块 PEM"></a>候选评估模块 PEM</h3><p>是具有一个隐藏层的多层感知器（MLP）模型，它基于BSP特征评估每个候选的置信度得分。将每个候选片段的置信度得分和边界概率融合，作为检索的最终置信度得分。置信度分数越高，则说明该时序提名与真值的重叠IoU应当越高。</p>
+]]></content>
+      <categories>
+        <category>论文笔记</category>
+      </categories>
+      <tags>
+        <tag>-论文笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -705,7 +658,6 @@
 <p>初始时，钥匙按编号<strong>从小到大</strong>挂着。</p>
 <p>有<em>K</em>位老师取。给出钥匙标号、取出时间和借出时长，请问最终钥匙盒里面钥匙的顺序是怎样的？</p>
 <span id="more"></span>
-
 <h1 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h1><p>　　输入的第一行包含两个整数<em>N</em>, <em>K</em>。<br>　　接下来<em>K</em>行，每行三个整数<em>w</em>, <em>s</em>, <em>c</em>，分别表示一位老师要使用的钥匙编号、取出时间和借出的时长。可能有多位老师使用同一把钥匙，但是老师使用钥匙的时间不会重叠。</p>
 <h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><p>　　输出一行，包含<em>N</em>个整数，相邻整数间用一个空格分隔，依次表示每个挂钩上挂的钥匙编号。</p>
 <h1 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 2<br>4 3 3<br>2 2 7</p>
@@ -717,7 +669,6 @@
 <h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>用到两个结构体，保存每次取用的3个数据分别按取出时间和返还时间的排序，即按时间顺序排列。</p>
 <p>vector使用sort排序时写法是<code>sort(v.begin(),v.begin()+v.size());</code>。</p>
 <h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> no,s,en;  <span class="comment">//no号钥匙，s时刻借出，en时刻返还 </span></span><br><span class="line">&#125;node[<span class="number">1005</span>],node1[<span class="number">1005</span>];  <span class="comment">//分别对s和en排序 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//按开始时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.s==b.s)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.s&lt;b.s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按返还时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.en==b.en)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.en&lt;b.en;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> order[<span class="number">1005</span>];  <span class="comment">//oder[i]=x表示第i号钥匙挂在x号钩上 </span></span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">1005</span>];  <span class="comment">//ans[x]=i表示第x号钩子挂着i号钥匙 </span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v;  <span class="comment">//处理钥匙的移出和挂回 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> N,K;  <span class="comment">//N把钥匙，K次取还 </span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;N,&amp;K);</span><br><span class="line">	<span class="comment">//初始时，i号钥匙挂于i号钩	</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		order[i]=i;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="comment">//读入i次取还 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;K;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;node[i].no, &amp;node[i].s,&amp;node[i].en);</span><br><span class="line">		node[i].en += node[i].s;</span><br><span class="line">		node1[i] = node[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//分别对s和en排序</span></span><br><span class="line">	<span class="built_in">sort</span>(node,node+K,cmp1);</span><br><span class="line">	<span class="built_in">sort</span>(node1,node1+K,cmp2);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/* //打印排序结果 </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node[i].s&lt;&lt;&#x27; &#x27;&lt;&lt;node[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node1[i].en&lt;&lt;&#x27; &#x27;&lt;&lt;node1[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125; </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;*/</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> f1=<span class="number">0</span>, f2=<span class="number">0</span>;  <span class="comment">//表示借出和返还的次数 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> time=<span class="number">1</span>;!(f1==K &amp;&amp; f2==K);time++)&#123;  <span class="comment">//借还次数都满时，时间停止，退出循环 		</span></span><br><span class="line">		<span class="comment">//先还 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f1;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node1[i].en &gt; time) <span class="keyword">break</span>;  <span class="comment">//还没到下一把钥匙的返还时间 			</span></span><br><span class="line">			<span class="keyword">if</span>(node1[i].en == time)&#123;</span><br><span class="line">				order[node1[i].no] = v[<span class="number">0</span>];  <span class="comment">//取出v中的第一个元素(即最小的编号)</span></span><br><span class="line">				v.<span class="built_in">erase</span>(v.<span class="built_in">begin</span>());  <span class="comment">//并将第一个元素删除</span></span><br><span class="line">				<span class="comment">//cout&lt;&lt;node1[i].no&lt;&lt;&quot; 号钥匙放回 &quot;&lt;&lt;order[node1[i].no]&lt;&lt;endl;</span></span><br><span class="line">			&#125;</span><br><span class="line">			f1++;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//再借</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f2;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node[i].s &gt; time)<span class="keyword">break</span>;	 <span class="comment">//还没到下一把钥匙的借出时间 		</span></span><br><span class="line">			<span class="keyword">if</span>(node[i].s == time)&#123;</span><br><span class="line">				v.<span class="built_in">push_back</span>(order[node[i].no]);  <span class="comment">//保存被取出的钥匙的空位</span></span><br><span class="line">				<span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">begin</span>()+v.<span class="built_in">size</span>());  <span class="comment">//对所有空钩排序</span></span><br><span class="line">				order[node[i].no]=<span class="number">0</span>;</span><br><span class="line">				<span class="comment">//cout&lt;&lt;node[i].no&lt;&lt;&quot; 号钥匙已拿走... &quot;&lt;&lt;endl;		</span></span><br><span class="line">			&#125; </span><br><span class="line">			f2++;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		ans[order[i]]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		cout&lt;&lt;ans[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
         <category>OJ</category>
@@ -725,6 +676,54 @@
       <tags>
         <tag>C++</tag>
         <tag>结构体排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>⭐和🌙</title>
+    <url>/2020/07/14/zcy520/</url>
+    <content><![CDATA[<h1 id="三行情书一则"><a href="#三行情书一则" class="headerlink" title="三行情书一则"></a>三行情书一则</h1><span id="more"></span>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (you.Love(me) || !you.Love(me))&#123; </span><br><span class="line">	me.love.value++; </span><br><span class="line">	me.love.value--;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//你爱，或者不爱我</span></span><br><span class="line"><span class="comment">//爱就在那里</span></span><br><span class="line"><span class="comment">//不增不减</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> you.Love(me) <span class="keyword">or</span> <span class="keyword">not</span> you.Love(me):</span><br><span class="line">	love += <span class="number">1</span></span><br><span class="line">	love -= <span class="number">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">你爱，或者不爱我</span></span><br><span class="line"><span class="string">爱就在那里</span></span><br><span class="line"><span class="string">不增不减</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h1 id="ฅ՞•ﻌ•՞ฅ̊"><a href="#ฅ՞•ﻌ•՞ฅ̊" class="headerlink" title="ฅ՞•ﻌ•՞ฅ̊"></a>ฅ՞•ﻌ•՞ฅ̊</h1>]]></content>
+      <tags>
+        <tag>彩蛋</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深度学习笔记</title>
+    <url>/2021/10/01/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h3 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h3><span id="more"></span>
+<p>对于一个函数来说，通常有两种计算梯度的方式：</p>
+<ul>
+<li>数值梯度（numerical gradient）;</li>
+<li>解析梯度（analytic gradient）;</li>
+</ul>
+<p><strong>数值梯度</strong>的优点是容易编程实现，不要求函数可微。然而，<strong>数值梯度</strong>缺点很明显，通常是近似解，同时求解速度很慢，因此在设计机器学习目标函数时，通常设计成可微的函数，可以快速地求解其<strong>解析梯度</strong>，同时这个梯度是确切解。</p>
+<p>神经网络算法使用反向传播计算目标函数关于每个参数的梯度，可以看做<strong>解析梯度</strong>。由于计算过程中涉及到的参数很多，反向传播计算的梯度很容易出现误差，导致最后迭代得到效果很差的参数值。</p>
+<p>为了确认代码中反向传播计算的梯度是否正确，可以采用<strong>梯度检验（gradient check）</strong>的方法。通过计算数值梯度，得到梯度的近似值，然后和反向传播得到的梯度进行比较，若两者相差很小的话则证明反向传播的代码是正确无误的。</p>
+<p>误差在10^-7说明正确；误差在10^-3说明很可能有问题。</p>
+<p>梯度检验通常在调试代码时用，训练时不用（因为太慢）。</p>
+<p>不要和Dropout一起用，因为后者没有确定的代价函数。</p>
+<h3 id="torch保存和读取模型"><a href="#torch保存和读取模型" class="headerlink" title="torch保存和读取模型"></a>torch保存和读取模型</h3><p>假设网络为<code>model = Net()</code>， <code>optimizer = optim.Adam(model.parameters(), lr=args.lr)</code>。假设在某个epoch，我们要保存模型参数，优化器参数以及epoch。</p>
+<p>一、</p>
+<ol>
+<li>先建立一个字典，保存三个参数：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">state = &#123;<span class="string">&#x27;net&#x27;</span>: model.state_dict(), <span class="string">&#x27;optimizer&#x27;</span>: optimizer.state_dict(), <span class="string">&#x27;epoch&#x27;</span>: epoch&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>调用torch.save():</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torch.save(state, <span class="built_in">dir</span>)</span><br></pre></td></tr></table></figure>
+<p>其中<code>dir</code>表示保存文件的路径+保存文件名，如’/home/modelpara.pth’</p>
+<p>二、</p>
+<p>当你想恢复某一阶段的训练（或者进行测试）时，那么就可以读取之前保存的网络模型参数等。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">checkpoint = torch.load(<span class="built_in">dir</span>)</span><br><span class="line">model.load_state_dict(checkpoint[<span class="string">&#x27;net&#x27;</span>])</span><br><span class="line">optimizer.load_state_dict(checkpoint[<span class="string">&#x27;optimizer&#x27;</span>])</span><br><span class="line">start_epoch = checkpoint[<span class="string">&#x27;epoch&#x27;</span>] + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
       </tags>
   </entry>
 </search>

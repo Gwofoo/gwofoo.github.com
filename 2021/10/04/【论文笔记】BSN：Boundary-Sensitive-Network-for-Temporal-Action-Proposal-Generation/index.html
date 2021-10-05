@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/myavatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/myavatar.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Zhi Mang Xing:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="引言这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。 BSN网络采用了”local to global”方法，local是指先定位可能性大的时序边界，再整合这些边界作为候选；global是指通过评估一个候选中是否包含动作的置信度来检索候选">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文笔记】BSN：Boundary Sensitive Network for Temporal Action Proposal Generation">
+<meta property="og:url" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/index.html">
+<meta property="og:site_name" content="Gwofoo&#39;s blog">
+<meta property="og:description" content="引言这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。 BSN网络采用了”local to global”方法，local是指先定位可能性大的时序边界，再整合这些边界作为候选；global是指通过评估一个候选中是否包含动作的置信度来检索候选">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005111147012.png">
+<meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005113151719.png">
+<meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005113237307.png">
+<meta property="article:published_time" content="2021-10-04T08:45:31.000Z">
+<meta property="article:modified_time" content="2021-10-05T06:03:28.610Z">
+<meta property="article:author" content="Gwofoo">
+<meta property="article:tag" content="-论文笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005111147012.png">
+
+<link rel="canonical" href="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【论文笔记】BSN：Boundary Sensitive Network for Temporal Action Proposal Generation | Gwofoo's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  
+  <script type="text/javascript" src="/js/my_js/clicklove.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gwofoo's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="Gwofoo">
+      <meta itemprop="description" content="Welcome to Gwofoo's blog. Keep it up!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gwofoo's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【论文笔记】BSN：Boundary Sensitive Network for Temporal Action Proposal Generation
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-04 16:45:31" itemprop="dateCreated datePublished" datetime="2021-10-04T16:45:31+08:00">2021-10-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-05 14:03:28" itemprop="dateModified" datetime="2021-10-05T14:03:28+08:00">2021-10-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。</p>
+<p>BSN网络采用了”local to global”方法，local是指先定位可能性大的时序边界，再整合这些边界作为候选；global是指通过评估一个候选中是否包含动作的置信度来检索候选。用到的数据集是ActivityNet-1.3和THUMOS14。</p>
+<span id="more"></span>
+<p><strong>高质量的候选应满足：</strong></p>
+<p>（1） 召回率（recall）要高（即“找得全”），同时与真实动作区域的重叠度（overlap）要大。</p>
+<p>（2） 使用较少的候选就能实现高召回率和高重叠度。</p>
+<p><strong>BSN产生候选要三步：</strong></p>
+<p>（1）评估视频中的每个时间位置的概率，判断它是在真实动作实例的边界内部还是外部，在或不在真实动作实例的边界处，以生成<strong>起始</strong>、<strong>结束</strong>和<strong>动作</strong>概率序列作为local信息；</p>
+<p>（2）直接合并分别具有高起始和结束概率的时间位置来生成候选。使用这种从底向上的方法，BSN可以产生<u>持续时间灵活</u>且<u>边界精确</u>的候选；</p>
+<p>（3）使用由候选内部及其时序前后的动作得分组成的特征，BSN通过评估候选是否包含动作的置信度来检索候选。这些候选片段级的特征为更好的评估提供了全局信息。</p>
+<p><strong>论文贡献：</strong></p>
+<p>（1） 提出了“local to global”的BSN来生成高质量的时序动作候选。locally，定位高概率边界位置以获得精确的候选边界；globally，评估proposal-level的特征以获得可靠的候选置信度评分用于检索。</p>
+<p>（2） 获得了比其他方法更好的候选质量。</p>
+<p>（3） 与已有的动作分类器结合，显著提高了时序动作检测任务的性能。</p>
+<h1 id="模型方法"><a href="#模型方法" class="headerlink" title="模型方法"></a>模型方法</h1><h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p>在产生时序动作候选时，是不考虑动作实例的具体类别的。视频的标签是每个动作实例的开始和结束时间。视频的标签在训练时使用；预测时，应使得产生的候选以高召回率和高重叠率覆盖视频标签。</p>
+<h2 id="（a）视频特征编码"><a href="#（a）视频特征编码" class="headerlink" title="（a）视频特征编码"></a>（a）视频特征编码</h2><p>为了产生视频的候选，首先应该提取视频的视觉内容特征。本文采用双流网络作为视觉编码器。</p>
+<p>双流网络：在动作识别、时序动作检测和候选生成等任务中，都有很好的效果。双流网络包括两个分支：<u>空间网络</u>通过单RGB帧来捕捉外观特征，<u>时间网络</u>通过堆叠光流域(stacked optical flow field)来捕捉运动信息。</p>
+<p>根据视频得到多个小段（snippet），每个小段都由<u>单帧</u>（single frame）和以单帧为中心得到的<u>堆叠光流域</u>(stacked optical flow field)两部分组成。单帧送入<u>空间网络</u>，堆叠光流域送入<u>时序网络</u>，然后整合两个网络的顶端输出，作为双流特征向量，送入BSN网络作为输入。示意图如下图(a)。</p>
+<p><img src="image-20211005111147012.png" alt="image-20211005111147012"></p>
+<center>Fig.1 论文整体框架</center>
+
+<h2 id="（b）边界敏感网络"><a href="#（b）边界敏感网络" class="headerlink" title="（b）边界敏感网络"></a>（b）边界敏感网络</h2><p>包括3个模块：时序评估，候选产生，候选评估。</p>
+<h3 id="时序评估模块-TEM"><a href="#时序评估模块-TEM" class="headerlink" title="时序评估模块 TEM"></a>时序评估模块 TEM</h3><p>输入是基于双流网络提取的图像特征序列。采用<u>3层时序卷积层</u>来对视频序列中每个位置上动作开始的概率、动作结束的概率和动作进行的概率同时进行建模，从而生成 动作开始概率序列，动作结束概率序列和动作概率序列。</p>
+<p>3层卷积层分别表示为Conv(512, 3, Relu)，Conv(512, 3, Relu)，Conv(3, 1, Sigmoid)。其中，第一项为过滤器数量，第二项为卷积核大小，第三项为激励函数，三层的步长都为1。最后一层卷积层作为分类器，产生起始，结束和动作概率。</p>
+<h3 id="候选产生模块-PGM"><a href="#候选产生模块-PGM" class="headerlink" title="候选产生模块 PGM"></a>候选产生模块 PGM</h3><p>此模块的目的是产生候选片段并建立相应的片段级特征。分两步来实现这个目的，（1）找到高边界概率的位置，并合并这些位置组成候选片段；（2）对于每个候选片段，建立BSP特征。</p>
+<p><strong>生成候选片段</strong></p>
+<p>满足：</p>
+<p>（1）概率高于一个阈值；或</p>
+<p>（2）该时间节点的概率高于前一时刻以及后一时刻的概率（即一个概率峰值）。</p>
+<p>这样的节点将被作为候选时序边界节点。然后将候选开始时间节点和候选结束时间节点两两结合，保留时长符合要求的开始节点-结束节点组合作为候选时序动作提名。所谓的时长符合要求，就是时长应处在数据集中动作实例标签的最小时长和最大时长之间。</p>
+<p>如下图。</p>
+<p><img src="image-20211005113151719.png" alt="image-20211005113151719"></p>
+<p><strong>建立BSP特征</strong></p>
+<p>对于每个提名，取其本身的时序区间作为<u>中心区域</u>，表示为$r_C=[t_s,t_e]$，另外其时长记为$d=t_e-t_s$ ，再取开始节点和结束节点附近的一段区间作为<u>起始区域</u> $r_S=[t_s-d/5，t_s+d/5]$以及 <u>结束区域</u>$r_E=[t_e-d/5，t_e+d/5]$。将$r_C$内的动作序列以16点的线性插值法进行采样，对于$r_S$和$r_E$以8点的线性插值法进行采样，将这三个采样得到的向量进行连接，就得到了这个候选的BSP特征$f_{BSP}$。BSP特征包含了对应候选片段的丰富的语义信息。每个候选片段都表示为$(t_S,t_E,f_{BSP})$。</p>
+<p>如下图。</p>
+<p><img src="image-20211005113237307.png" alt="image-20211005113237307"></p>
+<h3 id="候选评估模块-PEM"><a href="#候选评估模块-PEM" class="headerlink" title="候选评估模块 PEM"></a>候选评估模块 PEM</h3><p>是具有一个隐藏层的多层感知器（MLP）模型，它基于BSP特征评估每个候选的置信度得分。将每个候选片段的置信度得分和边界概率融合，作为检索的最终置信度得分。置信度分数越高，则说明该时序提名与真值的重叠IoU应当越高。</p>
+
+    </div>
+
+    
+    
+    
+	
+	<div>
+      
+      <div>
+    
+        <div class="read-over" style="text-align:left;font-size:14px;">
+			<p style="text-align:center;color: #ccc;"><br /><br />
+			-------------------本文结束 <i class="fa fa-paw"></i> 感谢您的阅读-------------------
+			<p>
+		</div>
+    
+</div>
+
+      
+    </div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="tag"># -论文笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/01/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="深度学习笔记">
+      <i class="fa fa-chevron-left"></i> 深度学习笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">模型方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88a%EF%BC%89%E8%A7%86%E9%A2%91%E7%89%B9%E5%BE%81%E7%BC%96%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">（a）视频特征编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88b%EF%BC%89%E8%BE%B9%E7%95%8C%E6%95%8F%E6%84%9F%E7%BD%91%E7%BB%9C"><span class="nav-number">2.3.</span> <span class="nav-text">（b）边界敏感网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9D%97-TEM"><span class="nav-number">2.3.1.</span> <span class="nav-text">时序评估模块 TEM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%99%E9%80%89%E4%BA%A7%E7%94%9F%E6%A8%A1%E5%9D%97-PGM"><span class="nav-number">2.3.2.</span> <span class="nav-text">候选产生模块 PGM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%99%E9%80%89%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9D%97-PEM"><span class="nav-number">2.3.3.</span> <span class="nav-text">候选评估模块 PEM</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gwofoo"
+      src="/images/myavatar.jpg">
+  <p class="site-author-name" itemprop="name">Gwofoo</p>
+  <div class="site-description" itemprop="description">Welcome to Gwofoo's blog. Keep it up!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Gwofoo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Gwofoo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gwofoo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">30k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">27 分钟</span>
+  
+	<br />
+	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+	<script>
+		var now = new Date(); 
+		function createtime() { 
+			var birth= new Date("7/2/2019 23:12:45");//此处修改你的建站时间或者网站上线时间 
+			this_year = now.getFullYear();
+			var anniversary = new Date("7/2/2019 23:12:45").setFullYear(this_year);
+			now.setTime(now.getTime()+250); 
+			years = this_year - 2019;
+			days = (now - anniversary ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 			
+			hours = (now - anniversary ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+			if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - anniversary ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+			mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+			seconds = (now - anniversary ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+			snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+			document.getElementById("timeDate").innerHTML = "本站已安全运行 " + years + " 年 " + dnum + " 天 "; 
+			document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+		} 
+	setInterval("createtime()",250);
+	</script>
+	
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <!--动态背景-->
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>

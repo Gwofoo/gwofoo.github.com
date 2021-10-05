@@ -282,7 +282,6 @@
 <p>　　例如，当n=5, k=2时：<br>　　1号小朋友报数1；<br>　　2号小朋友报数2淘汰；<br>　　3号小朋友报数3；<br>　　4号小朋友报数4淘汰；<br>　　5号小朋友报数5；<br>　　1号小朋友报数6淘汰；<br>　　3号小朋友报数7；<br>　　5号小朋友报数8淘汰；<br>　　3号小朋友获胜。</p>
 <p>　　给定<em>n</em>和<em>k</em>，请问最后获胜的小朋友编号为多少？</p>
 <span id="more"></span>
-
 <h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入一行，包括两个整数<em>n</em>和<em>k</em>，意义如题目所述。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一行，包含一个整数，表示获胜的小朋友编号。</p>
 <h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>5 2</p>
@@ -292,12 +291,10 @@
 <h2 id="数据规模和约定"><a href="#数据规模和约定" class="headerlink" title="数据规模和约定"></a>数据规模和约定</h2><p>　　对于所有评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>k</em> ≤ 9。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>应用vector和迭代器。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br></pre></td></tr></table></figure>
-
 <p>开始时，迭代器指向<code>v.begin()</code>，当迭代到<code>v.end()</code>时，重新指向<code>v.begin()</code>，从而做到循环。</p>
 <p>当<code>v.size()==1</code>时退出循环。</p>
 <p>循环时，若报数报到淘汰值，直接将该元素移出vector：<code>v.erase(it);</code> 。</p>
 <h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1005</span>]=&#123;<span class="number">0</span>&#125;;  <span class="comment">//0游戏中，1出局 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n,k;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">	 </span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="comment">//各号小朋友就位 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		v.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//游戏开始 </span></span><br><span class="line">	<span class="keyword">int</span> count=<span class="number">0</span>;<span class="comment">//报的数</span></span><br><span class="line">	<span class="keyword">for</span>(it=v.<span class="built_in">begin</span>();v.<span class="built_in">size</span>()!=<span class="number">1</span>;)&#123;  <span class="comment">//vector中晋仅剩一个元素时游戏结束 </span></span><br><span class="line">		<span class="comment">//迭代器报到末尾，则从头开始报 </span></span><br><span class="line">		<span class="keyword">if</span>(it==v.<span class="built_in">end</span>()) </span><br><span class="line">			it=v.<span class="built_in">begin</span>();</span><br><span class="line">		count++;</span><br><span class="line">		<span class="keyword">if</span>(count%<span class="number">10</span>==k || count%k==<span class="number">0</span>)&#123;  <span class="comment">//尾号为k 或 k的倍数 </span></span><br><span class="line">			<span class="comment">//cout&lt;&lt;*it&lt;&lt;&quot;被淘汰&quot;&lt;&lt;endl;</span></span><br><span class="line">			v.<span class="built_in">erase</span>(it);  </span><br><span class="line">			<span class="keyword">continue</span>;  <span class="comment">//删除元素后,后面元素自动往前移，所以迭代器不要增加了！ </span></span><br><span class="line">		&#125;</span><br><span class="line">		it++;		</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;v[<span class="number">0</span>]&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -414,20 +411,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -468,12 +465,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">26k</span>
+    <span title="站点总字数">30k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">24 分钟</span>
+    <span title="站点阅读时长">27 分钟</span>
   
 	<br />
 	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
