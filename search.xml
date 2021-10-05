@@ -26,27 +26,6 @@
       </tags>
   </entry>
   <entry>
-    <title>OJ-大数整除</title>
-    <url>/2019/07/04/OJ-%E5%A4%A7%E6%95%B0%E6%95%B4%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a>原题链接</h2><p><a href="http://www.dotcpp.com/oj/problem1074.html">http://www.dotcpp.com/oj/problem1074.html</a></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定理：把一个至少两位的正整数的个位数字去掉，再从余下的数中减去个位数的5倍。当且仅当差是17的倍数时，原数也是17的倍数 。</p>
-<p>例如，34是17的倍数，因为3-20=-17是17的倍数；201不是17的倍数，因为20-5=15不是17的倍数。输入一个正整数n，你的任务是判断它是否是17的倍数。</p>
-<span id="more"></span>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入文件最多包含10组测试数据，每个数据占一行，仅包含一个正整数n（1&lt;=n&lt;=10^100），表示待判断的正整数。n=0表示输入结束，你的程序不应当处理这一行。</p>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每组测试数据，输出一行，表示相应的n是否是17的倍数。1表示是，0表示否。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>34<br>201<br>2098765413<br>1717171717171717171717171717171717171717171717171718<br>0</p>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>1<br>0<br>1<br>0</p>
-<h2 id="题目分析："><a href="#题目分析：" class="headerlink" title="题目分析："></a>题目分析：</h2><p>不要用这个定理，否则要处理大数会很麻烦。 直接用小学列式除法的原理，从高位到低位依次读入数字，得到每一次的余数r （r中刷新地保存每次的余数），直到大数所有位数被读一遍。最后判断r是否为0，为0则说明刚好被17整除。</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	string str;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; str) &#123; <span class="comment">//读入这个大数（2345</span></span><br><span class="line">		<span class="keyword">if</span> (str[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span>) <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//为0则退出</span></span><br><span class="line">		<span class="keyword">int</span> m, r=<span class="number">0</span>;  <span class="comment">//m表示每一次的被除数，r表示每一次的余数</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; str.<span class="built_in">length</span>(); i++) &#123;  <span class="comment">//遍历这个大数</span></span><br><span class="line">			m = r*<span class="number">10</span> + str[i] - <span class="string">&#x27;0&#x27;</span>;  <span class="comment">//（2,23,64,135</span></span><br><span class="line">			r = m % <span class="number">17</span>;  <span class="comment">//（2,6,13,16</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (r) cout &lt;&lt; <span class="string">&#x27;0&#x27;</span> &lt;&lt; endl;  <span class="comment">//r不为0，不能被17整除</span></span><br><span class="line">		<span class="keyword">else</span> cout &lt;&lt; <span class="string">&#x27;1&#x27;</span> &lt;&lt; endl;    <span class="comment">//r为0，能被17整除</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//system(&quot;pause&quot;);</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>OJ</category>
-      </categories>
-      <tags>
-        <tag>OJ</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo博客NexT主题配置</title>
     <url>/2021/09/03/Hexo%E5%8D%9A%E5%AE%A2NexT%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="安装NexT"><a href="#安装NexT" class="headerlink" title="安装NexT"></a>安装NexT</h1><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>在Hexo文件夹下，右键<code>Git Bash Here</code>，</p>
@@ -131,17 +110,24 @@
       </tags>
   </entry>
   <entry>
-    <title>c++常用库函数</title>
-    <url>/2019/11/22/c-%E5%B8%B8%E7%94%A8%E5%BA%93%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">isalpha</span>(字母);	<span class="comment">//判断是否是字母</span></span><br><span class="line"><span class="built_in">toupper</span>(字母);	<span class="comment">//转大写</span></span><br><span class="line"><span class="built_in">tolower</span>(字母);	<span class="comment">//转小写	</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>OJ-大数整除</title>
+    <url>/2019/07/04/OJ-%E5%A4%A7%E6%95%B0%E6%95%B4%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a>原题链接</h2><p><a href="http://www.dotcpp.com/oj/problem1074.html">http://www.dotcpp.com/oj/problem1074.html</a></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定理：把一个至少两位的正整数的个位数字去掉，再从余下的数中减去个位数的5倍。当且仅当差是17的倍数时，原数也是17的倍数 。</p>
+<p>例如，34是17的倍数，因为3-20=-17是17的倍数；201不是17的倍数，因为20-5=15不是17的倍数。输入一个正整数n，你的任务是判断它是否是17的倍数。</p>
 <span id="more"></span>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入文件最多包含10组测试数据，每个数据占一行，仅包含一个正整数n（1&lt;=n&lt;=10^100），表示待判断的正整数。n=0表示输入结束，你的程序不应当处理这一行。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每组测试数据，输出一行，表示相应的n是否是17的倍数。1表示是，0表示否。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>34<br>201<br>2098765413<br>1717171717171717171717171717171717171717171717171718<br>0</p>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>1<br>0<br>1<br>0</p>
+<h2 id="题目分析："><a href="#题目分析：" class="headerlink" title="题目分析："></a>题目分析：</h2><p>不要用这个定理，否则要处理大数会很麻烦。 直接用小学列式除法的原理，从高位到低位依次读入数字，得到每一次的余数r （r中刷新地保存每次的余数），直到大数所有位数被读一遍。最后判断r是否为0，为0则说明刚好被17整除。</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	string str;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; str) &#123; <span class="comment">//读入这个大数（2345</span></span><br><span class="line">		<span class="keyword">if</span> (str[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span>) <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//为0则退出</span></span><br><span class="line">		<span class="keyword">int</span> m, r=<span class="number">0</span>;  <span class="comment">//m表示每一次的被除数，r表示每一次的余数</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; str.<span class="built_in">length</span>(); i++) &#123;  <span class="comment">//遍历这个大数</span></span><br><span class="line">			m = r*<span class="number">10</span> + str[i] - <span class="string">&#x27;0&#x27;</span>;  <span class="comment">//（2,23,64,135</span></span><br><span class="line">			r = m % <span class="number">17</span>;  <span class="comment">//（2,6,13,16</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (r) cout &lt;&lt; <span class="string">&#x27;0&#x27;</span> &lt;&lt; endl;  <span class="comment">//r不为0，不能被17整除</span></span><br><span class="line">		<span class="keyword">else</span> cout &lt;&lt; <span class="string">&#x27;1&#x27;</span> &lt;&lt; endl;    <span class="comment">//r为0，能被17整除</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//system(&quot;pause&quot;);</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>C++</category>
+        <category>OJ</category>
       </categories>
       <tags>
-        <tag>C++</tag>
-        <tag>库函数</tag>
+        <tag>OJ</tag>
       </tags>
   </entry>
   <entry>
@@ -170,6 +156,20 @@
       </categories>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++常用库函数</title>
+    <url>/2019/11/22/c-%E5%B8%B8%E7%94%A8%E5%BA%93%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">isalpha</span>(字母);	<span class="comment">//判断是否是字母</span></span><br><span class="line"><span class="built_in">toupper</span>(字母);	<span class="comment">//转大写</span></span><br><span class="line"><span class="built_in">tolower</span>(字母);	<span class="comment">//转小写	</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>库函数</tag>
       </tags>
   </entry>
   <entry>
@@ -370,34 +370,6 @@
       </tags>
   </entry>
   <entry>
-    <title>stack应用-ccf201903-2二十四点</title>
-    <url>/2019/09/07/stack%E5%BA%94%E7%94%A8-ccf201903-2%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%82%B9/</url>
-    <content><![CDATA[<h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>二十四点：使用 3 个加减乘除运算使得 4张纸牌上数字的运算结果为 24。</p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定义每一个游戏由 4 个从 1-9 的数字和 3个四则运算符组成，保证四则运算符将数字两两隔开，不存在括号和其他字符，运算顺序按照四则运算顺序进行。</p>
-<p>其中加法用符号 + 表示，减法用符号 -表示，乘法用小写字母 x 表示，除法用符号 / 表示。在游戏里除法为<u>整除</u>，例如 2 / 3 = 0，3 / 2 = 1, 4 / 2 = 2。<br>老师给了你 n 个游戏的解，请你编写程序<u>验证</u>每个游戏的结果是否为 24 。</p>
-<span id="more"></span>
-<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>从标准输入读入数据。</p>
-<p>第一行输入一个整数 n，从第 2 行开始到第 n + 1 行中，每一行包含一个长度为 7的字符串，为上述的 24 点游戏，保证数据格式合法。</p>
-<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出到标准输出。 包含 n 行，对于每一个游戏，如果其结果为 24 则输出字符串 Yes，否则输出字符串 No。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">10</span></span><br><span class="line"><span class="attribute">9</span>+<span class="number">3</span>+<span class="number">4</span>x<span class="number">3</span></span><br><span class="line"><span class="attribute">5</span>+<span class="number">4</span>x<span class="number">5</span>x<span class="number">5</span></span><br><span class="line"><span class="attribute">7</span>-<span class="number">9</span>-<span class="number">9</span>+<span class="number">8</span></span><br><span class="line"><span class="attribute">5x6</span>/<span class="number">5</span>x<span class="number">4</span></span><br><span class="line"><span class="attribute">3</span>+<span class="number">5</span>+<span class="number">7</span>+<span class="number">9</span></span><br><span class="line"><span class="attribute">1x1</span>+<span class="number">9</span>-<span class="number">9</span></span><br><span class="line"><span class="attribute">1x9</span>-<span class="number">5</span>/<span class="number">9</span></span><br><span class="line"><span class="attribute">8</span>/<span class="number">5</span>+<span class="number">6</span>x<span class="number">9</span></span><br><span class="line"><span class="attribute">6x7</span>-<span class="number">3</span>x<span class="number">6</span></span><br><span class="line"><span class="attribute">6x4</span>+<span class="number">4</span>/<span class="number">5</span></span><br></pre></td></tr></table></figure>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight gams"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">Yes</span></span><br></pre></td></tr></table></figure>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>使用stack。</p>
-<p>先读入第一个数字，入栈。</p>
-<p>然后是3次循环，每次循环读一个符号和一个数字。</p>
-<p>在一次循环中，读的符号若为 x 或 / ，则弹出栈顶数字，将其与下一位数字作相应运算后再入栈；读的符号若为 + 或 - ，则下一位数字直接入栈，注意：若符号为 - ，入栈时入的是相反数（便于最后一次性相加）。</p>
-<p>循环结束后，将栈内剩余的数字依次弹出相加。若为24，则Yes。</p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">		stack&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">		<span class="keyword">int</span>  a,b;</span><br><span class="line">		<span class="comment">//读第一个数字，直接push </span></span><br><span class="line">		cin&gt;&gt;a;</span><br><span class="line">		s.<span class="built_in">push</span>(a);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">			<span class="comment">//读一个符号 </span></span><br><span class="line">			<span class="keyword">char</span> c;</span><br><span class="line">			cin&gt;&gt;c;</span><br><span class="line">			<span class="comment">//读一个数字 </span></span><br><span class="line">			cin&gt;&gt;a;</span><br><span class="line">			<span class="keyword">int</span> sum;  <span class="comment">//sum存储乘除运算的中间结果</span></span><br><span class="line">			<span class="keyword">if</span>(c==<span class="string">&#x27;x&#x27;</span>)&#123;			</span><br><span class="line">				sum=a*s.<span class="built_in">top</span>();</span><br><span class="line">				s.<span class="built_in">pop</span>();</span><br><span class="line">				s.<span class="built_in">push</span>(sum);			</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">&#x27;/&#x27;</span>) &#123;			</span><br><span class="line">				sum=s.<span class="built_in">top</span>()/a;</span><br><span class="line">				s.<span class="built_in">pop</span>();</span><br><span class="line">				s.<span class="built_in">push</span>(sum);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">&#x27;+&#x27;</span>)&#123;			</span><br><span class="line">				s.<span class="built_in">push</span>(a);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				s.<span class="built_in">push</span>(a*(<span class="number">-1</span>));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> count=<span class="number">0</span>; </span><br><span class="line">		<span class="keyword">while</span> (!s.<span class="built_in">empty</span>())&#123;   </span><br><span class="line">			count+=s.<span class="built_in">top</span>();  <span class="comment">//依次弹出相加</span></span><br><span class="line">			s.<span class="built_in">pop</span>();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//cout&lt;&lt;count&lt;&lt;endl;</span></span><br><span class="line">		<span class="keyword">if</span>(count==<span class="number">24</span>)&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;Yes&quot;</span>&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;No&quot;</span>&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>OJ</category>
-      </categories>
-      <tags>
-        <tag>STL</tag>
-        <tag>C++</tag>
-        <tag>Vector</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vector应用-ccf1712-2围圈报数</title>
     <url>/2019/09/07/vector%E5%BA%94%E7%94%A8-ccf1712-2%E5%9B%B4%E5%9C%88%E6%8A%A5%E6%95%B0/</url>
     <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>​        1到<em>n</em>号小朋友顺时针坐一圈，围圈报数。<br>​        若一个小朋友报的数为<strong><em>k</em>的倍数</strong>或其<strong>末位数（即数的个位）为<em>k</em></strong>，则该小朋友被淘汰。</p>
@@ -418,6 +390,45 @@
 <p>当<code>v.size()==1</code>时退出循环。</p>
 <p>循环时，若报数报到淘汰值，直接将该元素移出vector：<code>v.erase(it);</code> 。</p>
 <h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1005</span>]=&#123;<span class="number">0</span>&#125;;  <span class="comment">//0游戏中，1出局 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n,k;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">	 </span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="comment">//各号小朋友就位 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		v.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//游戏开始 </span></span><br><span class="line">	<span class="keyword">int</span> count=<span class="number">0</span>;<span class="comment">//报的数</span></span><br><span class="line">	<span class="keyword">for</span>(it=v.<span class="built_in">begin</span>();v.<span class="built_in">size</span>()!=<span class="number">1</span>;)&#123;  <span class="comment">//vector中晋仅剩一个元素时游戏结束 </span></span><br><span class="line">		<span class="comment">//迭代器报到末尾，则从头开始报 </span></span><br><span class="line">		<span class="keyword">if</span>(it==v.<span class="built_in">end</span>()) </span><br><span class="line">			it=v.<span class="built_in">begin</span>();</span><br><span class="line">		count++;</span><br><span class="line">		<span class="keyword">if</span>(count%<span class="number">10</span>==k || count%k==<span class="number">0</span>)&#123;  <span class="comment">//尾号为k 或 k的倍数 </span></span><br><span class="line">			<span class="comment">//cout&lt;&lt;*it&lt;&lt;&quot;被淘汰&quot;&lt;&lt;endl;</span></span><br><span class="line">			v.<span class="built_in">erase</span>(it);  </span><br><span class="line">			<span class="keyword">continue</span>;  <span class="comment">//删除元素后,后面元素自动往前移，所以迭代器不要增加了！ </span></span><br><span class="line">		&#125;</span><br><span class="line">		it++;		</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;v[<span class="number">0</span>]&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>STL</tag>
+        <tag>C++</tag>
+        <tag>Vector</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>⭐和🌙</title>
+    <url>/2020/07/14/zcy520/</url>
+    <content><![CDATA[<h1 id="三行情书一则"><a href="#三行情书一则" class="headerlink" title="三行情书一则"></a>三行情书一则</h1><span id="more"></span>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (you.Love(me) || !you.Love(me))&#123; </span><br><span class="line">	me.love.value++; </span><br><span class="line">	me.love.value--;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//你爱，或者不爱我</span></span><br><span class="line"><span class="comment">//爱就在那里</span></span><br><span class="line"><span class="comment">//不增不减</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> you.Love(me) <span class="keyword">or</span> <span class="keyword">not</span> you.Love(me):</span><br><span class="line">	love += <span class="number">1</span></span><br><span class="line">	love -= <span class="number">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">你爱，或者不爱我</span></span><br><span class="line"><span class="string">爱就在那里</span></span><br><span class="line"><span class="string">不增不减</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h1 id="ฅ՞•ﻌ•՞ฅ̊"><a href="#ฅ՞•ﻌ•՞ฅ̊" class="headerlink" title="ฅ՞•ﻌ•՞ฅ̊"></a>ฅ՞•ﻌ•՞ฅ̊</h1>]]></content>
+      <tags>
+        <tag>彩蛋</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>stack应用-ccf201903-2二十四点</title>
+    <url>/2019/09/07/stack%E5%BA%94%E7%94%A8-ccf201903-2%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%82%B9/</url>
+    <content><![CDATA[<h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>二十四点：使用 3 个加减乘除运算使得 4张纸牌上数字的运算结果为 24。</p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定义每一个游戏由 4 个从 1-9 的数字和 3个四则运算符组成，保证四则运算符将数字两两隔开，不存在括号和其他字符，运算顺序按照四则运算顺序进行。</p>
+<p>其中加法用符号 + 表示，减法用符号 -表示，乘法用小写字母 x 表示，除法用符号 / 表示。在游戏里除法为<u>整除</u>，例如 2 / 3 = 0，3 / 2 = 1, 4 / 2 = 2。<br>老师给了你 n 个游戏的解，请你编写程序<u>验证</u>每个游戏的结果是否为 24 。</p>
+<span id="more"></span>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>从标准输入读入数据。</p>
+<p>第一行输入一个整数 n，从第 2 行开始到第 n + 1 行中，每一行包含一个长度为 7的字符串，为上述的 24 点游戏，保证数据格式合法。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出到标准输出。 包含 n 行，对于每一个游戏，如果其结果为 24 则输出字符串 Yes，否则输出字符串 No。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">10</span></span><br><span class="line"><span class="attribute">9</span>+<span class="number">3</span>+<span class="number">4</span>x<span class="number">3</span></span><br><span class="line"><span class="attribute">5</span>+<span class="number">4</span>x<span class="number">5</span>x<span class="number">5</span></span><br><span class="line"><span class="attribute">7</span>-<span class="number">9</span>-<span class="number">9</span>+<span class="number">8</span></span><br><span class="line"><span class="attribute">5x6</span>/<span class="number">5</span>x<span class="number">4</span></span><br><span class="line"><span class="attribute">3</span>+<span class="number">5</span>+<span class="number">7</span>+<span class="number">9</span></span><br><span class="line"><span class="attribute">1x1</span>+<span class="number">9</span>-<span class="number">9</span></span><br><span class="line"><span class="attribute">1x9</span>-<span class="number">5</span>/<span class="number">9</span></span><br><span class="line"><span class="attribute">8</span>/<span class="number">5</span>+<span class="number">6</span>x<span class="number">9</span></span><br><span class="line"><span class="attribute">6x7</span>-<span class="number">3</span>x<span class="number">6</span></span><br><span class="line"><span class="attribute">6x4</span>+<span class="number">4</span>/<span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight gams"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">No</span></span><br><span class="line"><span class="keyword">Yes</span></span><br><span class="line"><span class="keyword">Yes</span></span><br></pre></td></tr></table></figure>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>使用stack。</p>
+<p>先读入第一个数字，入栈。</p>
+<p>然后是3次循环，每次循环读一个符号和一个数字。</p>
+<p>在一次循环中，读的符号若为 x 或 / ，则弹出栈顶数字，将其与下一位数字作相应运算后再入栈；读的符号若为 + 或 - ，则下一位数字直接入栈，注意：若符号为 - ，入栈时入的是相反数（便于最后一次性相加）。</p>
+<p>循环结束后，将栈内剩余的数字依次弹出相加。若为24，则Yes。</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">		stack&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">		<span class="keyword">int</span>  a,b;</span><br><span class="line">		<span class="comment">//读第一个数字，直接push </span></span><br><span class="line">		cin&gt;&gt;a;</span><br><span class="line">		s.<span class="built_in">push</span>(a);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">			<span class="comment">//读一个符号 </span></span><br><span class="line">			<span class="keyword">char</span> c;</span><br><span class="line">			cin&gt;&gt;c;</span><br><span class="line">			<span class="comment">//读一个数字 </span></span><br><span class="line">			cin&gt;&gt;a;</span><br><span class="line">			<span class="keyword">int</span> sum;  <span class="comment">//sum存储乘除运算的中间结果</span></span><br><span class="line">			<span class="keyword">if</span>(c==<span class="string">&#x27;x&#x27;</span>)&#123;			</span><br><span class="line">				sum=a*s.<span class="built_in">top</span>();</span><br><span class="line">				s.<span class="built_in">pop</span>();</span><br><span class="line">				s.<span class="built_in">push</span>(sum);			</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">&#x27;/&#x27;</span>) &#123;			</span><br><span class="line">				sum=s.<span class="built_in">top</span>()/a;</span><br><span class="line">				s.<span class="built_in">pop</span>();</span><br><span class="line">				s.<span class="built_in">push</span>(sum);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">&#x27;+&#x27;</span>)&#123;			</span><br><span class="line">				s.<span class="built_in">push</span>(a);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				s.<span class="built_in">push</span>(a*(<span class="number">-1</span>));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> count=<span class="number">0</span>; </span><br><span class="line">		<span class="keyword">while</span> (!s.<span class="built_in">empty</span>())&#123;   </span><br><span class="line">			count+=s.<span class="built_in">top</span>();  <span class="comment">//依次弹出相加</span></span><br><span class="line">			s.<span class="built_in">pop</span>();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//cout&lt;&lt;count&lt;&lt;endl;</span></span><br><span class="line">		<span class="keyword">if</span>(count==<span class="number">24</span>)&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;Yes&quot;</span>&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;No&quot;</span>&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>OJ</category>
@@ -589,17 +600,6 @@
       </tags>
   </entry>
   <entry>
-    <title>⭐和🌙</title>
-    <url>/2020/07/14/zcy520/</url>
-    <content><![CDATA[<h1 id="三行情书一则"><a href="#三行情书一则" class="headerlink" title="三行情书一则"></a>三行情书一则</h1><span id="more"></span>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (you.Love(me) || !you.Love(me))&#123; </span><br><span class="line">	me.love.value++; </span><br><span class="line">	me.love.value--;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//你爱，或者不爱我</span></span><br><span class="line"><span class="comment">//爱就在那里</span></span><br><span class="line"><span class="comment">//不增不减</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> you.Love(me) <span class="keyword">or</span> <span class="keyword">not</span> you.Love(me):</span><br><span class="line">	love += <span class="number">1</span></span><br><span class="line">	love -= <span class="number">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">你爱，或者不爱我</span></span><br><span class="line"><span class="string">爱就在那里</span></span><br><span class="line"><span class="string">不增不减</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<h1 id="ฅ՞•ﻌ•՞ฅ̊"><a href="#ฅ՞•ﻌ•՞ฅ̊" class="headerlink" title="ฅ՞•ﻌ•՞ฅ̊"></a>ฅ՞•ﻌ•՞ฅ̊</h1>]]></content>
-      <tags>
-        <tag>彩蛋</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>博客使用指南</title>
     <url>/2021/09/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<h1 id="从创建到部署"><a href="#从创建到部署" class="headerlink" title="从创建到部署"></a>从创建到部署</h1><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo n <span class="string">&quot;博客使用指南&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;博客使用指南&quot;</span></span><br></pre></td></tr></table></figure>
@@ -626,73 +626,6 @@
       <tags>
         <tag>Hexo</tag>
         <tag>博客使用</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>深度学习笔记</title>
-    <url>/2021/10/01/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h3 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h3><span id="more"></span>
-<p>对于一个函数来说，通常有两种计算梯度的方式：</p>
-<ul>
-<li>数值梯度（numerical gradient）;</li>
-<li>解析梯度（analytic gradient）;</li>
-</ul>
-<p><strong>数值梯度</strong>的优点是容易编程实现，不要求函数可微。然而，<strong>数值梯度</strong>缺点很明显，通常是近似解，同时求解速度很慢，因此在设计机器学习目标函数时，通常设计成可微的函数，可以快速地求解其<strong>解析梯度</strong>，同时这个梯度是确切解。</p>
-<p>神经网络算法使用反向传播计算目标函数关于每个参数的梯度，可以看做<strong>解析梯度</strong>。由于计算过程中涉及到的参数很多，反向传播计算的梯度很容易出现误差，导致最后迭代得到效果很差的参数值。</p>
-<p>为了确认代码中反向传播计算的梯度是否正确，可以采用<strong>梯度检验（gradient check）</strong>的方法。通过计算数值梯度，得到梯度的近似值，然后和反向传播得到的梯度进行比较，若两者相差很小的话则证明反向传播的代码是正确无误的。</p>
-<p>误差在10^-7说明正确；误差在10^-3说明很可能有问题。</p>
-<p>梯度检验通常在调试代码时用，训练时不用（因为太慢）。</p>
-<p>不要和Dropout一起用，因为后者没有确定的代价函数。</p>
-<h3 id="torch保存和读取模型"><a href="#torch保存和读取模型" class="headerlink" title="torch保存和读取模型"></a>torch保存和读取模型</h3><p>假设网络为<code>model = Net()</code>， <code>optimizer = optim.Adam(model.parameters(), lr=args.lr)</code>。假设在某个epoch，我们要保存模型参数，优化器参数以及epoch。</p>
-<p>一、</p>
-<ol>
-<li>先建立一个字典，保存三个参数：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">state = &#123;<span class="string">&#x27;net&#x27;</span>: model.state_dict(), <span class="string">&#x27;optimizer&#x27;</span>: optimizer.state_dict(), <span class="string">&#x27;epoch&#x27;</span>: epoch&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>调用torch.save():</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torch.save(state, <span class="built_in">dir</span>)</span><br></pre></td></tr></table></figure>
-<p>其中<code>dir</code>表示保存文件的路径+保存文件名，如’/home/modelpara.pth’</p>
-<p>二、</p>
-<p>当你想恢复某一阶段的训练（或者进行测试）时，那么就可以读取之前保存的网络模型参数等。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">checkpoint = torch.load(<span class="built_in">dir</span>)</span><br><span class="line">model.load_state_dict(checkpoint[<span class="string">&#x27;net&#x27;</span>])</span><br><span class="line">optimizer.load_state_dict(checkpoint[<span class="string">&#x27;optimizer&#x27;</span>])</span><br><span class="line">start_epoch = checkpoint[<span class="string">&#x27;epoch&#x27;</span>] + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>结构体排序-ccf1709-2公共钥匙盒</title>
-    <url>/2019/12/01/%E7%BB%93%E6%9E%84%E4%BD%93%E6%8E%92%E5%BA%8F-ccf1709-2%E5%85%AC%E5%85%B1%E9%92%A5%E5%8C%99%E7%9B%92/</url>
-    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>N个挂钩上有N个钥匙。钥匙没有固定的悬挂位置，但钥匙上有标号。</p>
-<p>每次取钥匙的时候，而不会移动其他钥匙。</p>
-<p>每次还钥匙的时候，挂在<strong>最左边的空挂钩</strong>上。</p>
-<p>同一时刻<strong>先还再取</strong>，且按<strong>编号从小到大</strong>的顺序还。</p>
-<p>初始时，钥匙按编号<strong>从小到大</strong>挂着。</p>
-<p>有<em>K</em>位老师取。给出钥匙标号、取出时间和借出时长，请问最终钥匙盒里面钥匙的顺序是怎样的？</p>
-<span id="more"></span>
-<h1 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h1><p>　　输入的第一行包含两个整数<em>N</em>, <em>K</em>。<br>　　接下来<em>K</em>行，每行三个整数<em>w</em>, <em>s</em>, <em>c</em>，分别表示一位老师要使用的钥匙编号、取出时间和借出的时长。可能有多位老师使用同一把钥匙，但是老师使用钥匙的时间不会重叠。</p>
-<h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><p>　　输出一行，包含<em>N</em>个整数，相邻整数间用一个空格分隔，依次表示每个挂钩上挂的钥匙编号。</p>
-<h1 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 2<br>4 3 3<br>2 2 7</p>
-<h1 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 4 3 2 5</p>
-<h1 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h1><p>　　第一位老师从时刻3开始使用4号教室的钥匙，使用3单位时间，所以在时刻6还钥匙。第二位老师从时刻2开始使用钥匙，使用7单位时间，所以在时刻9还钥匙。<br>　　每个关键时刻后的钥匙状态如下（X表示空）：<br>　　时刻2后为1X345；<br>　　时刻3后为1X3X5；<br>　　时刻6后为143X5；<br>　　时刻9后为14325。</p>
-<h1 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 7<br>1 1 14<br>3 3 12<br>1 15 12<br>2 7 20<br>3 18 12<br>4 21 19<br>5 30 9</p>
-<h1 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 2 3 5 4</p>
-<h1 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h1><p>　　对于30%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 10, 1 ≤ <em>w</em> ≤ <em>N</em>, 1 ≤ <em>s</em>, <em>c</em> ≤ 30；<br>　　对于60%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 50，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 300，1 ≤ <em>c</em> ≤ 50；<br>　　对于所有评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 1000，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 10000，1 ≤ <em>c</em> ≤ 100。</p>
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>用到两个结构体，保存每次取用的3个数据分别按取出时间和返还时间的排序，即按时间顺序排列。</p>
-<p>vector使用sort排序时写法是<code>sort(v.begin(),v.begin()+v.size());</code>。</p>
-<h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> no,s,en;  <span class="comment">//no号钥匙，s时刻借出，en时刻返还 </span></span><br><span class="line">&#125;node[<span class="number">1005</span>],node1[<span class="number">1005</span>];  <span class="comment">//分别对s和en排序 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//按开始时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.s==b.s)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.s&lt;b.s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按返还时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.en==b.en)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.en&lt;b.en;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> order[<span class="number">1005</span>];  <span class="comment">//oder[i]=x表示第i号钥匙挂在x号钩上 </span></span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">1005</span>];  <span class="comment">//ans[x]=i表示第x号钩子挂着i号钥匙 </span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v;  <span class="comment">//处理钥匙的移出和挂回 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> N,K;  <span class="comment">//N把钥匙，K次取还 </span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;N,&amp;K);</span><br><span class="line">	<span class="comment">//初始时，i号钥匙挂于i号钩	</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		order[i]=i;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="comment">//读入i次取还 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;K;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;node[i].no, &amp;node[i].s,&amp;node[i].en);</span><br><span class="line">		node[i].en += node[i].s;</span><br><span class="line">		node1[i] = node[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//分别对s和en排序</span></span><br><span class="line">	<span class="built_in">sort</span>(node,node+K,cmp1);</span><br><span class="line">	<span class="built_in">sort</span>(node1,node1+K,cmp2);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/* //打印排序结果 </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node[i].s&lt;&lt;&#x27; &#x27;&lt;&lt;node[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node1[i].en&lt;&lt;&#x27; &#x27;&lt;&lt;node1[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125; </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;*/</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> f1=<span class="number">0</span>, f2=<span class="number">0</span>;  <span class="comment">//表示借出和返还的次数 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> time=<span class="number">1</span>;!(f1==K &amp;&amp; f2==K);time++)&#123;  <span class="comment">//借还次数都满时，时间停止，退出循环 		</span></span><br><span class="line">		<span class="comment">//先还 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f1;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node1[i].en &gt; time) <span class="keyword">break</span>;  <span class="comment">//还没到下一把钥匙的返还时间 			</span></span><br><span class="line">			<span class="keyword">if</span>(node1[i].en == time)&#123;</span><br><span class="line">				order[node1[i].no] = v[<span class="number">0</span>];  <span class="comment">//取出v中的第一个元素(即最小的编号)</span></span><br><span class="line">				v.<span class="built_in">erase</span>(v.<span class="built_in">begin</span>());  <span class="comment">//并将第一个元素删除</span></span><br><span class="line">				<span class="comment">//cout&lt;&lt;node1[i].no&lt;&lt;&quot; 号钥匙放回 &quot;&lt;&lt;order[node1[i].no]&lt;&lt;endl;</span></span><br><span class="line">			&#125;</span><br><span class="line">			f1++;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//再借</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f2;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node[i].s &gt; time)<span class="keyword">break</span>;	 <span class="comment">//还没到下一把钥匙的借出时间 		</span></span><br><span class="line">			<span class="keyword">if</span>(node[i].s == time)&#123;</span><br><span class="line">				v.<span class="built_in">push_back</span>(order[node[i].no]);  <span class="comment">//保存被取出的钥匙的空位</span></span><br><span class="line">				<span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">begin</span>()+v.<span class="built_in">size</span>());  <span class="comment">//对所有空钩排序</span></span><br><span class="line">				order[node[i].no]=<span class="number">0</span>;</span><br><span class="line">				<span class="comment">//cout&lt;&lt;node[i].no&lt;&lt;&quot; 号钥匙已拿走... &quot;&lt;&lt;endl;		</span></span><br><span class="line">			&#125; </span><br><span class="line">			f2++;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		ans[order[i]]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		cout&lt;&lt;ans[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>OJ</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>结构体排序</tag>
       </tags>
   </entry>
   <entry>
@@ -773,6 +706,73 @@
       </categories>
       <tags>
         <tag>-论文笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>结构体排序-ccf1709-2公共钥匙盒</title>
+    <url>/2019/12/01/%E7%BB%93%E6%9E%84%E4%BD%93%E6%8E%92%E5%BA%8F-ccf1709-2%E5%85%AC%E5%85%B1%E9%92%A5%E5%8C%99%E7%9B%92/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>N个挂钩上有N个钥匙。钥匙没有固定的悬挂位置，但钥匙上有标号。</p>
+<p>每次取钥匙的时候，而不会移动其他钥匙。</p>
+<p>每次还钥匙的时候，挂在<strong>最左边的空挂钩</strong>上。</p>
+<p>同一时刻<strong>先还再取</strong>，且按<strong>编号从小到大</strong>的顺序还。</p>
+<p>初始时，钥匙按编号<strong>从小到大</strong>挂着。</p>
+<p>有<em>K</em>位老师取。给出钥匙标号、取出时间和借出时长，请问最终钥匙盒里面钥匙的顺序是怎样的？</p>
+<span id="more"></span>
+<h1 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h1><p>　　输入的第一行包含两个整数<em>N</em>, <em>K</em>。<br>　　接下来<em>K</em>行，每行三个整数<em>w</em>, <em>s</em>, <em>c</em>，分别表示一位老师要使用的钥匙编号、取出时间和借出的时长。可能有多位老师使用同一把钥匙，但是老师使用钥匙的时间不会重叠。</p>
+<h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><p>　　输出一行，包含<em>N</em>个整数，相邻整数间用一个空格分隔，依次表示每个挂钩上挂的钥匙编号。</p>
+<h1 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 2<br>4 3 3<br>2 2 7</p>
+<h1 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 4 3 2 5</p>
+<h1 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h1><p>　　第一位老师从时刻3开始使用4号教室的钥匙，使用3单位时间，所以在时刻6还钥匙。第二位老师从时刻2开始使用钥匙，使用7单位时间，所以在时刻9还钥匙。<br>　　每个关键时刻后的钥匙状态如下（X表示空）：<br>　　时刻2后为1X345；<br>　　时刻3后为1X3X5；<br>　　时刻6后为143X5；<br>　　时刻9后为14325。</p>
+<h1 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 7<br>1 1 14<br>3 3 12<br>1 15 12<br>2 7 20<br>3 18 12<br>4 21 19<br>5 30 9</p>
+<h1 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 2 3 5 4</p>
+<h1 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h1><p>　　对于30%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 10, 1 ≤ <em>w</em> ≤ <em>N</em>, 1 ≤ <em>s</em>, <em>c</em> ≤ 30；<br>　　对于60%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 50，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 300，1 ≤ <em>c</em> ≤ 50；<br>　　对于所有评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 1000，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 10000，1 ≤ <em>c</em> ≤ 100。</p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>用到两个结构体，保存每次取用的3个数据分别按取出时间和返还时间的排序，即按时间顺序排列。</p>
+<p>vector使用sort排序时写法是<code>sort(v.begin(),v.begin()+v.size());</code>。</p>
+<h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> no,s,en;  <span class="comment">//no号钥匙，s时刻借出，en时刻返还 </span></span><br><span class="line">&#125;node[<span class="number">1005</span>],node1[<span class="number">1005</span>];  <span class="comment">//分别对s和en排序 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//按开始时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.s==b.s)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.s&lt;b.s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按返还时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.en==b.en)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.en&lt;b.en;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> order[<span class="number">1005</span>];  <span class="comment">//oder[i]=x表示第i号钥匙挂在x号钩上 </span></span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">1005</span>];  <span class="comment">//ans[x]=i表示第x号钩子挂着i号钥匙 </span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v;  <span class="comment">//处理钥匙的移出和挂回 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> N,K;  <span class="comment">//N把钥匙，K次取还 </span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;N,&amp;K);</span><br><span class="line">	<span class="comment">//初始时，i号钥匙挂于i号钩	</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		order[i]=i;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="comment">//读入i次取还 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;K;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;node[i].no, &amp;node[i].s,&amp;node[i].en);</span><br><span class="line">		node[i].en += node[i].s;</span><br><span class="line">		node1[i] = node[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//分别对s和en排序</span></span><br><span class="line">	<span class="built_in">sort</span>(node,node+K,cmp1);</span><br><span class="line">	<span class="built_in">sort</span>(node1,node1+K,cmp2);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/* //打印排序结果 </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node[i].s&lt;&lt;&#x27; &#x27;&lt;&lt;node[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node1[i].en&lt;&lt;&#x27; &#x27;&lt;&lt;node1[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125; </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;*/</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> f1=<span class="number">0</span>, f2=<span class="number">0</span>;  <span class="comment">//表示借出和返还的次数 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> time=<span class="number">1</span>;!(f1==K &amp;&amp; f2==K);time++)&#123;  <span class="comment">//借还次数都满时，时间停止，退出循环 		</span></span><br><span class="line">		<span class="comment">//先还 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f1;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node1[i].en &gt; time) <span class="keyword">break</span>;  <span class="comment">//还没到下一把钥匙的返还时间 			</span></span><br><span class="line">			<span class="keyword">if</span>(node1[i].en == time)&#123;</span><br><span class="line">				order[node1[i].no] = v[<span class="number">0</span>];  <span class="comment">//取出v中的第一个元素(即最小的编号)</span></span><br><span class="line">				v.<span class="built_in">erase</span>(v.<span class="built_in">begin</span>());  <span class="comment">//并将第一个元素删除</span></span><br><span class="line">				<span class="comment">//cout&lt;&lt;node1[i].no&lt;&lt;&quot; 号钥匙放回 &quot;&lt;&lt;order[node1[i].no]&lt;&lt;endl;</span></span><br><span class="line">			&#125;</span><br><span class="line">			f1++;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//再借</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f2;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node[i].s &gt; time)<span class="keyword">break</span>;	 <span class="comment">//还没到下一把钥匙的借出时间 		</span></span><br><span class="line">			<span class="keyword">if</span>(node[i].s == time)&#123;</span><br><span class="line">				v.<span class="built_in">push_back</span>(order[node[i].no]);  <span class="comment">//保存被取出的钥匙的空位</span></span><br><span class="line">				<span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">begin</span>()+v.<span class="built_in">size</span>());  <span class="comment">//对所有空钩排序</span></span><br><span class="line">				order[node[i].no]=<span class="number">0</span>;</span><br><span class="line">				<span class="comment">//cout&lt;&lt;node[i].no&lt;&lt;&quot; 号钥匙已拿走... &quot;&lt;&lt;endl;		</span></span><br><span class="line">			&#125; </span><br><span class="line">			f2++;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		ans[order[i]]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		cout&lt;&lt;ans[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>结构体排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深度学习笔记</title>
+    <url>/2021/10/01/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h3 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h3><span id="more"></span>
+<p>对于一个函数来说，通常有两种计算梯度的方式：</p>
+<ul>
+<li>数值梯度（numerical gradient）;</li>
+<li>解析梯度（analytic gradient）;</li>
+</ul>
+<p><strong>数值梯度</strong>的优点是容易编程实现，不要求函数可微。然而，<strong>数值梯度</strong>缺点很明显，通常是近似解，同时求解速度很慢，因此在设计机器学习目标函数时，通常设计成可微的函数，可以快速地求解其<strong>解析梯度</strong>，同时这个梯度是确切解。</p>
+<p>神经网络算法使用反向传播计算目标函数关于每个参数的梯度，可以看做<strong>解析梯度</strong>。由于计算过程中涉及到的参数很多，反向传播计算的梯度很容易出现误差，导致最后迭代得到效果很差的参数值。</p>
+<p>为了确认代码中反向传播计算的梯度是否正确，可以采用<strong>梯度检验（gradient check）</strong>的方法。通过计算数值梯度，得到梯度的近似值，然后和反向传播得到的梯度进行比较，若两者相差很小的话则证明反向传播的代码是正确无误的。</p>
+<p>误差在10^-7说明正确；误差在10^-3说明很可能有问题。</p>
+<p>梯度检验通常在调试代码时用，训练时不用（因为太慢）。</p>
+<p>不要和Dropout一起用，因为后者没有确定的代价函数。</p>
+<h3 id="torch保存和读取模型"><a href="#torch保存和读取模型" class="headerlink" title="torch保存和读取模型"></a>torch保存和读取模型</h3><p>假设网络为<code>model = Net()</code>， <code>optimizer = optim.Adam(model.parameters(), lr=args.lr)</code>。假设在某个epoch，我们要保存模型参数，优化器参数以及epoch。</p>
+<p>一、</p>
+<ol>
+<li>先建立一个字典，保存三个参数：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">state = &#123;<span class="string">&#x27;net&#x27;</span>: model.state_dict(), <span class="string">&#x27;optimizer&#x27;</span>: optimizer.state_dict(), <span class="string">&#x27;epoch&#x27;</span>: epoch&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>调用torch.save():</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torch.save(state, <span class="built_in">dir</span>)</span><br></pre></td></tr></table></figure>
+<p>其中<code>dir</code>表示保存文件的路径+保存文件名，如’/home/modelpara.pth’</p>
+<p>二、</p>
+<p>当你想恢复某一阶段的训练（或者进行测试）时，那么就可以读取之前保存的网络模型参数等。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">checkpoint = torch.load(<span class="built_in">dir</span>)</span><br><span class="line">model.load_state_dict(checkpoint[<span class="string">&#x27;net&#x27;</span>])</span><br><span class="line">optimizer.load_state_dict(checkpoint[<span class="string">&#x27;optimizer&#x27;</span>])</span><br><span class="line">start_epoch = checkpoint[<span class="string">&#x27;epoch&#x27;</span>] + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
       </tags>
   </entry>
 </search>
