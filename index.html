@@ -220,10 +220,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-09 16:56:01 / 修改时间：23:08:33" itemprop="dateCreated datePublished" datetime="2021-10-09T16:56:01+08:00">2021-10-09</time>
+              <time title="创建时间：2021-10-09 16:56:01" itemprop="dateCreated datePublished" datetime="2021-10-09T16:56:01+08:00">2021-10-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-10 21:08:23" itemprop="dateModified" datetime="2021-10-10T21:08:23+08:00">2021-10-10</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -261,22 +267,14 @@
       
           <h1 id="一阶段方法"><a href="#一阶段方法" class="headerlink" title="一阶段方法"></a>一阶段方法</h1><h2 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h2><p>原论文：《You Only Look Once: Unified, Real-Time Object Detection》</p>
 <p>Yolo算法采用一个单独的CNN模型实现end-to-end的目标检测。</p>
-<p>Yolo的CNN网络将输入的图片分割成$ S × S $个单元格，每个单元格负责去检测那些中心点落在该格子内的目标（举个例子：狗的中心落在左下角一个单元格内，那么该单元格负责预测这个狗），每个单元格会预测$B$个边界框<u>bbox</u>（bounding box）及该bbox的<u>置信度</u>（confidence）。如果一个bbox中不含目标，那么其置信度 = 0；如果包含目标，那么置信度 = bbox与实际框（GT）的IOU。</p>
-<p>边界框的大小与位置可以用4个值来表征，加上置信度，每个边界框的预测值实际上包含$5$个元素：$(x, y, w, h, c)$。</p>
-<p><img src="image-20211009172445920.png" alt="image-20211009172445920"></p>
-<p><strong>分类：</strong>在Yolo算法中，一个单元格内的多个bbox都被预测为同一个类别（这是Yolo算法的一个<strong>缺点</strong>，因为这样很容易漏掉小目标），所以对于每一个单元格，会给出置信度最高的那个bbox的$C$个类别的概率值。</p>
-<p>综上，每个单元格需要预测$(B <em> 5 + C)$个值，如果有$ S × S $个单元格，那么最终预测值为$S × S×(B </em> 5 + C)$大小的张量。</p>
-<p><strong>Yolo的缺点</strong>：定位不准；难以检测小目标。</p>
-<h2 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h2><p>相比Yolo，SSD采用CNN来直接进行检测，而不是像Yolo那样在全连接层之后做检测。</p>
-<p>另外还有两个重要的改变，一是SSD提取了不同尺度的特征图来做检测，大尺度特征图（较靠前的特征图）可以用来检测小物体，而小尺度特征图（较靠后的特征图）用来检测大物体；二是SSD采用了不同尺度和长宽比的先验框（Prior boxes, Default boxes，在Faster R-CNN中叫做锚，Anchors）。</p>
-<p><img src="image-20211009222905279.png" alt="image-20211009222905279"></p>
-<h3 id="核心理念"><a href="#核心理念" class="headerlink" title="核心理念"></a>核心理念</h3><h4 id="（1）采用多尺度特征图用于检测"><a href="#（1）采用多尺度特征图用于检测" class="headerlink" title="（1）采用多尺度特征图用于检测"></a>（1）采用多尺度特征图用于检测</h4><p>所谓多尺度，就是采用大小不同的特征图。大尺度特征图（较靠前的特征图）可以用来检测小物体，而小尺度特征图（较靠后的特征图）用来检测大物体。</p>
-<h4 id="（2）采用卷积进行检测"><a href="#（2）采用卷积进行检测" class="headerlink" title="（2）采用卷积进行检测"></a>（2）采用卷积进行检测</h4><p>与Yolo最后采用全连接层不同，SSD直接采用卷积对不同的特征图来进行提取检测结果。对于形状为 m <em> n </em> p 的特征图，只需要采用 3 <em> 3 </em> p  这样比较小的卷积核得到检测值。</p>
-<h4 id="（3）设置先验框"><a href="#（3）设置先验框" class="headerlink" title="（3）设置先验框"></a>（3）设置先验框</h4><p>SSD借鉴了Faster R-CNN中anchor的理念，每个单元设置尺度或者长宽比不同的先验框，预测的边界框（bounding boxes）是以这些先验框为基准的，在一定程度上减少训练难度。</p>
-<p>每个单元会设置多个先验框，其尺度和长宽比存在差异，如下图所示，可以看到每个单元使用了4个不同的先验框，图片中猫和狗分别采用最适合它们形状的先验框来进行训练。</p>
-<p><img src="image-20211009223547399.png" alt="image-20211009223547399"></p>
-<p>综上所述，对于一个大小  m <em> n  的特征图，共有 m </em> n 个单元，每个单元设置的先验框数目记为  k ，那么每个单元共需要 (c + 4) <em> k 个预测值，所有的单元共需要  (c + 4) </em> k <em> m </em> n个预测值，由于SSD采用卷积做检测，所以就需要 (c + 4) * k 个卷积核完成这个特征图的检测过程。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/09/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -330,7 +328,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-10 20:56:10" itemprop="dateModified" datetime="2021-10-10T20:56:10+08:00">2021-10-10</time>
+                <time title="修改时间：2021-10-10 21:08:41" itemprop="dateModified" datetime="2021-10-10T21:08:41+08:00">2021-10-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -369,34 +367,14 @@
       
           <h1 id="End-to-end-Learning-of-Action-Detection-from-Frame-Glimpses-in-Videos-2016-CVPR"><a href="#End-to-end-Learning-of-Action-Detection-from-Frame-Glimpses-in-Videos-2016-CVPR" class="headerlink" title="End-to-end Learning of Action Detection from Frame Glimpses in Videos [2016 CVPR]"></a>End-to-end Learning of Action Detection from Frame Glimpses in Videos [2016 CVPR]</h1><p>视频动作检测任务中的<u>第一个</u>端到端方法。</p>
 <p>该模型有一个基于递归神经网络的agent，它随着时间的推移与视频交互。agent观察固定比例的视频帧，并决定下一步在哪里看以及何时发出预测。</p>
-<p><img src="image-20211008105534974.png" alt="image-20211008105534974"></p>
-<p><strong>总体流程</strong></p>
-<p>在某一步n中，agent观察橙色视频帧并产生3个输出：$(d_n, p_n, l_{n+1})$，分别表示（候选检测结果，预测指标，下一处观察位置）。其中，预测指标$p_n$输出“是”或“否”，指示$d_n$可否被作为一个预测结果被提交；候选检测结果$d_n$包括$(s_n, e_n, c_n)$，分别表示正则化开始、结束位置和该候选的置信度。</p>
-<p>在上图中，$p_n$输出“否”，因此不被动作预测集接受。同时agent在n+1步中移动到$l_{n+1}$的位置，即绿色视频帧的位置，并继续产生3个输出：$(d_{n+1}, p_{n+1}, l_{n+2})$。此时$p_{n+1}$仍不被接受，因此agent在n+2步中移动到$l_{n+2}$的位置，即蓝色视频帧的位置。这次的$p_{n+2}$被接受，因此将该候选结果输入到动作预测集，同时agent继续下一步。</p>
-<p>主要包含两个网络：</p>
-<p>观察网络$f_o$对视频帧的视觉表示进行编码；循环网络$f_h$依次处理这些观察，并决定下一步观察哪个帧以及何时发出预测。</p>
-<p><strong>观察网络$f_o$</strong></p>
-<p>将视频帧中观察到的<u>地点和内容</u>编码为特征向量$O_n$ （通过卷积、池化、全连接等操作）。</p>
-<p>输入：归一化处理后的时序位置。论文中使用VGG16。输出：特征向量$O_n$ 。</p>
-<p><strong>循环网络$f_h$</strong></p>
-<p>是agent的核心模块。</p>
-<p>输入：特征向量$O_n$ 。输出：网络的隐藏状态$h_n$，它是$O_n$和前一隐藏状态$h_{n-1}$的函数，用来模拟动作实例的时间假设。</p>
-<p><strong>训练</strong></p>
-<p>使用反向传播训练$d_n$，使用REINFORCE训练$p_n$和$l_{n+1}$。</p>
-<p><strong>优点</strong></p>
-<p>只需要观察很少数的视频帧（2%甚至更少）</p>
-<h1 id="Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia"><a href="#Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia" class="headerlink" title="Single Shot Temporal Action Detection[2017 ACM Multimedia]"></a>Single Shot Temporal Action Detection[2017 ACM Multimedia]</h1><p><strong>特征提取</strong></p>
-<p>使用了双流网络和C3D网络来提取特征。拼接3个网络的最后一层（该层输出即代表输入snippet对应的每个动作的概率）输出作为后续使用的特征，该特征记作SAS（Snippet Action Score）特征。最终，对于一个包含T 帧图像的视频，我们可以得到等长的SAS特征序列。该特征序列实际上就是一个二维的矩阵。</p>
-<p><img src="image-20211010193617009.png" alt="image-20211010193617009"></p>
-<p><strong>SSAD模型</strong></p>
-<p>输入：长度为T的特征序列。</p>
-<p>SSAD模型是一个全部由时序卷积（一维卷积）构成的网络。主要包括三种卷积层：base, anchor, prediction layer。</p>
-<p>Base Layers：缩短特征序列的长度，并增大特征序列中每个位置的感受野。</p>
-<p>Anchor Layers ：继续缩小特征序列的长度，每层anchor layer输出的特征序列都被关联了多个尺度的anchor instances（类似SSD中的default box和faster RCNN中的anchor）。</p>
-<p>Prediction Layers：获取每个anchor instances所对应的 坐标偏移量，重叠置信度，以及类别分类结果。</p>
-<p>通过多层时间尺度不断缩小的特征序列，SSAD模型可以获得由小到大各个时间尺度的action instance预测。</p>
-<p><img src="image-20211010193938188.png" alt="image-20211010193938188"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/08/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D-%E4%B8%80%E9%98%B6%E6%AE%B5%E6%96%B9%E6%B3%95-%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -960,7 +938,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-07 15:15:17" itemprop="dateModified" datetime="2021-09-07T15:15:17+08:00">2021-09-07</time>
+                <time title="修改时间：2021-10-10 22:07:16" itemprop="dateModified" datetime="2021-10-10T22:07:16+08:00">2021-10-10</time>
               </span>
 
           <br>
@@ -969,7 +947,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>226</span>
+              <span>737</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -988,7 +966,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="三行情书一则"><a href="#三行情书一则" class="headerlink" title="三行情书一则"></a>三行情书一则</h1>
+          <h1 id="致喵喵酱"><a href="#致喵喵酱" class="headerlink" title="致喵喵酱"></a>致喵喵酱</h1>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/07/14/zcy520/#more" rel="contents">
@@ -1343,7 +1321,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">37k</span>
+    <span title="站点总字数">38k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
