@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="引言这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。 BSN网络采用了”local to global”方法，local是指先定位可能性大的时序边界，再整合这些边界作为候选；global是指通过评估一个候选中是否包含动作的置信度来检索候选">
+  <meta name="description" content="概述这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。 BSN网络采用了”local to global”方法，local是指先定位可能性大的时序边界，再整合这些边界作为候选；global是指通过评估一个候选中是否包含动作的置信度来检索候选">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【论文笔记】BSN：Boundary Sensitive Network for Temporal Action Proposal Generation">
 <meta property="og:url" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/index.html">
 <meta property="og:site_name" content="Gwofoo&#39;s blog">
-<meta property="og:description" content="引言这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。 BSN网络采用了”local to global”方法，local是指先定位可能性大的时序边界，再整合这些边界作为候选；global是指通过评估一个候选中是否包含动作的置信度来检索候选">
+<meta property="og:description" content="概述这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。 BSN网络采用了”local to global”方法，local是指先定位可能性大的时序边界，再整合这些边界作为候选；global是指通过评估一个候选中是否包含动作的置信度来检索候选">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005111147012.png">
 <meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005113151719.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005152908321.png">
 <meta property="og:image" content="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/image-20211005153011130.png">
 <meta property="article:published_time" content="2021-10-04T08:45:31.000Z">
-<meta property="article:modified_time" content="2021-10-05T12:53:01.237Z">
+<meta property="article:modified_time" content="2021-10-08T16:08:23.183Z">
 <meta property="article:author" content="Gwofoo">
 <meta property="article:tag" content="-论文笔记">
 <meta name="twitter:card" content="summary">
@@ -240,7 +240,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-05 20:53:01" itemprop="dateModified" datetime="2021-10-05T20:53:01+08:00">2021-10-05</time>
+                <time title="修改时间：2021-10-09 00:08:23" itemprop="dateModified" datetime="2021-10-09T00:08:23+08:00">2021-10-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,7 +265,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.4k</span>
+              <span>5.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -284,7 +284,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。</p>
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。</p>
 <p>BSN网络采用了”local to global”方法，local是指先定位可能性大的时序边界，再整合这些边界作为候选；global是指通过评估一个候选中是否包含动作的置信度来检索候选。用到的数据集是ActivityNet-1.3和THUMOS14。</p>
 <span id="more"></span>
 <p><strong>高质量的候选应满足：</strong></p>
@@ -298,6 +298,12 @@
 <p>（1） 提出了“local to global”的BSN来生成高质量的时序动作候选。locally，定位高概率边界位置以获得精确的候选边界；globally，评估proposal-level的特征以获得可靠的候选置信度评分用于检索。</p>
 <p>（2） 获得了比其他方法更好的候选质量。</p>
 <p>（3） 与已有的动作分类器结合，显著提高了时序动作检测任务的性能。</p>
+<p>BSN的<strong>缺点</strong>：</p>
+<ul>
+<li><strong>效率不够高</strong>：提名特征提取以及置信度评估的过程是对每个时序提名逐个进行的，虽然可以在一定程度上做并行加速，但总体上还是效率比较差；</li>
+<li><strong>语义信息丰富性不足</strong>：为了保证提名特征提取过程的效率，BSN中所设计的32维提名特征是比较简单的，但也限制了置信度评估模块从特征中获得更加丰富的语义信息；</li>
+<li><strong>多阶段</strong>：BSN方法是一个多阶段的方法，没有将几部分网络联合优化。</li>
+</ul>
 <h1 id="模型方法"><a href="#模型方法" class="headerlink" title="模型方法"></a>模型方法</h1><h2 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h2><p>在产生时序动作候选时，是不考虑动作实例的具体类别的。视频的标签是每个动作实例的开始和结束时间。视频的标签在训练时使用；预测时，应使得产生的候选以高召回率和高重叠率覆盖视频标签。</p>
 <h2 id="（a）视频特征编码"><a href="#（a）视频特征编码" class="headerlink" title="（a）视频特征编码"></a>（a）视频特征编码</h2><p>为了产生视频的候选，首先应该提取视频的视觉内容特征。本文采用双流网络作为视觉编码器。</p>
 <p>双流网络：在动作识别、时序动作检测和候选生成等任务中，都有很好的效果。双流网络包括两个分支：<u>空间网络</u>通过单RGB帧来捕捉外观特征，<u>时间网络</u>通过堆叠光流域(stacked optical flow field)来捕捉运动信息。</p>
@@ -389,7 +395,10 @@
     <a href="/2021/10/01/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="深度学习笔记">
       <i class="fa fa-chevron-left"></i> 深度学习笔记
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/08/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D-%E4%B8%80%E9%98%B6%E6%AE%B5%E6%96%B9%E6%B3%95-%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/" rel="next" title="【论文笔记】时序动作定位_一阶段方法_论文总结">
+      【论文笔记】时序动作定位_一阶段方法_论文总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -448,7 +457,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">模型方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88a%EF%BC%89%E8%A7%86%E9%A2%91%E7%89%B9%E5%BE%81%E7%BC%96%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">（a）视频特征编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88b%EF%BC%89%E8%BE%B9%E7%95%8C%E6%95%8F%E6%84%9F%E7%BD%91%E7%BB%9C"><span class="nav-number">2.3.</span> <span class="nav-text">（b）边界敏感网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9D%97-TEM"><span class="nav-number">2.3.1.</span> <span class="nav-text">时序评估模块 TEM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%99%E9%80%89%E7%94%9F%E6%88%90%E6%A8%A1%E5%9D%97-PGM"><span class="nav-number">2.3.2.</span> <span class="nav-text">候选生成模块 PGM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%99%E9%80%89%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9D%97-PEM"><span class="nav-number">2.3.3.</span> <span class="nav-text">候选评估模块 PEM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83BSN"><span class="nav-number">2.4.</span> <span class="nav-text">训练BSN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">数据集和设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E5%80%99%E9%80%89%E7%94%9F%E6%88%90"><span class="nav-number">3.2.</span> <span class="nav-text">时序候选生成</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">模型方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88a%EF%BC%89%E8%A7%86%E9%A2%91%E7%89%B9%E5%BE%81%E7%BC%96%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">（a）视频特征编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88b%EF%BC%89%E8%BE%B9%E7%95%8C%E6%95%8F%E6%84%9F%E7%BD%91%E7%BB%9C"><span class="nav-number">2.3.</span> <span class="nav-text">（b）边界敏感网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9D%97-TEM"><span class="nav-number">2.3.1.</span> <span class="nav-text">时序评估模块 TEM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%99%E9%80%89%E7%94%9F%E6%88%90%E6%A8%A1%E5%9D%97-PGM"><span class="nav-number">2.3.2.</span> <span class="nav-text">候选生成模块 PGM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%99%E9%80%89%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9D%97-PEM"><span class="nav-number">2.3.3.</span> <span class="nav-text">候选评估模块 PEM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83BSN"><span class="nav-number">2.4.</span> <span class="nav-text">训练BSN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">数据集和设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E5%80%99%E9%80%89%E7%94%9F%E6%88%90"><span class="nav-number">3.2.</span> <span class="nav-text">时序候选生成</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -464,20 +473,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -518,12 +527,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">34k</span>
+    <span title="站点总字数">37k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">31 分钟</span>
+    <span title="站点阅读时长">34 分钟</span>
   
 	<br />
 	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
