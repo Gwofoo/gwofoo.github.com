@@ -26,27 +26,6 @@
       </tags>
   </entry>
   <entry>
-    <title>OJ-大数整除</title>
-    <url>/2019/07/04/OJ-%E5%A4%A7%E6%95%B0%E6%95%B4%E9%99%A4/</url>
-    <content><![CDATA[<h2 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a>原题链接</h2><p><a href="http://www.dotcpp.com/oj/problem1074.html">http://www.dotcpp.com/oj/problem1074.html</a></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定理：把一个至少两位的正整数的个位数字去掉，再从余下的数中减去个位数的5倍。当且仅当差是17的倍数时，原数也是17的倍数 。</p>
-<p>例如，34是17的倍数，因为3-20=-17是17的倍数；201不是17的倍数，因为20-5=15不是17的倍数。输入一个正整数n，你的任务是判断它是否是17的倍数。</p>
-<span id="more"></span>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入文件最多包含10组测试数据，每个数据占一行，仅包含一个正整数n（1&lt;=n&lt;=10^100），表示待判断的正整数。n=0表示输入结束，你的程序不应当处理这一行。</p>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每组测试数据，输出一行，表示相应的n是否是17的倍数。1表示是，0表示否。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>34<br>201<br>2098765413<br>1717171717171717171717171717171717171717171717171718<br>0</p>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>1<br>0<br>1<br>0</p>
-<h2 id="题目分析："><a href="#题目分析：" class="headerlink" title="题目分析："></a>题目分析：</h2><p>不要用这个定理，否则要处理大数会很麻烦。 直接用小学列式除法的原理，从高位到低位依次读入数字，得到每一次的余数r （r中刷新地保存每次的余数），直到大数所有位数被读一遍。最后判断r是否为0，为0则说明刚好被17整除。</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	string str;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; str) &#123; <span class="comment">//读入这个大数（2345</span></span><br><span class="line">		<span class="keyword">if</span> (str[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span>) <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//为0则退出</span></span><br><span class="line">		<span class="keyword">int</span> m, r=<span class="number">0</span>;  <span class="comment">//m表示每一次的被除数，r表示每一次的余数</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; str.<span class="built_in">length</span>(); i++) &#123;  <span class="comment">//遍历这个大数</span></span><br><span class="line">			m = r*<span class="number">10</span> + str[i] - <span class="string">&#x27;0&#x27;</span>;  <span class="comment">//（2,23,64,135</span></span><br><span class="line">			r = m % <span class="number">17</span>;  <span class="comment">//（2,6,13,16</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (r) cout &lt;&lt; <span class="string">&#x27;0&#x27;</span> &lt;&lt; endl;  <span class="comment">//r不为0，不能被17整除</span></span><br><span class="line">		<span class="keyword">else</span> cout &lt;&lt; <span class="string">&#x27;1&#x27;</span> &lt;&lt; endl;    <span class="comment">//r为0，能被17整除</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//system(&quot;pause&quot;);</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>OJ</category>
-      </categories>
-      <tags>
-        <tag>OJ</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo博客NexT主题配置</title>
     <url>/2021/09/03/Hexo%E5%8D%9A%E5%AE%A2NexT%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="安装NexT"><a href="#安装NexT" class="headerlink" title="安装NexT"></a>安装NexT</h1><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>在Hexo文件夹下，右键<code>Git Bash Here</code>，</p>
@@ -145,31 +124,24 @@
       </tags>
   </entry>
   <entry>
-    <title>c++：文件读写、字符串</title>
-    <url>/2019/07/09/c-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99+%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<h2 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h2><h3 id="使用重定向"><a href="#使用重定向" class="headerlink" title="使用重定向"></a>使用重定向</h3><p>用freopen可以直接变成由文件输入输出：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);  <span class="comment">//如果不存在，将创建</span></span><br><span class="line">    </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;ooo\n&quot;</span>);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;123&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//以上两种方式都可以将数据直接写入out.txt文件</span></span><br><span class="line">    <span class="comment">//每次运行，out.txt会被重写</span></span><br><span class="line">    </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>重定向方式写起来简单自然，但是不能同时读写文件和标准输入输出。</p>
+    <title>OJ-大数整除</title>
+    <url>/2019/07/04/OJ-%E5%A4%A7%E6%95%B0%E6%95%B4%E9%99%A4/</url>
+    <content><![CDATA[<h2 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a>原题链接</h2><p><a href="http://www.dotcpp.com/oj/problem1074.html">http://www.dotcpp.com/oj/problem1074.html</a></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定理：把一个至少两位的正整数的个位数字去掉，再从余下的数中减去个位数的5倍。当且仅当差是17的倍数时，原数也是17的倍数 。</p>
+<p>例如，34是17的倍数，因为3-20=-17是17的倍数；201不是17的倍数，因为20-5=15不是17的倍数。输入一个正整数n，你的任务是判断它是否是17的倍数。</p>
 <span id="more"></span>
-<h3 id="使用fopen"><a href="#使用fopen" class="headerlink" title="使用fopen"></a>使用fopen</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	FILE *fin,*fout;  <span class="comment">//定义两个文件指针	</span></span><br><span class="line">    fin = fopen(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;rb&quot;</span>);  <span class="comment">//&quot;rb&quot;表示二进制文件只读</span></span><br><span class="line">    fout = fopen(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;wb&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n;	</span><br><span class="line">    <span class="built_in">fscanf</span>(fin,<span class="string">&quot;%d&quot;</span>,&amp;n); <span class="comment">//指定由fin读入整数n</span></span><br><span class="line">    <span class="built_in">fprintf</span>(fout,<span class="string">&quot;%d&quot;</span>,n); <span class="comment">//指定将n输出到fout中</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="常见的字符串函数的用法"><a href="#常见的字符串函数的用法" class="headerlink" title="常见的字符串函数的用法"></a>常见的字符串函数的用法</h2><p>1.<code>tolower(ch)</code><br>把字符转换成小写字母，非字母字符不做处理</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">5</span>]=&#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> lower_ch[<span class="number">5</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">		lower_ch[i]=<span class="built_in">tolower</span>(ch[i]);</span><br><span class="line">		cout&lt;&lt;lower_ch[i];</span><br><span class="line">	&#125; <span class="comment">//输出：abcd</span></span><br></pre></td></tr></table></figure>
-<p>2.<code>strtok(str,&quot;,&quot;)</code><br>以逗号为分隔符，将str切分成一个个子串</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">16</span>] = <span class="string">&quot;abc,d&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span> *p; </span><br><span class="line">    p = strtok(ch, <span class="string">&quot;,&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, p); </span><br><span class="line">    <span class="comment">//输出：abc  (换行）d</span></span><br></pre></td></tr></table></figure>
-<p>3.<code>substr(开始下标，长度)</code></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;My name is Ariel.&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = s1.substr(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s2=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> s3=s1.substr(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s3=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//输出：s2=Y n</span></span><br><span class="line"><span class="comment">//      s3=ame is Ariel.</span></span><br></pre></td></tr></table></figure>
-<p>4.<code>insert(开始下标，str)</code></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = <span class="string">&quot;Ariel!&quot;</span>;</span><br><span class="line">s1.insert(<span class="number">2</span>,s2);<span class="comment">//输出：heAriel!llo</span></span><br></pre></td></tr></table></figure>
-<p>5.<code>erase(开始下标，长度count)</code><br>从开始下标起，删除count个字符。<br>如果现有长度少于count或count为-1，则删到串尾。<br>默认情况下,开始下标为0；默认删除到串尾。</p>
-<p>6.<code>int find_first_of(char c, int start = 0):</code><br>查找字符串中第1个出现的c,由位置start开始。<br>如果有匹配，则返回匹配位置；否则，返回-1.<br>默认情况下，start为0。 </p>
-<p>7.<code>int find_last_of(char c):</code><br>找字符串中最后一个出现的c。<br>有匹配，则返回匹配位置；否则返回-1.</p>
-<p>​    </p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入文件最多包含10组测试数据，每个数据占一行，仅包含一个正整数n（1&lt;=n&lt;=10^100），表示待判断的正整数。n=0表示输入结束，你的程序不应当处理这一行。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每组测试数据，输出一行，表示相应的n是否是17的倍数。1表示是，0表示否。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>34<br>201<br>2098765413<br>1717171717171717171717171717171717171717171717171718<br>0</p>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>1<br>0<br>1<br>0</p>
+<h2 id="题目分析："><a href="#题目分析：" class="headerlink" title="题目分析："></a>题目分析：</h2><p>不要用这个定理，否则要处理大数会很麻烦。 直接用小学列式除法的原理，从高位到低位依次读入数字，得到每一次的余数r （r中刷新地保存每次的余数），直到大数所有位数被读一遍。最后判断r是否为0，为0则说明刚好被17整除。</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	string str;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; str) &#123; <span class="comment">//读入这个大数（2345</span></span><br><span class="line">		<span class="keyword">if</span> (str[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span>) <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//为0则退出</span></span><br><span class="line">		<span class="keyword">int</span> m, r=<span class="number">0</span>;  <span class="comment">//m表示每一次的被除数，r表示每一次的余数</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; str.<span class="built_in">length</span>(); i++) &#123;  <span class="comment">//遍历这个大数</span></span><br><span class="line">			m = r*<span class="number">10</span> + str[i] - <span class="string">&#x27;0&#x27;</span>;  <span class="comment">//（2,23,64,135</span></span><br><span class="line">			r = m % <span class="number">17</span>;  <span class="comment">//（2,6,13,16</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (r) cout &lt;&lt; <span class="string">&#x27;0&#x27;</span> &lt;&lt; endl;  <span class="comment">//r不为0，不能被17整除</span></span><br><span class="line">		<span class="keyword">else</span> cout &lt;&lt; <span class="string">&#x27;1&#x27;</span> &lt;&lt; endl;    <span class="comment">//r为0，能被17整除</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//system(&quot;pause&quot;);</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>C++</category>
+        <category>OJ</category>
       </categories>
       <tags>
-        <tag>C++</tag>
+        <tag>OJ</tag>
       </tags>
   </entry>
   <entry>
@@ -433,11 +405,11 @@
     <url>/2020/07/14/zcy520/</url>
     <content><![CDATA[<h1 id="致喵喵酱"><a href="#致喵喵酱" class="headerlink" title="致喵喵酱"></a>致喵喵酱</h1><span id="more"></span>
 <h1 id="ฅ՞•ﻌ•՞ฅ̊"><a href="#ฅ՞•ﻌ•՞ฅ̊" class="headerlink" title="ฅ՞•ﻌ•՞ฅ̊"></a>ฅ՞•ﻌ•՞ฅ̊</h1><div style="width: 90%;margin: 0 auto">
-    <canvas id="chart9590" style="height: 300px"></canvas>
+    <canvas id="chart8777" style="height: 300px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart9590').getContext('2d');
+    var ctx = document.getElementById('chart8777').getContext('2d');
     var options =     {
     type: 'line',
     data: {
@@ -480,6 +452,34 @@
 ]]></content>
       <tags>
         <tag>彩蛋</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++：文件读写、字符串</title>
+    <url>/2019/07/09/c-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99+%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<h2 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h2><h3 id="使用重定向"><a href="#使用重定向" class="headerlink" title="使用重定向"></a>使用重定向</h3><p>用freopen可以直接变成由文件输入输出：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);  <span class="comment">//如果不存在，将创建</span></span><br><span class="line">    </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;ooo\n&quot;</span>);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;123&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//以上两种方式都可以将数据直接写入out.txt文件</span></span><br><span class="line">    <span class="comment">//每次运行，out.txt会被重写</span></span><br><span class="line">    </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重定向方式写起来简单自然，但是不能同时读写文件和标准输入输出。</p>
+<span id="more"></span>
+<h3 id="使用fopen"><a href="#使用fopen" class="headerlink" title="使用fopen"></a>使用fopen</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	FILE *fin,*fout;  <span class="comment">//定义两个文件指针	</span></span><br><span class="line">    fin = fopen(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;rb&quot;</span>);  <span class="comment">//&quot;rb&quot;表示二进制文件只读</span></span><br><span class="line">    fout = fopen(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;wb&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n;	</span><br><span class="line">    <span class="built_in">fscanf</span>(fin,<span class="string">&quot;%d&quot;</span>,&amp;n); <span class="comment">//指定由fin读入整数n</span></span><br><span class="line">    <span class="built_in">fprintf</span>(fout,<span class="string">&quot;%d&quot;</span>,n); <span class="comment">//指定将n输出到fout中</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="常见的字符串函数的用法"><a href="#常见的字符串函数的用法" class="headerlink" title="常见的字符串函数的用法"></a>常见的字符串函数的用法</h2><p>1.<code>tolower(ch)</code><br>把字符转换成小写字母，非字母字符不做处理</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">5</span>]=&#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> lower_ch[<span class="number">5</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">		lower_ch[i]=<span class="built_in">tolower</span>(ch[i]);</span><br><span class="line">		cout&lt;&lt;lower_ch[i];</span><br><span class="line">	&#125; <span class="comment">//输出：abcd</span></span><br></pre></td></tr></table></figure>
+<p>2.<code>strtok(str,&quot;,&quot;)</code><br>以逗号为分隔符，将str切分成一个个子串</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">16</span>] = <span class="string">&quot;abc,d&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span> *p; </span><br><span class="line">    p = strtok(ch, <span class="string">&quot;,&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, p); </span><br><span class="line">    <span class="comment">//输出：abc  (换行）d</span></span><br></pre></td></tr></table></figure>
+<p>3.<code>substr(开始下标，长度)</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;My name is Ariel.&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = s1.substr(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s2=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> s3=s1.substr(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s3=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//输出：s2=Y n</span></span><br><span class="line"><span class="comment">//      s3=ame is Ariel.</span></span><br></pre></td></tr></table></figure>
+<p>4.<code>insert(开始下标，str)</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = <span class="string">&quot;Ariel!&quot;</span>;</span><br><span class="line">s1.insert(<span class="number">2</span>,s2);<span class="comment">//输出：heAriel!llo</span></span><br></pre></td></tr></table></figure>
+<p>5.<code>erase(开始下标，长度count)</code><br>从开始下标起，删除count个字符。<br>如果现有长度少于count或count为-1，则删到串尾。<br>默认情况下,开始下标为0；默认删除到串尾。</p>
+<p>6.<code>int find_first_of(char c, int start = 0):</code><br>查找字符串中第1个出现的c,由位置start开始。<br>如果有匹配，则返回匹配位置；否则，返回-1.<br>默认情况下，start为0。 </p>
+<p>7.<code>int find_last_of(char c):</code><br>找字符串中最后一个出现的c。<br>有匹配，则返回匹配位置；否则返回-1.</p>
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -750,7 +750,7 @@
 <p>使用反向传播训练$d_n$，使用REINFORCE训练$p_n$和$l_{n+1}$。</p>
 <p><strong>优点</strong></p>
 <p>只需要观察很少数的视频帧（2%甚至更少）</p>
-<h1 id="Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia"><a href="#Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia" class="headerlink" title="Single Shot Temporal Action Detection[2017 ACM Multimedia]"></a>Single Shot Temporal Action Detection[2017 ACM Multimedia]</h1><p><strong>特征提取</strong></p>
+<h1 id="Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia"><a href="#Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia" class="headerlink" title="Single Shot Temporal Action Detection [2017 ACM Multimedia]"></a>Single Shot Temporal Action Detection [2017 ACM Multimedia]</h1><p><strong>特征提取</strong></p>
 <p>使用了双流网络和C3D网络来提取特征。拼接3个网络的最后一层（该层输出即代表输入snippet对应的每个动作的概率）输出作为后续使用的特征，该特征记作SAS（Snippet Action Score）特征。最终，对于一个包含T 帧图像的视频，我们可以得到等长的SAS特征序列。该特征序列实际上就是一个二维的矩阵。</p>
 <p><img src="image-20211010193617009.png" alt="image-20211010193617009"></p>
 <p><strong>SSAD模型</strong></p>
@@ -761,41 +761,27 @@
 <p>Prediction Layers：获取每个anchor instances所对应的 坐标偏移量，重叠置信度，以及类别分类结果。</p>
 <p>通过多层时间尺度不断缩小的特征序列，SSAD模型可以获得由小到大各个时间尺度的action instance预测。</p>
 <p><img src="image-20211010193938188.png" alt="image-20211010193938188"></p>
+<h1 id="End-to-End-Single-Stream-Temporal-Action-Detection-in-Untrimmed-Videos-2017-BMVC"><a href="#End-to-End-Single-Stream-Temporal-Action-Detection-in-Untrimmed-Videos-2017-BMVC" class="headerlink" title="End-to-End, Single-Stream Temporal Action Detection in Untrimmed Videos [2017 BMVC]"></a>End-to-End, Single-Stream Temporal Action Detection in Untrimmed Videos [2017 BMVC]</h1><p>模型由三个主要部分组成:输入视觉编码、两个循环记忆模块和最终输出。</p>
+<p><img src="image-20211011161132357.png" alt="image-20211011161132357"></p>
+<p><strong>视觉编码器：</strong></p>
+<p>用C3D网络从输入的视频帧中获取较低层次的时空视觉信息。</p>
+<p>将总长为L帧的视频分成T个不重叠的时间步，每个时间步内含有δ帧。每个时间步都进行视觉编码，得到φ。如上图。</p>
+<p><strong>语义约束的循环记忆模块：</strong></p>
+<p>有选择地聚合相关上下文。每个记忆模块包含了多层<u>门控循环单元</u>( gated recurrent unit， GRU)。如下图。</p>
+<p><img src="image-20211011165733229.png" alt="image-20211011165733229"></p>
+<p>该模块的一个关键：它们在训练过程中受到<u>语义约束</u>(Semantically Constrained)。<strong>？？？</strong></p>
+<p>循环记忆模块有2个（P和C），分别负责捕捉proposal信息和classification信息。</p>
+<p>输入：时间步t的视觉编码器输出φ以及前一个时间步的隐藏状态表示。</p>
+<p>输出：最后一个GRU层在该模块中输出的隐藏状态h（如上图）。</p>
+<p><strong>输出检测：</strong></p>
+<p>输入：前一模块中，2个循环记忆模块的输出特征$h_{prop}$和$h_{cls}$进行连接，得到$h_{det}$。</p>
+<p>输出：{起始，结束，分类}</p>
 ]]></content>
       <categories>
         <category>论文笔记</category>
       </categories>
       <tags>
         <tag>论文笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客使用指南</title>
-    <url>/2021/09/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[<h1 id="从创建到部署"><a href="#从创建到部署" class="headerlink" title="从创建到部署"></a>从创建到部署</h1><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo n <span class="string">&quot;博客使用指南&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;博客使用指南&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h2 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
-<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
-<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
-<h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h2 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>默认情况下，访问网址为： <code>http://localhost:4000/</code></p>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h2 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo d</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<span id="more"></span>
-<h1 id="设置标签"><a href="#设置标签" class="headerlink" title="设置标签"></a>设置标签</h1><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"> tages: </span><br><span class="line">- 标签<span class="number">1</span></span><br><span class="line">- 标签<span class="number">2</span></span><br><span class="line">...</span><br><span class="line">- 标签n</span><br></pre></td></tr></table></figure>
-<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">tages: [标签<span class="number">1</span>,标签<span class="number">2</span>,...标签n]</span><br></pre></td></tr></table></figure>
-<h1 id="手动设置文章时间"><a href="#手动设置文章时间" class="headerlink" title="手动设置文章时间"></a>手动设置文章时间</h1><p>直接在文章开头设置发表/更新时间：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">date: <span class="number">2021</span>-<span class="number">09</span>-<span class="number">03</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">51</span></span><br><span class="line">updated: <span class="number">2018</span>-<span class="number">01</span>-<span class="number">01</span> <span class="number">12</span>:<span class="number">00</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Hexo建站</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>博客使用</tag>
       </tags>
   </entry>
   <entry>
@@ -838,7 +824,7 @@
   <entry>
     <title>目标检测算法</title>
     <url>/2021/10/09/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="一阶段方法"><a href="#一阶段方法" class="headerlink" title="一阶段方法"></a>一阶段方法</h1><h2 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h2><p>原论文：《You Only Look Once: Unified, Real-Time Object Detection》</p>
+    <content><![CDATA[<h1 id="一阶段（端到端）方法"><a href="#一阶段（端到端）方法" class="headerlink" title="一阶段（端到端）方法"></a>一阶段（端到端）方法</h1><h2 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h2><p>原论文：《You Only Look Once: Unified, Real-Time Object Detection》</p>
 <p>Yolo算法采用一个单独的CNN模型实现end-to-end的目标检测。</p>
 <span id="more"></span>
 <p>Yolo的CNN网络将输入的图片分割成$ S × S $个单元格，每个单元格负责去检测那些中心点落在该格子内的目标（举个例子：狗的中心落在左下角一个单元格内，那么该单元格负责预测这个狗），每个单元格会预测$B$个边界框<u>bbox</u>（bounding box）及该bbox的<u>置信度</u>（confidence）。如果一个bbox中不含目标，那么其置信度 = 0；如果包含目标，那么置信度 = bbox与实际框（GT）的IOU。</p>
@@ -894,6 +880,35 @@
       <tags>
         <tag>C++</tag>
         <tag>结构体排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客使用指南</title>
+    <url>/2021/09/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<h1 id="从创建到部署"><a href="#从创建到部署" class="headerlink" title="从创建到部署"></a>从创建到部署</h1><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo n <span class="string">&quot;博客使用指南&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;博客使用指南&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h2 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
+<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
+<h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h2 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>默认情况下，访问网址为： <code>http://localhost:4000/</code></p>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h2 id="部署网站"><a href="#部署网站" class="headerlink" title="部署网站"></a>部署网站</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo d</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<span id="more"></span>
+<h1 id="设置标签"><a href="#设置标签" class="headerlink" title="设置标签"></a>设置标签</h1><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"> tages: </span><br><span class="line">- 标签<span class="number">1</span></span><br><span class="line">- 标签<span class="number">2</span></span><br><span class="line">...</span><br><span class="line">- 标签n</span><br></pre></td></tr></table></figure>
+<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">tages: [标签<span class="number">1</span>,标签<span class="number">2</span>,...标签n]</span><br></pre></td></tr></table></figure>
+<h1 id="手动设置文章时间"><a href="#手动设置文章时间" class="headerlink" title="手动设置文章时间"></a>手动设置文章时间</h1><p>直接在文章开头设置发表/更新时间：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">date: <span class="number">2021</span>-<span class="number">09</span>-<span class="number">03</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">51</span></span><br><span class="line">updated: <span class="number">2018</span>-<span class="number">01</span>-<span class="number">01</span> <span class="number">12</span>:<span class="number">00</span>:<span class="number">00</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Hexo建站</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>博客使用</tag>
       </tags>
   </entry>
 </search>
