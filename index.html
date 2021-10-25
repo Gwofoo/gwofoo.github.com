@@ -197,7 +197,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/16/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D-%E5%BC%B1%E7%9B%91%E7%9D%A3%E6%96%B9%E6%B3%95-%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/WeaklyTAL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -211,7 +211,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/10/16/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D-%E5%BC%B1%E7%9B%91%E7%9D%A3%E6%96%B9%E6%B3%95-%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">【论文笔记】时序动作定位-弱监督方法-论文总结</a>
+            <a href="/WeaklyTAL/" class="post-title-link" itemprop="url">【论文笔记】时序动作定位-弱监督方法-论文总结</a>
         </h2>
 
         <div class="post-meta">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-24 19:36:54" itemprop="dateModified" datetime="2021-10-24T19:36:54+08:00">2021-10-24</time>
+                <time title="修改时间：2021-10-25 16:47:36" itemprop="dateModified" datetime="2021-10-25T16:47:36+08:00">2021-10-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,7 +246,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.2k</span>
+              <span>4.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -267,72 +267,14 @@
       
           <h1 id="UntrimmedNets-for-Weakly-Supervised-Action-Recognition-and-Detection-CVPR-2017"><a href="#UntrimmedNets-for-Weakly-Supervised-Action-Recognition-and-Detection-CVPR-2017" class="headerlink" title="UntrimmedNets for Weakly Supervised Action Recognition and Detection (CVPR 2017)"></a>UntrimmedNets for Weakly Supervised Action Recognition and Detection (CVPR 2017)</h1><p>UntrimmedNet首次提出弱监督用于动作识别和检测。</p>
 <p><img src="image-20211016213917815.png" alt="image-20211016213917815"></p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>如下图，首先生成clip proposals，即从视频中采样出较短的clips集合。然后将这些clip proposals输入到预训练好的网络中进行特征提取。之后，使用一个分类模块（Classification）来对每个clip proposal进行行为识别，以及一个选择模块（Selection）来检测或排序重要的clip proposals。最后，结合分类模块和选择模块的输出来产生视频级别的预测。</p>
-<p><img src="image-20211016214120582.png" alt="image-20211016214120582"></p>
-<h2 id="Clip-sampling"><a href="#Clip-sampling" class="headerlink" title="Clip sampling"></a>Clip sampling</h2><p>给定一个长视频V，将其分割成N个clip proposals。</p>
-<p>两种方法：</p>
-<ul>
-<li>均匀采样：将长视频平均分成N个等长的clips。</li>
-<li>基于镜头采样：提取每一帧的HOG特征，如果相邻帧之间的HOG特征区别大于某个阈值，即检测到了一个shot change。在每个shot内部，如果该shot的时间过长，则将其细分为多个等长的clips，每个clip的长度为K帧（K=300）。</li>
-</ul>
-<h2 id="UntrimmedNets"><a href="#UntrimmedNets" class="headerlink" title="UntrimmedNets"></a>UntrimmedNets</h2><p>由3个模块组成：特征提取模块、分类模块和选择模块。</p>
-<h3 id="特征提取模块"><a href="#特征提取模块" class="headerlink" title="特征提取模块"></a>特征提取模块</h3><p>在该模块，为每个proposal提取特征表示。UntrimmedNet不依赖于某个特定的特征提取网络。文章尝试了两个结构：Two-stream CNN和Temporal Segment Network，后者的spatial stream的输入是1个RGB帧，而temporal stream的输入是5帧TVL1 optical flow。</p>
-<h3 id="分类模块"><a href="#分类模块" class="headerlink" title="分类模块"></a>分类模块</h3><p>根据前一个模块提取到的特征，对每个clip proposal进行动作分类。最终给出每个proposal对C个动作类别的得分向量（score vector）$x^c$。另外再对所有$x^c$做一个softmax得到$\overline{x}^c$：</p>
-<script type="math/tex; mode=display">
-\overline{x}^c_i=\frac{exp(x^c_i)}{\sum_{k=1}^{C} exp(x^c_k)}</script><p>原始分类score（$x^c$）含有原始的class activation信息，能反映该clip含有一个行为类别的程度。如果不包含行为，则它在每个类别上的值都会很小；softmax分类score（$\overline{x}^c$）由于经过了正则化操作，不能正确表示不含有任何行为的情况。</p>
-<h3 id="选择模块"><a href="#选择模块" class="headerlink" title="选择模块"></a>选择模块</h3><p>选择模块的目标是选择出最有可能包含动作的clip proposals。论文提出两种选择方法：<u>硬选择</u>（hard selection，基于multiple instance learning 多示例学习，MIL）和<u>软选择</u>（soft selection，基于attention机制）。</p>
-<ul>
-<li>硬选择方法：为每个动作类别识别出k个clip proposals子集合。选择k个分类得分$x^c$最高的proposals，然后对这些proposals求平均。</li>
-<li>软选择方法：结合所有clip proposals的分类得分，学习得到重要性权重（importance weight）来对clip proposals进行排序。最终给出每个proposal经注意力权重后算出的<u>选择得分</u>（selection score）$x^s$。与前一模块相似，另外再对所有$x^s$做一个softmax得到$\overline{x}^s$。</li>
-</ul>
-<p>需要注意的是，在<u>分类模块</u>中，softmax是对每个的proposal的所有类别的classification score进行操作；而在<u>选择模块</u>中，softmax是对不同的proposal进行操作。</p>
-<h3 id="视频预测"><a href="#视频预测" class="headerlink" title="视频预测"></a>视频预测</h3><p>通过结合<u>分类得分</u>和<u>选择得分</u>来生成视频V的<u>预测得分</u> $\overline{x}^p$。</p>
-<ul>
-<li><p>对于硬选择方法，简单地对选出的top-k instances取平均</p>
-</li>
-<li><p>对于软选择方法，简单地计算<u>分类得分</u>和<u>选择得分</u>的乘积的加权和：</p>
-</li>
-</ul>
-<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>使用交叉熵损失进行反向传播从而训练模型各模块的参数。</p>
-<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><strong>动作识别结果：</strong></p>
-<p><img src="image-20211016231819620.png" alt="image-20211016231819620"></p>
-<p><strong>动作定位结果：</strong></p>
-<p>IoU@0.5=13.7</p>
-<p><img src="image-20211016231923145.png" alt="image-20211016231923145"></p>
-<h1 id="STPN-Weakly-Supervised-Action-Localization-by-Sparse-Temporal-Pooling-Network-2018-CVPR"><a href="#STPN-Weakly-Supervised-Action-Localization-by-Sparse-Temporal-Pooling-Network-2018-CVPR" class="headerlink" title="(STPN)Weakly Supervised Action Localization by Sparse Temporal Pooling Network (2018 CVPR)"></a>(STPN)Weakly Supervised Action Localization by Sparse Temporal Pooling Network (2018 CVPR)</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>文章认为，通过识别视频中的重要动作的一组关键片段，可识别出其中的动作。 因此，文章设计了一个神经网络，学习如何度量视频中每个片段的重要性，并自动选择具有代表性的片段的稀疏子集来预测视频级的类别。预测时，首先确定视频的类别，然后生成时序动作proposals。</p>
-<p>其网络大致结构如下。将视频<strong>均分</strong>为N个segment；最后能够得出每个片段在预测分类标签过程中的重要程度，从而生成对应的类别标签以及区域建议。</p>
-<p><img src="image-20211018203426583.png" alt="image-20211018203426583"></p>
-<h2 id="动作分类"><a href="#动作分类" class="headerlink" title="动作分类"></a>动作分类</h2><p>将训练视频均分为T个segment（作者在实际训练中T=400）。每个segment通过I3D得到维度T×1024的特征，通过一个attention module（注意力模块）生成对应segment的重要性。其中attention module（上图右下角）由两个全连接层以及一个ReLU层组成，然后经过Sigmoid后范围为0-1之间，输出维度为T×1，最后通过注意力权重与segment特征的加权和得到最终的视频特征表示，其表示为</p>
-<p><img src="image-20211018204047435.png" alt="image-20211018204047435"></p>
-<p>其中$x_t$代表第$t$个segment的视频表示， $\lambda_t$表示为对应$x_t$的权重向量， $T$为该视频segments的数量。由于一个视频可能包含多个动作实例，因此再通过Sigmoid函数而不是softmax函数得到最终包含多个动作类别概率。 而针对于loss函数设计，作者考虑到attention module中注意力权重是接近于0或1的数值，因此作者loss函数由两部分组成， 分别为分类损失和稀疏损失。分类损失是基于ground-truth和$\overline{x}$之间标准的多标签交叉熵损失,而稀疏损失则由$l_1$损失函数组成。</p>
-<h2 id="Temporal-Class-Activation-Mapping"><a href="#Temporal-Class-Activation-Mapping" class="headerlink" title="Temporal Class Activation Mapping"></a>Temporal Class Activation Mapping</h2><p>为了确定与目标时间对应的时间区间，作者提出了一个叫做T-CAM的概念，表示时间步$t$时刻的该表示与各个类别的<strong>相关性</strong>。 作者在下图给出了视频attention weights和T-CAM的输出实例，attention weights和T-CAM有效地突出了各个时序区域。</p>
-<p>一些具有较大定位权重的时间间隔不对应于较大的T-CAM值，因为这些间隔可能代表了其他干扰行为。attention weights测量时间视频片段的泛化动作，而T-CAM呈现类别特定信息。</p>
-<p><img src="image-20211018211504932.png" alt="image-20211018211504932"></p>
-<h2 id="时序动作定位"><a href="#时序动作定位" class="headerlink" title="时序动作定位"></a>时序动作定位</h2><p>为了生成 temporal proposals，作者将光流flow和RGB图像分别送入网络，其输出与注意力权重相乘，然后得到加权后的T-CAM，通过给定阈值来分割出对应的action proposals。最后通过非极大值抑制生成最终的proposals。</p>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p><img src="image-20211018215633190.png" alt="image-20211018215633190"></p>
-<h1 id="CMCS-Completeness-Modeling-and-Context-Separation-for-Weakly-Supervised-Temporal-Action-Localization-2019-CVPR"><a href="#CMCS-Completeness-Modeling-and-Context-Separation-for-Weakly-Supervised-Temporal-Action-Localization-2019-CVPR" class="headerlink" title="(CMCS)Completeness Modeling and Context Separation for Weakly Supervised Temporal Action Localization (2019 CVPR)"></a>(CMCS)Completeness Modeling and Context Separation for Weakly Supervised Temporal Action Localization (2019 CVPR)</h1><p>动作完整性建模和动作上下文分离</p>
-<h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>弱监督导致的两个问题：动作完整性建模和动作上下文分离。</p>
-<p><strong>弱监督TAL的两大挑战</strong></p>
-<ol>
-<li>如何在没有完整注释的情况下检测出完整的动作实例。识别出动作的一个片段足以进行视频级分类，但不能进行片段级定位。比如，“罚点球”这一动作由“射门”和“球飞”这两个子动作组成，只要能识别出“射门”便可对这个视频进行分类，但要想定位“罚点球”的片段，“球飞”子动作很容易被漏掉。</li>
-<li>如何用弱标签将动作实例与其上下文区分开来。<strong>在同一类动作实例的前后，通常存在一些在视觉上相似的镜头画面，</strong>这些画面被称为<strong>上下文（context）</strong>。比如，对“打台球”这一动作，在视频中往往存在镜头对着台球桌的静态画面。上下文和背景的区别是：上下文画面通常与真实动作同时出现，不涉及其他动作类别的视频；而背景画面是类别无关的，随机分布。文章认为，除非使用关于动作的先验知识，否则在弱监督情况下，动作—上下文分离本质上是困难的。</li>
-</ol>
-<p>针对这两个问题，分别提出了多分支网络结构和难负例数据生成方案。</p>
-<h2 id="难负例数据生成"><a href="#难负例数据生成" class="headerlink" title="难负例数据生成"></a>难负例数据生成</h2><p>弱监督模型倾向于将真实动作与其上下文context相混淆，也就是hard negatives（可以理解为容易将负样本看成正样本的那些样本）。利用“静止的视频片段不太可能是动作”这一先验，为训练生成难负例数据。光流强度小于一个阈值（差不多是静止的画面）则把这个视频中的这些帧提取出来构成伪视频，并标记为背景类，添加到训练集中。</p>
-<h2 id="基于多分支网络的完整性建模"><a href="#基于多分支网络的完整性建模" class="headerlink" title="基于多分支网络的完整性建模"></a>基于多分支网络的完整性建模</h2><p>多分支网络包括：特征提取模块、嵌入模块、多分支分类模块和时序注意力模块。</p>
-<p><img src="image-20211024163047504.png" alt="image-20211024163047504"></p>
-<h3 id="特征提取模块-1"><a href="#特征提取模块-1" class="headerlink" title="特征提取模块"></a>特征提取模块</h3><p>将视频分为T个snippets，进行特征提取。文中使用的是UntrimmedNet和 I3D 。</p>
-<h3 id="嵌入模块"><a href="#嵌入模块" class="headerlink" title="嵌入模块"></a>嵌入模块</h3><p>以上提取的特征需要特定于本任务的特征嵌入。利用一个时序卷积层和一个ReLU激活层来嵌入特征。</p>
-<h3 id="多分支分类模块"><a href="#多分支分类模块" class="headerlink" title="多分支分类模块"></a>多分支分类模块</h3><p>在这个模块中，存在K个并行的分类分支，目的是让各个分支关注动作的不同部分，让每个分支更准确的反映当前分支的动作分布情况，也就是说，这几个分支应是互补的，可以反映出其他分支没有的信息。</p>
-<p>每个分支将嵌入的特征序列输入到时序卷积层，得到C+1个类别的分类得分 $A_k$，再通过softmax输出<u>类别激活序列</u> $\overline{A}_k$。</p>
-<p>为了避免各个分支给出相似的CAS，必须对分支加以约束。文中使用了基于余弦相似度的多样性损失。（对于两个向量，余弦值越接近1，就表明夹角越接近0度，也就是两个向量越相似；越接近0，就表明夹角越接近90度，也就是两个向量越不相似）</p>
-<p>最后对所有分支的CAS进行平均，并进行softmax。</p>
-<p>如下图所示，a是真值；b是负责定位“射门”的CAS；c是负责定位“球飞”的CAS；d是CAS的平均，从而完整识别出整个动作。</p>
-<p><img src="image-20211024154109036.png" alt="image-20211024154109036"></p>
-<h3 id="时序注意力模块"><a href="#时序注意力模块" class="headerlink" title="时序注意力模块"></a>时序注意力模块</h3><p><img src="image-20211024173940638.png" alt="image-20211024173940638"></p>
-<p>输入的视频未经修剪，且包含无关背景。所以利用时序注意力模块学习各snippets的重要性权重。注意力权重与<u>多分支分类模块</u>中经平均后的CAS做加权和。最终输出长度为C+1的向量。然后计算其与GT的交叉熵，即标准MIL损失。</p>
-<h2 id="动作定位"><a href="#动作定位" class="headerlink" title="动作定位"></a>动作定位</h2><p>实际中，一段视频可能含有不止一个类别，因此需设置阈值，当某一类别的得分高于阈值的时候才认为视频中出现了该类别。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/WeaklyTAL/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -355,7 +297,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/09/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/ckv6f9ecw00149ou97m8ya577/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -369,7 +311,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/10/09/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">目标检测算法</a>
+            <a href="/ckv6f9ecw00149ou97m8ya577/" class="post-title-link" itemprop="url">目标检测算法</a>
         </h2>
 
         <div class="post-meta">
@@ -427,7 +369,7 @@
 <p>Yolo算法采用一个单独的CNN模型实现end-to-end的目标检测。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/10/09/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/#more" rel="contents">
+              <a class="btn" href="/ckv6f9ecw00149ou97m8ya577/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -455,7 +397,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/08/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D-%E4%B8%80%E9%98%B6%E6%AE%B5%E6%96%B9%E6%B3%95-%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/oneStageTAL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -469,7 +411,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/10/08/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D-%E4%B8%80%E9%98%B6%E6%AE%B5%E6%96%B9%E6%B3%95-%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">【论文笔记】时序动作定位_一阶段方法_论文总结</a>
+            <a href="/oneStageTAL/" class="post-title-link" itemprop="url">【论文笔记】时序动作定位_一阶段方法_论文总结</a>
         </h2>
 
         <div class="post-meta">
@@ -486,7 +428,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-16 21:31:55" itemprop="dateModified" datetime="2021-10-16T21:31:55+08:00">2021-10-16</time>
+                <time title="修改时间：2021-10-25 16:50:24" itemprop="dateModified" datetime="2021-10-25T16:50:24+08:00">2021-10-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -527,7 +469,7 @@
 <p>该模型有一个基于递归神经网络的agent，它随着时间的推移与视频交互。agent观察固定比例的视频帧，并决定下一步在哪里看以及何时发出预测。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/10/08/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D-%E4%B8%80%E9%98%B6%E6%AE%B5%E6%96%B9%E6%B3%95-%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/#more" rel="contents">
+              <a class="btn" href="/oneStageTAL/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -555,7 +497,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/ckv6f9ecu000w9ou9709ser8q/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -569,107 +511,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/" class="post-title-link" itemprop="url">【论文笔记】BSN：Boundary Sensitive Network for Temporal Action Proposal Generation</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-04 16:45:31" itemprop="dateCreated datePublished" datetime="2021-10-04T16:45:31+08:00">2021-10-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-09 00:08:23" itemprop="dateModified" datetime="2021-10-09T00:08:23+08:00">2021-10-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>这篇论文主要针对时序动作提名生成(temporal action proposal generation)任务提出了一种新的方法-边界敏感网络(Boundary Sensitive Network, BSN)。</p>
-<p>BSN网络采用了”local to global”方法，local是指先定位可能性大的时序边界，再整合这些边界作为候选；global是指通过评估一个候选中是否包含动作的置信度来检索候选。用到的数据集是ActivityNet-1.3和THUMOS14。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/04/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91BSN%EF%BC%9ABoundary-Sensitive-Network-for-Temporal-Action-Proposal-Generation/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-	
-	<div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/01/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="Gwofoo">
-      <meta itemprop="description" content="Welcome to Gwofoo's blog. Keep it up!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gwofoo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/01/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">深度学习笔记</a>
+            <a href="/ckv6f9ecu000w9ou9709ser8q/" class="post-title-link" itemprop="url">深度学习笔记</a>
         </h2>
 
         <div class="post-meta">
@@ -726,7 +568,7 @@
           <h3 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h3>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/10/01/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
+              <a class="btn" href="/ckv6f9ecu000w9ou9709ser8q/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -754,7 +596,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/17/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91A-Survey-on-Temporal-Action-Localization/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/surveyTAL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -768,7 +610,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/09/17/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91A-Survey-on-Temporal-Action-Localization/" class="post-title-link" itemprop="url">【论文笔记】A Survey on Temporal Action Localization</a>
+            <a href="/surveyTAL/" class="post-title-link" itemprop="url">【论文笔记】A Survey on Temporal Action Localization</a>
         </h2>
 
         <div class="post-meta">
@@ -785,7 +627,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-05 13:37:50" itemprop="dateModified" datetime="2021-10-05T13:37:50+08:00">2021-10-05</time>
+                <time title="修改时间：2021-10-25 16:51:55" itemprop="dateModified" datetime="2021-10-25T16:51:55+08:00">2021-10-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -825,7 +667,7 @@
           <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文介绍了时序动作定位（Temporal Action Localization）的相关技术、基准数据集和评价指标。此外，从完全监督学习和弱监督学习两个方面，总结了时序动作定位。列举了部分代表性工作并比较了他们的性能。最后，还提出了可能的研究方向。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/09/17/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91A-Survey-on-Temporal-Action-Localization/#more" rel="contents">
+              <a class="btn" href="/surveyTAL/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -853,7 +695,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/ckv6f9ecv000y9ou9bsm03y94/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -867,7 +709,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/09/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">博客使用指南</a>
+            <a href="/ckv6f9ecv000y9ou9bsm03y94/" class="post-title-link" itemprop="url">博客使用指南</a>
         </h2>
 
         <div class="post-meta">
@@ -935,7 +777,7 @@
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/09/04/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/#more" rel="contents">
+              <a class="btn" href="/ckv6f9ecv000y9ou9bsm03y94/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -963,7 +805,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/03/Hexo%E5%8D%9A%E5%AE%A2NexT%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/ckv6f9ece00019ou9ex947gsr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -977,7 +819,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/09/03/Hexo%E5%8D%9A%E5%AE%A2NexT%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Hexo博客NexT主题配置</a>
+            <a href="/ckv6f9ece00019ou9ex947gsr/" class="post-title-link" itemprop="url">Hexo博客NexT主题配置</a>
         </h2>
 
         <div class="post-meta">
@@ -1037,7 +879,7 @@
 <p>管理员解压，文件夹改名为next（全部小写），至themes目录下。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/09/03/Hexo%E5%8D%9A%E5%AE%A2NexT%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/#more" rel="contents">
+              <a class="btn" href="/ckv6f9ece00019ou9ex947gsr/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1065,7 +907,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/14/zcy520/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/520zcy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -1079,7 +921,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/14/zcy520/" class="post-title-link" itemprop="url">⭐和🌙</a>
+            <a href="/520zcy/" class="post-title-link" itemprop="url">⭐和🌙</a>
         </h2>
 
         <div class="post-meta">
@@ -1096,7 +938,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-10 22:25:35" itemprop="dateModified" datetime="2021-10-10T22:25:35+08:00">2021-10-10</time>
+                <time title="修改时间：2021-10-25 16:48:21" itemprop="dateModified" datetime="2021-10-25T16:48:21+08:00">2021-10-25</time>
               </span>
 
           <br>
@@ -1105,7 +947,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>737</span>
+              <span>740</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1127,7 +969,7 @@
           <h1 id="致喵喵酱"><a href="#致喵喵酱" class="headerlink" title="致喵喵酱"></a>致喵喵酱</h1>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/14/zcy520/#more" rel="contents">
+              <a class="btn" href="/520zcy/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1155,7 +997,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/12/01/%E7%BB%93%E6%9E%84%E4%BD%93%E6%8E%92%E5%BA%8F-ccf1709-2%E5%85%AC%E5%85%B1%E9%92%A5%E5%8C%99%E7%9B%92/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/ckv6f9ecv00119ou942s53v4y/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -1169,7 +1011,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/12/01/%E7%BB%93%E6%9E%84%E4%BD%93%E6%8E%92%E5%BA%8F-ccf1709-2%E5%85%AC%E5%85%B1%E9%92%A5%E5%8C%99%E7%9B%92/" class="post-title-link" itemprop="url">结构体排序-ccf1709-2公共钥匙盒</a>
+            <a href="/ckv6f9ecv00119ou942s53v4y/" class="post-title-link" itemprop="url">结构体排序-ccf1709-2公共钥匙盒</a>
         </h2>
 
         <div class="post-meta">
@@ -1231,7 +1073,106 @@
 <p>有<em>K</em>位老师取。给出钥匙标号、取出时间和借出时长，请问最终钥匙盒里面钥匙的顺序是怎样的？</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/12/01/%E7%BB%93%E6%9E%84%E4%BD%93%E6%8E%92%E5%BA%8F-ccf1709-2%E5%85%AC%E5%85%B1%E9%92%A5%E5%8C%99%E7%9B%92/#more" rel="contents">
+              <a class="btn" href="/ckv6f9ecv00119ou942s53v4y/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+	
+	<div>
+      
+    </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/ckv6f9ecm00079ou9h6dz4ccu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="Gwofoo">
+      <meta itemprop="description" content="Welcome to Gwofoo's blog. Keep it up!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gwofoo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/ckv6f9ecm00079ou9h6dz4ccu/" class="post-title-link" itemprop="url">c++常用库函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-22 20:39:04" itemprop="dateCreated datePublished" datetime="2019-11-22T20:39:04+08:00">2019-11-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-07 12:16:43" itemprop="dateModified" datetime="2021-09-07T12:16:43+08:00">2021-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>59</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isalpha</span>(字母);	<span class="comment">//判断是否是字母</span></span><br><span class="line"><span class="built_in">toupper</span>(字母);	<span class="comment">//转大写</span></span><br><span class="line"><span class="built_in">tolower</span>(字母);	<span class="comment">//转小写	</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ckv6f9ecm00079ou9h6dz4ccu/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1326,7 +1267,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1380,12 +1321,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">42k</span>
+    <span title="站点总字数">35k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">32 分钟</span>
   
 	<br />
 	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
