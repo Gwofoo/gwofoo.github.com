@@ -197,6 +197,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pytorch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="Gwofoo">
+      <meta itemprop="description" content="Welcome to Gwofoo's blog. Keep it up!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gwofoo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pytorch/" class="post-title-link" itemprop="url">Pytorch学习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-28 16:39:42 / 修改时间：19:35:37" itemprop="dateCreated datePublished" datetime="2021-10-28T16:39:42+08:00">2021-10-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>429</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="TensorBorad"><a href="#TensorBorad" class="headerlink" title="TensorBorad"></a>TensorBorad</h1><p>TensorBoard是一个可视化工具，它可以用来展示网络图、张量的指标变化、张量的分布情况等。特别是在训练网络的时候，我们可以设置不同的参数（比如：权重W、偏置B、卷积层数、全连接层数等），使用TensorBoader可以很直观的帮我们进行参数的选择。</p>
+<p><strong>add_scalar()</strong></p>
+<p>示例：画y=2x的图像</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"></span><br><span class="line">writer = SummaryWriter(<span class="string">&quot;my_logs&quot;</span>)  <span class="comment"># 指定事件文件的文件夹</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 画y=2x的图像</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">	writer.add_scalar(<span class="string">&quot;y=2x图像&quot;</span>, 2i, i)  <span class="comment"># 参数：title,y,x</span></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
+<p>在控制台输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensorborad --logdir=my_logs --port=6607  <span class="comment">#port可以不指定</span></span><br></pre></td></tr></table></figure>
+<p><strong>add_image()</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+	
+	<div>
+      
+    </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/WeaklyTAL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -228,7 +321,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-25 16:47:36" itemprop="dateModified" datetime="2021-10-25T16:47:36+08:00">2021-10-25</time>
+                <time title="修改时间：2021-10-26 19:18:06" itemprop="dateModified" datetime="2021-10-26T19:18:06+08:00">2021-10-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,14 +339,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.9k</span>
+              <span>6.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -297,7 +390,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/ckv6f9ecw00149ou97m8ya577/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/ckvkpw09g001488u9e232htse/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -311,7 +404,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/ckv6f9ecw00149ou97m8ya577/" class="post-title-link" itemprop="url">目标检测算法</a>
+            <a href="/ckvkpw09g001488u9e232htse/" class="post-title-link" itemprop="url">目标检测算法</a>
         </h2>
 
         <div class="post-meta">
@@ -369,7 +462,7 @@
 <p>Yolo算法采用一个单独的CNN模型实现end-to-end的目标检测。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/ckv6f9ecw00149ou97m8ya577/#more" rel="contents">
+              <a class="btn" href="/ckvkpw09g001488u9e232htse/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -428,7 +521,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-25 16:50:24" itemprop="dateModified" datetime="2021-10-25T16:50:24+08:00">2021-10-25</time>
+                <time title="修改时间：2021-11-02 21:14:52" itemprop="dateModified" datetime="2021-11-02T21:14:52+08:00">2021-11-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -446,7 +539,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>2.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -497,7 +590,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/ckv6f9ecu000w9ou9709ser8q/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/ckvkpw09e000z88u97k8ldrd9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -511,7 +604,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/ckv6f9ecu000w9ou9709ser8q/" class="post-title-link" itemprop="url">深度学习笔记</a>
+            <a href="/ckvkpw09e000z88u97k8ldrd9/" class="post-title-link" itemprop="url">深度学习笔记</a>
         </h2>
 
         <div class="post-meta">
@@ -568,7 +661,7 @@
           <h3 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h3>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/ckv6f9ecu000w9ou9709ser8q/#more" rel="contents">
+              <a class="btn" href="/ckvkpw09e000z88u97k8ldrd9/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -695,7 +788,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/ckv6f9ecv000y9ou9bsm03y94/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/ckvkpw09f001388u9a3rbdafx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -709,7 +802,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/ckv6f9ecv000y9ou9bsm03y94/" class="post-title-link" itemprop="url">博客使用指南</a>
+            <a href="/ckvkpw09f001388u9a3rbdafx/" class="post-title-link" itemprop="url">博客使用指南</a>
         </h2>
 
         <div class="post-meta">
@@ -777,7 +870,7 @@
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/ckv6f9ecv000y9ou9bsm03y94/#more" rel="contents">
+              <a class="btn" href="/ckvkpw09f001388u9a3rbdafx/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -805,7 +898,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/ckv6f9ece00019ou9ex947gsr/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/ckvkpw092000988u96mlp6u2x/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -819,7 +912,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/ckv6f9ece00019ou9ex947gsr/" class="post-title-link" itemprop="url">Hexo博客NexT主题配置</a>
+            <a href="/ckvkpw092000988u96mlp6u2x/" class="post-title-link" itemprop="url">Hexo博客NexT主题配置</a>
         </h2>
 
         <div class="post-meta">
@@ -879,7 +972,7 @@
 <p>管理员解压，文件夹改名为next（全部小写），至themes目录下。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/ckv6f9ece00019ou9ex947gsr/#more" rel="contents">
+              <a class="btn" href="/ckvkpw092000988u96mlp6u2x/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -947,7 +1040,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>740</span>
+              <span>741</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -997,7 +1090,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/ckv6f9ecv00119ou942s53v4y/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/ckvkpw09g001688u9202f0zfr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.jpg">
@@ -1011,7 +1104,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/ckv6f9ecv00119ou942s53v4y/" class="post-title-link" itemprop="url">结构体排序-ccf1709-2公共钥匙盒</a>
+            <a href="/ckvkpw09g001688u9202f0zfr/" class="post-title-link" itemprop="url">结构体排序-ccf1709-2公共钥匙盒</a>
         </h2>
 
         <div class="post-meta">
@@ -1073,106 +1166,7 @@
 <p>有<em>K</em>位老师取。给出钥匙标号、取出时间和借出时长，请问最终钥匙盒里面钥匙的顺序是怎样的？</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/ckv6f9ecv00119ou942s53v4y/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-	
-	<div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/ckv6f9ecm00079ou9h6dz4ccu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="Gwofoo">
-      <meta itemprop="description" content="Welcome to Gwofoo's blog. Keep it up!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gwofoo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/ckv6f9ecm00079ou9h6dz4ccu/" class="post-title-link" itemprop="url">c++常用库函数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-22 20:39:04" itemprop="dateCreated datePublished" datetime="2019-11-22T20:39:04+08:00">2019-11-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-07 12:16:43" itemprop="dateModified" datetime="2021-09-07T12:16:43+08:00">2021-09-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>59</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isalpha</span>(字母);	<span class="comment">//判断是否是字母</span></span><br><span class="line"><span class="built_in">toupper</span>(字母);	<span class="comment">//转大写</span></span><br><span class="line"><span class="built_in">tolower</span>(字母);	<span class="comment">//转小写	</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ckv6f9ecm00079ou9h6dz4ccu/#more" rel="contents">
+              <a class="btn" href="/ckvkpw09g001688u9202f0zfr/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1267,20 +1261,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1321,12 +1315,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">35k</span>
+    <span title="站点总字数">38k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">32 分钟</span>
+    <span title="站点阅读时长">34 分钟</span>
   
 	<br />
 	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>

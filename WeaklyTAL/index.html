@@ -40,9 +40,23 @@
 <meta property="og:image" content="http://example.com/WeaklyTAL/image-20211024173940638.png">
 <meta property="og:image" content="http://example.com/WeaklyTAL/image-20211024194025208.png">
 <meta property="og:image" content="http://example.com/WeaklyTAL/image-20211024194102049.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211026191157303.png">
 <meta property="og:image" content="http://example.com/WeaklyTAL/image-20211024215311965.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025172750868.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025172734151.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025173432506.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025173609108.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025173755005.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025185847408.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025190850555.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025190940914.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025192908529.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025193237733.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025195336729.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025205411717.png">
+<meta property="og:image" content="http://example.com/WeaklyTAL/image-20211025212535348.png">
 <meta property="article:published_time" content="2021-10-16T13:31:05.000Z">
-<meta property="article:modified_time" content="2021-10-25T08:47:36.845Z">
+<meta property="article:modified_time" content="2021-10-26T11:18:06.783Z">
 <meta property="article:author" content="Gwofoo">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
@@ -246,7 +260,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-25 16:47:36" itemprop="dateModified" datetime="2021-10-25T16:47:36+08:00">2021-10-25</time>
+                <time title="修改时间：2021-10-26 19:18:06" itemprop="dateModified" datetime="2021-10-26T19:18:06+08:00">2021-10-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,14 +285,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.9k</span>
+              <span>6.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -362,7 +376,8 @@
 <p><img src="image-20211024194025208.png" alt="image-20211024194025208"></p>
 <p>ActivityNet1.3</p>
 <p><img src="image-20211024194102049.png" alt="image-20211024194102049"></p>
-<h1 id="Background-Modeling-Weakly-supervised-Action-Localization-with-Background-Modeling-2019-ICCV"><a href="#Background-Modeling-Weakly-supervised-Action-Localization-with-Background-Modeling-2019-ICCV" class="headerlink" title="(Background Modeling)Weakly-supervised Action Localization with Background Modeling (2019 ICCV)"></a>(Background Modeling)Weakly-supervised Action Localization with Background Modeling (2019 ICCV)</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>大多数之前的弱监督工作忽略了背景，但本文发现，对<strong>背景建模</strong>可以学习到更为丰富的动作理解及其时序范围。</p>
+<h1 id="Background-Modeling-Weakly-supervised-Action-Localization-with-Background-Modeling-2019-ICCV"><a href="#Background-Modeling-Weakly-supervised-Action-Localization-with-Background-Modeling-2019-ICCV" class="headerlink" title="(Background Modeling)Weakly-supervised Action Localization with Background Modeling (2019 ICCV)"></a>(Background Modeling)Weakly-supervised Action Localization with Background Modeling (2019 ICCV)</h1><p>同为STPN的作者</p>
+<h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>大多数之前的弱监督工作忽略了背景，但本文发现，对<strong>背景建模</strong>可以学习到更为丰富的动作理解及其时序范围。</p>
 <p>许多网络使用一个注意力变量 $\lambda_t$ 来指定各帧在最终的视频级表示中所占的权重。而本文用$1-\lambda_t$ 来表示背景帧的权重，构建了一个聚合的视频级特征。</p>
 <p>本文的创新</p>
 <ul>
@@ -370,10 +385,50 @@
 <li>将<u>自底向上的、类别无关的注意力模块</u>与<u>自顶向下的、特定类别的激活图</u>结合起来，使用后者作为前者的自监督形式。</li>
 <li>小视频补充训练。社交平台上有大量小视频，用户发送小视频的时候常常会带相关的话题，可以粗略地将这些话题作为视频级标签，以扩充训练数据。本文表明，在现有的训练数据中添加小视频可以大幅增加学习效果，从而提高动作定位的准确性。</li>
 </ul>
+<p><img src="image-20211026191157303.png" alt="image-20211026191157303"></p>
 <h2 id="弱监督定位"><a href="#弱监督定位" class="headerlink" title="弱监督定位"></a>弱监督定位</h2><p>训练数据表示为$(\{x_t\},y)$，即（视频第t帧的特征向量，视频级标签）。</p>
-<p>Weak Supervision</p>
-<p>$x_{fg}$：</p>
+<p><strong>Weak Supervision</strong></p>
+<p>对整个视频的帧特征进行注意力加权平均，得到视频级的前景特征$x_{fg}$：</p>
 <p><img src="image-20211024215311965.png" alt="image-20211024215311965"></p>
+<p>对每个类别c，做softmax：</p>
+<p><img src="image-20211025172750868.png" alt="image-20211025172750868"></p>
+<p>计算前景分类损失：</p>
+<p><img src="image-20211025172734151.png" alt="image-20211025172734151"></p>
+<p><strong>背景感知（Background-Aware）损失</strong></p>
+<p>对于背景帧，也应该做同样的处理</p>
+<p><img src="image-20211025173432506.png" alt="image-20211025173432506"></p>
+<p><img src="image-20211025173609108.png" alt="image-20211025173609108"></p>
+<p><img src="image-20211025173755005.png" alt="image-20211025173755005"></p>
+<p>这里y=0是因为0被当作是背景类。</p>
+<p><strong>自引导注意力（Self-guided Attention）损失</strong></p>
+<p>$\lambda_t$ 是一个自下而上的，类别无关的attention，它可能会响应一些一般线索，如大型的肢体动作，而不会具体到一些特定的动作。而TCAM可以提取自顶向下的attentional线索。因此，提出类特定的TCAM attention map作为自监督重新微调$\lambda_t$，如下式。其中G(σ)是高斯过滤器，用于在时序上平滑attention信号。高斯平滑强加了直观的先验：如果一个帧大概率是一个动作，那它的邻近帧也应该大概率包含一个动作。</p>
+<p><img src="image-20211025185847408.png" alt="image-20211025185847408"></p>
+<p><img src="image-20211025190850555.png" alt="image-20211025190850555"></p>
+<p>则自引导损失：</p>
+<p><img src="image-20211025190940914.png" alt="image-20211025190940914"></p>
+<p><strong>前景背景聚类（Foreground-background Clustering）损失</strong></p>
+<p>考虑了一个完全由视频特征和注意力λ定义的自下而上的损失，鼓励分类器对前景或背景特征响应强烈。</p>
+<p><img src="image-20211025192908529.png" alt="image-20211025192908529"></p>
+<p><strong>总损失</strong></p>
+<p><img src="image-20211025193237733.png" alt="image-20211025193237733"></p>
+<p>3个超参要足够小，以使网络主要由前景损失来驱动。</p>
+<h2 id="动作定位-1"><a href="#动作定位-1" class="headerlink" title="动作定位"></a>动作定位</h2><p>为了生成动作proposals和detections，首先基于视频级分类概率$p_{fg}$识别相关动作类别。然后用相应的加权t-cam对这些提议进行评分，以获得最终的检测结果。</p>
+<p>最后进行NMS非极大值抑制。</p>
+<p><strong>与CTPN的比较</strong></p>
+<p><img src="image-20211025195336729.png" alt="image-20211025195336729"></p>
+<h1 id="BaSNet-Background-Suppression-Network-for-Weakly-Supervised-Temporal-Action-Localization-2020-AAAI"><a href="#BaSNet-Background-Suppression-Network-for-Weakly-Supervised-Temporal-Action-Localization-2020-AAAI" class="headerlink" title="(BaSNet) Background Suppression Network for Weakly-Supervised Temporal Action Localization (2020 AAAI)"></a>(BaSNet) Background Suppression Network for Weakly-Supervised Temporal Action Localization (2020 AAAI)</h1><p>为了构建背景类的负样本，在网络中引入注意力模块<strong>抑制背景</strong>响应。</p>
+<h2 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h2><p>发现之前的工作没有考虑到背景类别，会将背景帧误分为动作类别，造成大量FP。本文提出了背景抑制网络BaSNet，引入了额外的背景类，两支镜像网络(一支为base网络，一支为用attention抑制背景的suppression网络)，实验表明这样设计可以有效抑制背景的影响，从而提高定位的准确性。</p>
+<h2 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h2><h3 id="背景类"><a href="#背景类" class="headerlink" title="背景类"></a>背景类</h3><p>如果没有背景类，背景帧的激活会倾向于动作类，对精确定位造成干扰。因此，<strong>将背景归为“背景类”</strong>，也就是说，视频中的所有帧就都有自己的目标类别。这样，所有训练视频都会被标记为背景类的正样本（因为每个视频都包含背景帧）。这会造成数据不平衡（找不到完全没有背景的负样本），最后导致背景类的异常高响应，定位结果很差。因此，为了更好地利用背景类，我们设计了包含基分支和抑制分支的背景抑制网络(BaS-Net)。</p>
+<p><img src="image-20211025205411717.png" alt="image-20211025205411717"></p>
+<h3 id="双分支结构"><a href="#双分支结构" class="headerlink" title="双分支结构"></a>双分支结构</h3><ul>
+<li><p>基分支（base branch）：采用常用的MIL架构，以帧级特征作为输入，生成帧级<u>类别激活序列</u>(CAS)，将视频分类为动作类和背景类的正样本。</p>
+</li>
+<li><p>抑制分支（suppression branch）：首先经过一个注意力模块（filtering module），用于减小来自背景帧的输入特征，即抑制背景的响应。attention模块参考自STPN (CVPR2018) ，将fc换成时域卷积，并且与STPN的attention输入为单个clip特征不同，本文的attention的输入为视频特征。经过过滤模块后，是与基分支相同的共享权重的卷积模块。抑制分支的目标是最小化所有视频的背景类得分。</p>
+</li>
+</ul>
+<p><img src="image-20211025212535348.png" alt="image-20211025212535348"></p>
+<p>这两个分支唯一的不同点就是<strong>输入</strong>(抑制分支的输入经过attention处理)和<strong>background label</strong>(<u>基分支</u>的背景类为1，<u>抑制分支</u>的背景类为0) 这两点不同。这样做的目标是更好的训练filtering module使其学到前景信息，从而有效过滤并抑制背景的响应。</p>
+<p>最后的location模块在测试阶段选取supp分支的输出。后续操作仍然采用多阈值分割后NMS的方式。</p>
 
     </div>
 
@@ -407,10 +462,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/ckv6f9ecw00149ou97m8ya577/" rel="prev" title="目标检测算法">
+    <a href="/ckvkpw09g001488u9e232htse/" rel="prev" title="目标检测算法">
       <i class="fa fa-chevron-left"></i> 目标检测算法
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/pytorch/" rel="next" title="Pytorch学习笔记">
+      Pytorch学习笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -469,7 +527,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UntrimmedNets-for-Weakly-Supervised-Action-Recognition-and-Detection-CVPR-2017"><span class="nav-number">1.</span> <span class="nav-text">UntrimmedNets for Weakly Supervised Action Recognition and Detection (CVPR 2017)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clip-sampling"><span class="nav-number">1.2.</span> <span class="nav-text">Clip sampling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UntrimmedNets"><span class="nav-number">1.3.</span> <span class="nav-text">UntrimmedNets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E6%A8%A1%E5%9D%97"><span class="nav-number">1.3.1.</span> <span class="nav-text">特征提取模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9D%97"><span class="nav-number">1.3.2.</span> <span class="nav-text">分类模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%A8%A1%E5%9D%97"><span class="nav-number">1.3.3.</span> <span class="nav-text">选择模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E9%A2%91%E9%A2%84%E6%B5%8B"><span class="nav-number">1.3.4.</span> <span class="nav-text">视频预测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">1.4.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">1.5.</span> <span class="nav-text">实验结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#STPN-Weakly-Supervised-Action-Localization-by-Sparse-Temporal-Pooling-Network-2018-CVPR"><span class="nav-number">2.</span> <span class="nav-text">(STPN)Weakly Supervised Action Localization by Sparse Temporal Pooling Network (2018 CVPR)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E4%BD%9C%E5%88%86%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">动作分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Temporal-Class-Activation-Mapping"><span class="nav-number">2.3.</span> <span class="nav-text">Temporal Class Activation Mapping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D"><span class="nav-number">2.4.</span> <span class="nav-text">时序动作定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">2.5.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CMCS-Completeness-Modeling-and-Context-Separation-for-Weakly-Supervised-Temporal-Action-Localization-2019-CVPR"><span class="nav-number">3.</span> <span class="nav-text">(CMCS)Completeness Modeling and Context Separation for Weakly Supervised Temporal Action Localization (2019 CVPR)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-number">3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%BE%E8%B4%9F%E4%BE%8B%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90"><span class="nav-number">3.2.</span> <span class="nav-text">难负例数据生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%A4%9A%E5%88%86%E6%94%AF%E7%BD%91%E7%BB%9C%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7%E5%BB%BA%E6%A8%A1"><span class="nav-number">3.3.</span> <span class="nav-text">基于多分支网络的完整性建模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E6%A8%A1%E5%9D%97-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">特征提取模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9D%97"><span class="nav-number">3.3.2.</span> <span class="nav-text">嵌入模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%88%86%E6%94%AF%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9D%97"><span class="nav-number">3.3.3.</span> <span class="nav-text">多分支分类模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%A8%A1%E5%9D%97"><span class="nav-number">3.3.4.</span> <span class="nav-text">时序注意力模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D"><span class="nav-number">3.4.</span> <span class="nav-text">动作定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C-1"><span class="nav-number">3.5.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Background-Modeling-Weakly-supervised-Action-Localization-with-Background-Modeling-2019-ICCV"><span class="nav-number">4.</span> <span class="nav-text">(Background Modeling)Weakly-supervised Action Localization with Background Modeling (2019 ICCV)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%B1%E7%9B%91%E7%9D%A3%E5%AE%9A%E4%BD%8D"><span class="nav-number">4.2.</span> <span class="nav-text">弱监督定位</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UntrimmedNets-for-Weakly-Supervised-Action-Recognition-and-Detection-CVPR-2017"><span class="nav-number">1.</span> <span class="nav-text">UntrimmedNets for Weakly Supervised Action Recognition and Detection (CVPR 2017)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clip-sampling"><span class="nav-number">1.2.</span> <span class="nav-text">Clip sampling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UntrimmedNets"><span class="nav-number">1.3.</span> <span class="nav-text">UntrimmedNets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E6%A8%A1%E5%9D%97"><span class="nav-number">1.3.1.</span> <span class="nav-text">特征提取模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9D%97"><span class="nav-number">1.3.2.</span> <span class="nav-text">分类模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%A8%A1%E5%9D%97"><span class="nav-number">1.3.3.</span> <span class="nav-text">选择模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E9%A2%91%E9%A2%84%E6%B5%8B"><span class="nav-number">1.3.4.</span> <span class="nav-text">视频预测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">1.4.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">1.5.</span> <span class="nav-text">实验结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#STPN-Weakly-Supervised-Action-Localization-by-Sparse-Temporal-Pooling-Network-2018-CVPR"><span class="nav-number">2.</span> <span class="nav-text">(STPN)Weakly Supervised Action Localization by Sparse Temporal Pooling Network (2018 CVPR)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E4%BD%9C%E5%88%86%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">动作分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Temporal-Class-Activation-Mapping"><span class="nav-number">2.3.</span> <span class="nav-text">Temporal Class Activation Mapping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D"><span class="nav-number">2.4.</span> <span class="nav-text">时序动作定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">2.5.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CMCS-Completeness-Modeling-and-Context-Separation-for-Weakly-Supervised-Temporal-Action-Localization-2019-CVPR"><span class="nav-number">3.</span> <span class="nav-text">(CMCS)Completeness Modeling and Context Separation for Weakly Supervised Temporal Action Localization (2019 CVPR)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-number">3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%BE%E8%B4%9F%E4%BE%8B%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90"><span class="nav-number">3.2.</span> <span class="nav-text">难负例数据生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%A4%9A%E5%88%86%E6%94%AF%E7%BD%91%E7%BB%9C%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7%E5%BB%BA%E6%A8%A1"><span class="nav-number">3.3.</span> <span class="nav-text">基于多分支网络的完整性建模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E6%A8%A1%E5%9D%97-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">特征提取模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9D%97"><span class="nav-number">3.3.2.</span> <span class="nav-text">嵌入模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%88%86%E6%94%AF%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9D%97"><span class="nav-number">3.3.3.</span> <span class="nav-text">多分支分类模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%A8%A1%E5%9D%97"><span class="nav-number">3.3.4.</span> <span class="nav-text">时序注意力模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D"><span class="nav-number">3.4.</span> <span class="nav-text">动作定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C-1"><span class="nav-number">3.5.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Background-Modeling-Weakly-supervised-Action-Localization-with-Background-Modeling-2019-ICCV"><span class="nav-number">4.</span> <span class="nav-text">(Background Modeling)Weakly-supervised Action Localization with Background Modeling (2019 ICCV)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%B1%E7%9B%91%E7%9D%A3%E5%AE%9A%E4%BD%8D"><span class="nav-number">4.2.</span> <span class="nav-text">弱监督定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D-1"><span class="nav-number">4.3.</span> <span class="nav-text">动作定位</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BaSNet-Background-Suppression-Network-for-Weakly-Supervised-Temporal-Action-Localization-2020-AAAI"><span class="nav-number">5.</span> <span class="nav-text">(BaSNet) Background Suppression Network for Weakly-Supervised Temporal Action Localization (2020 AAAI)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-3"><span class="nav-number">5.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-1"><span class="nav-number">5.2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%B1%BB"><span class="nav-number">5.2.1.</span> <span class="nav-text">背景类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"><span class="nav-number">5.2.2.</span> <span class="nav-text">双分支结构</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -485,20 +543,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -539,12 +597,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">35k</span>
+    <span title="站点总字数">38k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">32 分钟</span>
+    <span title="站点阅读时长">34 分钟</span>
   
 	<br />
 	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>

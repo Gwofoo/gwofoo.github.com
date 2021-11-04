@@ -32,8 +32,31 @@
 <meta property="og:image" content="http://example.com/oneStageTAL/image-20211010193938188.png">
 <meta property="og:image" content="http://example.com/oneStageTAL/image-20211011161132357.png">
 <meta property="og:image" content="http://example.com/oneStageTAL/image-20211011165733229.png">
+<meta property="og:image" content="http://example.com/oneStageTAL/image-20211101195822052.png">
+<meta property="og:image" content="http://example.com/oneStageTAL/image-20211101210605894.png">
+<meta property="og:image" content="http://example.com/oneStageTAL/image-20211101210229152.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=T%5E%7Bj%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=D%5E%7Bj%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=P_t%5E%7Bj%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=t">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=G_t%5Ej">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Csigma_t%5Ej">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=G_t%5Ej">
+<meta property="og:image" content="http://example.com/oneStageTAL/image-20211101210334652.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Csigma_%7Bt%7D%5E%7Bj%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=G_%7Bt%7D%5E%7Bj%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Csigma_t%5Ej">
+<meta property="og:image" content="http://example.com/oneStageTAL/image-20211101210516704.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=a_c+">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=a_w">
+<meta property="og:image" content="http://example.com/oneStageTAL/image-20211101210631593.png">
+<meta property="og:image" content="http://example.com/oneStageTAL/image-20211101210714733.png">
+<meta property="og:image" content="http://example.com/oneStageTAL/image-20211101210746585.png">
+<meta property="og:image" content="http://example.com/oneStageTAL/image-20211101210815021.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=F_t%5Ej">
+<meta property="og:image" content="http://example.com/oneStageTAL/image-20211101213043935.png">
 <meta property="article:published_time" content="2021-10-08T02:45:10.000Z">
-<meta property="article:modified_time" content="2021-10-25T08:50:24.512Z">
+<meta property="article:modified_time" content="2021-11-02T13:14:52.010Z">
 <meta property="article:author" content="Gwofoo">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
@@ -237,7 +260,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-25 16:50:24" itemprop="dateModified" datetime="2021-10-25T16:50:24+08:00">2021-10-25</time>
+                <time title="修改时间：2021-11-02 21:14:52" itemprop="dateModified" datetime="2021-11-02T21:14:52+08:00">2021-11-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,7 +285,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>2.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -300,7 +323,7 @@
 <p>使用反向传播训练$d_n$，使用REINFORCE训练$p_n$和$l_{n+1}$。</p>
 <p><strong>优点</strong></p>
 <p>只需要观察很少数的视频帧（2%甚至更少）</p>
-<h1 id="Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia"><a href="#Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia" class="headerlink" title="Single Shot Temporal Action Detection [2017 ACM Multimedia]"></a>Single Shot Temporal Action Detection [2017 ACM Multimedia]</h1><p><strong>特征提取</strong></p>
+<h1 id="SSAD-Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia"><a href="#SSAD-Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia" class="headerlink" title="(SSAD)Single Shot Temporal Action Detection [2017 ACM Multimedia]"></a>(SSAD)Single Shot Temporal Action Detection [2017 ACM Multimedia]</h1><p><strong>特征提取</strong></p>
 <p>使用了双流网络和C3D网络来提取特征。拼接3个网络的最后一层（该层输出即代表输入snippet对应的每个动作的概率）输出作为后续使用的特征，该特征记作SAS（Snippet Action Score）特征。最终，对于一个包含T 帧图像的视频，我们可以得到等长的SAS特征序列。该特征序列实际上就是一个二维的矩阵。</p>
 <p><img src="image-20211010193617009.png" alt="image-20211010193617009"></p>
 <p><strong>SSAD模型</strong></p>
@@ -311,7 +334,7 @@
 <p>Prediction Layers：获取每个anchor instances所对应的 坐标偏移量，重叠置信度，以及类别分类结果。</p>
 <p>通过多层时间尺度不断缩小的特征序列，SSAD模型可以获得由小到大各个时间尺度的action instance预测。</p>
 <p><img src="image-20211010193938188.png" alt="image-20211010193938188"></p>
-<h1 id="End-to-End-Single-Stream-Temporal-Action-Detection-in-Untrimmed-Videos-2017-BMVC"><a href="#End-to-End-Single-Stream-Temporal-Action-Detection-in-Untrimmed-Videos-2017-BMVC" class="headerlink" title="End-to-End, Single-Stream Temporal Action Detection in Untrimmed Videos [2017 BMVC]"></a>End-to-End, Single-Stream Temporal Action Detection in Untrimmed Videos [2017 BMVC]</h1><p>模型由三个主要部分组成:输入视觉编码、两个循环记忆模块和最终输出。</p>
+<h1 id="SS-TAD-End-to-End-Single-Stream-Temporal-Action-Detection-in-Untrimmed-Videos-2017-BMVC"><a href="#SS-TAD-End-to-End-Single-Stream-Temporal-Action-Detection-in-Untrimmed-Videos-2017-BMVC" class="headerlink" title="(SS-TAD)End-to-End, Single-Stream Temporal Action Detection in Untrimmed Videos [2017 BMVC]"></a>(SS-TAD)End-to-End, Single-Stream Temporal Action Detection in Untrimmed Videos [2017 BMVC]</h1><p>模型由三个主要部分组成:输入视觉编码、两个循环记忆模块和最终输出。</p>
 <p><img src="image-20211011161132357.png" alt="image-20211011161132357"></p>
 <p><strong>视觉编码器：</strong></p>
 <p>用C3D网络从输入的视频帧中获取较低层次的时空视觉信息。</p>
@@ -326,6 +349,30 @@
 <p><strong>输出检测：</strong></p>
 <p>输入：前一模块中，2个循环记忆模块的输出特征$h_{prop}$和$h_{cls}$进行连接，得到$h_{det}$。</p>
 <p>输出：{起始，结束，分类}</p>
+<h1 id="GTAN-Gaussian-Temporal-Awareness-Networks-for-Action-Localization-2019-CVPR"><a href="#GTAN-Gaussian-Temporal-Awareness-Networks-for-Action-Localization-2019-CVPR" class="headerlink" title="(GTAN)Gaussian Temporal Awareness Networks for Action Localization [2019 CVPR]"></a>(GTAN)Gaussian Temporal Awareness Networks for Action Localization [2019 CVPR]</h1><h2 id="movitation"><a href="#movitation" class="headerlink" title="movitation"></a>movitation</h2><p>很多方法是通过预先设计的固定的尺寸来生成动作的proposal（比如滑窗法、SSD等），这样做忽略了动作本身的时序结构，限制了检测复杂变化动作的能力。</p>
+<p>本文提出，通过引入<strong>高斯核</strong>来动态优化每个动作提议的时间尺度来解决这个问题。</p>
+<p>是一个one-stage方法。两阶段方法将proposal和classification分离可能导致次最优解（sub-optimal solutions）（为什么多阶段方法会影响结果的准确性？）。</p>
+<p><img src="image-20211101195822052.png" alt="image-20211101195822052"></p>
+<p><img src="image-20211101210605894.png" alt="image-20211101210605894"></p>
+<h2 id="基础特征网络"><a href="#基础特征网络" class="headerlink" title="基础特征网络"></a>基础特征网络</h2><p>输入视频帧，通过3D-CNN提取帧级的特征（一个cell），并连接。然后经过两个1D时序卷积和一个max-pooling进一步增加感受野。</p>
+<h2 id="高斯核学习"><a href="#高斯核学习" class="headerlink" title="高斯核学习"></a><strong>高斯核学习</strong></h2><p>为每个cell生成一个高斯核。具体地，定义feature map为</p>
+<p><img src="image-20211101210229152.png" alt="image-20211101210229152"></p>
+<p>其中 <img src="https://www.zhihu.com/equation?tex=T%5E%7Bj%7D" alt="[公式]"> 和 <img src="https://www.zhihu.com/equation?tex=D%5E%7Bj%7D" alt="[公式]"> 为时序长度和特征维度。对于一个proposal <img src="https://www.zhihu.com/equation?tex=P_t%5E%7Bj%7D" alt="[公式]"> ，中间位置为 <img src="https://www.zhihu.com/equation?tex=t" alt="[公式]"> , 通过一个高斯核 <img src="https://www.zhihu.com/equation?tex=G_t%5Ej" alt="[公式]"> 来刻画它的时序尺度。通过一个1D 卷积层来学习标准差 <img src="https://www.zhihu.com/equation?tex=%5Csigma_t%5Ej" alt="[公式]"> , <img src="https://www.zhihu.com/equation?tex=G_t%5Ej" alt="[公式]"> 可定义如下：</p>
+<p><img src="image-20211101210334652.png" alt="image-20211101210334652"></p>
+<p>其中， Z为归一化常量。标准差 <img src="https://www.zhihu.com/equation?tex=%5Csigma_%7Bt%7D%5E%7Bj%7D" alt="[公式]"> 可以考虑作为高斯核 <img src="https://www.zhihu.com/equation?tex=G_%7Bt%7D%5E%7Bj%7D" alt="[公式]"> 宽度的测量。然后我们可以通过 <img src="https://www.zhihu.com/equation?tex=%5Csigma_t%5Ej" alt="[公式]"> 来获得时序边界：</p>
+<p><img src="image-20211101210516704.png" alt="image-20211101210516704"></p>
+<p>其中 <img src="https://www.zhihu.com/equation?tex=a_c+" alt="[公式]"> 和 <img src="https://www.zhihu.com/equation?tex=a_w" alt="[公式]"> 为时序边界的中心和宽度。</p>
+<h2 id="高斯核合并"><a href="#高斯核合并" class="headerlink" title="高斯核合并"></a><strong>高斯核合并</strong></h2><p>如果两个高斯核的IoU大于设定的阈值，则进行合并。</p>
+<p><img src="image-20211101210631593.png" alt="image-20211101210631593"></p>
+<p>新合并的高斯核如下：</p>
+<p><img src="image-20211101210714733.png" alt="image-20211101210714733"></p>
+<h2 id="高斯池化"><a href="#高斯池化" class="headerlink" title="高斯池化"></a><strong>高斯池化</strong></h2><p><img src="image-20211101210746585.png" alt="image-20211101210746585"></p>
+<p><img src="image-20211101210815021.png" alt="image-20211101210815021"></p>
+<p>其中<img src="https://www.zhihu.com/equation?tex=F_t%5Ej" alt="[公式]"> 被用于后续的动作识别和时序边界回归。</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p><img src="image-20211101213043935.png" alt="image-20211101213043935"></p>
+<h2 id="体会"><a href="#体会" class="headerlink" title="体会"></a>体会</h2><p>加高斯核的方式有点像加Attention （但是二者有哪些具体的区别？）</p>
+<p>很多方法都是共通的。比如在论文Background Modeling中，也提到用高斯核</p>
+<p>多阅读多扩宽知识面，更能发现论文的问题</p>
 
     </div>
 
@@ -359,11 +406,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/ckv6f9ecu000w9ou9709ser8q/" rel="prev" title="深度学习笔记">
+    <a href="/ckvkpw09e000z88u97k8ldrd9/" rel="prev" title="深度学习笔记">
       <i class="fa fa-chevron-left"></i> 深度学习笔记
     </a></div>
       <div class="post-nav-item">
-    <a href="/ckv6f9ecw00149ou97m8ya577/" rel="next" title="目标检测算法">
+    <a href="/ckvkpw09g001488u9e232htse/" rel="next" title="目标检测算法">
       目标检测算法 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -424,7 +471,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#End-to-end-Learning-of-Action-Detection-from-Frame-Glimpses-in-Videos-2016-CVPR"><span class="nav-number">1.</span> <span class="nav-text">End-to-end Learning of Action Detection from Frame Glimpses in Videos [2016 CVPR]</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia"><span class="nav-number">2.</span> <span class="nav-text">Single Shot Temporal Action Detection [2017 ACM Multimedia]</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#End-to-End-Single-Stream-Temporal-Action-Detection-in-Untrimmed-Videos-2017-BMVC"><span class="nav-number">3.</span> <span class="nav-text">End-to-End, Single-Stream Temporal Action Detection in Untrimmed Videos [2017 BMVC]</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#End-to-end-Learning-of-Action-Detection-from-Frame-Glimpses-in-Videos-2016-CVPR"><span class="nav-number">1.</span> <span class="nav-text">End-to-end Learning of Action Detection from Frame Glimpses in Videos [2016 CVPR]</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSAD-Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia"><span class="nav-number">2.</span> <span class="nav-text">(SSAD)Single Shot Temporal Action Detection [2017 ACM Multimedia]</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SS-TAD-End-to-End-Single-Stream-Temporal-Action-Detection-in-Untrimmed-Videos-2017-BMVC"><span class="nav-number">3.</span> <span class="nav-text">(SS-TAD)End-to-End, Single-Stream Temporal Action Detection in Untrimmed Videos [2017 BMVC]</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GTAN-Gaussian-Temporal-Awareness-Networks-for-Action-Localization-2019-CVPR"><span class="nav-number">4.</span> <span class="nav-text">(GTAN)Gaussian Temporal Awareness Networks for Action Localization [2019 CVPR]</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#movitation"><span class="nav-number">4.1.</span> <span class="nav-text">movitation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%89%B9%E5%BE%81%E7%BD%91%E7%BB%9C"><span class="nav-number">4.2.</span> <span class="nav-text">基础特征网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%A0%B8%E5%AD%A6%E4%B9%A0"><span class="nav-number">4.3.</span> <span class="nav-text">高斯核学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%A0%B8%E5%90%88%E5%B9%B6"><span class="nav-number">4.4.</span> <span class="nav-text">高斯核合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%B1%A0%E5%8C%96"><span class="nav-number">4.5.</span> <span class="nav-text">高斯池化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">4.6.</span> <span class="nav-text">实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%93%E4%BC%9A"><span class="nav-number">4.7.</span> <span class="nav-text">体会</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -440,20 +487,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -494,12 +541,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">35k</span>
+    <span title="站点总字数">38k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">32 分钟</span>
+    <span title="站点阅读时长">34 分钟</span>
   
 	<br />
 	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
