@@ -1,8 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>OJ-大数整除</title>
+    <url>/ckxheu1o10001qwu9f9nia4tr/</url>
+    <content><![CDATA[<h2 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a>原题链接</h2><p><a href="http://www.dotcpp.com/oj/problem1074.html">http://www.dotcpp.com/oj/problem1074.html</a></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定理：把一个至少两位的正整数的个位数字去掉，再从余下的数中减去个位数的5倍。当且仅当差是17的倍数时，原数也是17的倍数 。</p>
+<p>例如，34是17的倍数，因为3-20=-17是17的倍数；201不是17的倍数，因为20-5=15不是17的倍数。输入一个正整数n，你的任务是判断它是否是17的倍数。</p>
+<span id="more"></span>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入文件最多包含10组测试数据，每个数据占一行，仅包含一个正整数n（1&lt;=n&lt;=10^100），表示待判断的正整数。n=0表示输入结束，你的程序不应当处理这一行。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每组测试数据，输出一行，表示相应的n是否是17的倍数。1表示是，0表示否。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>34<br>201<br>2098765413<br>1717171717171717171717171717171717171717171717171718<br>0</p>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>1<br>0<br>1<br>0</p>
+<h2 id="题目分析："><a href="#题目分析：" class="headerlink" title="题目分析："></a>题目分析：</h2><p>不要用这个定理，否则要处理大数会很麻烦。 直接用小学列式除法的原理，从高位到低位依次读入数字，得到每一次的余数r （r中刷新地保存每次的余数），直到大数所有位数被读一遍。最后判断r是否为0，为0则说明刚好被17整除。</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	string str;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; str) &#123; <span class="comment">//读入这个大数（2345</span></span><br><span class="line">		<span class="keyword">if</span> (str[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span>) <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//为0则退出</span></span><br><span class="line">		<span class="keyword">int</span> m, r=<span class="number">0</span>;  <span class="comment">//m表示每一次的被除数，r表示每一次的余数</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; str.<span class="built_in">length</span>(); i++) &#123;  <span class="comment">//遍历这个大数</span></span><br><span class="line">			m = r*<span class="number">10</span> + str[i] - <span class="string">&#x27;0&#x27;</span>;  <span class="comment">//（2,23,64,135</span></span><br><span class="line">			r = m % <span class="number">17</span>;  <span class="comment">//（2,6,13,16</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (r) cout &lt;&lt; <span class="string">&#x27;0&#x27;</span> &lt;&lt; endl;  <span class="comment">//r不为0，不能被17整除</span></span><br><span class="line">		<span class="keyword">else</span> cout &lt;&lt; <span class="string">&#x27;1&#x27;</span> &lt;&lt; endl;    <span class="comment">//r为0，能被17整除</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//system(&quot;pause&quot;);</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>OJ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pytorch学习笔记</title>
+    <url>/pytorch/</url>
+    <content><![CDATA[<h1 id="TensorBorad"><a href="#TensorBorad" class="headerlink" title="TensorBorad"></a>TensorBorad</h1><p>TensorBoard是一个可视化工具，它可以用来展示网络图、张量的指标变化、张量的分布情况等。特别是在训练网络的时候，我们可以设置不同的参数（比如：权重W、偏置B、卷积层数、全连接层数等），使用TensorBoader可以很直观的帮我们进行参数的选择。</p>
+<p><strong>add_scalar()</strong></p>
+<p>示例：画y=2x的图像</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"></span><br><span class="line">writer = SummaryWriter(<span class="string">&quot;my_logs&quot;</span>)  <span class="comment"># 指定事件文件的文件夹</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 画y=2x的图像</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">	writer.add_scalar(<span class="string">&quot;y=2x图像&quot;</span>, 2i, i)  <span class="comment"># 参数：title,y,x</span></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
+<p>在控制台输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tensorborad --logdir=my_logs --port=6607  <span class="comment">#port可以不指定</span></span><br></pre></td></tr></table></figure>
+<p><strong>add_image()</strong></p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>pytorch</category>
+      </categories>
+      <tags>
+        <tag>pytorch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++常用库函数</title>
+    <url>/ckxheu1o90007qwu93hzt1al7/</url>
+    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">isalpha</span>(字母);	<span class="comment">//判断是否是字母</span></span><br><span class="line"><span class="built_in">toupper</span>(字母);	<span class="comment">//转大写</span></span><br><span class="line"><span class="built_in">tolower</span>(字母);	<span class="comment">//转小写	</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>库函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++：文件读写、字符串</title>
+    <url>/ckxheu1oa0009qwu90o8a7bxr/</url>
+    <content><![CDATA[<h2 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h2><h3 id="使用重定向"><a href="#使用重定向" class="headerlink" title="使用重定向"></a>使用重定向</h3><p>用freopen可以直接变成由文件输入输出：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);  <span class="comment">//如果不存在，将创建</span></span><br><span class="line">    </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;ooo\n&quot;</span>);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;123&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//以上两种方式都可以将数据直接写入out.txt文件</span></span><br><span class="line">    <span class="comment">//每次运行，out.txt会被重写</span></span><br><span class="line">    </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重定向方式写起来简单自然，但是不能同时读写文件和标准输入输出。</p>
+<span id="more"></span>
+<h3 id="使用fopen"><a href="#使用fopen" class="headerlink" title="使用fopen"></a>使用fopen</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	FILE *fin,*fout;  <span class="comment">//定义两个文件指针	</span></span><br><span class="line">    fin = fopen(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;rb&quot;</span>);  <span class="comment">//&quot;rb&quot;表示二进制文件只读</span></span><br><span class="line">    fout = fopen(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;wb&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n;	</span><br><span class="line">    <span class="built_in">fscanf</span>(fin,<span class="string">&quot;%d&quot;</span>,&amp;n); <span class="comment">//指定由fin读入整数n</span></span><br><span class="line">    <span class="built_in">fprintf</span>(fout,<span class="string">&quot;%d&quot;</span>,n); <span class="comment">//指定将n输出到fout中</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="常见的字符串函数的用法"><a href="#常见的字符串函数的用法" class="headerlink" title="常见的字符串函数的用法"></a>常见的字符串函数的用法</h2><p>1.<code>tolower(ch)</code><br>把字符转换成小写字母，非字母字符不做处理</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">5</span>]=&#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> lower_ch[<span class="number">5</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">		lower_ch[i]=<span class="built_in">tolower</span>(ch[i]);</span><br><span class="line">		cout&lt;&lt;lower_ch[i];</span><br><span class="line">	&#125; <span class="comment">//输出：abcd</span></span><br></pre></td></tr></table></figure>
+<p>2.<code>strtok(str,&quot;,&quot;)</code><br>以逗号为分隔符，将str切分成一个个子串</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">16</span>] = <span class="string">&quot;abc,d&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span> *p; </span><br><span class="line">    p = strtok(ch, <span class="string">&quot;,&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, p); </span><br><span class="line">    <span class="comment">//输出：abc  (换行）d</span></span><br></pre></td></tr></table></figure>
+<p>3.<code>substr(开始下标，长度)</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;My name is Ariel.&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = s1.substr(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s2=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> s3=s1.substr(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s3=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//输出：s2=Y n</span></span><br><span class="line"><span class="comment">//      s3=ame is Ariel.</span></span><br></pre></td></tr></table></figure>
+<p>4.<code>insert(开始下标，str)</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = <span class="string">&quot;Ariel!&quot;</span>;</span><br><span class="line">s1.insert(<span class="number">2</span>,s2);<span class="comment">//输出：heAriel!llo</span></span><br></pre></td></tr></table></figure>
+<p>5.<code>erase(开始下标，长度count)</code><br>从开始下标起，删除count个字符。<br>如果现有长度少于count或count为-1，则删到串尾。<br>默认情况下,开始下标为0；默认删除到串尾。</p>
+<p>6.<code>int find_first_of(char c, int start = 0):</code><br>查找字符串中第1个出现的c,由位置start开始。<br>如果有匹配，则返回匹配位置；否则，返回-1.<br>默认情况下，start为0。 </p>
+<p>7.<code>int find_last_of(char c):</code><br>找字符串中最后一个出现的c。<br>有匹配，则返回匹配位置；否则返回-1.</p>
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vector应用-ccf1712-2围圈报数</title>
+    <url>/ckxheu1ob000aqwu9eyh5a6o5/</url>
+    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>​        1到<em>n</em>号小朋友顺时针坐一圈，围圈报数。<br>​        若一个小朋友报的数为<strong><em>k</em>的倍数</strong>或其<strong>末位数（即数的个位）为<em>k</em></strong>，则该小朋友被淘汰。</p>
+<p>​        当只剩一个小朋友时，该小朋友获胜。</p>
+<p>　　例如，当n=5, k=2时：<br>　　1号小朋友报数1；<br>　　2号小朋友报数2淘汰；<br>　　3号小朋友报数3；<br>　　4号小朋友报数4淘汰；<br>　　5号小朋友报数5；<br>　　1号小朋友报数6淘汰；<br>　　3号小朋友报数7；<br>　　5号小朋友报数8淘汰；<br>　　3号小朋友获胜。</p>
+<p>　　给定<em>n</em>和<em>k</em>，请问最后获胜的小朋友编号为多少？</p>
+<span id="more"></span>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入一行，包括两个整数<em>n</em>和<em>k</em>，意义如题目所述。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一行，包含一个整数，表示获胜的小朋友编号。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>5 2</p>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>3</p>
+<h2 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h2><p>7 3</p>
+<h2 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h2><p>4</p>
+<h2 id="数据规模和约定"><a href="#数据规模和约定" class="headerlink" title="数据规模和约定"></a>数据规模和约定</h2><p>　　对于所有评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>k</em> ≤ 9。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>应用vector和迭代器。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br></pre></td></tr></table></figure>
+<p>开始时，迭代器指向<code>v.begin()</code>，当迭代到<code>v.end()</code>时，重新指向<code>v.begin()</code>，从而做到循环。</p>
+<p>当<code>v.size()==1</code>时退出循环。</p>
+<p>循环时，若报数报到淘汰值，直接将该元素移出vector：<code>v.erase(it);</code> 。</p>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1005</span>]=&#123;<span class="number">0</span>&#125;;  <span class="comment">//0游戏中，1出局 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n,k;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">	 </span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="comment">//各号小朋友就位 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		v.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//游戏开始 </span></span><br><span class="line">	<span class="keyword">int</span> count=<span class="number">0</span>;<span class="comment">//报的数</span></span><br><span class="line">	<span class="keyword">for</span>(it=v.<span class="built_in">begin</span>();v.<span class="built_in">size</span>()!=<span class="number">1</span>;)&#123;  <span class="comment">//vector中晋仅剩一个元素时游戏结束 </span></span><br><span class="line">		<span class="comment">//迭代器报到末尾，则从头开始报 </span></span><br><span class="line">		<span class="keyword">if</span>(it==v.<span class="built_in">end</span>()) </span><br><span class="line">			it=v.<span class="built_in">begin</span>();</span><br><span class="line">		count++;</span><br><span class="line">		<span class="keyword">if</span>(count%<span class="number">10</span>==k || count%k==<span class="number">0</span>)&#123;  <span class="comment">//尾号为k 或 k的倍数 </span></span><br><span class="line">			<span class="comment">//cout&lt;&lt;*it&lt;&lt;&quot;被淘汰&quot;&lt;&lt;endl;</span></span><br><span class="line">			v.<span class="built_in">erase</span>(it);  </span><br><span class="line">			<span class="keyword">continue</span>;  <span class="comment">//删除元素后,后面元素自动往前移，所以迭代器不要增加了！ </span></span><br><span class="line">		&#125;</span><br><span class="line">		it++;		</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;v[<span class="number">0</span>]&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>Vector</tag>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo博客NexT主题配置</title>
-    <url>/ckxbvnjrp0001c8u9glsjbi39/</url>
+    <url>/ckxheu1oc000eqwu9eo5yf8xv/</url>
     <content><![CDATA[<h1 id="安装NexT"><a href="#安装NexT" class="headerlink" title="安装NexT"></a>安装NexT</h1><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>在Hexo文件夹下，右键<code>Git Bash Here</code>，</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 <h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>下载zip安装包：<a href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a></p>
@@ -82,60 +195,6 @@
       <tags>
         <tag>NexT</tag>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pytorch学习笔记</title>
-    <url>/pytorch/</url>
-    <content><![CDATA[<h1 id="TensorBorad"><a href="#TensorBorad" class="headerlink" title="TensorBorad"></a>TensorBorad</h1><p>TensorBoard是一个可视化工具，它可以用来展示网络图、张量的指标变化、张量的分布情况等。特别是在训练网络的时候，我们可以设置不同的参数（比如：权重W、偏置B、卷积层数、全连接层数等），使用TensorBoader可以很直观的帮我们进行参数的选择。</p>
-<p><strong>add_scalar()</strong></p>
-<p>示例：画y=2x的图像</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"></span><br><span class="line">writer = SummaryWriter(<span class="string">&quot;my_logs&quot;</span>)  <span class="comment"># 指定事件文件的文件夹</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 画y=2x的图像</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">	writer.add_scalar(<span class="string">&quot;y=2x图像&quot;</span>, 2i, i)  <span class="comment"># 参数：title,y,x</span></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
-<p>在控制台输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tensorborad --logdir=my_logs --port=6607  <span class="comment">#port可以不指定</span></span><br></pre></td></tr></table></figure>
-<p><strong>add_image()</strong></p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>pytorch</category>
-      </categories>
-      <tags>
-        <tag>pytorch</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>c++常用库函数</title>
-    <url>/ckxbvnjrv0007c8u9befb6f2g/</url>
-    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">isalpha</span>(字母);	<span class="comment">//判断是否是字母</span></span><br><span class="line"><span class="built_in">toupper</span>(字母);	<span class="comment">//转大写</span></span><br><span class="line"><span class="built_in">tolower</span>(字母);	<span class="comment">//转小写	</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>库函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OJ-大数整除</title>
-    <url>/ckxbvnjrw0009c8u95okl0rrh/</url>
-    <content><![CDATA[<h2 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a>原题链接</h2><p><a href="http://www.dotcpp.com/oj/problem1074.html">http://www.dotcpp.com/oj/problem1074.html</a></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定理：把一个至少两位的正整数的个位数字去掉，再从余下的数中减去个位数的5倍。当且仅当差是17的倍数时，原数也是17的倍数 。</p>
-<p>例如，34是17的倍数，因为3-20=-17是17的倍数；201不是17的倍数，因为20-5=15不是17的倍数。输入一个正整数n，你的任务是判断它是否是17的倍数。</p>
-<span id="more"></span>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入文件最多包含10组测试数据，每个数据占一行，仅包含一个正整数n（1&lt;=n&lt;=10^100），表示待判断的正整数。n=0表示输入结束，你的程序不应当处理这一行。</p>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每组测试数据，输出一行，表示相应的n是否是17的倍数。1表示是，0表示否。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>34<br>201<br>2098765413<br>1717171717171717171717171717171717171717171717171718<br>0</p>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>1<br>0<br>1<br>0</p>
-<h2 id="题目分析："><a href="#题目分析：" class="headerlink" title="题目分析："></a>题目分析：</h2><p>不要用这个定理，否则要处理大数会很麻烦。 直接用小学列式除法的原理，从高位到低位依次读入数字，得到每一次的余数r （r中刷新地保存每次的余数），直到大数所有位数被读一遍。最后判断r是否为0，为0则说明刚好被17整除。</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	string str;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; str) &#123; <span class="comment">//读入这个大数（2345</span></span><br><span class="line">		<span class="keyword">if</span> (str[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span>) <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//为0则退出</span></span><br><span class="line">		<span class="keyword">int</span> m, r=<span class="number">0</span>;  <span class="comment">//m表示每一次的被除数，r表示每一次的余数</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; str.<span class="built_in">length</span>(); i++) &#123;  <span class="comment">//遍历这个大数</span></span><br><span class="line">			m = r*<span class="number">10</span> + str[i] - <span class="string">&#x27;0&#x27;</span>;  <span class="comment">//（2,23,64,135</span></span><br><span class="line">			r = m % <span class="number">17</span>;  <span class="comment">//（2,6,13,16</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (r) cout &lt;&lt; <span class="string">&#x27;0&#x27;</span> &lt;&lt; endl;  <span class="comment">//r不为0，不能被17整除</span></span><br><span class="line">		<span class="keyword">else</span> cout &lt;&lt; <span class="string">&#x27;1&#x27;</span> &lt;&lt; endl;    <span class="comment">//r为0，能被17整除</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//system(&quot;pause&quot;);</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>OJ</category>
-      </categories>
-      <tags>
-        <tag>OJ</tag>
       </tags>
   </entry>
   <entry>
@@ -337,7 +396,7 @@
   </entry>
   <entry>
     <title>stack应用-ccf201903-2二十四点</title>
-    <url>/ckxbvnjry000dc8u967hchprf/</url>
+    <url>/ckxheu1oe000jqwu94zcibggw/</url>
     <content><![CDATA[<h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>二十四点：使用 3 个加减乘除运算使得 4张纸牌上数字的运算结果为 24。</p>
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定义每一个游戏由 4 个从 1-9 的数字和 3个四则运算符组成，保证四则运算符将数字两两隔开，不存在括号和其他字符，运算顺序按照四则运算顺序进行。</p>
 <p>其中加法用符号 + 表示，减法用符号 -表示，乘法用小写字母 x 表示，除法用符号 / 表示。在游戏里除法为<u>整除</u>，例如 2 / 3 = 0，3 / 2 = 1, 4 / 2 = 2。<br>老师给了你 n 个游戏的解，请你编写程序<u>验证</u>每个游戏的结果是否为 24 。</p>
@@ -364,73 +423,42 @@
       </tags>
   </entry>
   <entry>
-    <title>c++：文件读写、字符串</title>
-    <url>/ckxbvnjry000ec8u9cb9zh289/</url>
-    <content><![CDATA[<h2 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h2><h3 id="使用重定向"><a href="#使用重定向" class="headerlink" title="使用重定向"></a>使用重定向</h3><p>用freopen可以直接变成由文件输入输出：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);  <span class="comment">//如果不存在，将创建</span></span><br><span class="line">    </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;ooo\n&quot;</span>);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;123&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//以上两种方式都可以将数据直接写入out.txt文件</span></span><br><span class="line">    <span class="comment">//每次运行，out.txt会被重写</span></span><br><span class="line">    </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>重定向方式写起来简单自然，但是不能同时读写文件和标准输入输出。</p>
-<span id="more"></span>
-<h3 id="使用fopen"><a href="#使用fopen" class="headerlink" title="使用fopen"></a>使用fopen</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	FILE *fin,*fout;  <span class="comment">//定义两个文件指针	</span></span><br><span class="line">    fin = fopen(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;rb&quot;</span>);  <span class="comment">//&quot;rb&quot;表示二进制文件只读</span></span><br><span class="line">    fout = fopen(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;wb&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n;	</span><br><span class="line">    <span class="built_in">fscanf</span>(fin,<span class="string">&quot;%d&quot;</span>,&amp;n); <span class="comment">//指定由fin读入整数n</span></span><br><span class="line">    <span class="built_in">fprintf</span>(fout,<span class="string">&quot;%d&quot;</span>,n); <span class="comment">//指定将n输出到fout中</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="常见的字符串函数的用法"><a href="#常见的字符串函数的用法" class="headerlink" title="常见的字符串函数的用法"></a>常见的字符串函数的用法</h2><p>1.<code>tolower(ch)</code><br>把字符转换成小写字母，非字母字符不做处理</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">5</span>]=&#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> lower_ch[<span class="number">5</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">		lower_ch[i]=<span class="built_in">tolower</span>(ch[i]);</span><br><span class="line">		cout&lt;&lt;lower_ch[i];</span><br><span class="line">	&#125; <span class="comment">//输出：abcd</span></span><br></pre></td></tr></table></figure>
-<p>2.<code>strtok(str,&quot;,&quot;)</code><br>以逗号为分隔符，将str切分成一个个子串</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">16</span>] = <span class="string">&quot;abc,d&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span> *p; </span><br><span class="line">    p = strtok(ch, <span class="string">&quot;,&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, p); </span><br><span class="line">    <span class="comment">//输出：abc  (换行）d</span></span><br></pre></td></tr></table></figure>
-<p>3.<code>substr(开始下标，长度)</code></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;My name is Ariel.&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = s1.substr(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s2=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> s3=s1.substr(<span class="number">4</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;s3=&quot;</span>&lt;&lt;s2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//输出：s2=Y n</span></span><br><span class="line"><span class="comment">//      s3=ame is Ariel.</span></span><br></pre></td></tr></table></figure>
-<p>4.<code>insert(开始下标，str)</code></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s1=<span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = <span class="string">&quot;Ariel!&quot;</span>;</span><br><span class="line">s1.insert(<span class="number">2</span>,s2);<span class="comment">//输出：heAriel!llo</span></span><br></pre></td></tr></table></figure>
-<p>5.<code>erase(开始下标，长度count)</code><br>从开始下标起，删除count个字符。<br>如果现有长度少于count或count为-1，则删到串尾。<br>默认情况下,开始下标为0；默认删除到串尾。</p>
-<p>6.<code>int find_first_of(char c, int start = 0):</code><br>查找字符串中第1个出现的c,由位置start开始。<br>如果有匹配，则返回匹配位置；否则，返回-1.<br>默认情况下，start为0。 </p>
-<p>7.<code>int find_last_of(char c):</code><br>找字符串中最后一个出现的c。<br>有匹配，则返回匹配位置；否则返回-1.</p>
-<p>​    </p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vector应用-ccf1712-2围圈报数</title>
-    <url>/ckxbvnjrz000ic8u9brzbgbob/</url>
-    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>​        1到<em>n</em>号小朋友顺时针坐一圈，围圈报数。<br>​        若一个小朋友报的数为<strong><em>k</em>的倍数</strong>或其<strong>末位数（即数的个位）为<em>k</em></strong>，则该小朋友被淘汰。</p>
-<p>​        当只剩一个小朋友时，该小朋友获胜。</p>
-<p>　　例如，当n=5, k=2时：<br>　　1号小朋友报数1；<br>　　2号小朋友报数2淘汰；<br>　　3号小朋友报数3；<br>　　4号小朋友报数4淘汰；<br>　　5号小朋友报数5；<br>　　1号小朋友报数6淘汰；<br>　　3号小朋友报数7；<br>　　5号小朋友报数8淘汰；<br>　　3号小朋友获胜。</p>
-<p>　　给定<em>n</em>和<em>k</em>，请问最后获胜的小朋友编号为多少？</p>
-<span id="more"></span>
-<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入一行，包括两个整数<em>n</em>和<em>k</em>，意义如题目所述。</p>
-<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一行，包含一个整数，表示获胜的小朋友编号。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>5 2</p>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>3</p>
-<h2 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h2><p>7 3</p>
-<h2 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h2><p>4</p>
-<h2 id="数据规模和约定"><a href="#数据规模和约定" class="headerlink" title="数据规模和约定"></a>数据规模和约定</h2><p>　　对于所有评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>k</em> ≤ 9。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>应用vector和迭代器。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br></pre></td></tr></table></figure>
-<p>开始时，迭代器指向<code>v.begin()</code>，当迭代到<code>v.end()</code>时，重新指向<code>v.begin()</code>，从而做到循环。</p>
-<p>当<code>v.size()==1</code>时退出循环。</p>
-<p>循环时，若报数报到淘汰值，直接将该元素移出vector：<code>v.erase(it);</code> 。</p>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1005</span>]=&#123;<span class="number">0</span>&#125;;  <span class="comment">//0游戏中，1出局 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> n,k;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">	 </span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="comment">//各号小朋友就位 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		v.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//游戏开始 </span></span><br><span class="line">	<span class="keyword">int</span> count=<span class="number">0</span>;<span class="comment">//报的数</span></span><br><span class="line">	<span class="keyword">for</span>(it=v.<span class="built_in">begin</span>();v.<span class="built_in">size</span>()!=<span class="number">1</span>;)&#123;  <span class="comment">//vector中晋仅剩一个元素时游戏结束 </span></span><br><span class="line">		<span class="comment">//迭代器报到末尾，则从头开始报 </span></span><br><span class="line">		<span class="keyword">if</span>(it==v.<span class="built_in">end</span>()) </span><br><span class="line">			it=v.<span class="built_in">begin</span>();</span><br><span class="line">		count++;</span><br><span class="line">		<span class="keyword">if</span>(count%<span class="number">10</span>==k || count%k==<span class="number">0</span>)&#123;  <span class="comment">//尾号为k 或 k的倍数 </span></span><br><span class="line">			<span class="comment">//cout&lt;&lt;*it&lt;&lt;&quot;被淘汰&quot;&lt;&lt;endl;</span></span><br><span class="line">			v.<span class="built_in">erase</span>(it);  </span><br><span class="line">			<span class="keyword">continue</span>;  <span class="comment">//删除元素后,后面元素自动往前移，所以迭代器不要增加了！ </span></span><br><span class="line">		&#125;</span><br><span class="line">		it++;		</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;v[<span class="number">0</span>]&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>OJ</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>Vector</tag>
-        <tag>STL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【OJ】DFS</title>
     <url>/dfs/</url>
     <content><![CDATA[<h1 id="A-n-k-与-C-n-k-（排列与组合）"><a href="#A-n-k-与-C-n-k-（排列与组合）" class="headerlink" title="$A_n^k$与$C_n^k$（排列与组合）"></a>$A_n^k$与$C_n^k$（排列与组合）</h1><p>题目大意：给定两个整数 <code>n</code> 和 <code>k</code>，求$C_n^k$  。<a href="https://leetcode-cn.com/problems/combinations/">原题链接-力扣77</a></p>
 <figure class="highlight inform7"><table><tr><td class="code"><pre><span class="line">输入：n = 4, k = 2</span><br><span class="line">输出：</span><br><span class="line"><span class="comment">[</span></span><br><span class="line"><span class="comment">  <span class="comment">[2,4]</span>,</span></span><br><span class="line"><span class="comment">  <span class="comment">[3,4]</span>,</span></span><br><span class="line"><span class="comment">  <span class="comment">[2,3]</span>,</span></span><br><span class="line"><span class="comment">  <span class="comment">[1,2]</span>,</span></span><br><span class="line"><span class="comment">  <span class="comment">[1,3]</span>,</span></span><br><span class="line"><span class="comment">  <span class="comment">[1,4]</span>,</span></span><br><span class="line"><span class="comment">]</span></span><br></pre></td></tr></table></figure>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>用dfs，数组<code>a[]</code>记录一个组合结果，<code>v[]</code>记录当前数字是否访问过了。</p>
+<span id="more"></span>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>如果没有<code>start</code>参数，即<code>dfs(int n, int k, int c)</code>，并且<code>for</code>循环中的<code>i=start</code>改成<code>i=1</code>，那么就是全排列，也就是$A_n^k$。</p>
 <p>为什么呢？因为相当于在每一层中做选择的时候，可选择的数字不再局限于比前一层数字大的数字了，而是可以从所有1~n个数字中选择。</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">25</span>],v[<span class="number">25</span>];</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; res;  <span class="comment">//res保存了所有结果</span></span><br><span class="line">    <span class="comment">/*参数说明</span></span><br><span class="line"><span class="comment">    n和k仅传参用；</span></span><br><span class="line"><span class="comment">    c表示当前已拾取了几个数（当前处在第几层）</span></span><br><span class="line"><span class="comment">    start表示本次拾取从哪个数开始    </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k, <span class="keyword">int</span> c, <span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">        <span class="comment">//终止条件</span></span><br><span class="line">        <span class="keyword">if</span>(c==k)&#123;</span><br><span class="line">            vector&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">            <span class="comment">//a[]中所有数据转移到vector中，保存。</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k;i++) &#123;</span><br><span class="line">                v.<span class="built_in">push_back</span>(a[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            res.<span class="built_in">push_back</span>(v); </span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//横向选择</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;=n;i++)&#123;  <span class="comment">//如果把i=start改成i=1，start参数去掉，则变成全排列</span></span><br><span class="line">            <span class="keyword">if</span>(!v[i])&#123;</span><br><span class="line">                v[i]=<span class="number">1</span>;  <span class="comment">//标记</span></span><br><span class="line">                a[c]=i;  <span class="comment">//选择</span></span><br><span class="line">                <span class="comment">//层数+1，并且下一层要从该数的下一个数开始拾取。</span></span><br><span class="line">                <span class="built_in">dfs</span>(n, k, c+<span class="number">1</span>, i+<span class="number">1</span>);</span><br><span class="line">                v[i]=<span class="number">0</span>;  <span class="comment">//取消标记</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">combine</span>(<span class="keyword">int</span> n, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">memset</span>(a, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(a));</span><br><span class="line">        <span class="built_in">memset</span>(v, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(v));   </span><br><span class="line">        <span class="built_in">dfs</span>(n,k,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="电话号码的字母组合"><a href="#电话号码的字母组合" class="headerlink" title="电话号码的字母组合"></a>电话号码的字母组合</h1><p><a href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/">原题链接-力扣17</a></p>
+<p>题目大意：输入是由数字<code>2-9</code> 组成的字符串，返回对应的手机九键中，所有它能表示的字母组合。答案可以按 <strong>任意顺序</strong> 返回。</p>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">输入：<span class="keyword">digits</span> = <span class="string">&quot;23&quot;</span></span><br><span class="line">输出：[<span class="string">&quot;ad&quot;</span>,<span class="string">&quot;ae&quot;</span>,<span class="string">&quot;af&quot;</span>,<span class="string">&quot;bd&quot;</span>,<span class="string">&quot;be&quot;</span>,<span class="string">&quot;bf&quot;</span>,<span class="string">&quot;cd&quot;</span>,<span class="string">&quot;ce&quot;</span>,<span class="string">&quot;cf&quot;</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>选择dfs的理由：</p>
+<ul>
+<li>对每一位数字，都有几个对应的字母供它选择（横向选择）。</li>
+<li>逐层递进，直到所有位的数字都选出对应的字母（纵向前进）。</li>
+</ul>
+<p>这题没有v[]数字数组，因为每个数字都在不同的几个字母中挑选，不存在选到其他层的字母的问题。此外，记录路径的a[]数组也改用字符串s来记录路径。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//数字和字母的映射表</span></span><br><span class="line">    <span class="keyword">const</span> string letter[<span class="number">10</span>] = &#123;</span><br><span class="line">        <span class="string">&quot;&quot;</span>, <span class="comment">// 0</span></span><br><span class="line">        <span class="string">&quot;&quot;</span>, <span class="comment">// 1</span></span><br><span class="line">        <span class="string">&quot;abc&quot;</span>, <span class="comment">// 2</span></span><br><span class="line">        <span class="string">&quot;def&quot;</span>, <span class="comment">// 3</span></span><br><span class="line">        <span class="string">&quot;ghi&quot;</span>, <span class="comment">// 4</span></span><br><span class="line">        <span class="string">&quot;jkl&quot;</span>, <span class="comment">// 5</span></span><br><span class="line">        <span class="string">&quot;mno&quot;</span>, <span class="comment">// 6</span></span><br><span class="line">        <span class="string">&quot;pqrs&quot;</span>, <span class="comment">// 7</span></span><br><span class="line">        <span class="string">&quot;tuv&quot;</span>, <span class="comment">// 8</span></span><br><span class="line">        <span class="string">&quot;wxyz&quot;</span>, <span class="comment">// 9</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">int</span> num[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    string s;</span><br><span class="line">    vector&lt;string&gt; res;  <span class="comment">//记录所有结果</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="comment">//终止条件</span></span><br><span class="line">        <span class="keyword">if</span>(c==len)&#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(s);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//横向选择</span></span><br><span class="line">        <span class="comment">//letter[num[c]]：第ｃ层对应数字所对应的字母表</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;letter[num[c]].<span class="built_in">length</span>(); i++)&#123;</span><br><span class="line">            s.<span class="built_in">push_back</span>(letter[num[c]][i]);　　<span class="comment">//选择一个字母加入（相当于标记）</span></span><br><span class="line">            <span class="built_in">dfs</span>(c+<span class="number">1</span>);</span><br><span class="line">            s.<span class="built_in">pop_back</span>(); <span class="comment">//退出一个字母（取消标记）</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">letterCombinations</span><span class="params">(string digits)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//如果字符串为空，也返回空。</span></span><br><span class="line">        <span class="keyword">if</span>(digits.<span class="built_in">length</span>()==<span class="number">0</span>) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        len=digits.<span class="built_in">length</span>();</span><br><span class="line">        <span class="comment">//保存每一位数字</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;len; i++)&#123;</span><br><span class="line">            num[i] = digits[i]-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>ps：<code>string</code>也可以像<code>vector</code>一样用<code>push_back(x)</code>和<code>pop_back()</code>。</p>
+<h1 id="组合总和（候选无重复，选取可重复）"><a href="#组合总和（候选无重复，选取可重复）" class="headerlink" title="组合总和（候选无重复，选取可重复）"></a>组合总和（候选无重复，选取可重复）</h1><p><a href="https://leetcode-cn.com/problems/combination-sum/">原题链接-力扣17</a></p>
+<p>题目大意：给你一个<strong>无重复元素</strong>的数组 <code>candidates</code> ，找出 <code>candidates</code> 中可以使数字和为 target 的所有不同组合。可以按<strong>任意顺序</strong>返回这些组合。<code>candidates</code>中的数字可以被<strong>重复选取</strong> 。</p>
+<figure class="highlight tap"><table><tr><td class="code"><pre><span class="line">输入：candidates = [2,3,6,7], target = 7</span><br><span class="line">输出：[[2,2,3], [7]]</span><br><span class="line">解释：</span><br><span class="line">2 和<span class="number"> 3 </span>可以形成一组候选，2 +<span class="number"> 2 </span>+<span class="number"> 3 </span>=<span class="number"> 7 </span>。注意<span class="number"> 2 </span>可以使用多次。</span><br><span class="line">7 也是一个候选，<span class="number"> 7 </span>=<span class="number"> 7 </span>。</span><br><span class="line">仅有这两种组合。</span><br></pre></td></tr></table></figure>
+<h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><p>每个数字可以被重复选取，也就不用<code>v[]</code>数组了；对结果的个数没有要求，只要能凑出<code>target</code>都行，所以<code>dfs</code>的参数中也不需要记录当前的层数c了，另外需要添加start参数保证结果是“组合”而非“排列”。这题其实条件很松弛，写起来更简单。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; res;  <span class="comment">//记录所有结果</span></span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; v;  <span class="comment">//记录单条结果</span></span><br><span class="line">    <span class="comment">/*candidates：仅是传参。rest：接下来还要凑的总和。start：避免全排列。*/</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> rest, <span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">        <span class="comment">//到达非法边界，退出</span></span><br><span class="line">        <span class="keyword">if</span>(rest&lt;<span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">//满足题意，记录结果后退出</span></span><br><span class="line">        <span class="keyword">if</span>(rest==<span class="number">0</span>)&#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(v);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//横向选择</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;candidates.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            v.<span class="built_in">push_back</span>(candidates[i]);  <span class="comment">//选择</span></span><br><span class="line">            <span class="built_in">dfs</span>(candidates, rest-candidates[i], i);  <span class="comment">//下一次当前值还能选，所以start=i</span></span><br><span class="line">            v.<span class="built_in">pop_back</span>();  <span class="comment">//回溯</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">combinationSum</span>(vector&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="comment">//单刀直入，直接dfs就完事了</span></span><br><span class="line">        <span class="built_in">dfs</span>(candidates, target, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="组合总和II（候选有重复，选取无重复）"><a href="#组合总和II（候选有重复，选取无重复）" class="headerlink" title="组合总和II（候选有重复，选取无重复）"></a>组合总和II（候选有重复，选取无重复）</h1><p><a href="https://leetcode-cn.com/problems/combination-sum-ii/">原题链接-力扣40</a></p>
+<p>题目大意：给你一个<strong>有重复元素</strong>的数组 <code>candidates</code> ，找出 <code>candidates</code> 中可以使数字和为 target 的所有不同组合。可以按<strong>任意顺序</strong>返回这些组合。<code>candidates</code>中的数字<strong>不可以重复选取</strong> 。</p>
+<figure class="highlight inform7"><table><tr><td class="code"><pre><span class="line">输入: candidates = <span class="comment">[10,1,2,7,6,1,5]</span>, target = 8,</span><br><span class="line">输出: <span class="comment">[<span class="comment">[1,1,6]</span>,<span class="comment">[1,2,5]</span>,<span class="comment">[1,7]</span>,<span class="comment">[2,6]</span>]</span></span><br><span class="line">解释: 虽然candidates数组中有两个1，但是不能输出两次<span class="comment">[1,7]</span>。</span><br></pre></td></tr></table></figure>
+<h3 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h3><p>先对candidates排序，使得相同的元素挨在一起，这样做的目的是为了更容易找到相同的元素，以便于将重复的情况剔除。</p>
+<p>与上一题相比，增加了两处关键代码：</p>
+<ul>
+<li>开始<code>dfs</code>之前，先<code>sort()</code></li>
+<li>横向选择时，增加if条件判断：当<code>i&gt;start</code>且<code>candidates[i] == candidates[i-1]</code>时，直接<code>continue</code>，剪掉整个枝</li>
+</ul>
+<p>看代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; res;  <span class="comment">//保存所有结果</span></span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; vec;  <span class="comment">//保存单次结果</span></span><br><span class="line">    <span class="comment">/*candidates: 仅传参。rest: 剩余总和。start: 避免全排列。*/</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> rest, <span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(rest&lt;<span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(rest==<span class="number">0</span>)&#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(vec);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start; i&lt;candidates.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="comment">//关键去重代码：</span></span><br><span class="line">            <span class="keyword">if</span>(i&gt;start &amp;&amp; candidates[i] == candidates[i<span class="number">-1</span>])</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            vec.<span class="built_in">push_back</span>(candidates[i]);</span><br><span class="line">            <span class="built_in">dfs</span>(candidates, rest-candidates[i], i+<span class="number">1</span>);</span><br><span class="line">            vec.<span class="built_in">pop_back</span>();</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">combinationSum2</span>(vector&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="comment">//先排序</span></span><br><span class="line">        <span class="built_in">sort</span>(candidates.<span class="built_in">begin</span>(), candidates.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">dfs</span>(candidates, target, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>OJ</category>
@@ -445,11 +473,11 @@
     <url>/520zcy/</url>
     <content><![CDATA[<h1 id="致喵喵酱"><a href="#致喵喵酱" class="headerlink" title="致喵喵酱"></a>致喵喵酱</h1><span id="more"></span>
 <h1 id="ฅ՞•ﻌ•՞ฅ̊"><a href="#ฅ՞•ﻌ•՞ฅ̊" class="headerlink" title="ฅ՞•ﻌ•՞ฅ̊"></a>ฅ՞•ﻌ•՞ฅ̊</h1><div style="width: 90%;margin: 0 auto">
-    <canvas id="chart9063" style="height: 300px"></canvas>
+    <canvas id="chart5062" style="height: 300px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart9063').getContext('2d');
+    var ctx = document.getElementById('chart5062').getContext('2d');
     var options =     {
     type: 'line',
     data: {
@@ -521,8 +549,8 @@
         <category>OJ</category>
       </categories>
       <tags>
-        <tag>C++</tag>
         <tag>OJ</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -732,6 +760,86 @@
       </tags>
   </entry>
   <entry>
+    <title>【论文笔记】时序动作定位_一阶段方法_论文总结</title>
+    <url>/oneStageTAL/</url>
+    <content><![CDATA[<h1 id="End-to-end-Learning-of-Action-Detection-from-Frame-Glimpses-in-Videos-2016-CVPR"><a href="#End-to-end-Learning-of-Action-Detection-from-Frame-Glimpses-in-Videos-2016-CVPR" class="headerlink" title="End-to-end Learning of Action Detection from Frame Glimpses in Videos [2016 CVPR]"></a>End-to-end Learning of Action Detection from Frame Glimpses in Videos [2016 CVPR]</h1><p>视频动作检测任务中的<u>第一个</u>端到端方法。</p>
+<p>该模型有一个基于递归神经网络的agent，它随着时间的推移与视频交互。agent观察固定比例的视频帧，并决定下一步在哪里看以及何时发出预测。</p>
+<span id="more"></span>
+<p><img src="image-20211008105534974.png" alt="image-20211008105534974"></p>
+<p><strong>总体流程</strong></p>
+<p>在某一步n中，agent观察橙色视频帧并产生3个输出：$(d_n, p_n, l_{n+1})$，分别表示（候选检测结果，预测指标，下一处观察位置）。其中，预测指标$p_n$输出“是”或“否”，指示$d_n$可否被作为一个预测结果被提交；候选检测结果$d_n$包括$(s_n, e_n, c_n)$，分别表示正则化开始、结束位置和该候选的置信度。</p>
+<p>在上图中，$p_n$输出“否”，因此不被动作预测集接受。同时agent在n+1步中移动到$l_{n+1}$的位置，即绿色视频帧的位置，并继续产生3个输出：$(d_{n+1}, p_{n+1}, l_{n+2})$。此时$p_{n+1}$仍不被接受，因此agent在n+2步中移动到$l_{n+2}$的位置，即蓝色视频帧的位置。这次的$p_{n+2}$被接受，因此将该候选结果输入到动作预测集，同时agent继续下一步。</p>
+<p>主要包含两个网络：</p>
+<p>观察网络$f_o$对视频帧的视觉表示进行编码；循环网络$f_h$依次处理这些观察，并决定下一步观察哪个帧以及何时发出预测。</p>
+<p><strong>观察网络$f_o$</strong></p>
+<p>将视频帧中观察到的<u>地点和内容</u>编码为特征向量$O_n$ （通过卷积、池化、全连接等操作）。</p>
+<p>输入：归一化处理后的时序位置。论文中使用VGG16。输出：特征向量$O_n$ 。</p>
+<p><strong>循环网络$f_h$</strong></p>
+<p>是agent的核心模块。</p>
+<p>输入：特征向量$O_n$ 。输出：网络的隐藏状态$h_n$，它是$O_n$和前一隐藏状态$h_{n-1}$的函数，用来模拟动作实例的时间假设。</p>
+<p><strong>训练</strong></p>
+<p>使用反向传播训练$d_n$，使用REINFORCE训练$p_n$和$l_{n+1}$。</p>
+<p><strong>优点</strong></p>
+<p>只需要观察很少数的视频帧（2%甚至更少）</p>
+<h1 id="SSAD-Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia"><a href="#SSAD-Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia" class="headerlink" title="(SSAD)Single Shot Temporal Action Detection [2017 ACM Multimedia]"></a>(SSAD)Single Shot Temporal Action Detection [2017 ACM Multimedia]</h1><p><strong>特征提取</strong></p>
+<p>使用了双流网络和C3D网络来提取特征。拼接3个网络的最后一层（该层输出即代表输入snippet对应的每个动作的概率）输出作为后续使用的特征，该特征记作SAS（Snippet Action Score）特征。最终，对于一个包含T 帧图像的视频，我们可以得到等长的SAS特征序列。该特征序列实际上就是一个二维的矩阵。</p>
+<p><img src="image-20211010193617009.png" alt="image-20211010193617009"></p>
+<p><strong>SSAD模型</strong></p>
+<p>输入：长度为T的特征序列。</p>
+<p>SSAD模型是一个全部由时序卷积（一维卷积）构成的网络。主要包括三种卷积层：base, anchor, prediction layer。</p>
+<p>Base Layers：缩短特征序列的长度，并增大特征序列中每个位置的感受野。</p>
+<p>Anchor Layers ：继续缩小特征序列的长度，每层anchor layer输出的特征序列都被关联了多个尺度的anchor instances（类似SSD中的default box和faster RCNN中的anchor）。</p>
+<p>Prediction Layers：获取每个anchor instances所对应的 坐标偏移量，重叠置信度，以及类别分类结果。</p>
+<p>通过多层时间尺度不断缩小的特征序列，SSAD模型可以获得由小到大各个时间尺度的action instance预测。</p>
+<p><img src="image-20211010193938188.png" alt="image-20211010193938188"></p>
+<h1 id="SS-TAD-End-to-End-Single-Stream-Temporal-Action-Detection-in-Untrimmed-Videos-2017-BMVC"><a href="#SS-TAD-End-to-End-Single-Stream-Temporal-Action-Detection-in-Untrimmed-Videos-2017-BMVC" class="headerlink" title="(SS-TAD)End-to-End, Single-Stream Temporal Action Detection in Untrimmed Videos [2017 BMVC]"></a>(SS-TAD)End-to-End, Single-Stream Temporal Action Detection in Untrimmed Videos [2017 BMVC]</h1><p>模型由三个主要部分组成:输入视觉编码、两个循环记忆模块和最终输出。</p>
+<p><img src="image-20211011161132357.png" alt="image-20211011161132357"></p>
+<p><strong>视觉编码器：</strong></p>
+<p>用C3D网络从输入的视频帧中获取较低层次的时空视觉信息。</p>
+<p>将总长为L帧的视频分成T个不重叠的时间步，每个时间步内含有δ帧。每个时间步都进行视觉编码，得到φ。如上图。</p>
+<p><strong>语义约束的循环记忆模块：</strong></p>
+<p>有选择地聚合相关上下文。每个记忆模块包含了多层<u>门控循环单元</u>( gated recurrent unit， GRU)。如下图。</p>
+<p><img src="image-20211011165733229.png" alt="image-20211011165733229"></p>
+<p>该模块的一个关键：它们在训练过程中受到<u>语义约束</u>(Semantically Constrained)。</p>
+<p>循环记忆模块有2个（P和C），分别负责捕捉proposal信息和classification信息。</p>
+<p>输入：时间步t的视觉编码器输出φ以及前一个时间步的隐藏状态表示。</p>
+<p>输出：最后一个GRU层在该模块中输出的隐藏状态h（如上图）。</p>
+<p><strong>输出检测：</strong></p>
+<p>输入：前一模块中，2个循环记忆模块的输出特征$h_{prop}$和$h_{cls}$进行连接，得到$h_{det}$。</p>
+<p>输出：{起始，结束，分类}</p>
+<h1 id="GTAN-Gaussian-Temporal-Awareness-Networks-for-Action-Localization-2019-CVPR"><a href="#GTAN-Gaussian-Temporal-Awareness-Networks-for-Action-Localization-2019-CVPR" class="headerlink" title="(GTAN)Gaussian Temporal Awareness Networks for Action Localization [2019 CVPR]"></a>(GTAN)Gaussian Temporal Awareness Networks for Action Localization [2019 CVPR]</h1><h2 id="movitation"><a href="#movitation" class="headerlink" title="movitation"></a>movitation</h2><p>很多方法是通过预先设计的固定的尺寸来生成动作的proposal（比如滑窗法、SSD等），这样做忽略了动作本身的时序结构，限制了检测复杂变化动作的能力。</p>
+<p>本文提出，通过引入<strong>高斯核</strong>来动态优化每个动作提议的时间尺度来解决这个问题。</p>
+<p>是一个one-stage方法。两阶段方法将proposal和classification分离可能导致次最优解（sub-optimal solutions）（为什么多阶段方法会影响结果的准确性？）。</p>
+<p><img src="image-20211101195822052.png" alt="image-20211101195822052"></p>
+<p><img src="image-20211101210605894.png" alt="image-20211101210605894"></p>
+<h2 id="基础特征网络"><a href="#基础特征网络" class="headerlink" title="基础特征网络"></a>基础特征网络</h2><p>输入视频帧，通过3D-CNN提取帧级的特征（一个cell），并连接。然后经过两个1D时序卷积和一个max-pooling进一步增加感受野。</p>
+<h2 id="高斯核学习"><a href="#高斯核学习" class="headerlink" title="高斯核学习"></a><strong>高斯核学习</strong></h2><p>为每个cell生成一个高斯核。具体地，定义feature map为</p>
+<p><img src="image-20211101210229152.png" alt="image-20211101210229152"></p>
+<p>其中 <img src="https://www.zhihu.com/equation?tex=T%5E%7Bj%7D" alt="[公式]"> 和 <img src="https://www.zhihu.com/equation?tex=D%5E%7Bj%7D" alt="[公式]"> 为时序长度和特征维度。对于一个proposal <img src="https://www.zhihu.com/equation?tex=P_t%5E%7Bj%7D" alt="[公式]"> ，中间位置为 <img src="https://www.zhihu.com/equation?tex=t" alt="[公式]"> , 通过一个高斯核 <img src="https://www.zhihu.com/equation?tex=G_t%5Ej" alt="[公式]"> 来刻画它的时序尺度。通过一个1D 卷积层来学习标准差 <img src="https://www.zhihu.com/equation?tex=%5Csigma_t%5Ej" alt="[公式]"> , <img src="https://www.zhihu.com/equation?tex=G_t%5Ej" alt="[公式]"> 可定义如下：</p>
+<p><img src="image-20211101210334652.png" alt="image-20211101210334652"></p>
+<p>其中， Z为归一化常量。标准差 <img src="https://www.zhihu.com/equation?tex=%5Csigma_%7Bt%7D%5E%7Bj%7D" alt="[公式]"> 可以考虑作为高斯核 <img src="https://www.zhihu.com/equation?tex=G_%7Bt%7D%5E%7Bj%7D" alt="[公式]"> 宽度的测量。然后我们可以通过 <img src="https://www.zhihu.com/equation?tex=%5Csigma_t%5Ej" alt="[公式]"> 来获得时序边界：</p>
+<p><img src="image-20211101210516704.png" alt="image-20211101210516704"></p>
+<p>其中 <img src="https://www.zhihu.com/equation?tex=a_c+" alt="[公式]"> 和 <img src="https://www.zhihu.com/equation?tex=a_w" alt="[公式]"> 为时序边界的中心和宽度。</p>
+<h2 id="高斯核合并"><a href="#高斯核合并" class="headerlink" title="高斯核合并"></a><strong>高斯核合并</strong></h2><p>如果两个高斯核的IoU大于设定的阈值，则进行合并。</p>
+<p><img src="image-20211101210631593.png" alt="image-20211101210631593"></p>
+<p>新合并的高斯核如下：</p>
+<p><img src="image-20211101210714733.png" alt="image-20211101210714733"></p>
+<h2 id="高斯池化"><a href="#高斯池化" class="headerlink" title="高斯池化"></a><strong>高斯池化</strong></h2><p><img src="image-20211101210746585.png" alt="image-20211101210746585"></p>
+<p><img src="image-20211101210815021.png" alt="image-20211101210815021"></p>
+<p>其中<img src="https://www.zhihu.com/equation?tex=F_t%5Ej" alt="[公式]"> 被用于后续的动作识别和时序边界回归。</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p><img src="image-20211101213043935.png" alt="image-20211101213043935"></p>
+<h2 id="体会"><a href="#体会" class="headerlink" title="体会"></a>体会</h2><p>加高斯核的方式有点像加Attention （但是二者有哪些具体的区别？）</p>
+<p>很多方法都是共通的。比如在论文Background Modeling中，也提到用高斯核</p>
+<p>多阅读多扩宽知识面，更能发现论文的问题</p>
+]]></content>
+      <categories>
+        <category>论文笔记</category>
+      </categories>
+      <tags>
+        <tag>论文笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【论文笔记】时序动作定位-弱监督方法-论文总结</title>
     <url>/WeaklyTAL/</url>
     <content><![CDATA[<h1 id="UntrimmedNets-for-Weakly-Supervised-Action-Recognition-and-Detection-CVPR-2017"><a href="#UntrimmedNets-for-Weakly-Supervised-Action-Recognition-and-Detection-CVPR-2017" class="headerlink" title="UntrimmedNets for Weakly Supervised Action Recognition and Detection (CVPR 2017)"></a>UntrimmedNets for Weakly Supervised Action Recognition and Detection (CVPR 2017)</h1><p>UntrimmedNet首次提出弱监督用于动作识别和检测。</p>
@@ -868,88 +976,69 @@
       </tags>
   </entry>
   <entry>
-    <title>【论文笔记】时序动作定位_一阶段方法_论文总结</title>
-    <url>/oneStageTAL/</url>
-    <content><![CDATA[<h1 id="End-to-end-Learning-of-Action-Detection-from-Frame-Glimpses-in-Videos-2016-CVPR"><a href="#End-to-end-Learning-of-Action-Detection-from-Frame-Glimpses-in-Videos-2016-CVPR" class="headerlink" title="End-to-end Learning of Action Detection from Frame Glimpses in Videos [2016 CVPR]"></a>End-to-end Learning of Action Detection from Frame Glimpses in Videos [2016 CVPR]</h1><p>视频动作检测任务中的<u>第一个</u>端到端方法。</p>
-<p>该模型有一个基于递归神经网络的agent，它随着时间的推移与视频交互。agent观察固定比例的视频帧，并决定下一步在哪里看以及何时发出预测。</p>
+    <title>目标检测算法</title>
+    <url>/ckxheu1on0019qwu9ahrn2wr1/</url>
+    <content><![CDATA[<h1 id="一阶段（端到端）方法"><a href="#一阶段（端到端）方法" class="headerlink" title="一阶段（端到端）方法"></a>一阶段（端到端）方法</h1><h2 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h2><p>原论文：《You Only Look Once: Unified, Real-Time Object Detection》</p>
+<p>Yolo算法采用一个单独的CNN模型实现end-to-end的目标检测。</p>
 <span id="more"></span>
-<p><img src="image-20211008105534974.png" alt="image-20211008105534974"></p>
-<p><strong>总体流程</strong></p>
-<p>在某一步n中，agent观察橙色视频帧并产生3个输出：$(d_n, p_n, l_{n+1})$，分别表示（候选检测结果，预测指标，下一处观察位置）。其中，预测指标$p_n$输出“是”或“否”，指示$d_n$可否被作为一个预测结果被提交；候选检测结果$d_n$包括$(s_n, e_n, c_n)$，分别表示正则化开始、结束位置和该候选的置信度。</p>
-<p>在上图中，$p_n$输出“否”，因此不被动作预测集接受。同时agent在n+1步中移动到$l_{n+1}$的位置，即绿色视频帧的位置，并继续产生3个输出：$(d_{n+1}, p_{n+1}, l_{n+2})$。此时$p_{n+1}$仍不被接受，因此agent在n+2步中移动到$l_{n+2}$的位置，即蓝色视频帧的位置。这次的$p_{n+2}$被接受，因此将该候选结果输入到动作预测集，同时agent继续下一步。</p>
-<p>主要包含两个网络：</p>
-<p>观察网络$f_o$对视频帧的视觉表示进行编码；循环网络$f_h$依次处理这些观察，并决定下一步观察哪个帧以及何时发出预测。</p>
-<p><strong>观察网络$f_o$</strong></p>
-<p>将视频帧中观察到的<u>地点和内容</u>编码为特征向量$O_n$ （通过卷积、池化、全连接等操作）。</p>
-<p>输入：归一化处理后的时序位置。论文中使用VGG16。输出：特征向量$O_n$ 。</p>
-<p><strong>循环网络$f_h$</strong></p>
-<p>是agent的核心模块。</p>
-<p>输入：特征向量$O_n$ 。输出：网络的隐藏状态$h_n$，它是$O_n$和前一隐藏状态$h_{n-1}$的函数，用来模拟动作实例的时间假设。</p>
-<p><strong>训练</strong></p>
-<p>使用反向传播训练$d_n$，使用REINFORCE训练$p_n$和$l_{n+1}$。</p>
-<p><strong>优点</strong></p>
-<p>只需要观察很少数的视频帧（2%甚至更少）</p>
-<h1 id="SSAD-Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia"><a href="#SSAD-Single-Shot-Temporal-Action-Detection-2017-ACM-Multimedia" class="headerlink" title="(SSAD)Single Shot Temporal Action Detection [2017 ACM Multimedia]"></a>(SSAD)Single Shot Temporal Action Detection [2017 ACM Multimedia]</h1><p><strong>特征提取</strong></p>
-<p>使用了双流网络和C3D网络来提取特征。拼接3个网络的最后一层（该层输出即代表输入snippet对应的每个动作的概率）输出作为后续使用的特征，该特征记作SAS（Snippet Action Score）特征。最终，对于一个包含T 帧图像的视频，我们可以得到等长的SAS特征序列。该特征序列实际上就是一个二维的矩阵。</p>
-<p><img src="image-20211010193617009.png" alt="image-20211010193617009"></p>
-<p><strong>SSAD模型</strong></p>
-<p>输入：长度为T的特征序列。</p>
-<p>SSAD模型是一个全部由时序卷积（一维卷积）构成的网络。主要包括三种卷积层：base, anchor, prediction layer。</p>
-<p>Base Layers：缩短特征序列的长度，并增大特征序列中每个位置的感受野。</p>
-<p>Anchor Layers ：继续缩小特征序列的长度，每层anchor layer输出的特征序列都被关联了多个尺度的anchor instances（类似SSD中的default box和faster RCNN中的anchor）。</p>
-<p>Prediction Layers：获取每个anchor instances所对应的 坐标偏移量，重叠置信度，以及类别分类结果。</p>
-<p>通过多层时间尺度不断缩小的特征序列，SSAD模型可以获得由小到大各个时间尺度的action instance预测。</p>
-<p><img src="image-20211010193938188.png" alt="image-20211010193938188"></p>
-<h1 id="SS-TAD-End-to-End-Single-Stream-Temporal-Action-Detection-in-Untrimmed-Videos-2017-BMVC"><a href="#SS-TAD-End-to-End-Single-Stream-Temporal-Action-Detection-in-Untrimmed-Videos-2017-BMVC" class="headerlink" title="(SS-TAD)End-to-End, Single-Stream Temporal Action Detection in Untrimmed Videos [2017 BMVC]"></a>(SS-TAD)End-to-End, Single-Stream Temporal Action Detection in Untrimmed Videos [2017 BMVC]</h1><p>模型由三个主要部分组成:输入视觉编码、两个循环记忆模块和最终输出。</p>
-<p><img src="image-20211011161132357.png" alt="image-20211011161132357"></p>
-<p><strong>视觉编码器：</strong></p>
-<p>用C3D网络从输入的视频帧中获取较低层次的时空视觉信息。</p>
-<p>将总长为L帧的视频分成T个不重叠的时间步，每个时间步内含有δ帧。每个时间步都进行视觉编码，得到φ。如上图。</p>
-<p><strong>语义约束的循环记忆模块：</strong></p>
-<p>有选择地聚合相关上下文。每个记忆模块包含了多层<u>门控循环单元</u>( gated recurrent unit， GRU)。如下图。</p>
-<p><img src="image-20211011165733229.png" alt="image-20211011165733229"></p>
-<p>该模块的一个关键：它们在训练过程中受到<u>语义约束</u>(Semantically Constrained)。</p>
-<p>循环记忆模块有2个（P和C），分别负责捕捉proposal信息和classification信息。</p>
-<p>输入：时间步t的视觉编码器输出φ以及前一个时间步的隐藏状态表示。</p>
-<p>输出：最后一个GRU层在该模块中输出的隐藏状态h（如上图）。</p>
-<p><strong>输出检测：</strong></p>
-<p>输入：前一模块中，2个循环记忆模块的输出特征$h_{prop}$和$h_{cls}$进行连接，得到$h_{det}$。</p>
-<p>输出：{起始，结束，分类}</p>
-<h1 id="GTAN-Gaussian-Temporal-Awareness-Networks-for-Action-Localization-2019-CVPR"><a href="#GTAN-Gaussian-Temporal-Awareness-Networks-for-Action-Localization-2019-CVPR" class="headerlink" title="(GTAN)Gaussian Temporal Awareness Networks for Action Localization [2019 CVPR]"></a>(GTAN)Gaussian Temporal Awareness Networks for Action Localization [2019 CVPR]</h1><h2 id="movitation"><a href="#movitation" class="headerlink" title="movitation"></a>movitation</h2><p>很多方法是通过预先设计的固定的尺寸来生成动作的proposal（比如滑窗法、SSD等），这样做忽略了动作本身的时序结构，限制了检测复杂变化动作的能力。</p>
-<p>本文提出，通过引入<strong>高斯核</strong>来动态优化每个动作提议的时间尺度来解决这个问题。</p>
-<p>是一个one-stage方法。两阶段方法将proposal和classification分离可能导致次最优解（sub-optimal solutions）（为什么多阶段方法会影响结果的准确性？）。</p>
-<p><img src="image-20211101195822052.png" alt="image-20211101195822052"></p>
-<p><img src="image-20211101210605894.png" alt="image-20211101210605894"></p>
-<h2 id="基础特征网络"><a href="#基础特征网络" class="headerlink" title="基础特征网络"></a>基础特征网络</h2><p>输入视频帧，通过3D-CNN提取帧级的特征（一个cell），并连接。然后经过两个1D时序卷积和一个max-pooling进一步增加感受野。</p>
-<h2 id="高斯核学习"><a href="#高斯核学习" class="headerlink" title="高斯核学习"></a><strong>高斯核学习</strong></h2><p>为每个cell生成一个高斯核。具体地，定义feature map为</p>
-<p><img src="image-20211101210229152.png" alt="image-20211101210229152"></p>
-<p>其中 <img src="https://www.zhihu.com/equation?tex=T%5E%7Bj%7D" alt="[公式]"> 和 <img src="https://www.zhihu.com/equation?tex=D%5E%7Bj%7D" alt="[公式]"> 为时序长度和特征维度。对于一个proposal <img src="https://www.zhihu.com/equation?tex=P_t%5E%7Bj%7D" alt="[公式]"> ，中间位置为 <img src="https://www.zhihu.com/equation?tex=t" alt="[公式]"> , 通过一个高斯核 <img src="https://www.zhihu.com/equation?tex=G_t%5Ej" alt="[公式]"> 来刻画它的时序尺度。通过一个1D 卷积层来学习标准差 <img src="https://www.zhihu.com/equation?tex=%5Csigma_t%5Ej" alt="[公式]"> , <img src="https://www.zhihu.com/equation?tex=G_t%5Ej" alt="[公式]"> 可定义如下：</p>
-<p><img src="image-20211101210334652.png" alt="image-20211101210334652"></p>
-<p>其中， Z为归一化常量。标准差 <img src="https://www.zhihu.com/equation?tex=%5Csigma_%7Bt%7D%5E%7Bj%7D" alt="[公式]"> 可以考虑作为高斯核 <img src="https://www.zhihu.com/equation?tex=G_%7Bt%7D%5E%7Bj%7D" alt="[公式]"> 宽度的测量。然后我们可以通过 <img src="https://www.zhihu.com/equation?tex=%5Csigma_t%5Ej" alt="[公式]"> 来获得时序边界：</p>
-<p><img src="image-20211101210516704.png" alt="image-20211101210516704"></p>
-<p>其中 <img src="https://www.zhihu.com/equation?tex=a_c+" alt="[公式]"> 和 <img src="https://www.zhihu.com/equation?tex=a_w" alt="[公式]"> 为时序边界的中心和宽度。</p>
-<h2 id="高斯核合并"><a href="#高斯核合并" class="headerlink" title="高斯核合并"></a><strong>高斯核合并</strong></h2><p>如果两个高斯核的IoU大于设定的阈值，则进行合并。</p>
-<p><img src="image-20211101210631593.png" alt="image-20211101210631593"></p>
-<p>新合并的高斯核如下：</p>
-<p><img src="image-20211101210714733.png" alt="image-20211101210714733"></p>
-<h2 id="高斯池化"><a href="#高斯池化" class="headerlink" title="高斯池化"></a><strong>高斯池化</strong></h2><p><img src="image-20211101210746585.png" alt="image-20211101210746585"></p>
-<p><img src="image-20211101210815021.png" alt="image-20211101210815021"></p>
-<p>其中<img src="https://www.zhihu.com/equation?tex=F_t%5Ej" alt="[公式]"> 被用于后续的动作识别和时序边界回归。</p>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p><img src="image-20211101213043935.png" alt="image-20211101213043935"></p>
-<h2 id="体会"><a href="#体会" class="headerlink" title="体会"></a>体会</h2><p>加高斯核的方式有点像加Attention （但是二者有哪些具体的区别？）</p>
-<p>很多方法都是共通的。比如在论文Background Modeling中，也提到用高斯核</p>
-<p>多阅读多扩宽知识面，更能发现论文的问题</p>
+<p>Yolo的CNN网络将输入的图片分割成$ S × S $个单元格，每个单元格负责去检测那些中心点落在该格子内的目标（举个例子：狗的中心落在左下角一个单元格内，那么该单元格负责预测这个狗），每个单元格会预测$B$个边界框<u>bbox</u>（bounding box）及该bbox的<u>置信度</u>（confidence）。如果一个bbox中不含目标，那么其置信度 = 0；如果包含目标，那么置信度 = bbox与实际框（GT）的IOU。</p>
+<p>边界框的大小与位置可以用4个值来表征，加上置信度，每个边界框的预测值实际上包含$5$个元素：$(x, y, w, h, c)$。</p>
+<p><img src="image-20211009172445920.png" alt="image-20211009172445920"></p>
+<p><strong>分类：</strong>在Yolo算法中，一个单元格内的多个bbox都被预测为同一个类别（这是Yolo算法的一个<strong>缺点</strong>，因为这样很容易漏掉小目标），所以对于每一个单元格，会给出置信度最高的那个bbox的$C$个类别的概率值。</p>
+<p>综上，每个单元格需要预测$(B <em> 5 + C)$个值，如果有$ S × S $个单元格，那么最终预测值为$S × S×(B </em> 5 + C)$大小的张量。</p>
+<p><strong>Yolo的缺点</strong>：定位不准；难以检测小目标。</p>
+<h2 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h2><p>相比Yolo，SSD采用CNN来直接进行检测，而不是像Yolo那样在全连接层之后做检测。</p>
+<p>另外还有两个重要的改变，一是SSD提取了不同尺度的特征图来做检测，大尺度特征图（较靠前的特征图）可以用来检测小物体，而小尺度特征图（较靠后的特征图）用来检测大物体；二是SSD采用了不同尺度和长宽比的先验框（Prior boxes, Default boxes，在Faster R-CNN中叫做锚，Anchors）。</p>
+<p><img src="/image-20211012173044143.png" alt="image-20211012173044143"></p>
+<h3 id="核心理念"><a href="#核心理念" class="headerlink" title="核心理念"></a>核心理念</h3><h4 id="（1）采用多尺度特征图用于检测"><a href="#（1）采用多尺度特征图用于检测" class="headerlink" title="（1）采用多尺度特征图用于检测"></a>（1）采用多尺度特征图用于检测</h4><p>所谓多尺度，就是采用大小不同的特征图。大尺度特征图（较靠前的特征图）可以用来检测小物体，而小尺度特征图（较靠后的特征图）用来检测大物体。</p>
+<h4 id="（2）采用卷积进行检测"><a href="#（2）采用卷积进行检测" class="headerlink" title="（2）采用卷积进行检测"></a>（2）采用卷积进行检测</h4><p>与Yolo最后采用全连接层不同，SSD直接采用卷积对不同的特征图来进行提取检测结果。对于形状为 m <em> n </em> p 的特征图，只需要采用 3 <em> 3 </em> p  这样比较小的卷积核得到检测值。</p>
+<h4 id="（3）设置先验框"><a href="#（3）设置先验框" class="headerlink" title="（3）设置先验框"></a>（3）设置先验框</h4><p>SSD借鉴了Faster R-CNN中anchor的理念，每个单元设置尺度或者长宽比不同的先验框，预测的边界框（bounding boxes）是以这些先验框为基准的，在一定程度上减少训练难度。</p>
+<p>每个单元会设置多个先验框，其尺度和长宽比存在差异，如下图所示，可以看到每个单元使用了4个不同的先验框，图片中猫和狗分别采用最适合它们形状的先验框来进行训练。</p>
+<p><img src="image-20211009223547399.png" alt="image-20211009223547399"></p>
+<p>综上所述，对于一个大小  m <em> n  的特征图，共有 m </em> n 个单元，每个单元设置的先验框数目记为  k ，那么每个单元共需要 (c + 4) <em> k 个预测值，所有的单元共需要  (c + 4) </em> k <em> m </em> n个预测值，由于SSD采用卷积做检测，所以就需要 (c + 4) * k 个卷积核完成这个特征图的检测过程。</p>
 ]]></content>
       <categories>
-        <category>论文笔记</category>
+        <category>目标检测算法</category>
       </categories>
       <tags>
-        <tag>论文笔记</tag>
+        <tag>目标检测</tag>
+        <tag>YOLO</tag>
+        <tag>SSD</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>结构体排序-ccf1709-2公共钥匙盒</title>
+    <url>/ckxheu1ov002nqwu907zq8j6u/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>N个挂钩上有N个钥匙。钥匙没有固定的悬挂位置，但钥匙上有标号。</p>
+<p>每次取钥匙的时候，而不会移动其他钥匙。</p>
+<p>每次还钥匙的时候，挂在<strong>最左边的空挂钩</strong>上。</p>
+<p>同一时刻<strong>先还再取</strong>，且按<strong>编号从小到大</strong>的顺序还。</p>
+<p>初始时，钥匙按编号<strong>从小到大</strong>挂着。</p>
+<p>有<em>K</em>位老师取。给出钥匙标号、取出时间和借出时长，请问最终钥匙盒里面钥匙的顺序是怎样的？</p>
+<span id="more"></span>
+<h1 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h1><p>　　输入的第一行包含两个整数<em>N</em>, <em>K</em>。<br>　　接下来<em>K</em>行，每行三个整数<em>w</em>, <em>s</em>, <em>c</em>，分别表示一位老师要使用的钥匙编号、取出时间和借出的时长。可能有多位老师使用同一把钥匙，但是老师使用钥匙的时间不会重叠。</p>
+<h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><p>　　输出一行，包含<em>N</em>个整数，相邻整数间用一个空格分隔，依次表示每个挂钩上挂的钥匙编号。</p>
+<h1 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 2<br>4 3 3<br>2 2 7</p>
+<h1 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 4 3 2 5</p>
+<h1 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h1><p>　　第一位老师从时刻3开始使用4号教室的钥匙，使用3单位时间，所以在时刻6还钥匙。第二位老师从时刻2开始使用钥匙，使用7单位时间，所以在时刻9还钥匙。<br>　　每个关键时刻后的钥匙状态如下（X表示空）：<br>　　时刻2后为1X345；<br>　　时刻3后为1X3X5；<br>　　时刻6后为143X5；<br>　　时刻9后为14325。</p>
+<h1 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 7<br>1 1 14<br>3 3 12<br>1 15 12<br>2 7 20<br>3 18 12<br>4 21 19<br>5 30 9</p>
+<h1 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 2 3 5 4</p>
+<h1 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h1><p>　　对于30%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 10, 1 ≤ <em>w</em> ≤ <em>N</em>, 1 ≤ <em>s</em>, <em>c</em> ≤ 30；<br>　　对于60%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 50，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 300，1 ≤ <em>c</em> ≤ 50；<br>　　对于所有评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 1000，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 10000，1 ≤ <em>c</em> ≤ 100。</p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>用到两个结构体，保存每次取用的3个数据分别按取出时间和返还时间的排序，即按时间顺序排列。</p>
+<p>vector使用sort排序时写法是<code>sort(v.begin(),v.begin()+v.size());</code>。</p>
+<h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> no,s,en;  <span class="comment">//no号钥匙，s时刻借出，en时刻返还 </span></span><br><span class="line">&#125;node[<span class="number">1005</span>],node1[<span class="number">1005</span>];  <span class="comment">//分别对s和en排序 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//按开始时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.s==b.s)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.s&lt;b.s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按返还时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.en==b.en)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.en&lt;b.en;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> order[<span class="number">1005</span>];  <span class="comment">//oder[i]=x表示第i号钥匙挂在x号钩上 </span></span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">1005</span>];  <span class="comment">//ans[x]=i表示第x号钩子挂着i号钥匙 </span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v;  <span class="comment">//处理钥匙的移出和挂回 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> N,K;  <span class="comment">//N把钥匙，K次取还 </span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;N,&amp;K);</span><br><span class="line">	<span class="comment">//初始时，i号钥匙挂于i号钩	</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		order[i]=i;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="comment">//读入i次取还 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;K;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;node[i].no, &amp;node[i].s,&amp;node[i].en);</span><br><span class="line">		node[i].en += node[i].s;</span><br><span class="line">		node1[i] = node[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//分别对s和en排序</span></span><br><span class="line">	<span class="built_in">sort</span>(node,node+K,cmp1);</span><br><span class="line">	<span class="built_in">sort</span>(node1,node1+K,cmp2);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/* //打印排序结果 </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node[i].s&lt;&lt;&#x27; &#x27;&lt;&lt;node[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node1[i].en&lt;&lt;&#x27; &#x27;&lt;&lt;node1[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125; </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;*/</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> f1=<span class="number">0</span>, f2=<span class="number">0</span>;  <span class="comment">//表示借出和返还的次数 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> time=<span class="number">1</span>;!(f1==K &amp;&amp; f2==K);time++)&#123;  <span class="comment">//借还次数都满时，时间停止，退出循环 		</span></span><br><span class="line">		<span class="comment">//先还 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f1;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node1[i].en &gt; time) <span class="keyword">break</span>;  <span class="comment">//还没到下一把钥匙的返还时间 			</span></span><br><span class="line">			<span class="keyword">if</span>(node1[i].en == time)&#123;</span><br><span class="line">				order[node1[i].no] = v[<span class="number">0</span>];  <span class="comment">//取出v中的第一个元素(即最小的编号)</span></span><br><span class="line">				v.<span class="built_in">erase</span>(v.<span class="built_in">begin</span>());  <span class="comment">//并将第一个元素删除</span></span><br><span class="line">				<span class="comment">//cout&lt;&lt;node1[i].no&lt;&lt;&quot; 号钥匙放回 &quot;&lt;&lt;order[node1[i].no]&lt;&lt;endl;</span></span><br><span class="line">			&#125;</span><br><span class="line">			f1++;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//再借</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f2;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node[i].s &gt; time)<span class="keyword">break</span>;	 <span class="comment">//还没到下一把钥匙的借出时间 		</span></span><br><span class="line">			<span class="keyword">if</span>(node[i].s == time)&#123;</span><br><span class="line">				v.<span class="built_in">push_back</span>(order[node[i].no]);  <span class="comment">//保存被取出的钥匙的空位</span></span><br><span class="line">				<span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">begin</span>()+v.<span class="built_in">size</span>());  <span class="comment">//对所有空钩排序</span></span><br><span class="line">				order[node[i].no]=<span class="number">0</span>;</span><br><span class="line">				<span class="comment">//cout&lt;&lt;node[i].no&lt;&lt;&quot; 号钥匙已拿走... &quot;&lt;&lt;endl;		</span></span><br><span class="line">			&#125; </span><br><span class="line">			f2++;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		ans[order[i]]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		cout&lt;&lt;ans[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>结构体排序</tag>
       </tags>
   </entry>
   <entry>
     <title>博客使用指南</title>
-    <url>/ckxbvnjs70015c8u9ewx0dadj/</url>
+    <url>/ckxheu1ow002oqwu9037gc8lz/</url>
     <content><![CDATA[<h1 id="从创建到部署"><a href="#从创建到部署" class="headerlink" title="从创建到部署"></a>从创建到部署</h1><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo n <span class="string">&quot;博客使用指南&quot;</span></span><br><span class="line">$ hexo new <span class="string">&quot;博客使用指南&quot;</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h2 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
@@ -978,7 +1067,7 @@
   </entry>
   <entry>
     <title>深度学习笔记</title>
-    <url>/ckxbvnjs80019c8u9613igx55/</url>
+    <url>/ckxheu1ow002qqwu9f47a2hut/</url>
     <content><![CDATA[<h3 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h3><span id="more"></span>
 <p>对于一个函数来说，通常有两种计算梯度的方式：</p>
 <ul>
@@ -1011,67 +1100,6 @@
       </categories>
       <tags>
         <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>目标检测算法</title>
-    <url>/ckxbvnjs8001bc8u922qd7ykl/</url>
-    <content><![CDATA[<h1 id="一阶段（端到端）方法"><a href="#一阶段（端到端）方法" class="headerlink" title="一阶段（端到端）方法"></a>一阶段（端到端）方法</h1><h2 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h2><p>原论文：《You Only Look Once: Unified, Real-Time Object Detection》</p>
-<p>Yolo算法采用一个单独的CNN模型实现end-to-end的目标检测。</p>
-<span id="more"></span>
-<p>Yolo的CNN网络将输入的图片分割成$ S × S $个单元格，每个单元格负责去检测那些中心点落在该格子内的目标（举个例子：狗的中心落在左下角一个单元格内，那么该单元格负责预测这个狗），每个单元格会预测$B$个边界框<u>bbox</u>（bounding box）及该bbox的<u>置信度</u>（confidence）。如果一个bbox中不含目标，那么其置信度 = 0；如果包含目标，那么置信度 = bbox与实际框（GT）的IOU。</p>
-<p>边界框的大小与位置可以用4个值来表征，加上置信度，每个边界框的预测值实际上包含$5$个元素：$(x, y, w, h, c)$。</p>
-<p><img src="image-20211009172445920.png" alt="image-20211009172445920"></p>
-<p><strong>分类：</strong>在Yolo算法中，一个单元格内的多个bbox都被预测为同一个类别（这是Yolo算法的一个<strong>缺点</strong>，因为这样很容易漏掉小目标），所以对于每一个单元格，会给出置信度最高的那个bbox的$C$个类别的概率值。</p>
-<p>综上，每个单元格需要预测$(B <em> 5 + C)$个值，如果有$ S × S $个单元格，那么最终预测值为$S × S×(B </em> 5 + C)$大小的张量。</p>
-<p><strong>Yolo的缺点</strong>：定位不准；难以检测小目标。</p>
-<h2 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h2><p>相比Yolo，SSD采用CNN来直接进行检测，而不是像Yolo那样在全连接层之后做检测。</p>
-<p>另外还有两个重要的改变，一是SSD提取了不同尺度的特征图来做检测，大尺度特征图（较靠前的特征图）可以用来检测小物体，而小尺度特征图（较靠后的特征图）用来检测大物体；二是SSD采用了不同尺度和长宽比的先验框（Prior boxes, Default boxes，在Faster R-CNN中叫做锚，Anchors）。</p>
-<p><img src="/image-20211012173044143.png" alt="image-20211012173044143"></p>
-<h3 id="核心理念"><a href="#核心理念" class="headerlink" title="核心理念"></a>核心理念</h3><h4 id="（1）采用多尺度特征图用于检测"><a href="#（1）采用多尺度特征图用于检测" class="headerlink" title="（1）采用多尺度特征图用于检测"></a>（1）采用多尺度特征图用于检测</h4><p>所谓多尺度，就是采用大小不同的特征图。大尺度特征图（较靠前的特征图）可以用来检测小物体，而小尺度特征图（较靠后的特征图）用来检测大物体。</p>
-<h4 id="（2）采用卷积进行检测"><a href="#（2）采用卷积进行检测" class="headerlink" title="（2）采用卷积进行检测"></a>（2）采用卷积进行检测</h4><p>与Yolo最后采用全连接层不同，SSD直接采用卷积对不同的特征图来进行提取检测结果。对于形状为 m <em> n </em> p 的特征图，只需要采用 3 <em> 3 </em> p  这样比较小的卷积核得到检测值。</p>
-<h4 id="（3）设置先验框"><a href="#（3）设置先验框" class="headerlink" title="（3）设置先验框"></a>（3）设置先验框</h4><p>SSD借鉴了Faster R-CNN中anchor的理念，每个单元设置尺度或者长宽比不同的先验框，预测的边界框（bounding boxes）是以这些先验框为基准的，在一定程度上减少训练难度。</p>
-<p>每个单元会设置多个先验框，其尺度和长宽比存在差异，如下图所示，可以看到每个单元使用了4个不同的先验框，图片中猫和狗分别采用最适合它们形状的先验框来进行训练。</p>
-<p><img src="image-20211009223547399.png" alt="image-20211009223547399"></p>
-<p>综上所述，对于一个大小  m <em> n  的特征图，共有 m </em> n 个单元，每个单元设置的先验框数目记为  k ，那么每个单元共需要 (c + 4) <em> k 个预测值，所有的单元共需要  (c + 4) </em> k <em> m </em> n个预测值，由于SSD采用卷积做检测，所以就需要 (c + 4) * k 个卷积核完成这个特征图的检测过程。</p>
-]]></content>
-      <categories>
-        <category>目标检测算法</category>
-      </categories>
-      <tags>
-        <tag>目标检测</tag>
-        <tag>YOLO</tag>
-        <tag>SSD</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>结构体排序-ccf1709-2公共钥匙盒</title>
-    <url>/ckxbvnjs9001fc8u98ihgf0ay/</url>
-    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>N个挂钩上有N个钥匙。钥匙没有固定的悬挂位置，但钥匙上有标号。</p>
-<p>每次取钥匙的时候，而不会移动其他钥匙。</p>
-<p>每次还钥匙的时候，挂在<strong>最左边的空挂钩</strong>上。</p>
-<p>同一时刻<strong>先还再取</strong>，且按<strong>编号从小到大</strong>的顺序还。</p>
-<p>初始时，钥匙按编号<strong>从小到大</strong>挂着。</p>
-<p>有<em>K</em>位老师取。给出钥匙标号、取出时间和借出时长，请问最终钥匙盒里面钥匙的顺序是怎样的？</p>
-<span id="more"></span>
-<h1 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h1><p>　　输入的第一行包含两个整数<em>N</em>, <em>K</em>。<br>　　接下来<em>K</em>行，每行三个整数<em>w</em>, <em>s</em>, <em>c</em>，分别表示一位老师要使用的钥匙编号、取出时间和借出的时长。可能有多位老师使用同一把钥匙，但是老师使用钥匙的时间不会重叠。</p>
-<h1 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h1><p>　　输出一行，包含<em>N</em>个整数，相邻整数间用一个空格分隔，依次表示每个挂钩上挂的钥匙编号。</p>
-<h1 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 2<br>4 3 3<br>2 2 7</p>
-<h1 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 4 3 2 5</p>
-<h1 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h1><p>　　第一位老师从时刻3开始使用4号教室的钥匙，使用3单位时间，所以在时刻6还钥匙。第二位老师从时刻2开始使用钥匙，使用7单位时间，所以在时刻9还钥匙。<br>　　每个关键时刻后的钥匙状态如下（X表示空）：<br>　　时刻2后为1X345；<br>　　时刻3后为1X3X5；<br>　　时刻6后为143X5；<br>　　时刻9后为14325。</p>
-<h1 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h1><p>5 7<br>1 1 14<br>3 3 12<br>1 15 12<br>2 7 20<br>3 18 12<br>4 21 19<br>5 30 9</p>
-<h1 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h1><p>1 2 3 5 4</p>
-<h1 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h1><p>　　对于30%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 10, 1 ≤ <em>w</em> ≤ <em>N</em>, 1 ≤ <em>s</em>, <em>c</em> ≤ 30；<br>　　对于60%的评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 50，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 300，1 ≤ <em>c</em> ≤ 50；<br>　　对于所有评测用例，1 ≤ <em>N</em>, <em>K</em> ≤ 1000，1 ≤ <em>w</em> ≤ <em>N</em>，1 ≤ <em>s</em> ≤ 10000，1 ≤ <em>c</em> ≤ 100。</p>
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>用到两个结构体，保存每次取用的3个数据分别按取出时间和返还时间的排序，即按时间顺序排列。</p>
-<p>vector使用sort排序时写法是<code>sort(v.begin(),v.begin()+v.size());</code>。</p>
-<h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> no,s,en;  <span class="comment">//no号钥匙，s时刻借出，en时刻返还 </span></span><br><span class="line">&#125;node[<span class="number">1005</span>],node1[<span class="number">1005</span>];  <span class="comment">//分别对s和en排序 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//按开始时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp1</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.s==b.s)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.s&lt;b.s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按返还时间排序（相同的话再按钥匙号排序 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp2</span><span class="params">(Node <span class="keyword">const</span> &amp;a, Node <span class="keyword">const</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.en==b.en)&#123;</span><br><span class="line">		<span class="keyword">return</span> a.no&lt;b.no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a.en&lt;b.en;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> order[<span class="number">1005</span>];  <span class="comment">//oder[i]=x表示第i号钥匙挂在x号钩上 </span></span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">1005</span>];  <span class="comment">//ans[x]=i表示第x号钩子挂着i号钥匙 </span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v;  <span class="comment">//处理钥匙的移出和挂回 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> N,K;  <span class="comment">//N把钥匙，K次取还 </span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;N,&amp;K);</span><br><span class="line">	<span class="comment">//初始时，i号钥匙挂于i号钩	</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		order[i]=i;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="comment">//读入i次取还 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;K;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;node[i].no, &amp;node[i].s,&amp;node[i].en);</span><br><span class="line">		node[i].en += node[i].s;</span><br><span class="line">		node1[i] = node[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//分别对s和en排序</span></span><br><span class="line">	<span class="built_in">sort</span>(node,node+K,cmp1);</span><br><span class="line">	<span class="built_in">sort</span>(node1,node1+K,cmp2);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/* //打印排序结果 </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node[i].s&lt;&lt;&#x27; &#x27;&lt;&lt;node[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	for(int i=0;i&lt;K;i++)&#123;</span></span><br><span class="line"><span class="comment">		cout&lt;&lt;node1[i].en&lt;&lt;&#x27; &#x27;&lt;&lt;node1[i].no&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	&#125; </span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;****&quot;&lt;&lt;endl;*/</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> f1=<span class="number">0</span>, f2=<span class="number">0</span>;  <span class="comment">//表示借出和返还的次数 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> time=<span class="number">1</span>;!(f1==K &amp;&amp; f2==K);time++)&#123;  <span class="comment">//借还次数都满时，时间停止，退出循环 		</span></span><br><span class="line">		<span class="comment">//先还 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f1;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node1[i].en &gt; time) <span class="keyword">break</span>;  <span class="comment">//还没到下一把钥匙的返还时间 			</span></span><br><span class="line">			<span class="keyword">if</span>(node1[i].en == time)&#123;</span><br><span class="line">				order[node1[i].no] = v[<span class="number">0</span>];  <span class="comment">//取出v中的第一个元素(即最小的编号)</span></span><br><span class="line">				v.<span class="built_in">erase</span>(v.<span class="built_in">begin</span>());  <span class="comment">//并将第一个元素删除</span></span><br><span class="line">				<span class="comment">//cout&lt;&lt;node1[i].no&lt;&lt;&quot; 号钥匙放回 &quot;&lt;&lt;order[node1[i].no]&lt;&lt;endl;</span></span><br><span class="line">			&#125;</span><br><span class="line">			f1++;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//再借</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=f2;i&lt;K;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(node[i].s &gt; time)<span class="keyword">break</span>;	 <span class="comment">//还没到下一把钥匙的借出时间 		</span></span><br><span class="line">			<span class="keyword">if</span>(node[i].s == time)&#123;</span><br><span class="line">				v.<span class="built_in">push_back</span>(order[node[i].no]);  <span class="comment">//保存被取出的钥匙的空位</span></span><br><span class="line">				<span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">begin</span>()+v.<span class="built_in">size</span>());  <span class="comment">//对所有空钩排序</span></span><br><span class="line">				order[node[i].no]=<span class="number">0</span>;</span><br><span class="line">				<span class="comment">//cout&lt;&lt;node[i].no&lt;&lt;&quot; 号钥匙已拿走... &quot;&lt;&lt;endl;		</span></span><br><span class="line">			&#125; </span><br><span class="line">			f2++;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		ans[order[i]]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=N;i++)&#123;</span><br><span class="line">		cout&lt;&lt;ans[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>OJ</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>结构体排序</tag>
       </tags>
   </entry>
 </search>
