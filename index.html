@@ -1114,6 +1114,142 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/slowfast/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="Gwofoo">
+      <meta itemprop="description" content="Welcome to Gwofoo's blog. Keep it up!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gwofoo's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/slowfast/" class="post-title-link" itemprop="url">【论文笔记】【动作检测】SlowFast Networks for Video Recognition</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-15 17:13:37" itemprop="dateCreated datePublished" datetime="2021-11-15T17:13:37+08:00">2021-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-11 14:06:05" itemprop="dateModified" datetime="2022-07-11T14:06:05+08:00">2022-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="SlowFast-Networks-for-Video-Recognition"><a href="#SlowFast-Networks-for-Video-Recognition" class="headerlink" title="SlowFast Networks for Video Recognition"></a>SlowFast Networks for Video Recognition</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>提出了一种快慢结合的网络<strong>SlowFast</strong>来用于视频分类。提出对<u>运动维度（时间维度）</u>和<u>空间维度</u>分而治之的思想。</p>
+<p><strong>灵感来源：</strong></p>
+<ul>
+<li>空间语义信息是变化缓慢的。比如，挥手不会改变“手”的类别；一个人从步行转为跑步，也总是处于“人”的类别。因此，对分类语义（以及它们的颜色、纹理、光照等）的识别可以低帧率地刷新。</li>
+<li>但对于正在执行的动作，可以比其主体身份更快地发展，例如拍手，挥手，摇晃，行走或跳跃。所以采用高帧率来有效地模拟可能快速变化的运动。</li>
+</ul>
+<p>模型分为两路：</p>
+<ul>
+<li>一路为Slow网络，输入为低帧率，用来捕获<strong>空间</strong>语义信息。</li>
+<li>一路为Fast网络，输入为高帧率，用来捕获<strong>运动</strong>信息。</li>
+</ul>
+<p>最终两条路径通过横向连接来融合。</p>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><p><img src="image-20211115172221627.png" alt="image-20211115172221627"></p>
+<h3 id="1-Slow路径"><a href="#1-Slow路径" class="headerlink" title="1. Slow路径"></a>1. Slow路径</h3><p>输入为低帧率，用来捕获<strong>空间</strong>语义信息。</p>
+<p>对于一个视频片段，Slow网络每隔 <img src="https://www.zhihu.com/equation?tex=%5Ctau" alt="[公式]"> 帧（默认=16）采样一帧作为输入。假定该网络的输入为<em>T</em> 帧，则该视频片段的长度为<img src="https://www.zhihu.com/equation?tex=%5Ctau" alt="[公式]"> <img src="https://www.zhihu.com/equation?tex=%5Ctimes" alt="[公式]"> <em>T</em> 。</p>
+<h3 id="2-Fast路径"><a href="#2-Fast路径" class="headerlink" title="2. Fast路径"></a>2. Fast路径</h3><p>对比Slow路径，有两个重要参数α和β。</p>
+<ul>
+<li><p><em>高帧率：</em>Fast网络相比于Slow网络，处理高帧率的信息，则每 <img src="https://www.zhihu.com/equation?tex=%5Ctau%2F%5Calpha" alt="[公式]"> 帧采样一帧作为输入，也就是输入为 <img src="https://www.zhihu.com/equation?tex=%5Calpha+T" alt="[公式]"> 帧。 （<img src="https://www.zhihu.com/equation?tex=%5Calpha" alt="[公式]"> =8 默认)</p>
+</li>
+<li><p><em>高分辨率的时序特征：</em>不进行时间的降采样。（始终保持高帧率）</p>
+</li>
+<li><p><em>轻量级：</em>相比于Slow网络，通道数只是它的 <img src="https://www.zhihu.com/equation?tex=%5Cbeta" alt="[公式]"> 倍（<img src="https://www.zhihu.com/equation?tex=%5Cbeta" alt="[公式]">&lt;1，文中取1/8）。一般计算复杂度（FLOPs)与通道数为二次关系（why？)，所以在SlowFast中，Fast网络占到20%左右的计算量。</p>
+</li>
+</ul>
+<p>虽然Fast是高帧率的，但它却是轻量的（只占总计算量的20%），因为Fast路径只专注于时序信息，减少了通道数，牺牲了处理空间信息的能力。而空间信息可以由slow路径提供。</p>
+<h3 id="3-横向连接"><a href="#3-横向连接" class="headerlink" title="3. 横向连接"></a>3. 横向连接</h3><p>两条路径需要进行融合，通过横向连接来实现这一点。因为两路具有不同的时间维度，因此横向连接进行尺寸匹配。</p>
+<p>使用单向连接将Fast路径的特征融合到Slow通路中（实验表明双向融合并没有什么提升）。</p>
+<p>最后，对每个路径的输出进行全局平局池化，合并后接一个全连接层用来分类。</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>在四个数据集(Kinetics400 、Kinetics600 、AVA、Charades )上都取得了最好的结果。</p>
+<p><strong>消融实验</strong></p>
+<p><img src="image-20211115192138885.png" alt="image-20211115192138885"></p>
+<p><img src="image-20211115195412692.png" alt="image-20211115195412692"></p>
+<h2 id="和two-stream网络的比较"><a href="#和two-stream网络的比较" class="headerlink" title="和two-stream网络的比较"></a>和two-stream网络的比较</h2><ul>
+<li><p>two-stream模型也是双流设计，但它针对的是相同的帧率。</p>
+</li>
+<li><p>two-stream的两个流采用相同的主干结构，而SlowFast两条路中的Fast路径更轻。</p>
+</li>
+<li>SlowFast方法不计算光流，模型是从原始数据端到端学习的。</li>
+<li>本文的实验表明SlowFast 网络更有效，在四个数据集(Kinetics400 、Kinetics600 、AVA、Charades )上都实现了最高的水准。</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>在时间维度上更好地处理运动信息，是一个重点研究问题。</li>
+<li>有没有时序动作定位论文用这个网络来提取特征？</li>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+	
+	<div>
+      
+    </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/pytorch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1308,106 +1444,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/cl5gbzvrb001oucu9gi6419zt/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/myavatar.jpg">
-      <meta itemprop="name" content="Gwofoo">
-      <meta itemprop="description" content="Welcome to Gwofoo's blog. Keep it up!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Gwofoo's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/cl5gbzvrb001oucu9gi6419zt/" class="post-title-link" itemprop="url">目标检测算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-09 16:56:01" itemprop="dateCreated datePublished" datetime="2021-10-09T16:56:01+08:00">2021-10-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-12 18:54:39" itemprop="dateModified" datetime="2021-10-12T18:54:39+08:00">2021-10-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">目标检测算法</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一阶段（端到端）方法"><a href="#一阶段（端到端）方法" class="headerlink" title="一阶段（端到端）方法"></a>一阶段（端到端）方法</h1><h2 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h2><p>原论文：《You Only Look Once: Unified, Real-Time Object Detection》</p>
-<p>Yolo算法采用一个单独的CNN模型实现end-to-end的目标检测。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/cl5gbzvrb001oucu9gi6419zt/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-	
-	<div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1479,7 +1515,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1492,7 +1528,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1533,12 +1569,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">56k</span>
+    <span title="站点总字数">65k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">51 分钟</span>
+    <span title="站点阅读时长">59 分钟</span>
   
 	<br />
 	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
