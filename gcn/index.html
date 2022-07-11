@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/myavatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/myavatar.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Zhi Mang Xing:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本周工作Graph Convolutional Networks for Temporal Action Localization [2019 ICCV]motivation目前二阶段TAL方法：首先生成一系列时序提名，再分别对每个提名做分类和边界回归。在这个learning过程中没有利用proposal之间的关系。但事实是，proposal之间的关系在TAL中扮演着非常重要的角色，于是作者提出使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文笔记】GCN">
+<meta property="og:url" content="http://example.com/gcn/index.html">
+<meta property="og:site_name" content="Gwofoo&#39;s blog">
+<meta property="og:description" content="本周工作Graph Convolutional Networks for Temporal Action Localization [2019 ICCV]motivation目前二阶段TAL方法：首先生成一系列时序提名，再分别对每个提名做分类和边界回归。在这个learning过程中没有利用proposal之间的关系。但事实是，proposal之间的关系在TAL中扮演着非常重要的角色，于是作者提出使">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=r%28p_%7Bi%7D+%2Cp_%7Bj%7D%29%3E%5Ctheta_%7Bctx%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=p_%7Bi%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=p_%7Bj%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Ctheta_%7Bctx%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=r%28p_%7Bi%7D+%2Cp_%7Bj%7D%29">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=r%28p_%7Bi%7D+%2Cp_%7Bj%7D%29%3D0">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=d%28p_%7Bi%7D+%2Cp_%7Bj%7D%29%3C%5Ctheta_%7Bsur%7D">
+<meta property="og:image" content="http://example.com/gcn/image-20220228193152721.png">
+<meta property="og:image" content="http://example.com/gcn/image-20220228201158024.png">
+<meta property="og:image" content="http://example.com/gcn/image-20220228201429808.png">
+<meta property="article:published_time" content="2022-02-27T08:53:42.000Z">
+<meta property="article:modified_time" content="2022-03-01T12:18:46.163Z">
+<meta property="article:author" content="Gwofoo">
+<meta property="article:tag" content="-论文笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.zhihu.com/equation?tex=r%28p_%7Bi%7D+%2Cp_%7Bj%7D%29%3E%5Ctheta_%7Bctx%7D">
+
+<link rel="canonical" href="http://example.com/gcn/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>【论文笔记】GCN | Gwofoo's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  
+  <script type="text/javascript" src="/js/my_js/clicklove.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gwofoo's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/gcn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="Gwofoo">
+      <meta itemprop="description" content="Welcome to Gwofoo's blog. Keep it up!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gwofoo's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【论文笔记】GCN
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-27 16:53:42" itemprop="dateCreated datePublished" datetime="2022-02-27T16:53:42+08:00">2022-02-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-01 20:18:46" itemprop="dateModified" datetime="2022-03-01T20:18:46+08:00">2022-03-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>900</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="本周工作"><a href="#本周工作" class="headerlink" title="本周工作"></a>本周工作</h1><h1 id="Graph-Convolutional-Networks-for-Temporal-Action-Localization-2019-ICCV"><a href="#Graph-Convolutional-Networks-for-Temporal-Action-Localization-2019-ICCV" class="headerlink" title="Graph Convolutional Networks for Temporal Action Localization [2019 ICCV]"></a>Graph Convolutional Networks for Temporal Action Localization [2019 ICCV]</h1><h2 id="motivation"><a href="#motivation" class="headerlink" title="motivation"></a>motivation</h2><p>目前二阶段TAL方法：首先生成一系列时序提名，再<strong>分别</strong>对每个提名做分类和边界回归。在这个learning过程中没有利用proposal之间的关系。但事实是，proposal之间的关系在TAL中扮演着非常重要的角色，于是作者提出使用Graph Convolutional Networks来探索proposal之间的关系。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="构建图"><a href="#构建图" class="headerlink" title="构建图"></a>构建图</h3><p><strong>上下文边（Contextual Edges）</strong></p>
+<p>当 <img src="https://www.zhihu.com/equation?tex=r%28p_%7Bi%7D+%2Cp_%7Bj%7D%29%3E%5Ctheta_%7Bctx%7D" alt="[公式]"> ，我们就在proposal <img src="https://www.zhihu.com/equation?tex=p_%7Bi%7D" alt="[公式]"> 和 <img src="https://www.zhihu.com/equation?tex=p_%7Bj%7D" alt="[公式]"> 之间建立一条边， 这里<img src="https://www.zhihu.com/equation?tex=%5Ctheta_%7Bctx%7D" alt="[公式]">是一个特定的阈值， <img src="https://www.zhihu.com/equation?tex=r%28p_%7Bi%7D+%2Cp_%7Bj%7D%29" alt="[公式]"> 代表proposal之间的相关性，被tIoU定义。</p>
+<p><strong>周围边（Surrounding edges）</strong></p>
+<p>上下文边将重叠proposal连接起来，而这些proposal通常对应相同的action instance。事实上，也可以将种类不同但是nearby的动作（包括背景）关联起来，并且它们之间传递的信息将有助于彼此检测。</p>
+<p>为了处理这种相关性，我们首先利用 <img src="https://www.zhihu.com/equation?tex=r%28p_%7Bi%7D+%2Cp_%7Bj%7D%29%3D0" alt="[公式]"> 查询不同种类的提议，然后计算以下距离，如果 <img src="https://www.zhihu.com/equation?tex=d%28p_%7Bi%7D+%2Cp_%7Bj%7D%29%3C%5Ctheta_%7Bsur%7D" alt="[公式]"> 就在nearby proposals之间添加边。</p>
+<p><img src="image-20220228193152721.png" alt="image-20220228193152721" style="zoom:80%;" /></p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p><img src="image-20220228201158024.png" alt="image-20220228201158024" style="zoom:80%;" /></p>
+<p><img src="image-20220228201429808.png" alt="image-20220228201429808" style="zoom:80%;" /></p>
+<h3 id="实验结果分析"><a href="#实验结果分析" class="headerlink" title="实验结果分析"></a>实验结果分析</h3><ol>
+<li>在THUMOS14上的实验结果很好。</li>
+<li>在activitynet上的结果仅仅利用P-GCN结果不是很好。添加了UntrimmedNet网络的结果才超过了BSN的结果。</li>
+</ol>
+<p><strong>思考</strong></p>
+<p>在activitynet上可能是一个视频大部分都是只有一个动作，并且行为类别数比较多，不能很好的发挥提议与提议之间的关系。</p>
+<h2 id="图卷积方法"><a href="#图卷积方法" class="headerlink" title="图卷积方法"></a>图卷积方法</h2><p>最大的贡献是发掘了proposal之间潜在的关系。</p>
+<p>图的边是人为定的，可能存在误差。有没有可能把构建图的过程也变成网络学习的过程？</p>
+<h1 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h1><ul>
+<li>目前对上学期的论文调研已经做了总结，接下来要尽快完成TAL领域的综述 并发表。（1~2个月）</li>
+<li>时序动作定位领域继续学习新的论文、做实验，尽早确定具有可行性方法思路。（一项长期工作。计划：每周至少学习1~2篇论文，每两周完整地仿真一篇论文；所有论文阅读和实验做好整理和归纳）</li>
+<li>希望可以结合一些具体的项目来进一步锻炼自己的代码能力。（如果有的话）</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+	
+	<div>
+      
+      <div>
+    
+        <div class="read-over" style="text-align:left;font-size:14px;">
+			<p style="text-align:center;color: #ccc;"><br /><br />
+			-------------------本文结束 <i class="fa fa-paw"></i> 感谢您的阅读-------------------
+			<p>
+		</div>
+    
+</div>
+
+      
+    </div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="tag"># -论文笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/dfs/" rel="prev" title="【OJ】DFS">
+      <i class="fa fa-chevron-left"></i> 【OJ】DFS
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/zhoujieruqin/" rel="next" title="周界入侵调研">
+      周界入侵调研 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E5%91%A8%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">本周工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Graph-Convolutional-Networks-for-Temporal-Action-Localization-2019-ICCV"><span class="nav-number">2.</span> <span class="nav-text">Graph Convolutional Networks for Temporal Action Localization [2019 ICCV]</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#motivation"><span class="nav-number">2.1.</span> <span class="nav-text">motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E5%9B%BE"><span class="nav-number">2.2.1.</span> <span class="nav-text">构建图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">2.3.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="nav-number">2.3.1.</span> <span class="nav-text">实验结果分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%8D%B7%E7%A7%AF%E6%96%B9%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">图卷积方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E5%88%92"><span class="nav-number">3.</span> <span class="nav-text">计划</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gwofoo"
+      src="/images/myavatar.jpg">
+  <p class="site-author-name" itemprop="name">Gwofoo</p>
+  <div class="site-description" itemprop="description">Welcome to Gwofoo's blog. Keep it up!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Gwofoo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Gwofoo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gwofoo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">56k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">51 分钟</span>
+  
+	<br />
+	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+	<script>
+		var now = new Date(); 
+		function createtime() { 
+			var birth= new Date("7/2/2019 23:12:45");//此处修改你的建站时间或者网站上线时间 
+			this_year = now.getFullYear();
+			var anniversary = new Date("7/2/2019 23:12:45").setFullYear(this_year);
+			now.setTime(now.getTime()+250); 
+			years = this_year - 2019;
+			days = (now - anniversary ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 			
+			hours = (now - anniversary ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+			if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - anniversary ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+			mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+			seconds = (now - anniversary ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+			snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+			document.getElementById("timeDate").innerHTML = "本站已安全运行 " + years + " 年 " + dnum + " 天 "; 
+			document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+		} 
+	setInterval("createtime()",250);
+	</script>
+	
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!--动态背景-->
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>

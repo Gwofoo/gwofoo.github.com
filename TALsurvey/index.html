@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/myavatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/myavatar.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Zhi Mang Xing:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="时序动作定位（Temporal Action Localization）总结定义在视频序列中确定动作发生的时间区间（包括开始时间与结束时间）以及动作的类别。 分类按阶段分：  多阶段方法：S-CNN、BSN、BMN…… 端到端方法：SSAD、SS-TAD、GTAN、DBG……  按监督分：  强监督方法：以上都是 弱监督方法：UntrimmedNet、STPN、CMCS、Background Mo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时序动作定位综述（强监督）">
+<meta property="og:url" content="http://example.com/TALsurvey/index.html">
+<meta property="og:site_name" content="Gwofoo&#39;s blog">
+<meta property="og:description" content="时序动作定位（Temporal Action Localization）总结定义在视频序列中确定动作发生的时间区间（包括开始时间与结束时间）以及动作的类别。 分类按阶段分：  多阶段方法：S-CNN、BSN、BMN…… 端到端方法：SSAD、SS-TAD、GTAN、DBG……  按监督分：  强监督方法：以上都是 弱监督方法：UntrimmedNet、STPN、CMCS、Background Mo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/TALsurvey/image-20210927182540574.png">
+<meta property="og:image" content="http://example.com/image-20210927182821079.png">
+<meta property="og:image" content="http://example.com/TURN-TAP.jpg">
+<meta property="og:image" content="http://example.com/image-20210927185640495.png">
+<meta property="og:image" content="http://example.com/image-20211213220303917.png">
+<meta property="og:image" content="http://example.com/image-20211008105534974.png">
+<meta property="og:image" content="http://example.com/TALsurvey/image-20220115231850631.png">
+<meta property="og:image" content="http://example.com/image-20211011161132357.png">
+<meta property="og:image" content="http://example.com/image-20211101210605894.png">
+<meta property="article:published_time" content="2021-12-18T13:32:43.000Z">
+<meta property="article:modified_time" content="2022-01-16T10:12:18.744Z">
+<meta property="article:author" content="Gwofoo">
+<meta property="article:tag" content="论文笔记">
+<meta property="article:tag" content="综述">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/TALsurvey/image-20210927182540574.png">
+
+<link rel="canonical" href="http://example.com/TALsurvey/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>时序动作定位综述（强监督） | Gwofoo's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  
+  <script type="text/javascript" src="/js/my_js/clicklove.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Gwofoo's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/TALsurvey/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+      <meta itemprop="name" content="Gwofoo">
+      <meta itemprop="description" content="Welcome to Gwofoo's blog. Keep it up!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gwofoo's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          时序动作定位综述（强监督）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-18 21:32:43" itemprop="dateCreated datePublished" datetime="2021-12-18T21:32:43+08:00">2021-12-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-16 18:12:18" itemprop="dateModified" datetime="2022-01-16T18:12:18+08:00">2022-01-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="时序动作定位（Temporal-Action-Localization）总结"><a href="#时序动作定位（Temporal-Action-Localization）总结" class="headerlink" title="时序动作定位（Temporal Action Localization）总结"></a>时序动作定位（Temporal Action Localization）总结</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在视频序列中确定动作发生的<u><strong>时间区间</strong></u>（包括开始时间与结束时间）以及动作的<u><strong>类别</strong></u>。</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>按阶段分：</p>
+<ul>
+<li>多阶段方法：S-CNN、BSN、BMN……</li>
+<li>端到端方法：SSAD、SS-TAD、GTAN、DBG……</li>
+</ul>
+<p>按监督分：</p>
+<ul>
+<li>强监督方法：以上都是</li>
+<li>弱监督方法：UntrimmedNet、STPN、CMCS、Background Modeling、BaSNet……</li>
+</ul>
+<h2 id="基准数据集"><a href="#基准数据集" class="headerlink" title="基准数据集"></a>基准数据集</h2><p>最流行的是THUMOS14和ActivityNet。</p>
+<h2 id="两阶段方法"><a href="#两阶段方法" class="headerlink" title="两阶段方法"></a>两阶段方法</h2><p>两阶段方法即先<strong>提议</strong>后<strong>分类</strong>。这种方法是主流的方法（多数论文都采用）。</p>
+<ol>
+<li>提取temporal proposals（难点）</li>
+<li>将其分类以及回归操作</li>
+</ol>
+<p>第一步是难点，所以各种方法也都是针对第一步来提出。</p>
+<p>对于两阶段的方案存在的<strong>问题</strong>：</p>
+<ol>
+<li>由于对候选片段的生成和分类是相对独立的，各个模块<strong>训练目标不一致</strong>；</li>
+<li>动作实例的候选片段在分类步骤中已经被固定，前一模块产生的偏差可能影响后一个模块，造成<strong>误差的累积</strong>。</li>
+</ol>
+<h3 id="SLIDING-WINDOW-S-CNN-2016"><a href="#SLIDING-WINDOW-S-CNN-2016" class="headerlink" title="SLIDING WINDOW (S-CNN, 2016)"></a>SLIDING WINDOW (S-CNN, 2016)</h3><p><img src="image-20210927182540574.png" alt="image-20210927182540574" style="zoom: 67%;" /></p>
+<p>S-CNN：<strong>固定一定大小的滑动窗口</strong>来生成不同大小的视频片段，然后通过多级网络(SegmentCNN)对其进行处理。</p>
+<p>SCNN包括三个使用C3D网络的子网络：</p>
+<ol>
+<li>proposal网络。确定当前划分的视频片段（segment）是一个动作（action）的可能性。</li>
+<li>分类网络。对视频片段进行分类。</li>
+<li>定位网络。其输出是分类的概率。</li>
+</ol>
+<p>理论上，窗口滑动的重叠度越高，效果越好，但是计算量也大。所以用非极大值抑制（NMS）去除重叠段。</p>
+<p><strong>缺点</strong>：滑窗法不能处理不同长度的视频动作；密集的滑窗计算量太大。</p>
+<h3 id="时序动作组合-TEMPORAL-ACTIONNESS-GROUPING-TAG-2017"><a href="#时序动作组合-TEMPORAL-ACTIONNESS-GROUPING-TAG-2017" class="headerlink" title="时序动作组合 TEMPORAL ACTIONNESS GROUPING (TAG, 2017)"></a>时序动作组合 TEMPORAL ACTIONNESS GROUPING (TAG, 2017)</h3><p><img src="/image-20210927182821079.png" alt="image-20210927182821079" style="zoom:67%;" /></p>
+<p>滑窗法不能处理不同长度的视频动作。为了生成一个proposal，提出了TAG网络。TAG网络分为3步：</p>
+<ol>
+<li>提取片段（snippets）：每个snippet包含一个视频帧和光流（ optical flow）信息；snippet是均匀获取的；用TSN的稀疏采样方法采样。</li>
+<li><p>动作判断（Actionness）：给snippet打分，确定每个snippet是否含有任何动作。用到二分类网络TSN（Temporal Segment Network）。</p>
+</li>
+<li><p>组合（Grouping）：依据输出的snippets序列的概率，对高概率的连续snippets进行组合，同时设置多组阈值来删除低概率的snippets。</p>
+</li>
+</ol>
+<p>在THUMOS2014上IOU=0.5时候MAP=28.25。</p>
+<p>优点：对边界的处理更灵活；减少了proposal数目，减少计算量；合并片段是自底向上的，更加精确；设置多个阈值组合，可以不需改变参数的训练。</p>
+<p><strong>缺点</strong>：分类错误的话，会错过一些proposal。</p>
+<h3 id="时序单元回归网络-TEMPORAL-UNIT-REGRESS-NETWORK-TURN-TAP-2017"><a href="#时序单元回归网络-TEMPORAL-UNIT-REGRESS-NETWORK-TURN-TAP-2017" class="headerlink" title="时序单元回归网络 TEMPORAL UNIT REGRESS NETWORK (TURN TAP 2017)"></a>时序单元回归网络 TEMPORAL UNIT REGRESS NETWORK (TURN TAP 2017)</h3><p><img src="/TURN-TAP.jpg" alt=""></p>
+<p>该方法将视频分成固定大小的单元（unit），例如16帧为一单元。然后将每个单元放入C3D中提取水平特征。相邻单元构成一个片段（clip），并让每个单元作为锚定单元（anchor unit）构成片段金字塔，然后在单元上执行时序坐标回归。</p>
+<p>网络包含两个输出：</p>
+<ol>
+<li>确定片段（clip）是否包含动作的置信度</li>
+<li>调整时序坐标边界的偏移量</li>
+</ol>
+<p>该方法的贡献：</p>
+<ol>
+<li>一种利用坐标回归生成时序proposal片段的新方法。</li>
+<li>快（800fps）。</li>
+<li>提出了一种新的评价指标AR-F。</li>
+</ol>
+<h3 id="边界敏感网络-BOUNDARY-SENSITIVE-NETWORK-BSN-2018"><a href="#边界敏感网络-BOUNDARY-SENSITIVE-NETWORK-BSN-2018" class="headerlink" title="边界敏感网络 BOUNDARY SENSITIVE NETWORK (BSN, 2018)"></a>边界敏感网络 BOUNDARY SENSITIVE NETWORK (BSN, 2018)</h3><p><img src="/image-20210927185640495.png" alt="image-20210927185640495"></p>
+<p>BSN步骤：</p>
+<ol>
+<li>首先确定时序动作片段的边界，并将其此片段直接作为proposal。</li>
+<li>对每个候选proposal，基于动作序列的置信度，提取32维的proposal级别的特征。</li>
+<li>最后，根据所提取的这些特征，评估这些proposal的置信度。</li>
+</ol>
+<p><strong>优点：</strong></p>
+<ul>
+<li><strong>框架</strong>：提出了一种全新的且非常有效的时序提名生成框架，能够产生满足(1)时长灵活(2)边界准确(3)评分可靠的时序动作提名；</li>
+<li><strong>灵活性</strong>：BSN方法的模块非常简单且灵活，能够灵活地应用于不同的垂类场景。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li><strong>效率不够高</strong>：提名特征提取以及置信度评估的过程是对每个时序提名逐个进行的，虽然可以在一定程度上做并行加速，但总体上还是效率比较差；</li>
+<li><strong>语义信息丰富性不足</strong>：为了保证提名特征提取过程的效率，BSN中所设计的32维提名特征是比较简单的，但也限制了置信度评估模块从特征中获得更加丰富的语义信息；</li>
+<li><strong>多阶段</strong>：BSN方法是一个多阶段的方法，没有将几部分网络联合优化。</li>
+</ul>
+<h3 id="边界匹配网络-BOUNDARY-MATCHING-NETWORK-BMN-2019"><a href="#边界匹配网络-BOUNDARY-MATCHING-NETWORK-BMN-2019" class="headerlink" title="边界匹配网络 BOUNDARY-MATCHING NETWORK (BMN, 2019)"></a>边界匹配网络 BOUNDARY-MATCHING NETWORK (BMN, 2019)</h3><p>为了解决BSN的不足所提出。BMN网络能够同时生成与BSN中类似的一维边界概率序列，以及二维的BM置信度图来密集的评估所有可能存在的时序提名的置信度分数。</p>
+<p>右下角三角形区域的解释：提名的结束时间超出了视频的范围，不被纳入考虑。</p>
+<p><img src="/image-20211213220303917.png" alt="image-20211213220303917" style="zoom: 67%;" /></p>
+<p>BMN主要包括3个模块：</p>
+<ul>
+<li>基础模块：包括两个1d卷积层，处理输入的特征序列，并输出被后续两个模块所共享的时序特征序列。</li>
+<li>时序评估模块：包含两个1d卷积层，输出<u>开始概率序列</u>和<u>结束概率序列</u>，用于后续的提名生成。</li>
+<li>提名评估模块：包含了前面介绍的BM layer，一个3d卷积层以及3个2d卷积层，最终输出为BM置信度图。</li>
+</ul>
+<p>网络生成时序边界概率序列后，产生候选时序提名；并从二维置信度图中取出对应的置信度分数，用于最后的时序提名排序。</p>
+<p>最后用了Soft-NMS方法去除冗余结果。</p>
+<p><strong>优点：</strong>效率比BSN更高；</p>
+<h2 id="一阶段（端到端）方法"><a href="#一阶段（端到端）方法" class="headerlink" title="一阶段（端到端）方法"></a>一阶段（端到端）方法</h2><p>这种方法同时处理proposal和分类。</p>
+<h3 id="End-to-end-Learning-of-Action-Detection-from-Frame-Glimpses-in-Videos-2016-CVPR"><a href="#End-to-end-Learning-of-Action-Detection-from-Frame-Glimpses-in-Videos-2016-CVPR" class="headerlink" title="End-to-end Learning of Action Detection from Frame Glimpses in Videos [2016 CVPR]"></a>End-to-end Learning of Action Detection from Frame Glimpses in Videos [2016 CVPR]</h3><p>视频动作检测任务中的<u>第一个</u>端到端方法。用了强化学习的思路。</p>
+<p>该模型有一个基于递归神经网络的agent，它随着时间的推移与视频交互。agent观察固定比例的视频帧，并决定下一步在哪里看以及何时发出预测。</p>
+<p><img src="/image-20211008105534974.png" alt="image-20211008105534974"></p>
+<p><strong>总体流程</strong></p>
+<p>在某一步n中，agent观察橙色视频帧并产生3个输出：$(d_n, p_n, l_{n+1})$，分别表示（候选检测结果，预测指标，下一处观察位置）。其中，预测指标$p_n$输出“是”或“否”，指示$d_n$可否被作为一个预测结果被提交；候选检测结果$d_n$包括$(s_n, e_n, c_n)$，分别表示正则化开始、结束位置和该候选的置信度。</p>
+<p>在上图中，$p_n$输出“否”，因此不被动作预测集接受。同时agent在n+1步中移动到$l_{n+1}$的位置，即绿色视频帧的位置，并继续产生3个输出：$(d_{n+1}, p_{n+1}, l_{n+2})$。此时$p_{n+1}$仍不被接受，因此agent在n+2步中移动到$l_{n+2}$的位置，即蓝色视频帧的位置。这次的$p_{n+2}$被接受，因此将该候选结果输入到动作预测集，同时agent继续下一步。</p>
+<p><strong>优点：</strong>只需要观察很少数的视频帧（2%甚至更少）</p>
+<h3 id="SSAD（single-shot-temporal-action-detection，单镜头时序动作检测）"><a href="#SSAD（single-shot-temporal-action-detection，单镜头时序动作检测）" class="headerlink" title="SSAD（single shot temporal action detection，单镜头时序动作检测）"></a>SSAD（single shot temporal action detection，单镜头时序动作检测）</h3><p>结合了在目标检测中的YOLO和SSD模型的特性。</p>
+<p><img src="image-20220115231850631.png" alt="image-20220115231850631"></p>
+<p><strong>缺点：</strong>虽然不是像S-CNN那样固定了滑窗，但是bbox的大小实际上还是由人为事先规定的；效率可能不是很高，因为会生成很多的bbox。</p>
+<h3 id="SS-TAD（end-to-end-single-stream-temporal-action-detection，端到端，单流时序动作检测）"><a href="#SS-TAD（end-to-end-single-stream-temporal-action-detection，端到端，单流时序动作检测）" class="headerlink" title="SS-TAD（end-to-end, single-stream temporal action detection，端到端，单流时序动作检测）"></a>SS-TAD（end-to-end, single-stream temporal action detection，端到端，单流时序动作检测）</h3><p>利用时序动作定位的语义子任务作为调整后的<strong>语义约束</strong>（semantic constraints）来提高训练和测试性能。</p>
+<p><img src="/image-20211011161132357.png" alt="image-20211011161132357"></p>
+<p><strong>优点：</strong>效率上比SSAD更好。</p>
+<h3 id="GTAN（Gaussian-Temporal-Awareness-Networks，高斯时序感知网络）"><a href="#GTAN（Gaussian-Temporal-Awareness-Networks，高斯时序感知网络）" class="headerlink" title="GTAN（Gaussian Temporal Awareness Networks，高斯时序感知网络）"></a>GTAN（Gaussian Temporal Awareness Networks，高斯时序感知网络）</h3><p>引入高斯核函数（Gaussian kernels），动态优化每个动作proposal的时序范围。</p>
+<p><img src="/image-20211101210605894.png" alt="image-20211101210605894"></p>
+<h2 id="弱监督方法"><a href="#弱监督方法" class="headerlink" title="弱监督方法"></a>弱监督方法</h2><p>见另一个文件。</p>
+<h2 id="总结和想法"><a href="#总结和想法" class="headerlink" title="总结和想法"></a>总结和想法</h2><ul>
+<li>通过梳理和总结，现在对各种好的思路和方法有了比较清晰的了解。</li>
+</ul>
+<ul>
+<li>端到端的时序动作定位方法</li>
+</ul>
+<p>从目标检测的发展进程来看，在目标检测算法的发展与落地应用过程中，往往单阶段算法可以在推理速度与模型大小中有着更大的优势。模型结构也往往更加简单。</p>
+<p>多阶段的方法往往由多个独立的模块组成，每个步骤结果的好坏会影响到下一步骤，从而影响训练结果，同时需要较为高昂的标注成本，因此端到端的方法更具有实用价值。现有的方法中，两阶段的方法，如R-C3D，评估不同尺度的proposal用的是共享特征，而时间段的范围和anchor的跨度不对齐，难以解决时间段的变化比目标检测的区域变化范围更大的问题。聚合动作性分数的方法，如SSN，TAG，ETP，CTAP由于其感受野的限制，会使得在时间跨度较大的数据集上表现不佳。基于边界的方法，如BSN，BMN，BSN++需要先使用骨干网络提取视频中的特征，保存后再使用特征进行训练和测试，并且只产生proposal在实际应用中价值有限。</p>
+<ul>
+<li>弱监督的时序动作定位方法</li>
+</ul>
+<p>弱监督时序动作定位的标签只提供实例的类别信息，需要网络自身去猜测动作的起止时间，问题定义更加复杂，但是实用价值更高，因此有不少研究人员将目光聚焦于弱监督时序动作定位中。主流的弱监督时序动作定位算法通过预测视频片段的动作概率，通过融合得到整个视频的概率输出，然后通过注意力模型得到每个视频片段对应的注意力权重。在测试阶段，通过注意力权重筛选视频片段，去除不包括动作的片段。</p>
+<ul>
+<li>充分利用上下文信息</li>
+</ul>
+<p>在时序动作定位任务中，视频包含丰富的上下文信息。如在背景片段中，往往包含场景信息，充分利用上下文信息将有助于对应场景动作的检测。</p>
+<p>为了充分利用上下文的信息，一些方法如TCANet，BSN++，使用自注意力对时序以及空间关系建模，寻找特征的全局依赖关系，自注意力模块会<strong>消耗大量的计算资源</strong>，降低方法的实用性。一些方法，如TCN,TURN,TSN，按照<strong>预定义比例扩展动作时间边界</strong>以利用视频上下文信息，TAL-net使用空洞卷积编码上下文信息,但这些方法只是简单的利用了时序方向的上下文，在动作的时序领域中扩展边界，现实中的动作在时间范围，动作内容都有较大差异，这些方法无法充分利用视频中丰富的上下文信息。另一部分方法如P-GCN，使用图卷积网络学习proposal之间的依赖关系，在生成proposal时使用了聚合动作性分数的方法，存在<strong>感受野受限</strong>的问题。</p>
+<h2 id="下周计划"><a href="#下周计划" class="headerlink" title="下周计划"></a>下周计划</h2><ul>
+<li>周一又开学了，不在校也要尽量保持在校的状态。</li>
+<li>这学期有些好的论文虽然看过了，但是还没有来得及做实验。继续写代码做实验。</li>
+<li>继续调研综述中提到的那些思路和方法。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+	
+	<div>
+      
+      <div>
+    
+        <div class="read-over" style="text-align:left;font-size:14px;">
+			<p style="text-align:center;color: #ccc;"><br /><br />
+			-------------------本文结束 <i class="fa fa-paw"></i> 感谢您的阅读-------------------
+			<p>
+		</div>
+    
+</div>
+
+      
+    </div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="tag"># 论文笔记</a>
+              <a href="/tags/%E7%BB%BC%E8%BF%B0/" rel="tag"># 综述</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/OJ-2021-12/" rel="prev" title="【OJ】刷题记录2021-12">
+      <i class="fa fa-chevron-left"></i> 【OJ】刷题记录2021-12
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/dfs/" rel="next" title="【OJ】DFS">
+      【OJ】DFS <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E5%AE%9A%E4%BD%8D%EF%BC%88Temporal-Action-Localization%EF%BC%89%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">时序动作定位（Temporal Action Localization）总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E5%87%86%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.3.</span> <span class="nav-text">基准数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">两阶段方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SLIDING-WINDOW-S-CNN-2016"><span class="nav-number">1.4.1.</span> <span class="nav-text">SLIDING WINDOW (S-CNN, 2016)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E7%BB%84%E5%90%88-TEMPORAL-ACTIONNESS-GROUPING-TAG-2017"><span class="nav-number">1.4.2.</span> <span class="nav-text">时序动作组合 TEMPORAL ACTIONNESS GROUPING (TAG, 2017)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E5%8D%95%E5%85%83%E5%9B%9E%E5%BD%92%E7%BD%91%E7%BB%9C-TEMPORAL-UNIT-REGRESS-NETWORK-TURN-TAP-2017"><span class="nav-number">1.4.3.</span> <span class="nav-text">时序单元回归网络 TEMPORAL UNIT REGRESS NETWORK (TURN TAP 2017)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E6%95%8F%E6%84%9F%E7%BD%91%E7%BB%9C-BOUNDARY-SENSITIVE-NETWORK-BSN-2018"><span class="nav-number">1.4.4.</span> <span class="nav-text">边界敏感网络 BOUNDARY SENSITIVE NETWORK (BSN, 2018)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%8C%B9%E9%85%8D%E7%BD%91%E7%BB%9C-BOUNDARY-MATCHING-NETWORK-BMN-2019"><span class="nav-number">1.4.5.</span> <span class="nav-text">边界匹配网络 BOUNDARY-MATCHING NETWORK (BMN, 2019)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%88%E7%AB%AF%E5%88%B0%E7%AB%AF%EF%BC%89%E6%96%B9%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">一阶段（端到端）方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#End-to-end-Learning-of-Action-Detection-from-Frame-Glimpses-in-Videos-2016-CVPR"><span class="nav-number">1.5.1.</span> <span class="nav-text">End-to-end Learning of Action Detection from Frame Glimpses in Videos [2016 CVPR]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSAD%EF%BC%88single-shot-temporal-action-detection%EF%BC%8C%E5%8D%95%E9%95%9C%E5%A4%B4%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E6%A3%80%E6%B5%8B%EF%BC%89"><span class="nav-number">1.5.2.</span> <span class="nav-text">SSAD（single shot temporal action detection，单镜头时序动作检测）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SS-TAD%EF%BC%88end-to-end-single-stream-temporal-action-detection%EF%BC%8C%E7%AB%AF%E5%88%B0%E7%AB%AF%EF%BC%8C%E5%8D%95%E6%B5%81%E6%97%B6%E5%BA%8F%E5%8A%A8%E4%BD%9C%E6%A3%80%E6%B5%8B%EF%BC%89"><span class="nav-number">1.5.3.</span> <span class="nav-text">SS-TAD（end-to-end, single-stream temporal action detection，端到端，单流时序动作检测）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GTAN%EF%BC%88Gaussian-Temporal-Awareness-Networks%EF%BC%8C%E9%AB%98%E6%96%AF%E6%97%B6%E5%BA%8F%E6%84%9F%E7%9F%A5%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.5.4.</span> <span class="nav-text">GTAN（Gaussian Temporal Awareness Networks，高斯时序感知网络）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%B1%E7%9B%91%E7%9D%A3%E6%96%B9%E6%B3%95"><span class="nav-number">1.6.</span> <span class="nav-text">弱监督方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%92%8C%E6%83%B3%E6%B3%95"><span class="nav-number">1.7.</span> <span class="nav-text">总结和想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E5%91%A8%E8%AE%A1%E5%88%92"><span class="nav-number">1.8.</span> <span class="nav-text">下周计划</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gwofoo"
+      src="/images/myavatar.jpg">
+  <p class="site-author-name" itemprop="name">Gwofoo</p>
+  <div class="site-description" itemprop="description">Welcome to Gwofoo's blog. Keep it up!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Gwofoo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Gwofoo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gwofoo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">56k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">51 分钟</span>
+  
+	<br />
+	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+	<script>
+		var now = new Date(); 
+		function createtime() { 
+			var birth= new Date("7/2/2019 23:12:45");//此处修改你的建站时间或者网站上线时间 
+			this_year = now.getFullYear();
+			var anniversary = new Date("7/2/2019 23:12:45").setFullYear(this_year);
+			now.setTime(now.getTime()+250); 
+			years = this_year - 2019;
+			days = (now - anniversary ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 			
+			hours = (now - anniversary ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+			if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - anniversary ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+			mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+			seconds = (now - anniversary ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+			snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+			document.getElementById("timeDate").innerHTML = "本站已安全运行 " + years + " 年 " + dnum + " 天 "; 
+			document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+		} 
+	setInterval("createtime()",250);
+	</script>
+	
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+  
+  <!--动态背景-->
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>
